@@ -20,9 +20,9 @@ Hi, I'm Jose Salazar and it's my 4th year at UCSD, studying Computer Science and
 
 [If you want to learn more about me, you can visit my GitHub page here.](https://jsalazar026.github.io/CSE-110-Lab-0-1/)
 
-### Name: [insert name here]
-[Insert overview here]
+### Name: Sky Hung
+Hi! I am Sky Hung and it is my 4th year in UCSD as a Computer Engineering undergrad. I am interested in digital circuits and neuromorphic computing, and I also have interest in software. In my spare time, I like reading, photography, archery, and also video gaming.
 
-[Click here to check out my GitHub page!](https://github.com/xxxyyy)
+[Click here to check out my GitHub page!](https://hht1228.github.io/cse110/)
 
 ## Values/Culture:
