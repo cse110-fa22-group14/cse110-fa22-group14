@@ -14,6 +14,12 @@ Hi everyone, I am Ruilin Hu and it is my third year into Computer Engineering. I
 
 [Click here to check out my GitHub page!](https://hurl365.github.io/CSE110-Lab-Week-0-1/)
 
+### Name: Jose Salazar
+
+Hi, I'm Jose Salazar and it's my 4th year at UCSD, studying Computer Science and Pure Math. I am interested in the more theoretical aspects of Computer Science, but I can appreciate a really cool application when I see one! I like to play the violin on the side when I'm not studying.
+
+[If you want to learn more about me, you can visit my GitHub page here.](https://jsalazar026.github.io/CSE-110-Lab-0-1/)
+
 ### Name: [insert name here]
 [Insert overview here]
 
