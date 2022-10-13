@@ -25,4 +25,9 @@ Hi! I am Sky Hung and it is my 4th year in UCSD as a Computer Engineering underg
 
 [Click here to check out my GitHub page!](https://hht1228.github.io/cse110/)
 
+### Name: Antonio Anguiano
+Hello my name is Antonio and I'm a third year Computer Science major. My interest is mostly in web development at the moment, but I think of it more so as just one practical application of cs. In my free time I also play the viola (it's like a slightly bigger violin) and just  listen to a lot of music in general.
+
+[my github pages if you're curious] (https://antonio-anguiano.github.io/GitHub-Pages/)
+
 ## Values/Culture:
