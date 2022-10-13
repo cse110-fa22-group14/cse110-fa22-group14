@@ -28,15 +28,15 @@ Hi! I am Sky Hung and it is my 4th year in UCSD as a Computer Engineering underg
 ### Name: Antonio Anguiano
 Hello my name is Antonio and I'm a third year Computer Science major. My interest is mostly in web development at the moment, but I think of it more so as just one practical application of cs. In my free time I also play the viola (it's like a slightly bigger violin) and just  listen to a lot of music in general.
 
-[my github pages if you're curious] (https://antonio-anguiano.github.io/GitHub-Pages/)
+[my github pages if you're curious](https://antonio-anguiano.github.io/GitHub-Pages/)
 
 ### Name: Haonan He
 Hi, my name is Haonan He. I am a third year Math-CS major. I am interested in the frontend design of the application, I enjoy listening to music and watching basketball games.  I am looking forward to build an application with you guys. I hope we all have fun during the process. 
 
-[this is my GitHub page!] (https://github.com/h4henry)
+[this is my GitHub page!](https://github.com/h4henry)
 
 ### Name: Zhaoyu Zhang
 Hi, my name is Zhaoyu Zhang and you can also call me Tina. I am a third year CS major. I am interested in machine learning and Maths. I enjoy playing the piano and Hearthstone Battlefield. I am excited to working with you guys on fantastic projects!
 
-[Click here to access to my GitHub page!] (https://github.com/ZhaoyuTina)
+[Click here to access to my GitHub page!](https://github.com/ZhaoyuTina)
 ## Values/Culture:
