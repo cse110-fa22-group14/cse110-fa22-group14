@@ -4,7 +4,7 @@
 
 ### Name: William Kim
 
-[Insert overview here]
+Hey, I am William Kim and I'm a third year Cognitive Science student. I am super interested in web design and while I do enjoy frontend, I find that backend is more enriching and complex. When I do get bored, I usually make digital art, play the piano, or watch movies! 
 
 [Click here to check out my GitHub page!](https://will-loves-coding82.github.io/William-User-Page/)
 
