@@ -39,4 +39,9 @@ Hi, my name is Haonan He. I am a third year Math-CS major. I am interested in th
 Hi, my name is Zhaoyu Zhang and you can also call me Tina. I am a third year CS major. I am interested in machine learning and Maths. I enjoy playing the piano and Hearthstone Battlefield. I am excited to working with you guys on fantastic projects!
 
 [Click here to access to my GitHub page!](https://github.com/ZhaoyuTina)
+
+### Name: Gnamitha Naganathanahalli
+Hey! My name is Gnamitha Naganathanahalli, and I am a 4th year Mathematics-Computer Science major. I am interested in the applications of mathematical models to real world computer science problems. In my free time, I play tennis and love hiking. I'm looking forward to working with this team!
+
+[Click here for access to my Github page!](https://gnaganathanahalli-ucsd.github.io/Lab1_CSE110/index)
 ## Values/Culture:
