@@ -40,6 +40,6 @@ Hi, I'm Ryan O'Toole, and I'm a Senior in Mathematics - Computer Science. I'm cu
 
 Hi, my name is Haonan He. I am a third year Math-CS major. I am interested in the frontend design of the application, I enjoy listening to music and watching basketball games.  I am looking forward to build an application with you guys. I hope we all have fun during the process. 
 
-[this is my GitHub page!] (https://github.com/h4henry)
+[this is my GitHub page!](https://github.com/h4henry)
 
 ## Values/Culture:
