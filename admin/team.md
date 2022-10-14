@@ -4,7 +4,7 @@
 
 ### Name: William Kim
 
-Hey, I am William Kim and I'm a third year Cognitive Science student. I am super interested in web design and while I do enjoy frontend, I find that backend is more enriching and complex. When I do get bored, I usually make digital art, play the piano, or watch movies! 
+[Insert overview here]
 
 [Click here to check out my GitHub page!](https://will-loves-coding82.github.io/William-User-Page/)
 
@@ -28,20 +28,12 @@ Hi! I am Sky Hung and it is my 4th year in UCSD as a Computer Engineering underg
 ### Name: Antonio Anguiano
 Hello my name is Antonio and I'm a third year Computer Science major. My interest is mostly in web development at the moment, but I think of it more so as just one practical application of cs. In my free time I also play the viola (it's like a slightly bigger violin) and just  listen to a lot of music in general.
 
-[my github pages if you're curious](https://antonio-anguiano.github.io/GitHub-Pages/)
+[my github pages if you're curious] (https://antonio-anguiano.github.io/GitHub-Pages/)
 
-### Name: Haonan He
-Hi, my name is Haonan He. I am a third year Math-CS major. I am interested in the frontend design of the application, I enjoy listening to music and watching basketball games.  I am looking forward to build an application with you guys. I hope we all have fun during the process. 
+### Name: Ryan O'Toole
 
-[this is my GitHub page!](https://github.com/h4henry)
+Hi, I'm Ryan O'Toole, and I'm a Senior in Mathematics - Computer Science. I'm currently exploring my options in computer science, so I don't have a particular intrest at the moment. Outside of work, I like video games and watching youtube, and occasionally golf.
 
-### Name: Zhaoyu Zhang
-Hi, my name is Zhaoyu Zhang and you can also call me Tina. I am a third year CS major. I am interested in machine learning and Maths. I enjoy playing the piano and Hearthstone Battlefield. I am excited to working with you guys on fantastic projects!
+[My GitHub page is here.](https://rotoole-22.github.io/CSE_110_Lab0-1/)
 
-[Click here to access to my GitHub page!](https://github.com/ZhaoyuTina)
-
-### Name: Gnamitha Naganathanahalli
-Hey! My name is Gnamitha Naganathanahalli, and I am a 4th year Mathematics-Computer Science major. I am interested in the applications of mathematical models to real world computer science problems. In my free time, I play tennis and love hiking. I'm looking forward to working with this team!
-
-[Click here for access to my Github page!](https://gnaganathanahalli-ucsd.github.io/Lab1_CSE110/index)
 ## Values/Culture:
