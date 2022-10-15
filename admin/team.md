@@ -42,4 +42,9 @@ Hi, my name is Haonan He. I am a third year Math-CS major. I am interested in th
 
 [This is my GitHub page!](https://github.com/h4henry)
 
+### Name: Zhaoyu Zhang
+Hi, my name is Zhaoyu Zhang. You can also call me Tina. My pronouns is She/Her/Hers. I am a third year CS major. I am interested in machine learning and algorithms. I enjoy playing the piano and play Hearthstone battle field. I am looking forward to put my skills in our fantistic team projects!
+
+[Here is my Github home page ^ - ^](https://github.com/ZhaoyuTina)
+
 ## Values/Culture:
