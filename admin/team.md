@@ -47,4 +47,9 @@ Hi, my name is Zhaoyu Zhang. You can also call me Tina. My pronouns is She/Her/H
 
 [Here is my Github home page ^ - ^](https://github.com/ZhaoyuTina)
 
+### Name: Gnamitha Naganathanahalli
+Hi! My name is Gnamitha Naganathanahalli, and I'm a 4th year Mathematics-Computer Science Major. I'm interested in the application of mathematical models in computer science. In terms of my hobbies, I enjoy playing tennis and reading. I'm really looking forward to working with this team!
+
+[Here is the link to my Github page!](https://gnaganathanahalli-ucsd.github.io/Lab1_CSE110/)
+
 ## Values/Culture:
