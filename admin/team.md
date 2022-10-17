@@ -1,5 +1,13 @@
 # Team 14 - ProForce
 
+## Values/Culture:
+
+Team ProForce thrives to produce software with productivity, accessibility, and efficiency. Not only do we focus on improving the quality of our product, but we also bring out our creative ideas to life in the form of applications. To achieve this goal, we are committed to creating good alignments in the team, learning various concepts, tools, and methods, as well as effectively communicating with our end users. ProForce dedicates efforts to gaining these valuable learning experiences in user-developer interactions, where the inclusive and supportive atmospheres create a sense of comradery within and around all of us. Let's overcome difficulties as a family!
+
+## Brand:
+Our team color is blue! Because it brings us hope and power. And that's why our logo is mainly blue.
+![Team Logo](branding/ProforceLogo.jpg)
+
 ## Team Roster:
 
 ### Name: William Kim
@@ -58,6 +66,4 @@ Hi, My name is Yuang Cui. I am a second year CS major international student. Com
 
 [If you want to know more about me, here is my GitHub page here.](https://github.com/GoldenStone929)
 
-## Values/Culture:
 
-Team ProForce thrives to produce software with productivity, accessibility, and efficiency. Not only do we focus on improving the quality of our product, but we also bring out our creative ideas to life in the form of applications. To achieve this goal, we are committed to creating good alignments in the team, learning various concepts, tools, and methods, as well as effectively communicating with our end users. ProForce dedicates efforts to gaining these valuable learning experiences in user-developer interactions, where the inclusive and supportive atmospheres create a sense of comradery within and around all of us. Let's overcome difficulties as a family!
