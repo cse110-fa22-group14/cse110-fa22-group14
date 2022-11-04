@@ -1,0 +1,70 @@
+/* Background Color Schemes 
+ *
+ * Pink-Lavendar: #BF8162
+ * Black: #FFFFFF
+ * Chocolate: #3E1404
+ * Cream: #E3E2C5
+ * 
+ */
+ 
+
+ /*TODO: Add font styles and clean up elements*/
+
+ 
+/*Hidden popup form*/
+form {
+    position: absolute;
+    opacity: 0;
+    z-index: 1;
+    background-color: black;
+
+    /*TODO: Scale up the size of this to fit the page nicely*/
+    height: 20vh;
+    width: 20vw;
+}
+
+
+/* Holds the help and filter options above gallery*/
+#functionality {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: auto;
+    width: 80%;    
+    text-align: center;
+}
+
+/* The list that stores all the cards
+ * Three columns but its rows should grow dynamically with number of cards added
+ * This was actually very simple. Just had to do some exploration online
+ */
+#gallery {
+    width: 80%;
+    margin: 10vh auto 10vh auto;
+    display: grid;
+
+    /* autofill tells the DOM to move content to the next
+     * row if it overfills the current row as many times as needed
+     *
+     * minmax property will determine if items need
+     * to stretch to consume any horizontal space up to 1fr
+     */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 30px;
+    justify-content: center;    
+}
+
+
+/* TODO: remove pseudoCard selector after custom elements are made 
+ * TODO: The custom card element should be same size and color as the add button*/
+#addCard, #pseudoCard{
+    min-width: 300px;
+    max-width: 1fr;
+    height: 300px;
+    background-color: #BF8162;
+    border-radius: 10px;
+    border: none;
+}
+
+
+/* TODO:
