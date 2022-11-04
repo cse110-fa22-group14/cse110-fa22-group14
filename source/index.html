@@ -8,25 +8,47 @@
   <script src="scripts/coffeeCard.js" type="module"></script>
 
   <!-- Main Stylesheets & Scripts -->
-  <link rel="stylesheet" href="" />
-  <script src="index.css" type="module"></script>
+  <link rel="stylesheet" href="index.css" />
+  <script src="scripts/index.js" type="module"></script>
 </head>
 
 <body>
   <main>
+
     <section id = "functionality">
         <button id = "help">Help</button>
-        <title>Coffee Log</title>
+        <h1>COFFEE LOG</h1>
 
         <!--the filter should be implemented later -->
-        <!--<dropdown id = "filter"></dropdown> -->
+        <select id= "filter">
+            <option value = "low-high">Low-High</option>
+            <option value = "high-low">High-Low</option>
+        </select> 
     </section>
 
-    <section id = "gallery">
-        <div id = "add-card-btn">
-            <img src = "assets/images/add-icon.png.png" alt = "add icon">
-        </div>
+    <form id = "popUpBox">
+        <button type = "submit">Save</button>
+        <button id = "cancel">Cancel</button>
+        <input type = "text" placeholder = "field">
+        <input type = "text" placeholder = "field">
+        <input type = "text" placeholder = "field">
+    </form>
 
+    <section id = "gallery">
+        <button id = "addCard">
+            <img id = "addIcon" src = "assets/images/add-icon.png.png" alt = "add icon">
+        </button>
+
+        <!--These are just for visualizing the layout of the grid-->
+        <div id = "pseudoCard"></div>
+        <div id = "pseudoCard"></div>
+        <div id = "pseudoCard"></div>
+        <div id = "pseudoCard"></div>
+        <div id = "pseudoCard"></div>
+        <div id = "pseudoCard"></div>
+
+        <!--Later we will add custom <coffeeCard> elements to the gallery.-->
+        
     </section>
   </main>
   
