@@ -1,5 +1,13 @@
 # Team 14 - ProForce
 
+## Values/Culture:
+
+Team ProForce thrives to produce software with productivity, accessibility, and efficiency. Not only do we focus on improving the quality of our product, but we also bring out our creative ideas to life in the form of applications. To achieve this goal, we are committed to creating good alignments in the team, learning various concepts, tools, and methods, as well as effectively communicating with our end users. ProForce dedicates efforts to gaining these valuable learning experiences in user-developer interactions, where the inclusive and supportive atmospheres create a sense of comradery within and around all of us. Let's overcome difficulties as a family!
+
+## Brand:
+Our team color is blue! Because it brings us hope and power. And that's why our logo is mainly blue.
+![Team Logo](branding/ProforceLogo.jpg)
+
 ## Team Roster:
 
 ### Name: William Kim
@@ -47,4 +55,15 @@ Hi, my name is Zhaoyu Zhang. You can also call me Tina. My pronouns is She/Her/H
 
 [Here is my Github home page ^ - ^](https://github.com/ZhaoyuTina)
 
-## Values/Culture:
+### Name: Gnamitha Naganathanahalli
+Hi! My name is Gnamitha Naganathanahalli, and I'm a 4th year Mathematics-Computer Science Major. I'm interested in the application of mathematical models in computer science. In terms of my hobbies, I enjoy playing tennis and reading. I'm really looking forward to working with this team!
+
+[Here is the link to my Github page!](https://gnaganathanahalli-ucsd.github.io/Lab1_CSE110/)
+
+### Name: Yuang Cui
+
+Hi, My name is Yuang Cui. I am a second year CS major international student. Compare to the long reading from other major, I find algorithms is more interesting. I play video games when I am free. I'm looking forward to learn and improve with this team!
+
+[If you want to know more about me, here is my GitHub page here.](https://github.com/GoldenStone929)
+
+
