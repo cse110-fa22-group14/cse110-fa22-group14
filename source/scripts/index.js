@@ -27,7 +27,7 @@ function handleEvents(){
     let gallery = document.getElementById("gallery");
     let helpButton = document.getElementById("help");
     let filterOption = document.getElementById("filter");
-    let addButton = document.getElementById('addCardBtn');
+    let addButton = document.getElementById('addCard');
     let form = document.getElementById('popUpBox');
     let cancelButton = document.getElementById('cancel');
 
@@ -48,7 +48,7 @@ function handleEvents(){
     // Listener when user wants to add a new card
     addButton.addEventListener("click", () => {
         // TODO: Make popupBox visible. Just change the opacity 
-
+        form.style.opacity = "1";
     })
 
     
