@@ -33,7 +33,7 @@ function handleEvents(){
 
     
 
-    // TODO: Triggers popup box providing details on how to use the app
+    // TODO: Triggers another popup box providing details on how to use the app
     helpButton.addEventListener("click", () => {
 
     })
@@ -49,6 +49,7 @@ function handleEvents(){
     addButton.addEventListener("click", () => {
         // TODO: Make popupBox visible. Just change the opacity 
         form.style.opacity = "1";
+        form.style.visibility = "visible"
     })
 
     
@@ -73,9 +74,10 @@ function handleEvents(){
 
     })
 
-    // Clears fields of popUpBox element and hides the element afterwards
+    // Clears fields of popUpBox element using "reset" attribute in index.html
+    
     cancelButton.addEventListener("click", () => {
-        //TODO: implement the above functionality 
+        // TODO: Hide the form popUpBox
     })
 
     
