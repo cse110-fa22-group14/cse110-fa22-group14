@@ -6,7 +6,7 @@ name: TEST
 on:
   # Triggers the workflow on push events to "feature" and 
   push:
-    branches: [ feature ]
+    branches: [ "feature" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
