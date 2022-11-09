@@ -22,7 +22,7 @@ function init(){
  * all of the coffee cards found (parsed, not in string form). If
  * nothing is found in localStorage for 'coffeeCards', an empty array
  * is returned.
- * @returns {Array<Object>} An array of recipes found in localStorage
+ * @returns {Array<Object>} An array of coffee cards found in localStorage
  */
 function getCoffeeCardsFromStorage(){
     return JSON.parse(localStorage.getItem('coffeeCards'));
@@ -43,7 +43,7 @@ function addCoffeeCardsToDocument(coffeeCards) {
   //            each <recipe-card> with that recipe data using element.data = ...
   //            Append each element to <main>
   const gallery = document.getElementById("gallery");
-  for (let i = 0; i < recipes.length; i++){
+  for (let i = 0; i < coffeeCards.length; i++){
     const coffeeCard = gallery.appendChild(document.createElement("coffee-card"));
     coffeeCard.data = coffeeCards[i];
   }
@@ -53,7 +53,7 @@ function addCoffeeCardsToDocument(coffeeCards) {
 /** 
  * Takes in an array of recipes, converts it to a string, and then
  * saves that string to 'recipes' in localStorage
- * @param {Array<Object>} recipes An array of recipes
+ * @param {Array<Object>} coffeeCards An array of recipes
  */
 function saveCoffeeCardsToStorage(coffeeCards) {
   // EXPLORE - START (All explore numbers start with B)
