@@ -94,8 +94,11 @@ function handleEvents(){
     // Listener when user wants to add a new card
     addButton.addEventListener("click", () => {
         // Make popupBox visible. Just change the opacity 
-        form.style.opacity = "1";
-        form.style.visibility = "visible";
+        //form.style.opacity = "1";
+        //form.style.visibility = "visible";
+        let new_coffee_card = document.createElement('coffee-card');
+        document.querySelector('main').append(new_coffee_card);
+
     })
 
     
