@@ -33,6 +33,21 @@ function handleEvents(){
     let flavorSliders = document.getElementsByClassName('flavorRange');
 
     
+    // Add event listeners to each flavor range slider
+    for (let i=0; i<flavorSliders.length; i++) {
+
+        const slider = flavorSliders[i];
+
+        // when user changes value, display it to user
+        slider.addEventListener("change", (e) => {
+            // get <span> tag next to current range slider
+            let output = slider.nextElementSibling;
+
+            // display value 
+            output.innerHTML= slider.value;
+        });
+    }
+    
 
     // TODO: Triggers another popup box providing details on how to use the app
     helpButton.addEventListener("click", () => {
@@ -81,16 +96,7 @@ function handleEvents(){
         // TODO: Hide the form popUpBox
     })
 
-    // Displays the current value of the value sliders next to each slider
-    for (let i=0; i<flavorSliders.length; i++) {
-        const slider = flavorSliders[i];
-        const output = document.getElementById(`${slider.id}Val`);
-        output.innerHTML = slider.value;
 
-        slider.oninput = function() {
-            output.innerHTML = slider.value;
-        }
-    }
 
     /* TODO: When user clicks on a coffee card in the gallery, the popUpBox
      * should appear so the user can edit the information.
