@@ -49,7 +49,7 @@ function handleEvents(){
     addButton.addEventListener("click", () => {
         // TODO: Make popupBox visible. Just change the opacity 
         form.style.opacity = "1";
-        form.style.visibility = "visible"
+        form.style.visibility = "visible";
     })
 
     
@@ -78,6 +78,8 @@ function handleEvents(){
     
     cancelButton.addEventListener("click", () => {
         // TODO: Hide the form popUpBox
+        form.style.opacity = "0";
+        form.style.visibility = "hidden";
     })
 
     
