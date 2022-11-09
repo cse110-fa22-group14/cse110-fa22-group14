@@ -30,6 +30,7 @@ function handleEvents(){
     let addButton = document.getElementById('addCard');
     let form = document.getElementById('popUpBox');
     let cancelButton = document.getElementById('cancel');
+    let flavorSliders = document.getElementsByClassName('flavorRange');
 
     
 
@@ -80,7 +81,16 @@ function handleEvents(){
         // TODO: Hide the form popUpBox
     })
 
-    
+    // Displays the current value of the value sliders next to each slider
+    for (let i=0; i<flavorSliders.length; i++) {
+        const slider = flavorSliders[i];
+        const output = document.getElementById(`${slider.id}Val`);
+        output.innerHTML = slider.value;
+
+        slider.oninput = function() {
+            output.innerHTML = slider.value;
+        }
+    }
 
     /* TODO: When user clicks on a coffee card in the gallery, the popUpBox
      * should appear so the user can edit the information.
