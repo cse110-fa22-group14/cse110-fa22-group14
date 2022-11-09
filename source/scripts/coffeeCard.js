@@ -40,6 +40,7 @@
              grid-template-rows: repeat(11, 55px);
              grid-template-columns: repeat(6, minmax(60px,1fr));
              gap: 10px;
+
          }
 
          fieldset{
@@ -201,8 +202,119 @@
              padding: 15px;
              font-size: 1.2em;
           }
+
+          #functionality {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin: auto;
+            width: 80%;    
+            text-align: center;
+            align-items: center;
+        }
+        
+        
+        #functionality #help, #filter {
+            background-color: black;
+            color: white;
+            border-radius: 5px;
+            width: 100px;
+            height: 40px;
+        }
+        
+        #functionality h1 {
+            font-family: 'Playfair Display';
+            font-size: 2em;
+            font-weight: 100;
+        }
+        
          `;
+         shadow_article.innerHTML = `
+         <form id = "popUpBox">
+        <button id = "save" type = "submit">SAVE</button>
+        <button id = "cancel" type = "reset">CANCEL</button>
+        
+        <input type = "text" id="drinkName" placeholder="name of drink" >drink</input>
+        <input type = "text"id="price" placeholder = "price"></input>
+        <input type = "text"id="date" placeholder = "date purchased"></input>
+        <input type = "text" id="location" placeholder = "location"></input>
+        <img id = "drinkPhoto" src = "" alt = "photo of drink" style = "color: white">
+
+        <!--Implement functionality to cycle through images-->
+        <div id = "switchPhotoContainer">switch images functionality</div>
+
+        <div id = "flavorContainer">
+
+            <fieldset id = "optionalWrapper">
+                <label for ="chocolatey">Chocolatey
+                    <input type="checkbox" id = "chocolatey"></input>
+                </label>
+               
+                <label for="caramel">Caramel
+                    <input type="checkbox" id = "caramel"></input>
+                </label>
+                
+                <label for="nutty">Nutty
+                    <input type="checkbox" id = "nutty"></input>
+                </label>
+                <label for="nutty">Fruity
+                    <input type="checkbox" id = "fruity"></input>
+                </label>
+            </fieldset>
+
+            <!--TODO: Fix the range of each silder and Add tags next to the sliders 
+                      to display the salue of the ALL the sliders-->
+            <fieldset id = "rangeWrapper">
+                <label for="acidity">Acidity
+                    <input type="range" min="1" max="5" value="1" class="acidity" id="myRange"></input>
+                </label>
+                <label for="sweetness">Sweetness
+                    <input type="range" min="1" max="100" value="50" class="sweetness" id="myRange"></input>
+                </label>
+
+                <label for="bitterness">Bitterness
+                    <input type="range" min="1" max="100" value="50" class="bitterness" id="myRange"></input>
+                </label>
+                <label for="saltiness">Saltiness
+                    <input type="range" min="1" max="100" value="50" class="saltiness" id="myRange"></input>
+
+                </label>
+
+            </fieldset>
+        </div>
+
+        <!--TODO: Style the dropdown boxes to make them consistent with rest of form style -->
+        <div id = "brewInfoContainer">
+                <select id= "servingType">
+                    <option value = "casual">Casual</option>
+                    <option value = "espresso">Espresso</option>
+                    <option value = "cappuccino">Cappuccino</option>
+                    <option value = "latte">Latte</option>
+                    <option value = "mocha">Mocha</option>
+                    <option value = "macchiato">Macchiato</option>
+
+                </select> 
+
+
+                <select id= "brewMethod">
+                    <option value = "drip">Drip</option>
+                    <option value = "press">Press</option>
+                    <option value = "siphon">Siphon</option>
+                    <option value = "pour-over">Pour Over</option>
+
+                </select> 
+
+                <label for ="color">Color
+                <input type="range" min="1" max="5" value="1" id="color"></input>
+                </label>
+
+        </div>
+
+        <textarea id = "comments" placeholder = "additional comments"></textarea>
+
+    </form>`;
          //append the elements to the shadow.
+         
          shadow.append(shadow_style);
          shadow.append(shadow_article);
          let d = new Date();
