@@ -1,0 +1,20 @@
+{
+    "extends": "stylelint-config-standard-scss",
+    "rules": {
+        "font-family-no-duplicate-names": true,
+        "comment-no-empty": true,
+        "no-duplicate-selectors": true,
+        "no-extra-semicolons": true,
+        "selector-max-id": 5,
+        "selector-class-pattern": "[a-z]-[A-Z]",
+        "selector-id-pattern": "[a-z]-[A-Z]",
+        "property-case": "lower",
+        "comment-empty-line-before": "always",
+        "function-comma-space-after": "always",
+        "comment-empty-line-after": "always",
+        "semi-colon-newline-after": "always",
+        "selector-combinator-space-after": "always",
+        "selector-combinator-space-before": "always",
+        "indentation": "tab"
+    }
+  }
