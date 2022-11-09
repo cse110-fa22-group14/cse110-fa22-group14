@@ -5,11 +5,8 @@ name: TEST
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push events to "feature" and 
-  # pull requests into "dev" branch
   push:
     branches: [ "feature" ]
-  pull_request:
-    branches: [ "dev" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
