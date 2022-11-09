@@ -104,6 +104,7 @@ function handleEvents(){
     form.addEventListener("submit", (event)=> {
         event.preventDefault();
         const data = new FormData(form);
+        console.log(data);
         // 
         // create card object and load [key: value] pairs of the form and any other input into object
 
@@ -139,6 +140,8 @@ function handleEvents(){
         coffeeCardObject["time_modified_time"] = false;
         // load the object into a new <coffeeCard> element
         coffeeCard.data = coffeeCardObject;
+
+        console.log(coffeeCardObject);
 
         
 
