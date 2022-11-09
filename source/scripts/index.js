@@ -97,7 +97,7 @@ function handleEvents(){
         //form.style.opacity = "1";
         //form.style.visibility = "visible";
         let new_coffee_card = document.createElement('coffee-card');
-        document.querySelector('main').append(new_coffee_card);
+        document.getElementById("gallery").append(new_coffee_card);
 
     })
 
