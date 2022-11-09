@@ -16,7 +16,7 @@ main {
 /* TODO: remove pseudoCard selector after custom elements are made 
  * TODO: The custom card element should be same size and color as the add button
  */
-#addCard #pseudoCard {
+#addCard, #pseudoCard {
     min-width: 300px;
     max-width: 1fr;
     height: 300px;
@@ -24,6 +24,7 @@ main {
     border-radius: 10px;
     border: none;
 }
+
 /* TODO: Smoothly change opacity when hovering over addCard button */
 #addCard:hover {
     opacity: 0.8;
@@ -57,6 +58,7 @@ form {
     /* Space between each form child */
     gap: 10px;
 }
+
 
 /* Encapsulation for different inputs in form */
 fieldset {
@@ -246,7 +248,7 @@ input[type="text"] {
 }
 
 
-#functionality #help,
+#functionality #help, 
 #filter {
     background-color: black;
     color: white;
@@ -266,9 +268,9 @@ input[type="text"] {
  * Three columns but its rows should grow dynamically with number of cards added
  * This was actually very simple. Just had to do some exploration online
  */
-#gallery {
+ #gallery {
     width: 80%;
-    margin: "10vh auto 10vh auto";
+    margin: 10vh auto 10vh auto;
     display: grid;
 
     /* Autofill tells the DOM to move content to the next
@@ -281,4 +283,3 @@ input[type="text"] {
     grid-gap: 30px;
     justify-content: center;
 }
-
