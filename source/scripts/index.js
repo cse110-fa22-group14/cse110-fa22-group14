@@ -93,7 +93,7 @@ function handleEvents(){
 
     // Listener when user wants to add a new card
     addButton.addEventListener("click", () => {
-        // TODO: Make popupBox visible. Just change the opacity 
+        // Make popupBox visible. Just change the opacity 
         form.style.opacity = "1";
         form.style.visibility = "visible";
     })
@@ -102,21 +102,60 @@ function handleEvents(){
 
     // Saving a card and adding to the gallery 
     form.addEventListener("submit", (event)=> {
-        // TODO: create empty card object
-        const
-        // TODO: Load [key: value] pairs of the form and any other input into object
+        event.preventDefault();
+        const data = new FormData(form);
+        // 
+        // create card object and load [key: value] pairs of the form and any other input into object
 
-        // TODO: load the object into a new <coffeeCard> element
+        const coffeeCardObject = {
+            // Visible variables
+            "str_drink_name": data.get('str_drink_name'),
+            "int_drink_price": data.get('int_drink_price'),
+            "time_purchase_date": data.get('time_purchase_date'),
+            "str_purchase_location": data.get('str_purchase_location'),
+            "img_drink_image": data.get('img_drink_image'),
+            "bool_check_chocolate": data.get('bool_check_chocolate'),
+            "bool_check_caramel": data.get('bool_check_caramel'),
+            "bool_check_nutty": data.get('bool_check_nutty'),
+            "bool_check_fruity": data.get('bool_check_fruity'),
+            "int_slide_acidity": data.get('int_slide_acidity'),
+            "int_slide_sweetness": data.get('int_slide_sweetness'),
+            "int_slide_bitterness": data.get('int_slide_bitterness'),
+            "int_slide_saltiness": data.get('int_slide_saltiness'),
+            "select_drink_type": data.get('select_drink_type'),
+            "select_brew_style": data.get('select_brew_style'),
+            "int_slide_color": data.get('int_slide_color'),
+            "str_notes": data.get('str_notes'),
 
-        // TODO: Insert card into the gallery at the front or back of the list
+        }
+        
+        // TODO how to implement bool of check chocolate? and other bool values
+        // TODO how to implement str_creator
+
+        let d = new Date();
+        coffeeCardObject["time_creation_time"] = d.toLocaleTimeString();
+        
+        // Set modified time to false to denote that this card has not been modified before
+        coffeeCardObject["time_modified_time"] = false;
+        // load the object into a new <coffeeCard> element
+        coffeeCard.data = coffeeCardObject;
+
+        
+
+        // Insert card into the gallery at the front or back of the list
         // NOTE: The grid's rows have to be dynamically growing so this might take some
         //       working around with javascript and css
+        const coffeeCard = document.createElement("coffee-card");
+        const gallery = document.getElementById("gallery");
+        gallery.appendChild(coffeeCard);
 
 
-        // TODO: Get array of cards from localStorage and save this new Card (same position in array)
-        //       and then save the array as a string in storage
-
-        // TODO: call showCards() to re-render the gallery
+        // Get array of cards from localStorage and save this new Card (same position in array)
+        // and then save the array as a string in storage
+        let coffeeCards = getCoffeeCardsFromStorage();
+        coffeeCards.push(coffeeCardObject);
+        saveCoffeeCardsToStorage(coffeeCards);
+        
 
     })
 
