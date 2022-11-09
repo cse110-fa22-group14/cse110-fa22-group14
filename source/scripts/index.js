@@ -17,6 +17,52 @@ function init(){
     handleEvents();
 }
 
+/**
+ * Reads 'coffeeCards' from localStorage and returns an array of
+ * all of the coffee cards found (parsed, not in string form). If
+ * nothing is found in localStorage for 'coffeeCards', an empty array
+ * is returned.
+ * @returns {Array<Object>} An array of recipes found in localStorage
+ */
+function getCoffeeCardsFromStorage(){
+    return JSON.parse(localStorage.getItem('coffeeCards'));
+}
+
+  
+/**
+ * Takes in an array of recipes and for each recipe creates a
+ * new <recipe-card> element, adds the recipe data to that card
+ * using element.data = {...}, and then appends that new recipe
+ * to <main>
+ * @param {Array<Object>} coffeeCards An array of recipes
+ */
+function addCoffeeCardsToDocument(coffeeCards) {
+  // A10. TODO - Get a reference to the <main> element
+  // A11. TODO - Loop through each of the recipes in the passed in array,
+  //            create a <recipe-card> element for each one, and populate
+  //            each <recipe-card> with that recipe data using element.data = ...
+  //            Append each element to <main>
+  const gallery = document.getElementById("gallery");
+  for (let i = 0; i < recipes.length; i++){
+    const coffeeCard = gallery.appendChild(document.createElement("coffee-card"));
+    coffeeCard.data = coffeeCards[i];
+  }
+  
+}
+  
+/** 
+ * Takes in an array of recipes, converts it to a string, and then
+ * saves that string to 'recipes' in localStorage
+ * @param {Array<Object>} recipes An array of recipes
+ */
+function saveCoffeeCardsToStorage(coffeeCards) {
+  // EXPLORE - START (All explore numbers start with B)
+  // B1. TODO - Complete the functionality as described in this function
+  //            header. It is possible in only a single line, but should
+  //            be no more than a few lines.
+  localStorage.setItem("coffee-card", JSON.stringify(coffeeCards));
+}
+  
 
 /* Note: Perhaps to avoid having to refresh the page to reload content
  * we could also call showCards() everytime we add or delete a card
@@ -57,7 +103,7 @@ function handleEvents(){
     // Saving a card and adding to the gallery 
     form.addEventListener("submit", (event)=> {
         // TODO: create empty card object
-
+        const
         // TODO: Load [key: value] pairs of the form and any other input into object
 
         // TODO: load the object into a new <coffeeCard> element
@@ -77,7 +123,6 @@ function handleEvents(){
     // Clears fields of popUpBox element using "reset" attribute in index.html
     
     cancelButton.addEventListener("click", () => {
-        // TODO: Hide the form popUpBox
         form.style.opacity = "0";
         form.style.visibility = "hidden";
     })
