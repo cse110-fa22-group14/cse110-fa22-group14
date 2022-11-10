@@ -25,7 +25,11 @@ function init(){
  * @returns {Array<Object>} An array of coffee cards found in localStorage
  */
 function getCoffeeCardsFromStorage(){
-    return JSON.parse(localStorage.getItem('coffeeCards'));
+    if (localStorage.getItem('coffeeCards') != null) {
+        return JSON.parse(localStorage.getItem('coffeeCards'));
+    } else {
+        return [];
+    }
 }
 
   
@@ -94,11 +98,8 @@ function handleEvents(){
     // Listener when user wants to add a new card
     addButton.addEventListener("click", () => {
         // Make popupBox visible. Just change the opacity 
-        //form.style.opacity = "1";
-        //form.style.visibility = "visible";
-        let new_coffee_card = document.createElement('coffee-card');
-        document.getElementById("gallery").append(new_coffee_card);
-
+        form.style.opacity = "1";
+        form.style.visibility = "visible";
     })
 
     
@@ -142,7 +143,7 @@ function handleEvents(){
         // Set modified time to false to denote that this card has not been modified before
         coffeeCardObject["time_modified_time"] = false;
         // load the object into a new <coffeeCard> element
-        coffeeCard.data = coffeeCardObject;
+        //coffeeCard.data = coffeeCardObject;
 
         console.log(coffeeCardObject);
 
@@ -151,6 +152,7 @@ function handleEvents(){
         // Insert card into the gallery at the front or back of the list
         // NOTE: The grid's rows have to be dynamically growing so this might take some
         //       working around with javascript and css
+        //FIX: need to create a new coffee card thumbnail object
         const coffeeCard = document.createElement("coffee-card");
         const gallery = document.getElementById("gallery");
         gallery.appendChild(coffeeCard);

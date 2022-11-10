@@ -230,7 +230,7 @@
         
          `;
          shadow_article.innerHTML = `
-         <form id = "popUpBox">
+        <form id = "popUpBox">
         <button id = "save" type = "submit">SAVE</button>
         <button id = "cancel" type = "reset">CANCEL</button>
         
@@ -244,7 +244,7 @@
         <div id = "switchPhotoContainer">switch images functionality</div>
 
         <div id = "flavorContainer">
-
+ 
             <fieldset id = "optionalWrapper">
                 <label for ="chocolatey">Chocolatey
                     <input type="checkbox" id = "chocolatey"></input>
@@ -394,7 +394,7 @@
                      </select>
 
 
-                     <select id= "brewMethod" name "select_brew_style" value = "${data.select_brew_type}">
+                     <select id= "brewMethod" name = "select_brew_style" value = "${data.select_brew_type}">
                          <option value = "drip">Drip</option>
                          <option value = "press">Press</option>
                          <option value = "siphon">Siphon</option>
