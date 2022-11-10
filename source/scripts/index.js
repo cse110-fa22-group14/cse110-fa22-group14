@@ -175,7 +175,7 @@ function handleEvents(){
             gallery.appendChild(coffeeCard);
         }
         if (gallery.childElementCount > 1) {
-            gallery.firstChild.nextSibling.insertBefore(coffeeCard);
+            gallery.appendChild(cofeeCard);
         }
 
         // Get array of cards from localStorage and save this new Card (same position in array)
@@ -184,11 +184,12 @@ function handleEvents(){
         coffeeCards.push(coffeeCardObject);
         saveCoffeeCardsToStorage(coffeeCards);
 
+        // hide the form 
         form.style.opacity = 0;
     })
 
+
     // Clears fields of popUpBox element using "reset" attribute in index.html
-    
     cancelButton.addEventListener("click", () => {
         form.style.opacity = "0";
         form.style.visibility = "hidden";

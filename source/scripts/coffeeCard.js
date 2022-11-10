@@ -58,7 +58,7 @@
                 grid-row-start: 1;
                 grid-row-end: 2;
                 grid-column-start: 1;
-                grid-column-end: 4;
+                grid-column-end: 6;
             }
 
             h4{
@@ -92,7 +92,7 @@
                 border-radius: 5px;
                 padding: 5px 20px;
             }
-            
+
             #toggle_edit:hover {
                 opacity: 0.8;
                 cursor: pointer;
