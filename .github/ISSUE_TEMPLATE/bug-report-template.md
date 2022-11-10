@@ -8,18 +8,21 @@ assignees: ''
 ---
 
 ### **[insert file name here]**
-*prerequisite* 
+**prerequisite**
 List the prerequisites of this issue if applies.
 Link to any existing issues that must be solved before this one.
-*Insert the problem*
+
+**Insert the problem**
 insert the description of the problem here.
-*Insert the problematic lines' line numbers*
+
+**Insert the problematic lines' line numbers**
 - line x
 - line y
 - line z
-*insert the problematic program/code*
+
+**insert the problematic program/code**
 ```
  int x = 1238149823898471;
 ```
-*Resources*
+**Resources**
 Please put any relevant resources that can help resolve this issue here.

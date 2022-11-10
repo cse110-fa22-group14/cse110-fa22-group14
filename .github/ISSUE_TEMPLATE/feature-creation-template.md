@@ -8,13 +8,16 @@ assignees: ''
 ---
 
 ### **[insert feature name here]**
-*prerequisite* 
+**prerequisite**
 List the prerequisites of this issue if applies.
 Link to any existing issues that must be solved before this one.
-*description*
+
+**description**
 insert the description of the problem here.
-*Insert the steps to complete to fully implement this feature*
+
+**Insert the steps to complete to fully implement this feature**
 - [] step 1
 - [] step 2
-*Resources*
+
+**Resources**
 Please put any relevant resources that can help resolve this issue here.
