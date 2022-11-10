@@ -12,6 +12,7 @@
  * Short Description of the drink: this content is still to be decided
  */
 
+
  class CoffeeCard extends HTMLElement {
      constructor() {
          super();
@@ -115,3 +116,4 @@
  }
  //Define the Class as a customElement so we can create coffee-card elements
  customElements.define('coffee-card', CoffeeCard);
+

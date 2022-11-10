@@ -1,4 +1,3 @@
-
 /* Background Color Schemes 
  *
  * Pink-Lavendar: #BF8162
@@ -7,20 +6,34 @@
  * Cream: #E3E2C5
  * 
  */
- 
- main{
-    display:flex;
+
+main {
+    display: flex;
     flex-direction: column;
     justify-content: center;
- }
+}
 
- /*TODO: Smoothly change opacity when hovering over addCard button*/
- #addCard:hover{
- 
- }
+/* TODO: remove pseudoCard selector after custom elements are made 
+ * TODO: The custom card element should be same size and color as the add button
+ */
+#addCard, 
+#pseudoCard {
+    min-width: 300px;
+    max-width: 1fr;
+    height: 300px;
+    background-color: #bf8162;
+    border-radius: 10px;
+    border: none;
+}
+
+/* TODO: Smoothly change opacity when hovering over addCard button */
+#addCard:hover {
+    opacity: 0.8;
+    transition: all 0.2s ease-in;
+}
 
 
-/*Hidden popup form*/
+/* Hidden popup form */
 form {
     position: absolute;
     opacity: 0;
@@ -29,31 +42,31 @@ form {
     background-color: black;
     border-radius: 10px;
     padding: 20px;
-    font-family:'Zen Maru Gothic';
-
+    font-family: "Zen Maru Gothic", Helvetica, Arial; 
     height: auto;
     width: 50vw;
     margin: auto;
-
     align-self: center;
     transform: translateY(-100px);
 
-    /*because we have so many components, it's best to make it a grid*/
-    display: grid; 
+    /* Because we have so many components, it's best to make it a grid */
+    display: grid;
 
-    /*we have 11 rows and 6 columns in the grid */
+    /* We have 11 rows and 6 columns in the grid */
     grid-template-rows: repeat(11, 55px);
-    grid-template-columns: repeat(6, minmax(60px,1fr));    
-    /* space between each form child*/
+    grid-template-columns: repeat(6, minmax(60px, 1fr));
+
+    /* Space between each form child */
     gap: 10px;
 }
 
-/* encapsulation for different inputs in form */
-fieldset{
-    border:none;
+
+/* Encapsulation for different inputs in form */
+fieldset {
+    border: none;
 }
 
-/* the following are containers and inputs that occupy 
+/* The following are containers and inputs that occupy 
  * a row range and column range in the grid form
  */
 #save {
@@ -62,61 +75,61 @@ fieldset{
     grid-row-end: 2;
     grid-column-end: 3;
     background: none;
-    font-family: 'Zen Maru Gothic';
-    font-size:1.2em;
-    color: white;
+    font-family: "Zen Maru Gothic", Arial, Georgia;
+    font-size: 1.2em;
+    color: #ffff;
     text-align: left;
- }
+}
 
- /* TOOD: smoothly change opacity when hoverning*/
- #save:hover{
-  
+/* TOOD: smoothly change opacity when hoverning */
+#save:hover {
+    opacity: 0.8;
+    transition: all 0.2s ease-in;
+}
 
- }
- #drinkName {
+#drinkName {
     grid-row-start: 2;
     grid-column-start: 1;
     grid-row-end: 3;
     grid-column-end: 5;
-    
-    
- }
- #price{
+}
+
+#price {
     grid-row-start: 3;
     grid-column-start: 1;
     grid-row-end: 4;
     grid-column-end: 5;
-    
- }
- #date {
+}
+
+#date {
     grid-row-start: 4;
     grid-column-start: 1;
     grid-row-end: 5;
     grid-column-end: 5;
-    
- }
- #photo{
+}
+
+#photo {
     grid-row-start: 2;
     grid-column-start: 5;
     grid-row-end: 4;
     grid-column-end: 7;
-    background-color: white;
+    background-color: #ffff;
     z-index: 2;
- }
+}
 
- /* gets rid of default styling for text boxes*/
- input[type='text']{
+/* Gets rid of default styling for text boxes */
+input[type="text"] {
 
-    /* how much negative space to the left of input inside textbox*/
+    /* How much negative space to the left of input inside textbox */
     padding-left: 15px;
     border: none;
     border-radius: 10px;
     font-size: 1.2em;
-    font-family: 'Zen Maru Gothic';
- }
- 
- #flavorContainer{
-    background-color: white;
+    font-family: "Zen Maru Gothic", Arial, Georgia;
+}
+
+#flavorContainer {
+    background-color: #ffff;
     grid-row-start: 6;
     grid-column-start: 1;
     grid-row-end: 9;
@@ -124,125 +137,120 @@ fieldset{
     display: flex;
     flex-direction: row;
     border-radius: 10px;
+}
 
-    
- }
-
- #flavorContainer fieldset {
+#flavorContainer fieldset {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
- }
+}
 
- #rangeWrapper {
+#rangeWrapper {
     width: 40%;
     max-height: 100%;
     font-size: 1.2em;
+}
 
- }
-
- #optionalWrapper {
+#optionalWrapper {
     text-align: left;
     width: 40%;
     max-height: 100%;
     font-size: 1.2em;
+}
 
- }
+/* Basic styling for all sliders */
+#myRange {
+    background-color: #ffff;
+    z-index: 1;
+}
 
- /*basic styling for all sliders*/
- #myRange {
-    background-color: white;
-    z-index:1
- }
-
- /* cancel button in form */
- #cancel {
+/* Cancel button in form */
+#cancel {
     grid-row-start: 1;
     grid-column-start: 5;
     grid-row-end: 2;
     grid-column-end: 7;
     background: none;
-    font-family: 'Zen Maru Gothic';
-    font-size:1.2em;
-    color: white;
+    font-family: "Zen Maru Gothic", Arial, Georgia;
+    font-size: 1.2em;
+    color: #ffff;
     text-align: right;
- }
+}
 
- #cancel:hover{
-    cursor:pointer;
-    opacity: .8;
-    transition: all .2s ease-in;
+#cancel:hover {
+    cursor: pointer;
+    opacity: 0.8;
+    transition: all 0.2s ease-in;
+}
 
- }
-
- #switchPhotoContainer{
-    background-color: white;
+#switchPhotoContainer {
+    background-color: #ffff;
     grid-row-start: 4;
     grid-column-start: 5;
     grid-row-end: 5;
     grid-column-end: 7;
     border-radius: 10px;
- }
+}
 
 
- #location{
+#location {
     grid-row-start: 5;
     grid-column-start: 1;
     grid-row-end: 6;
     grid-column-end: 5;
- }
+}
 
- 
- #brewInfoContainer {
-    background-color: white;
+
+#brewInfoContainer {
+    background-color: #ffff;
     grid-row-start: 9;
     grid-column-start: 1;
     grid-row-end: 13;
     grid-column-end: 4;
 
-    /* flex with direction "column" tells DOM to 
+    /* Flex with direction "column" tells DOM to 
      * structure all child elements vrtically
      */
     display: flex;
     flex-direction: column;
 
-    /* even spacing between child elements*/
+    /* Even spacing between child elements */
     justify-content: space-evenly;
     padding: 20px;
     border-radius: 10px;
- }
+}
 
- #comments{
+#comments {
     grid-row-start: 9;
     grid-column-start: 4;
     grid-row-end: 13;
     grid-column-end: 7;
     border-radius: 10px;
-    font-family: 'Zen Maru Gothic';
+    font-family: "Zen Maru Gothic", Arial, Georgia;
     padding: 15px;
     font-size: 1.2em;
+
     /* TOOD: If user types in more characters than box can fit
      * add scrolling to allow for more input 
      */
-    
+}
 
- }
- 
 
- 
-/* Holds the help and filter options above gallery*/
+
+/* Holds the help and filter options above gallery */
 #functionality {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin: auto;
-    width: 80%;    
+    width: 80%;
     text-align: center;
     align-items: center;
 }
 
 
-#functionality #help, #filter {
+#functionality #help, 
+#filter {
     background-color: black;
     color: white;
     border-radius: 5px;
@@ -251,7 +259,7 @@ fieldset{
 }
 
 #functionality h1 {
-    font-family: 'Playfair Display';
+    font-family: "Playfair Display", Arial, Georgia;
     font-size: 2em;
     font-weight: 100;
 }
@@ -263,29 +271,16 @@ fieldset{
  */
 #gallery {
     width: 80%;
-    margin: 10vh auto 10vh auto;
+    margin: 10vh auto;
     display: grid;
 
-    /* autofill tells the DOM to move content to the next
+    /* Autofill tells the DOM to move content to the next
      * row if it overfills the current row as many times as needed
      *
-     * minmax property will determine if items need
+     * Minmax property will determine if items need
      * to stretch to consume any horizontal space up to 1fr
      */
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 30px;
-    justify-content: center;    
+    justify-content: center;
 }
-
-
-/* TODO: remove pseudoCard selector after custom elements are made 
- * TODO: The custom card element should be same size and color as the add button*/
-#addCard, #pseudoCard{
-    min-width: 300px;
-    max-width: 1fr;
-    height: 300px;
-    background-color: #BF8162;
-    border-radius: 10px;
-    border: none;
-}
-
