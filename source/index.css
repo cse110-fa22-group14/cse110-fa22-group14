@@ -16,7 +16,8 @@ main {
 /* TODO: remove pseudoCard selector after custom elements are made 
  * TODO: The custom card element should be same size and color as the add button
  */
-#addCard, #pseudoCard {
+#addCard, 
+#pseudoCard {
     min-width: 300px;
     max-width: 1fr;
     height: 300px;
@@ -41,7 +42,7 @@ form {
     background-color: black;
     border-radius: 10px;
     padding: 20px;
-    font-family: "Zen Maru Gothic";
+    font-family: "Zen Maru Gothic", Helvetica, Arial; 
     height: auto;
     width: 50vw;
     margin: auto;
@@ -74,13 +75,13 @@ fieldset {
     grid-row-end: 2;
     grid-column-end: 3;
     background: none;
-    font-family: "Zen Maru Gothic", "Arial";
+    font-family: "Zen Maru Gothic", Arial, Georgia;
     font-size: 1.2em;
     color: #ffff;
     text-align: left;
 }
 
-/* TOOD): smoothly change opacity when hoverning */
+/* TOOD: smoothly change opacity when hoverning */
 #save:hover {
     opacity: 0.8;
     transition: all 0.2s ease-in;
@@ -124,7 +125,7 @@ input[type="text"] {
     border: none;
     border-radius: 10px;
     font-size: 1.2em;
-    font-family: "Zen Maru Gothic";
+    font-family: "Zen Maru Gothic", Arial, Georgia;
 }
 
 #flavorContainer {
@@ -170,7 +171,7 @@ input[type="text"] {
     grid-row-end: 2;
     grid-column-end: 7;
     background: none;
-    font-family: "Zen Maru Gothic";
+    font-family: "Zen Maru Gothic", Arial, Georgia;
     font-size: 1.2em;
     color: #ffff;
     text-align: right;
@@ -225,7 +226,7 @@ input[type="text"] {
     grid-row-end: 13;
     grid-column-end: 7;
     border-radius: 10px;
-    font-family: "Zen Maru Gothic";
+    font-family: "Zen Maru Gothic", Arial, Georgia;
     padding: 15px;
     font-size: 1.2em;
 
@@ -258,7 +259,7 @@ input[type="text"] {
 }
 
 #functionality h1 {
-    font-family: "Playfair Display", "Arial";
+    font-family: "Playfair Display", Arial, Georgia;
     font-size: 2em;
     font-weight: 100;
 }
@@ -268,9 +269,9 @@ input[type="text"] {
  * Three columns but its rows should grow dynamically with number of cards added
  * This was actually very simple. Just had to do some exploration online
  */
- #gallery {
+#gallery {
     width: 80%;
-    margin: 10vh auto 10vh auto;
+    margin: 10vh auto;
     display: grid;
 
     /* Autofill tells the DOM to move content to the next
