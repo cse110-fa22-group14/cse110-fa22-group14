@@ -171,12 +171,9 @@ function handleEvents(){
         coffeeCard.data = coffeeCardObject;
 
         const gallery = document.getElementById("gallery");
-        if(gallery.childElementCount == 0) {
-            gallery.appendChild(coffeeCard);
-        }
-        if (gallery.childElementCount > 1) {
-            gallery.appendChild(cofeeCard);
-        }
+        gallery.appendChild(coffeeCard);
+        
+  
 
         // Get array of cards from localStorage and save this new Card (same position in array)
         // and then save the array as a string in storage
