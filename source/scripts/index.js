@@ -10,9 +10,9 @@ function init(){
 
     // TODO: Implement these two functions. Several people can work on this
 
-    // getLocalStorage() returns array of objects each representing a coffee card
+    let array = getCoffeeCardsFromStorage();
 
-    // showCards(array)
+    addCoffeeCardsToDocument(array)
 
     handleEvents();
 }
@@ -25,8 +25,8 @@ function init(){
  * @returns {Array<Object>} An array of coffee cards found in localStorage
  */
 function getCoffeeCardsFromStorage(){
-    if (localStorage.getItem('coffeeCards') != null) {
-        return JSON.parse(localStorage.getItem('coffeeCards'));
+    if (localStorage.getItem("coffeeCards") != null) {
+        return JSON.parse(localStorage.getItem("coffeeCards"));
     } else {
         return [];
     }
@@ -34,10 +34,9 @@ function getCoffeeCardsFromStorage(){
 
   
 /**
- * Takes in an array of recipes and for each recipe creates a
- * new <recipe-card> element, adds the recipe data to that card
- * using element.data = {...}, and then appends that new recipe
- * to <main>
+ * Takes in an array of cofee card notes and for each one 
+ * it copies its data into a new <coffee-card> component
+ * which is then appended to the gallery
  * @param {Array<Object>} coffeeCards An array of recipes
  */
 function addCoffeeCardsToDocument(coffeeCards) {
@@ -64,7 +63,7 @@ function saveCoffeeCardsToStorage(coffeeCards) {
   // B1. TODO - Complete the functionality as described in this function
   //            header. It is possible in only a single line, but should
   //            be no more than a few lines.
-  localStorage.setItem("coffee-card", JSON.stringify(coffeeCards));
+  localStorage.setItem("coffeeCards", JSON.stringify(coffeeCards));
 }
   
 
@@ -77,10 +76,10 @@ function handleEvents(){
     let gallery = document.getElementById("gallery");
     let helpButton = document.getElementById("help");
     let filterOption = document.getElementById("filter");
-    let addButton = document.getElementById('addCard');
-    let form = document.getElementById('popUpBox');
+    let addButton = document.getElementById('add_card');
+    let form = document.getElementById('pop_up_box');
     let cancelButton = document.getElementById('cancel');
-    let flavorSliders = document.getElementsByClassName('flavorRange');
+    let flavorSliders = document.getElementsByClassName('flavor_range');
 
     
     // Add event listeners to each flavor range slider
@@ -123,10 +122,12 @@ function handleEvents(){
     // Saving a card and adding to the gallery 
     form.addEventListener("submit", (event)=> {
         event.preventDefault();
-        const data = new FormData(form);
+        let data = new FormData(form);
         console.log(data);
-        // 
-        // create card object and load [key: value] pairs of the form and any other input into object
+        
+        /* create card object and load [key: value] pairs of the 
+         * form and any other input into object
+        */
 
         const coffeeCardObject = {
             // Visible variables
@@ -143,13 +144,14 @@ function handleEvents(){
             "int_slide_sweetness": data.get('int_slide_sweetness'),
             "int_slide_bitterness": data.get('int_slide_bitterness'),
             "int_slide_saltiness": data.get('int_slide_saltiness'),
-            "select_drink_type": data.get('select_drink_type'),
-            "select_brew_style": data.get('select_brew_style'),
-            "int_slide_color": data.get('int_slide_color'),
+            "str_drink_type": data.get('str_drink_type'),
+            "str_brew_style": data.get('str_brew_style'),
+            "int_dropdown_color": data.get('int_dropdown_color'),
             "str_notes": data.get('str_notes'),
 
         }
         
+        console.log(coffeeCardObject);
         // TODO how to implement bool of check chocolate? and other bool values
         // TODO how to implement str_creator
 
@@ -158,11 +160,6 @@ function handleEvents(){
         
         // Set modified time to false to denote that this card has not been modified before
         coffeeCardObject["time_modified_time"] = false;
-        // load the object into a new <coffeeCard> element
-        //coffeeCard.data = coffeeCardObject;
-
-        console.log(coffeeCardObject);
-
         
 
         // Insert card into the gallery at the front or back of the list
@@ -170,17 +167,24 @@ function handleEvents(){
         //       working around with javascript and css
         //FIX: need to create a new coffee card thumbnail object
         const coffeeCard = document.createElement("coffee-card");
-        const gallery = document.getElementById("gallery");
-        gallery.appendChild(coffeeCard);
+        // load the object into a new <coffeeCard> element
+        coffeeCard.data = coffeeCardObject;
 
+        const gallery = document.getElementById("gallery");
+        if(gallery.childElementCount == 0) {
+            gallery.appendChild(coffeeCard);
+        }
+        if (gallery.childElementCount > 1) {
+            gallery.firstChild.nextSibling.insertBefore(coffeeCard);
+        }
 
         // Get array of cards from localStorage and save this new Card (same position in array)
         // and then save the array as a string in storage
         let coffeeCards = getCoffeeCardsFromStorage();
         coffeeCards.push(coffeeCardObject);
         saveCoffeeCardsToStorage(coffeeCards);
-        
 
+        form.style.opacity = 0;
     })
 
     // Clears fields of popUpBox element using "reset" attribute in index.html

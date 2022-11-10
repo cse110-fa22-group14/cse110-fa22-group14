@@ -16,7 +16,7 @@ main {
 /* TODO: remove pseudoCard selector after custom elements are made 
  * TODO: The custom card element should be same size and color as the add button
  */
-#addCard, 
+#add_card, 
 #pseudoCard {
     min-width: 300px;
     max-width: 1fr;
@@ -34,7 +34,7 @@ main {
 
 
 /* Hidden popup form */
-form {
+#pop_up_box {
     position: absolute;
     opacity: 0;
     visibility: hidden;
@@ -47,7 +47,8 @@ form {
     width: 50vw;
     margin: auto;
     align-self: center;
-    transform: translateY(-100px);
+    transform: translateY(30vh);
+    
 
     /* Because we have so many components, it's best to make it a grid */
     display: grid;
@@ -87,28 +88,28 @@ fieldset {
     transition: all 0.2s ease-in;
 }
 
-#drinkName {
+#str_drink_name {
     grid-row-start: 2;
     grid-column-start: 1;
     grid-row-end: 3;
     grid-column-end: 5;
 }
 
-#price {
+#int_drink_price {
     grid-row-start: 3;
     grid-column-start: 1;
     grid-row-end: 4;
     grid-column-end: 5;
 }
 
-#date {
+#time_purchase_date {
     grid-row-start: 4;
     grid-column-start: 1;
     grid-row-end: 5;
     grid-column-end: 5;
 }
 
-#photo {
+#img_drink_image {
     grid-row-start: 2;
     grid-column-start: 5;
     grid-row-end: 4;
@@ -128,7 +129,7 @@ input[type="text"] {
     font-family: "Zen Maru Gothic", Arial, Georgia;
 }
 
-#flavorContainer {
+#flavor_container {
     background-color: #ffff;
     grid-row-start: 6;
     grid-column-start: 1;
@@ -139,19 +140,19 @@ input[type="text"] {
     border-radius: 10px;
 }
 
-#flavorContainer fieldset {
+#flavor_container fieldset {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
 }
 
-#rangeWrapper {
+#range_wrapper {
     width: 40%;
     max-height: 100%;
     font-size: 1.2em;
 }
 
-#optionalWrapper {
+#optional_wrapper {
     text-align: left;
     width: 40%;
     max-height: 100%;
@@ -159,7 +160,7 @@ input[type="text"] {
 }
 
 /* Basic styling for all sliders */
-#myRange {
+#flavor_range {
     background-color: #ffff;
     z-index: 1;
 }
@@ -183,7 +184,7 @@ input[type="text"] {
     transition: all 0.2s ease-in;
 }
 
-#switchPhotoContainer {
+#switch_photo_container {
     background-color: #ffff;
     grid-row-start: 4;
     grid-column-start: 5;
@@ -193,7 +194,7 @@ input[type="text"] {
 }
 
 
-#location {
+#str_purchase_location {
     grid-row-start: 5;
     grid-column-start: 1;
     grid-row-end: 6;
@@ -201,7 +202,7 @@ input[type="text"] {
 }
 
 
-#brewInfoContainer {
+#type_info_container {
     background-color: #ffff;
     grid-row-start: 9;
     grid-column-start: 1;
@@ -220,7 +221,7 @@ input[type="text"] {
     border-radius: 10px;
 }
 
-#comments {
+#str_notes {
     grid-row-start: 9;
     grid-column-start: 4;
     grid-row-end: 13;

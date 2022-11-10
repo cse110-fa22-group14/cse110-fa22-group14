@@ -1,8 +1,9 @@
 /**
- * @author Ruilin Hu and Yuang
+ * @author Ruilin Hu and Yuang and William
  * @file - ShadowDOM for individual coffee card in its detail page
  * @version 0.0.1
  * @Created Nov 8, 2022
+ * @Edited Nov 9, 2022 by William
  */
 
 /* TODO:
@@ -19,45 +20,93 @@
          this.showInfo = true;
          //Attach the shadow DOM to this Web Component
          const shadow = this.attachShadow({ mode: "open" });
-         //article element to hold elements
+         //div element to hold elements
          const shadow_div = document.createElement("div");
          //style element for the coffee cards
          const shadow_style = document.createElement("style");
          //define the precise style for the card
          shadow_style.textContent = `
-         .coffee-card {
-            min-width: 300px;
-            max-width: 1fr;
-            height: 300px;
-            background-color: #BF8162;
-            border-radius: 10px;
-            border: none;
-       	}
-       	.coffee-card button {
-       		background: brown;
-       		color: #fff;
-       		border: 0;
-       		border-radius: 5px;
-       		padding: 5px 20px;
-       	}`;
-        shadow_div.innerHTML = `
-            <div class="coffee-card">
-             <h3></h3>
-             <div class="info">
-               <p><slot name="date" /></p>
-               <p><slot name="location" /></p>
-               <p><slot name="Brew-Method" /></p>
-               <p><slot name="Serving-Type" /></p>
-               <p><slot name="Color" /></p>
-             </div>
-             <button id="toggle-info">Edit</button>
-           </div>`;
+  
+            div {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                min-width: 300px;
+                max-width: 1fr;
+                height: 300px;
+                background-color: #BF8162;
+                border-radius: 10px;
+                border: none;
+                text-align: center;
+            }
+
+            /* adding grid structure to header */
+            header {
+                display: grid;
+                grid-template-rows: repeat(2, 30px);
+                grid-template-columns: repeat(6, minmax(50px, 1fr));
+                text-align: left;
+                padding: 10px 20px;
+                transform: translateY(-20px);
+                font-family: "Zen Maru Gothic";
+                font-weight: 900;
+                font-size: 1em;
+            }
+
+            h3 {
+                grid-row-start: 1;
+                grid-row-end: 2;
+                grid-column-start: 1;
+                grid-column-end: 4;
+            }
+
+            h4{
+                grid-row-start: 2;
+                grid-row-end: 3;
+                grid-column-start: 1;
+                grid-column-end: 6;
+                font-size: 0.9em;
+            }
+
+            img {
+                transform: scale(0.8);
+                grid-row-start: 1;
+                grid-row-end: 2;
+                grid-column-start: 6;
+                grid-column-end: 6;
+                transform: scale(0.6);
+                margin-top: 10px;
+                align-self: right;
+            }
+
+            .info{
+                margin: auto;
+                font-family: "Zen Maru Gothic";
+            }
+
+            #toggle_edit {
+                background: brown;
+                color: #fff;
+                border: 0;
+                border-radius: 5px;
+                padding: 5px 20px;
+            }
+            
+            #toggle_edit:hover {
+                opacity: 0.8;
+                cursor: pointer;
+                transition: all 0.2s ease-in;
+        }`;
+
         //Append the <style> and <article> elements to the Shadow DOM
-        shadow.append(shadow_style);
-        shadow.append(shadow_div);
+        shadow.append(shadow_style, shadow_div);
+
         //XXX: name might not be defined
-        this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
+        //this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
      }
+
+
 
      /**
       * Called when the .data property is set on this element.
@@ -82,9 +131,9 @@
       *                            "int_slide_sweetness":"int",
       *                            "int_slide_bitterness":"int",
       *                            "int_slide_saltiness":"int",
-      *                            "select_drink_type":"string",
-      *                            "select_brew_style":"string",
-      *                            "int_slide_color":"int",
+      *                            "str_drink_type":"string",
+      *                            "str_brew_style":"string",
+      *                            "int_dropdown_color":"int",
       *                            "str_notes":"string",
       *                            "time_creation_time":"time",
       *                            "time_modified_time":"time"
@@ -94,26 +143,29 @@
        // If nothing was passed in, return
        if (!data) return;
 
-       // A6. TODO - Select the <article> we added to the Shadow DOM in the constructor
        let shadow_div = this.shadowRoot.querySelector('div');
-       // A7. TODO - Set the contents of the <article> with the <article> template given in
-       //           cardTemplate.html and the data passed in (You should only have one <article>,
-       //           do not nest an <article> inside another <article>). You should use Template
-       //           literals (tempalte strings) and element.innerHTML for this.
-       myArticle.innerHTML =
-       `<div class="coffee-card">
-        <h3></h3>
-        <div class="info">
-          <p><slot name="date" />${data.str_drink_name}</p>
-          <p><slot name="location" />${data.str_purchase_location}</p>
-          <p><slot name="Brew-Method" />${data.select_brew_style}</p>
-          <p><slot name="Serving-Type" />${data.select_drink_type}</p>
-          <p><slot name="Color" />${data.int_slide_color}</p>
-        </div>
-        <button id="toggle-info">Edit</button>
-      </div>`;
+
+       shadow_div.innerHTML =
+       `<header>
+            <h3><slot name="date" />${data["str_drink_name"].toUpperCase()}</h3>
+            <h4>${data["time_purchase_date"].toUpperCase()}</h4>
+            <img id="share_button" alt = "share icon" src = "./assets/images/share-icon.png" ></img>
+
+       </header>
+
+        <section class="info">
+          <p><slot name="location" />Location: ${data["str_purchase_location"]}</p>
+          <p><slot name="brew_style" />Brew Method: ${data["str_brew_style"]}</p>
+          <p><slot name="drink_type">Serving Type: ${data["str_drink_type"]}</p>
+          <p><slot name="color">Color Level: ${data["int_dropdown_color"]}</p>
+        </section>
+
+        <button id="toggle_edit">Edit</button>
+        `;
      }
  }
+
+
  //Define the Class as a customElement so we can create coffee-card elements
  customElements.define('coffee-card', CoffeeCard);
 
