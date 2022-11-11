@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Coffee Notes CRUD App</title>
+
+  <!-- Coffe Card Custom Element -->
+  <script src="scripts/coffeeCard.js" type="module"></script>
+
+  <!-- Main Stylesheets & Scripts -->
+  <link rel="stylesheet" href="index.css" />
+  <script src="scripts/index.js" type="module">
+  </script>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap');
+  </style>
+</head>
+
+<body>
+  <main>
+
+    <section id = "functionality">
+        <button id = "help">Help</button>
+        <h1>COFFEE LOG</h1>
+
+        <!--the filter should be implemented later -->
+        <select id= "filter">
+            <option value = "Default">Default</option>
+            <option value = "Low-High">Low-High</option>
+            <option value = "High-Low">High-Low</option>
+        </select> 
+    </section>
+
+    <form id = "pop_up_box">
+        <button id = "save" type = "submit">SAVE</button>
+        <button id = "cancel" type = "reset">CANCEL</button>
+        
+        <input type = "text" id="str_drink_name" placeholder="name of drink" name = "str_drink_name" required>drink</input>
+        <input type = "text"id="int_drink_price" placeholder = "price" name = "int_drink_price" required></input>
+        <input type = "text"id="time_purchase_date" placeholder = "date purchased" name = "time_purchase_date" required></input>
+        <input type = "text" id="str_purchase_location" placeholder = "location" name = "str_purchase_location" required></input>
+        <img id = "img_drink_image" src = "" alt = "photo of drink" style = "color: white" name = "img_drink_image">
+
+        <!--Implement functionality to cycle through images-->
+        <div id = "switch_photo_container">switch images functionality</div>
+
+        <div id = "flavor_container">
+
+            <fieldset id = "optional_wrapper">
+                <label for ="chocolatey">Chocolatey
+                    <input type="checkbox" id = "chocolatey" name = "bool_check_chocolate"></input>
+                </label>
+               
+                <label for="caramel">Caramel
+                    <input type="checkbox" id = "bool_check_caramel" name = "bool_check_caramel"></input>
+                </label>
+                
+                <label for="nutty">Nutty
+                    <input type="checkbox" id = "bool_check_nutty" name = "bool_check_nutty"></input>
+                </label>
+                <label for="nutty">Fruity
+                    <input type="checkbox" id = "bool_check_fruity" name = "bool_check_fruity"></input>
+                </label>
+            </fieldset>
+
+            <!--TODO: Fix the range of each silder and Add tags next to the sliders 
+                      to display the salue of the ALL the sliders-->
+            <fieldset id = "range_wrapper">
+
+                <label for="int_slide_acidity">Acidity:
+                    <input type="range" min="0" max="5" value="0" step="1" class="flavor_range" id="int_slide_acidity"  name = "int_slide_acidity"></input>
+                    <span id="acidity_val">0</span> 
+                </label>
+                <label for="int_slide_saltiness">Sweetness:
+                    <input type="range" min="0" max="5" value="0" step="1" class="flavor_range" id="int_slide_saltiness" name = "int_slide_sweetness"></input>
+                    <span id="sweetness_val">0</span>
+                </label>
+
+                <label for="int_slide_bitterness">Bitterness:
+                    <input type="range" min="0" max="5" value="0" step="1" class="flavor_range" id="int_slide_bitterness" name = "int_slide_bitterness"></input>
+                    <span id="bitterness_val">0</span>
+                </label>
+                <label for="int_slide_saltiness">Saltiness:
+                    <input type="range" min="0" max="5" value="0" step="1" class="flavor_range" id="int_slide_saltiness" name = "int_slide_saltiness"></input>
+                    <span id="saltiness_val">0</span>
+                </label>
+
+            </fieldset>
+        </div>
+
+        <!--TODO: Style the dropdown boxes to make them consistent with rest of form style -->
+        <div id = "type_info_container">
+
+            <label for ="str_drink_type">Serving Type:
+                <select id = "str_drink_type" name = "str_drink_type">
+                    <option value = "Casual">Casual</option>
+                    <option value = "Espresso">Espresso</option>
+                    <option value = "Cappuccino">Cappuccino</option>
+                    <option value = "Latte">Latte</option>
+                    <option value = "Mocha">Mocha</option>
+                    <option value = "Macchiato">Macchiato</option>
+                </select> 
+            </label>
+
+            <label for ="str_brew_style">Brew Method:
+                <select id= "str_brew_style" name = "str_brew_style">
+                    <option value = "Drip">Drip</option>
+                    <option value = "Press">Press</option>
+                    <option value = "Siphon">Siphon</option>
+                    <option value = "Pour Over">Pour Over</option>
+                </select> 
+            </label>
+
+            <label for ="int_dropdown_color">Color:
+                <select id= "int_dropdown_color" name = "int_dropdown_color">
+                    <option value = "Light">Light</option>
+                    <option value = "Medium">Medium</option>
+                    <option value = "Dark">Dark</option>
+                </select>
+            </label>
+        </div>
+
+        <textarea id = "str_notes" placeholder = "additional comments" name = "str_notes"></textarea>
+
+    </form>
+
+
+
+    <section id = "gallery">
+        <button id = "add_card">
+            <img id = "addIcon" src = "assets/images/add-icon.png" alt = "add icon">
+        </button>
+
+        <!--Later we will add custom <coffeeCard> elements to the gallery.-->
+        
+    </section>
+  </main>
+  
+</body>
+</html>
