@@ -1,17 +1,13 @@
 # This is a basic workflow to help you get started with Actions
 
-name: TEST
+name: Lint Tests
 
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push events to "feature" and 
-  push:
+  pull-request:
     branches:
-      - feature
-      
-  pull_request:
-    branches:
-      - dev
+      -main
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -27,25 +23,30 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
+ 
+      - name: Run Stylelint
+        runs-on: ubuntu-latest
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+        steps:
+          - uses: actions/checkout@v1
+          - uses: actions-hub/stylelint@master
+            env:
+              PATTERN: "**/*.css"
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name: Run ESLint
+        runs-on: ubuntu-latest
+        steps:
           
-  # The workflow also contains another job called "linter"
-  linter:
-    name: stylelint
-    runs-on: ubuntu-latest
+          # Check out the repository
+          - uses: actions/checkout@v1
 
-    steps:
-      - uses: actions/checkout@v1
-      - uses: actions-hub/stylelint@master
-        env:
-          PATTERN: "**/*.css"
+          # Install Node.js
+          - uses: actions/setup-node@v1
+            with:
+              node-version: 12
 
+          # Install your dependencies
+          - run: npm ci
+
+          # Run ESLint
+          - uses: eslint/github-action@v0
