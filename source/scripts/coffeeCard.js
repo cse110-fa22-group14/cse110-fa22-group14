@@ -6,7 +6,8 @@
  * @Edited Nov 9, 2022 by William
  */
 
-/* TODO:
+/*
+ * TODO:
  * coffee card should include date (Monday 12, 2022 for example)
  * a share button to post the card to social media (this will be implemented later)
  * Title of Drink
@@ -18,13 +19,13 @@
      constructor() {
          super();
          this.showInfo = true;
-         //Attach the shadow DOM to this Web Component
+         // Attach the shadow DOM to this Web Component
          const shadow = this.attachShadow({ mode: "open" });
-         //div element to hold elements
+         // Div element to hold elements
          const shadow_div = document.createElement("div");
-         //style element for the coffee cards
+         // Style element for the coffee cards
          const shadow_style = document.createElement("style");
-         //define the precise style for the card
+         // Define the precise style for the card
          shadow_style.textContent = `
   
             div {
@@ -99,11 +100,13 @@
                 transition: all 0.2s ease-in;
         }`;
 
-        //Append the <style> and <article> elements to the Shadow DOM
+        // Append the <style> and <article> elements to the Shadow DOM
         shadow.append(shadow_style, shadow_div);
 
-        //XXX: name might not be defined
-        //this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
+        /*
+         * XXX: name might not be defined
+         * this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
+         */
      }
 
 
@@ -141,9 +144,9 @@
       */
      set data(data) {
        // If nothing was passed in, return
-       if (!data) return;
+       if (!data) { return; }
 
-       let shadow_div = this.shadowRoot.querySelector('div');
+       const shadow_div = this.shadowRoot.querySelector('div');
 
        shadow_div.innerHTML =
        `<header>
@@ -166,6 +169,6 @@
  }
 
 
- //Define the Class as a customElement so we can create coffee-card elements
+ // Define the Class as a customElement so we can create coffee-card elements
  customElements.define('coffee-card', CoffeeCard);
 
