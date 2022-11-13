@@ -6,6 +6,6 @@
     "stylelint-config-standard": "^29.0.0"
   },
   "scripts": {
-    "eslint:github-action": "eslint src/"
+    "eslint:github-action": "eslint source/"
   }
 }
