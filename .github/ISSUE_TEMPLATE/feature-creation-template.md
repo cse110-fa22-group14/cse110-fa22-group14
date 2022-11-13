@@ -16,8 +16,8 @@ Link to any existing issues that must be solved before this one.
 insert the description of the new feature here.
 
 **Insert the steps to complete to fully implement this feature**
-- [] step 1
-- [] step 2
+- [ ] step 1
+- [ ] step 2
 
 **Resources**
 Please put any relevant resources that can help resolve this issue here.
