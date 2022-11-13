@@ -192,6 +192,8 @@ input[type="text"] {
     border-radius: 10px;
 }
 
+/* reference: https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp */
+/* implemented left and right arrows to change inage */
 #switch_photo_left_arrow,
 #switch_photo_right_arrow {
   cursor: pointer;
@@ -208,7 +210,7 @@ input[type="text"] {
   grid-row-end: 5;
   grid-column-end: 7;
 }
-
+/* out left and right arrows on two sides*/
 #switch_photo_left_arrow {
     left: 10%;
 }
