@@ -114,7 +114,6 @@ fieldset {
     grid-column-start: 5;
     grid-row-end: 4;
     grid-column-end: 7;
-    background-color: #ffff;
     z-index: 2;
 }
 
@@ -191,6 +190,30 @@ input[type="text"] {
     grid-row-end: 5;
     grid-column-end: 7;
     border-radius: 10px;
+}
+
+#switch_photo_left_arrow,
+#switch_photo_right_arrow {
+  cursor: pointer;
+  position: absolute;
+  width: auto;
+  color: #502e2a;
+  font-weight: bold;
+  font-size: 40px;
+  user-select: none;
+  -webkit-user-select: none;
+  /* inherented from parent #switch_photo_container*/
+  grid-row-start: 4;
+  grid-column-start: 5;
+  grid-row-end: 5;
+  grid-column-end: 7;
+}
+
+#switch_photo_left_arrow {
+    left: 10%;
+}
+#switch_photo_right_arrow {
+    right: 10%;
 }
 
 
