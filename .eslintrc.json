@@ -1,0 +1,28 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends":  "eslint:recommended",
+    "overrides": [
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest"
+    },
+    "rules": {
+        "no-eq-null": "error",
+        "no-async-promise-executor":"error",
+        "no-unused-vars": "error",
+        "camelCase": "error",
+        "capitalized-comments": "error",
+        "multiline-comment-style": ["error", "starred-block"],
+        "line-comment-position":["error", "above"],
+        "spaced-comment": "error",
+        "no-magic-numbers": "error",
+        "prefer-const": "error",
+        "require-await":"error",
+        "curly": "error",
+        "block-spacing": "error",
+        "no-trailing-spaces":"error"
+    }
+}
