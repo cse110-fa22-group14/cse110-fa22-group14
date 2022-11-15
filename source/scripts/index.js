@@ -6,14 +6,8 @@
 window.addEventListener('DOMContentLoaded', init);
 
 
-
-
-
 // when window loads,
 function init() {
-
-
-    // TODO: Implement these two functions. Several people can work on this
 
     const array = getCoffeeCardsFromStorage();
 
@@ -30,7 +24,7 @@ function init() {
  * @returns {Array<Object>} An array of coffee cards found in localStorage
  */
 function getCoffeeCardsFromStorage() {
-    if (localStorage.getItem("coffeeCards") != null) {
+    if (localStorage.getItem("coffeeCards")) {
         return JSON.parse(localStorage.getItem("coffeeCards"));
     } else {
         return [];
@@ -46,17 +40,32 @@ function getCoffeeCardsFromStorage() {
  */
 function addCoffeeCardsToDocument(coffeeCards) {
 
-    // A10. TODO - Get a reference to the <main> element
-    // A11. TODO - Loop through each of the recipes in the passed in array,
-    //            create a <recipe-card> element for each one, and populate
-    //            each <recipe-card> with that recipe data using element.data = ...
-    //            Append each element to <main>
+    if (!coffeeCards) {
+        return;
+    }
+
     const gallery = document.getElementById("gallery");
-    for (let i = 0; i < coffeeCards.length; i++) {
+
+    // clear the gallery and add new list to gallery
+    document.querySelectorAll('coffee-card').forEach(card => {
+        console.log("removing card")
+        card.remove();
+    })
+
+    // the card is a a coffeeCard object and index is the position of that card in the array
+    coffeeCards.forEach((card, index) => {
+        const coffeeCard = gallery.appendChild(document.createElement("coffee-card"));
+        coffeeCard.data = card;
+        coffeeCard.id = index;
+    })
+
+
+    /*for (let i = 0; i < coffeeCards.length; i++) {
         const coffeeCard = gallery.appendChild(document.createElement("coffee-card"));
         coffeeCard.id = `${gallery.childNodes.length - 2}`;
         coffeeCard.data = coffeeCards[i];
     }
+    */
 
 }
 
@@ -67,20 +76,11 @@ function addCoffeeCardsToDocument(coffeeCards) {
  */
 function saveCoffeeCardsToStorage(coffeeCards) {
 
-  /*
-   * EXPLORE - START (All explore numbers start with B)
-   * B1. TODO - Complete the functionality as described in this function
-   *            header. It is possible in only a single line, but should
-   *            be no more than a few lines.
-   */
-  localStorage.setItem("coffeeCards", JSON.stringify(coffeeCards));
+    localStorage.setItem("coffeeCards", JSON.stringify(coffeeCards));
 }
 
 
-/*
- * Note: Perhaps to avoid having to refresh the page to reload content
- * we could also call showCards() everytime we add or delete a card
- */
+
 function handleEvents() {
 
     // Define variables to hold DOM elements
@@ -91,11 +91,11 @@ function handleEvents() {
     let form = document.getElementById('pop_up_box');
     let cancelButton = document.getElementById('cancel');
     let flavorSliders = document.getElementsByClassName('flavor_range');
-    let coffee_card_list = document.querySelectorAll("coffee-card");
     let isEditing = false;
-    let currentId = -1;
+    let currentId = 0;
+
     
-    function openForm(){
+    function openForm() {
         form.style.opacity = 1;
         form.style.visibility = "visible";
     }
@@ -117,7 +117,7 @@ function handleEvents() {
             const output = slider.nextElementSibling;
 
             // Display value
-            output.innerHTML= slider.value;
+            output.innerHTML = slider.value;
         });
     }
 
@@ -145,18 +145,9 @@ function handleEvents() {
     })
 
 
-    
-    
-    /*document.querySelectorAll('coffee-card').forEach(card => {
-        card.addEventListener('click', event => {
-            let position = card.id;
-        })
-    });
-    */
-    
 
     // Event delegation to handle editing cards dynamically 
-    gallery.addEventListener('click', function(event) {
+    gallery.addEventListener('click', function (event) {
         console.log(event.target.tagName)
 
         // if the target node was a coffee-card element grab its data
@@ -164,34 +155,33 @@ function handleEvents() {
 
             isEditing = true;
 
+            // grab the card's index/position in array
             let position = event.target.id;
-            console.log("editing card number: " + position);
-            
-            // get the array of cards from storage
-            //let coffeeCards = getCoffeeCardsFromStorage();
+            console.log("editing card at index: " + position);
 
-            //coffeeCards[Number(position)] = coffeeCardObject;
+            // get the corresponding card from the coffee cards array
+            let coffeeCardObject = getCoffeeCardsFromStorage()[position];
+            console.log(coffeeCardObject);
 
             // Populate the input fields of the form with the card's data
-            const shadow_child_nodes = Array.from(event.target.shadowRoot.childNodes);
+            for (const [key, val] of Object.entries(coffeeCardObject)) {
 
-            shadow_child_nodes.forEach((node) => {
-                if (node.nodeName === 'DIV') {
-                    console.log(node.innerText) 
-
-                    
-                    let text_to_parse = JSON.stringify(node.innerText);
-                    document.getElementById("str_drink_name").value = text_to_parse.slice(1, text_to_parse.indexOf("\\"));
-                    text_to_parse = text_to_parse.slice(text_to_parse.indexOf("\\"));
-                    text_to_parse = text_to_parse.split("\\n\\n");
-                    document.getElementById("str_purchase_location").value = text_to_parse[1].slice(text_to_parse[1].indexOf(": ") + 2);
-                    document.getElementById("str_drink_type").value = text_to_parse[3].slice(text_to_parse[3].indexOf(": ") + 2);
-                    document.getElementById("str_brew_style").value = text_to_parse[2].slice(text_to_parse[2].indexOf(": ") + 2);
-                    document.getElementById("int_dropdown_color").value = text_to_parse[4].slice(text_to_parse[4].indexOf(": ") + 2);
-                    // form.elements["str_notes"];
+                /* FIXME: Currently the console throws an error when assigning the value of
+                 * an input field to null. The reason this happens is because if the user doesn't
+                 * end up providing info for a particular field, the coffee card object will store 
+                 * null for that attribute, flavor for example. Also another bug is that the 
+                 * form doesn't populate the card's data consistently. You can see its data if you click
+                 * on it right after its creation but then it disappears for any attempts after that
+                 * The most likely theory is that the currentId is not updated properly
+                 * 
+                 */
+                if(val == null) {
+                    //console.log(key + " is null");
                 }
-            });
+              console.log(key, val)
+            }
 
+            // Keep track of which card we are editing
             currentId = position;
             openForm();
         }
@@ -204,6 +194,7 @@ function handleEvents() {
 
         let card;
         let data = new FormData(form);
+        let coffeeCards = getCoffeeCardsFromStorage();
 
         const coffeeCardObject = {
             // Visible variables
@@ -243,31 +234,28 @@ function handleEvents() {
             card.data = coffeeCardObject;
 
             // assign the card an index for position in gallery and coffeeCards array
-            card.id = `${gallery.childNodes.length - 2}`;
-            gallery.appendChild(card);
-            let coffeeCards = getCoffeeCardsFromStorage();
+            // REMOVE: card.id = `${gallery.childNodes.length - 2}`;
+            //gallery.appendChild(card);
             coffeeCards.push(coffeeCardObject);
-            saveCoffeeCardsToStorage(coffeeCards);
-            isAddingCard = false;
+
         }
 
         /* Otherwise we can assume the user is trying to edit the card
          * so we just save the changes without changing size of the array
          */
 
-        else if (isEditing){
-            document.getElementById(currCard).data = coffeeCardObject;
-            saveCoffeeCardsToStorage(coffeeCards);
-            let coffeeCards = getCoffeeCardsFromStorage();
-            coffeeCards[Number(currCard)] = coffeeCardObject;
-            saveCoffeeCardsToStorage(coffeeCards);
+        else if (isEditing) {
+            // update the card in the array
+            coffeeCards[Number(currentId)] = coffeeCardObject;
+            console.log("form is editing card at index: " + currentId);
             isEditing = false;
-        }        
+        }
+        
+        // save to storage and update the page
+        saveCoffeeCardsToStorage(coffeeCards);
+        addCoffeeCardsToDocument(coffeeCards);
 
-        // Either way, we want to close the form
-
-        currCard = -1;
-
+        isEditing = false;
         closeForm();
 
     })

@@ -4,21 +4,21 @@
   <meta charset="UTF-8" />
   <title>Coffee Notes CRUD App</title>
 
-  <!-- Coffe Card Custom Element -->
-  <script src="scripts/coffeeCard.js" type="module"></script>
 
   <!-- Main Stylesheets & Scripts -->
   <link rel="stylesheet" href="index.css" />
-  <script src="scripts/index.js" type="module">
-  </script>
-
-  <!-- Coffe Image Switch Script -->
-  <script src="scripts/switchCoffeeImage.js" type="module"></script>
   
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap');
   </style>
+
+  <!-- Coffe Card Custom Element -->
+  <script src="scripts/coffeeCard.js" type="module"></script>
+  
+  <!-- Coffee Image Switch Script -->
+  <script src="scripts/switchCoffeeImage.js" type="module"></script>
+
 </head>
 
 <body>
@@ -40,10 +40,10 @@
         <button id = "save" type = "submit">SAVE</button>
         <button id = "cancel" type = "reset">CANCEL</button>
         
-        <input type = "text" id="str_drink_name" placeholder="name of drink" name = "str_drink_name" required>drink</input>
-        <input type = "text"id="int_drink_price" placeholder = "price" name = "int_drink_price" required></input>
-        <input type = "text"id="time_purchase_date" placeholder = "date purchased" name = "time_purchase_date" required></input>
-        <input type = "text" id="str_purchase_location" placeholder = "location" name = "str_purchase_location" required></input>
+        <input type = "text" id="str_drink_name" placeholder="name of drink" name = "str_drink_name" required/>
+        <input type = "text"id="int_drink_price" placeholder = "price" name = "int_drink_price" required/>
+        <input type = "text"id="time_purchase_date" placeholder = "date purchased" name = "time_purchase_date" required/>
+        <input type = "text" id="str_purchase_location" placeholder = "location" name = "str_purchase_location" required/>
         <img id = "img_drink_image" src = "./assets/images/coffee-picture0.png" alt = "photo of drink" name = "img_drink_image">
         <!--Load default image, which is coffee-picture0-->
 
@@ -57,18 +57,18 @@
 
             <fieldset id = "optional_wrapper">
                 <label for ="chocolatey">Chocolatey
-                    <input type="checkbox" id = "chocolatey" name = "bool_check_chocolate"></input>
+                    <input type="checkbox" id = "chocolatey" name = "bool_check_chocolate" value = false></input>
                 </label>
                
                 <label for="caramel">Caramel
-                    <input type="checkbox" id = "bool_check_caramel" name = "bool_check_caramel"></input>
+                    <input type="checkbox" id = "bool_check_caramel" name = "bool_check_caramel" value = false></input>
                 </label>
                 
                 <label for="nutty">Nutty
-                    <input type="checkbox" id = "bool_check_nutty" name = "bool_check_nutty"></input>
+                    <input type="checkbox" id = "bool_check_nutty" name = "bool_check_nutty" value = false></input>
                 </label>
                 <label for="nutty">Fruity
-                    <input type="checkbox" id = "bool_check_fruity" name = "bool_check_fruity"></input>
+                    <input type="checkbox" id = "bool_check_fruity" name = "bool_check_fruity" value = false></input>
                 </label>
             </fieldset>
 
@@ -129,7 +129,7 @@
             </label>
         </div>
 
-        <textarea id = "str_notes" placeholder = "additional comments" name = "str_notes"></textarea>
+        <textarea id = "str_notes" placeholder = "additional comments" name = "str_notes" value = ""></textarea>
 
     </form>
 
@@ -138,5 +138,11 @@
     <section id = "gallery"><button id = "add_card"><img id = "addIcon" src = "assets/images/add-icon.png" alt = "add icon"></button></section>
   </main>
   
+
+
+  <script src="scripts/index.js" type="module"></script>
+
 </body>
+
+
 </html>
