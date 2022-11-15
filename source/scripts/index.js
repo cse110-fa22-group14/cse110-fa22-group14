@@ -6,8 +6,12 @@
 window.addEventListener('DOMContentLoaded', init);
 
 
-// When window loads,
-function init(){
+
+let currCard = -1;
+
+// when window loads,
+function init() {
+
 
     // TODO: Implement these two functions. Several people can work on this
 
@@ -25,7 +29,7 @@ function init(){
  * is returned.
  * @returns {Array<Object>} An array of coffee cards found in localStorage
  */
-function getCoffeeCardsFromStorage(){
+function getCoffeeCardsFromStorage() {
     if (localStorage.getItem("coffeeCards") != null) {
         return JSON.parse(localStorage.getItem("coffeeCards"));
     } else {
@@ -41,27 +45,28 @@ function getCoffeeCardsFromStorage(){
  * @param {Array<Object>} coffeeCards An array of recipes
  */
 function addCoffeeCardsToDocument(coffeeCards) {
-  /*
-   * A10. TODO - Get a reference to the <main> element
-   * A11. TODO - Loop through each of the recipes in the passed in array,
-   *            create a <recipe-card> element for each one, and populate
-   *            each <recipe-card> with that recipe data using element.data = ...
-   *            Append each element to <main>
-   */
-  const gallery = document.getElementById("gallery");
-  for (let i = 0; i < coffeeCards.length; i++){
-    const coffeeCard = gallery.appendChild(document.createElement("coffee-card"));
-    coffeeCard.data = coffeeCards[i];
-  }
+
+    // A10. TODO - Get a reference to the <main> element
+    // A11. TODO - Loop through each of the recipes in the passed in array,
+    //            create a <recipe-card> element for each one, and populate
+    //            each <recipe-card> with that recipe data using element.data = ...
+    //            Append each element to <main>
+    const gallery = document.getElementById("gallery");
+    for (let i = 0; i < coffeeCards.length; i++) {
+        const coffeeCard = gallery.appendChild(document.createElement("coffee-card"));
+        coffeeCard.id = `${gallery.childNodes.length - 2}`;
+        coffeeCard.data = coffeeCards[i];
+    }
 
 }
 
-/**
+/** 
  * Takes in an array of recipes, converts it to a string, and then
  * saves that string to 'recipes' in localStorage
  * @param {Array<Object>} coffeeCards An array of recipes
  */
 function saveCoffeeCardsToStorage(coffeeCards) {
+
   /*
    * EXPLORE - START (All explore numbers start with B)
    * B1. TODO - Complete the functionality as described in this function
@@ -76,20 +81,33 @@ function saveCoffeeCardsToStorage(coffeeCards) {
  * Note: Perhaps to avoid having to refresh the page to reload content
  * we could also call showCards() everytime we add or delete a card
  */
-function handleEvents(){
+function handleEvents() {
 
     // Define variables to hold DOM elements
-    const gallery = document.getElementById("gallery");
-    const helpButton = document.getElementById("help");
-    const filterOption = document.getElementById("filter");
-    const addButton = document.getElementById('add_card');
-    const form = document.getElementById('pop_up_box');
-    const cancelButton = document.getElementById('cancel');
-    const flavorSliders = document.getElementsByClassName('flavor_range');
+    let gallery = document.getElementById("gallery");
+    let helpButton = document.getElementById("help");
+    let filterOption = document.getElementById("filter");
+    let addButton = document.getElementById('add_card');
+    let form = document.getElementById('pop_up_box');
+    let cancelButton = document.getElementById('cancel');
+    let flavorSliders = document.getElementsByClassName('flavor_range');
+    let coffee_card_list = document.querySelectorAll("coffee-card");
+    let isAddingCard = false;
+
+    
+    function openForm(){
+        form.style.opacity = 1;
+        form.style.visibility = "visible";
+    }
+
+    function closeForm() {
+        form.style.opacity = 0;
+        form.style.visibility = "hidden";
+    }
 
 
     // Add event listeners to each flavor range slider
-    for (let i=0; i<flavorSliders.length; i++) {
+    for (let i = 0; i < flavorSliders.length; i++) {
 
         const slider = flavorSliders[i];
 
@@ -123,21 +141,62 @@ function handleEvents(){
         // Make popupBox visible. Just change the opacity
         form.style.opacity = "1";
         form.style.visibility = "visible";
+        isAddingCard = true;
     })
 
 
+    
+    
+    /*document.querySelectorAll('coffee-card').forEach(card => {
+        card.addEventListener('click', event => {
+            let position = card.id;
+        })
+    });
+    */
+    
 
-    // Saving a card and adding to the gallery
-    form.addEventListener("submit", (event)=> {
+    // Event delegation to handle editing cards efficiently 
+    gallery.addEventListener('click', function(event) {
+        if (event.target.tagName == "coffee-card") {
+
+            isAddingCard = false;
+            let position = event.target.id;
+            console.log("edting card number: " + position);
+            
+            coffeeCards = getCoffeeCardsFromStorage();
+            coffeeCards[Number(position)] = coffeeCardObject;
+
+            // REMOVE: const card_to_change = Number(coffee_card.id);
+
+            const shadow_child_nodes = Array.from(coffee_card.shadowRoot.childNodes);
+            shadow_child_nodes.forEach((node) => {
+                if (node.nodeName === 'DIV') {
+                    console.log(node.innerText) //to see what the text_to_parse is...
+                    let text_to_parse = JSON.stringify(node.innerText);
+                    document.getElementById("str_drink_name").value = text_to_parse.slice(1, text_to_parse.indexOf("\\"));
+                    text_to_parse = text_to_parse.slice(text_to_parse.indexOf("\\"));
+                    text_to_parse = text_to_parse.split("\\n\\n");
+                    document.getElementById("str_purchase_location").value = text_to_parse[1].slice(text_to_parse[1].indexOf(": ") + 2);
+                    document.getElementById("str_drink_type").value = text_to_parse[3].slice(text_to_parse[3].indexOf(": ") + 2);
+                    document.getElementById("str_brew_style").value = text_to_parse[2].slice(text_to_parse[2].indexOf(": ") + 2);
+                    document.getElementById("int_dropdown_color").value = text_to_parse[4].slice(text_to_parse[4].indexOf(": ") + 2);
+                    // form.elements["str_notes"];
+                }
+            });
+            currCard = position;
+            openForm();
+        }
+    })
+
+
+    // Saving a new card to gallery or saving edit changes to an existing card
+    form.addEventListener("submit", (event) => {
         event.preventDefault();
-        const data = new FormData(form);
-        console.log(data);
 
-        /*
-         * Create card object and load [key: value] pairs of the
-         * form and any other input into object
-         */
 
+
+        let card;
+        let data = new FormData(form);
         const coffeeCardObject = {
             // Visible variables
             "str_drink_name": data.get('str_drink_name'),
@@ -157,54 +216,58 @@ function handleEvents(){
             "str_brew_style": data.get('str_brew_style'),
             "int_dropdown_color": data.get('int_dropdown_color'),
             "str_notes": data.get('str_notes'),
-
         }
 
-        console.log(coffeeCardObject);
-        /*
-         * TODO how to implement bool of check chocolate? and other bool values
-         * TODO how to implement str_creator
-         */
+        // If we are adding a card, make a new <coffee-card> element and add to gallery
+        if (isAddingCard) {
+            console.log(data);
 
-        const d = new Date();
-        coffeeCardObject["time_creation_time"] = d.toLocaleTimeString();
+            /* create card object and load [key: value] pairs of the 
+            * form and any other input into object
+            */
 
-        // Set modified time to false to denote that this card has not been modified before
-        coffeeCardObject["time_modified_time"] = false;
-
-
-        /*
-         *  Insert card into the gallery at the front or back of the list
-         *  NOTE: The grid's rows have to be dynamically growing so this might take some
-         *        working around with javascript and css
-         * FIX: need to create a new coffee card thumbnail object
-         */
-        const coffeeCard = document.createElement("coffee-card");
-        // Load the object into a new <coffeeCard> element
-        coffeeCard.data = coffeeCardObject;
-
-        const gallery = document.getElementById("gallery");
-        gallery.appendChild(coffeeCard);
+            console.log(coffeeCardObject);
+            let d = new Date();
+            coffeeCardObject["time_creation_time"] = d.toLocaleTimeString();
 
 
+            // Store the form data inside the coffee card 
+            card = document.createElement("coffee-card");
+            card.data = coffeeCardObject;
 
-        /*
-         * Get array of cards from localStorage and save this new Card (same position in array)
-         * and then save the array as a string in storage
-         */
-        const coffeeCards = getCoffeeCardsFromStorage();
-        coffeeCards.push(coffeeCardObject);
-        saveCoffeeCardsToStorage(coffeeCards);
+            // assign the card an index for position in gallery and coffeeCards array
+            card.id = `${gallery.childNodes.length - 2}`;
+            gallery.appendChild(card);
+            let coffeeCards = getCoffeeCardsFromStorage();
+            coffeeCards.push(coffeeCardObject);
+            saveCoffeeCardsToStorage(coffeeCards);
+            isAddingCard = false;
+        }
 
-        // Hide the form
+        // otherwise if we have clicked on editing 
+        else if (!isAddingCard){
+            document.getElementById(currCard).data = coffeeCardObject;
+            saveCoffeeCardsToStorage(coffeeCards);
+            let coffeeCards = getCoffeeCardsFromStorage();
+            coffeeCards[Number(currCard)] = coffeeCardObject;
+            saveCoffeeCardsToStorage(coffeeCards);
+            isAddingCard = false;
+            //form.reset();
+        }        
+
+        // Either way, we want to close the form
+
+        currCard = -1;
+
         form.style.opacity = 0;
+        form.style.visibility = "hidden";
+
     })
 
 
     // Clears fields of popUpBox element using "reset" attribute in index.html
     cancelButton.addEventListener("click", () => {
-        form.style.opacity = "0";
-        form.style.visibility = "hidden";
+        closeForm();
     })
 
 
@@ -218,15 +281,53 @@ function handleEvents(){
      * a numerical ID corresponding to its index in the array of cards
      * So when we click on a card, we can identify it based on its id
      * We will have to think about this implementation in the next few days
-     *
-     * /
-     *
-     *
-     *
-     *
-     * TODO: When user clicks a card's delete button, it should remove
-     * the card from the gallery and delete it from localStorage.
-     * We could rerender the page content by loading the new set of cards
+
+     * 
+     */
+    /*setInterval(function () { 
+        document.querySelectorAll('coffee-card').forEach(coffee_card => {
+            coffee_card.addEventListener('click', event => {
+                const card_to_change = Number(coffee_card.id);
+                SAVE_BUTTON_STATE = SAVE_ON;
+                const shadow_child_nodes = Array.from(coffee_card.shadowRoot.childNodes);
+                shadow_child_nodes.forEach((node) => {
+                    if (node.nodeName === 'DIV') {
+                        console.log(node.innerText) //to see what the text_to_parse is...
+                        let text_to_parse = JSON.stringify(node.innerText);
+                        document.getElementById("str_drink_name").value = text_to_parse.slice(1, text_to_parse.indexOf("\\"));
+                        text_to_parse = text_to_parse.slice(text_to_parse.indexOf("\\"));
+                        // document.getElementById("int_drink_price");
+                        // document.getElementById("time_purchase_date");
+                        text_to_parse = text_to_parse.split("\\n\\n");
+                        document.getElementById("str_purchase_location").value = text_to_parse[1].slice(text_to_parse[1].indexOf(": ") + 2);
+                        // document.getElementyId("img_drink_image");
+                        // document.getElementyId("bool_check_chocolate");
+                        // document.getElementyId("bool_check_caramel");
+                        // document.getElementyId("bool_check_nutty");
+                        // document.getElementyId("bool_check_fruity");
+                        // document.getElementyId("int_slide_acidity");
+                        // document.getElementyId("int_slide_sweetness");
+                        // document.getElementyId("int_slide_bitterness");
+                        // document.getElementyId(int_slide_saltiness").value;
+                        document.getElementById("str_drink_type").value = text_to_parse[3].slice(text_to_parse[3].indexOf(": ") + 2);
+                        document.getElementById("str_brew_style").value = text_to_parse[2].slice(text_to_parse[2].indexOf(": ") + 2);
+                        document.getElementById("int_dropdown_color").value = text_to_parse[4].slice(text_to_parse[4].indexOf(": ") + 2);
+                        // form.elements["str_notes"];
+                    }
+                });
+                form.style.opacity = 1;
+                form.style.visibility = "visible";
+            })
+        })
+    //}, 1000);
+    */
+
+
+
+
+    /* TODO: When user clicks a card's delete button, it should remove
+     * the card from the gallery and delete it from localStorage. 
+     * We could rerender the page content by loading the new set of cards 
      * by calling showCards()
      */
 
