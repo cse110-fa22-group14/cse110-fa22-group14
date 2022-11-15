@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', init);
 
 
 
-let currCard = -1;
+
 
 // when window loads,
 function init() {
@@ -92,8 +92,8 @@ function handleEvents() {
     let cancelButton = document.getElementById('cancel');
     let flavorSliders = document.getElementsByClassName('flavor_range');
     let coffee_card_list = document.querySelectorAll("coffee-card");
-    let isAddingCard = false;
-
+    let isEditing = false;
+    let currentId = -1;
     
     function openForm(){
         form.style.opacity = 1;
@@ -141,7 +141,7 @@ function handleEvents() {
         // Make popupBox visible. Just change the opacity
         form.style.opacity = "1";
         form.style.visibility = "visible";
-        isAddingCard = true;
+        isEditing = false;
     })
 
 
@@ -155,23 +155,31 @@ function handleEvents() {
     */
     
 
-    // Event delegation to handle editing cards efficiently 
+    // Event delegation to handle editing cards dynamically 
     gallery.addEventListener('click', function(event) {
-        if (event.target.tagName == "coffee-card") {
+        console.log(event.target.tagName)
 
-            isAddingCard = false;
+        // if the target node was a coffee-card element grab its data
+        if (event.target.tagName === "COFFEE-CARD") {
+
+            isEditing = true;
+
             let position = event.target.id;
-            console.log("edting card number: " + position);
+            console.log("editing card number: " + position);
             
-            coffeeCards = getCoffeeCardsFromStorage();
-            coffeeCards[Number(position)] = coffeeCardObject;
+            // get the array of cards from storage
+            //let coffeeCards = getCoffeeCardsFromStorage();
 
-            // REMOVE: const card_to_change = Number(coffee_card.id);
+            //coffeeCards[Number(position)] = coffeeCardObject;
 
-            const shadow_child_nodes = Array.from(coffee_card.shadowRoot.childNodes);
+            // Populate the input fields of the form with the card's data
+            const shadow_child_nodes = Array.from(event.target.shadowRoot.childNodes);
+
             shadow_child_nodes.forEach((node) => {
                 if (node.nodeName === 'DIV') {
-                    console.log(node.innerText) //to see what the text_to_parse is...
+                    console.log(node.innerText) 
+
+                    
                     let text_to_parse = JSON.stringify(node.innerText);
                     document.getElementById("str_drink_name").value = text_to_parse.slice(1, text_to_parse.indexOf("\\"));
                     text_to_parse = text_to_parse.slice(text_to_parse.indexOf("\\"));
@@ -183,7 +191,8 @@ function handleEvents() {
                     // form.elements["str_notes"];
                 }
             });
-            currCard = position;
+
+            currentId = position;
             openForm();
         }
     })
@@ -193,10 +202,9 @@ function handleEvents() {
     form.addEventListener("submit", (event) => {
         event.preventDefault();
 
-
-
         let card;
         let data = new FormData(form);
+
         const coffeeCardObject = {
             // Visible variables
             "str_drink_name": data.get('str_drink_name'),
@@ -219,13 +227,12 @@ function handleEvents() {
         }
 
         // If we are adding a card, make a new <coffee-card> element and add to gallery
-        if (isAddingCard) {
+        if (!isEditing) {
             console.log(data);
 
             /* create card object and load [key: value] pairs of the 
             * form and any other input into object
             */
-
             console.log(coffeeCardObject);
             let d = new Date();
             coffeeCardObject["time_creation_time"] = d.toLocaleTimeString();
@@ -244,23 +251,24 @@ function handleEvents() {
             isAddingCard = false;
         }
 
-        // otherwise if we have clicked on editing 
-        else if (!isAddingCard){
+        /* Otherwise we can assume the user is trying to edit the card
+         * so we just save the changes without changing size of the array
+         */
+
+        else if (isEditing){
             document.getElementById(currCard).data = coffeeCardObject;
             saveCoffeeCardsToStorage(coffeeCards);
             let coffeeCards = getCoffeeCardsFromStorage();
             coffeeCards[Number(currCard)] = coffeeCardObject;
             saveCoffeeCardsToStorage(coffeeCards);
-            isAddingCard = false;
-            //form.reset();
+            isEditing = false;
         }        
 
         // Either way, we want to close the form
 
         currCard = -1;
 
-        form.style.opacity = 0;
-        form.style.visibility = "hidden";
+        closeForm();
 
     })
 
