@@ -146,7 +146,8 @@
        let shadow_div = this.shadowRoot.querySelector('div');
 
        shadow_div.innerHTML =
-       `<header>
+       `
+       <header>
             <h3><slot name="date" />${data["str_drink_name"].toUpperCase()}</h3>
             <h4>${data["time_purchase_date"].toUpperCase()}</h4>
             <img id="share_button" alt = "share icon" src = "./assets/images/share-icon.png" ></img>
