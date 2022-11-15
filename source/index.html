@@ -11,6 +11,9 @@
   <link rel="stylesheet" href="index.css" />
   <script src="scripts/index.js" type="module">
   </script>
+
+  <!-- Coffe Image Switch Script -->
+  <script src="scripts/switchCoffeeImage.js" type="module"></script>
   
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
@@ -41,10 +44,14 @@
         <input type = "text"id="int_drink_price" placeholder = "price" name = "int_drink_price" required></input>
         <input type = "text"id="time_purchase_date" placeholder = "date purchased" name = "time_purchase_date" required></input>
         <input type = "text" id="str_purchase_location" placeholder = "location" name = "str_purchase_location" required></input>
-        <img id = "img_drink_image" src = "" alt = "photo of drink" style = "color: white" name = "img_drink_image">
+        <img id = "img_drink_image" src = "./assets/images/coffee-picture0.png" alt = "photo of drink" name = "img_drink_image">
+        <!--Load default image, which is coffee-picture0-->
 
         <!--Implement functionality to cycle through images-->
-        <div id = "switch_photo_container">switch images functionality</div>
+        <div id = "switch_photo_container">switch images functionality
+            <a id="switch_photo_left_arrow">&#10094;</a>
+            <a id="switch_photo_right_arrow">&#10095;</a>
+        </div>
 
         <div id = "flavor_container">
 
