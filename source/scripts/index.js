@@ -175,10 +175,8 @@ function handleEvents() {
                  * The most likely theory is that the currentId is not updated properly
                  * 
                  */
-                if(val == null) {
-                    //console.log(key + " is null");
-                }
-              console.log(key, val)
+                document.getElementById(key).value = val;
+                console.log(key, val)
             }
 
             // Keep track of which card we are editing
