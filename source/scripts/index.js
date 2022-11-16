@@ -46,7 +46,7 @@ function addCoffeeCardsToDocument(coffeeCards) {
 
     const gallery = document.getElementById("gallery");
 
-    // clear the gallery and add new list to gallery
+    // Clear the gallery and add new list to gallery
     document.querySelectorAll('coffee-card').forEach(card => {
         console.log("removing card")
         card.remove();
@@ -56,16 +56,11 @@ function addCoffeeCardsToDocument(coffeeCards) {
     coffeeCards.forEach((card, index) => {
         const coffeeCard = gallery.appendChild(document.createElement("coffee-card"));
         coffeeCard.data = card;
+
+        // set the id of the card and edit button 
         coffeeCard.id = index;
+        console.log(coffeeCard.getChildren[2].id = index);
     })
-
-
-    /*for (let i = 0; i < coffeeCards.length; i++) {
-        const coffeeCard = gallery.appendChild(document.createElement("coffee-card"));
-        coffeeCard.id = `${gallery.childNodes.length - 2}`;
-        coffeeCard.data = coffeeCards[i];
-    }
-    */
 
 }
 
@@ -147,15 +142,13 @@ function handleEvents() {
 
 
     // Event delegation to handle editing cards dynamically 
-    gallery.addEventListener('click', function (event) {
-        console.log(event.target.tagName)
+    document.addEventListener('trigger-edit', function (event) {
 
-        // if the target node was a coffee-card element grab its data
-        if (event.target.tagName === "COFFEE-CARD") {
+        if (event.composedPath) {
 
             isEditing = true;
 
-            // grab the card's index/position in array
+            // The edit button stores the corresponding coffee card id/posiiton in array
             let position = event.target.id;
             console.log("editing card at index: " + position);
 
@@ -166,17 +159,12 @@ function handleEvents() {
             // Populate the input fields of the form with the card's data
             for (const [key, val] of Object.entries(coffeeCardObject)) {
 
-                /* FIXME: Currently the console throws an error when assigning the value of
-                 * an input field to null. The reason this happens is because if the user doesn't
-                 * end up providing info for a particular field, the coffee card object will store 
-                 * null for that attribute, flavor for example. Also another bug is that the 
-                 * form doesn't populate the card's data consistently. You can see its data if you click
-                 * on it right after its creation but then it disappears for any attempts after that
-                 * The most likely theory is that the currentId is not updated properly
-                 * 
-                 */
-                document.getElementById(key).value = val;
+                document.getElementById(key)
+                //document.getElementById(key).value = val;
+        
+                //document.getElementById(key).value = val;
                 console.log(key, val)
+                
             }
 
             // Keep track of which card we are editing
@@ -184,6 +172,7 @@ function handleEvents() {
             openForm();
         }
     })
+
 
 
     // Saving a new card to gallery or saving edit changes to an existing card
@@ -215,6 +204,7 @@ function handleEvents() {
             "str_notes": data.get('str_notes'),
         }
 
+
         // If we are adding a card, make a new <coffee-card> element and add to gallery
         if (!isEditing) {
             console.log(data);
@@ -232,8 +222,6 @@ function handleEvents() {
             card.data = coffeeCardObject;
 
             // assign the card an index for position in gallery and coffeeCards array
-            // REMOVE: card.id = `${gallery.childNodes.length - 2}`;
-            //gallery.appendChild(card);
             coffeeCards.push(coffeeCardObject);
 
         }
@@ -244,7 +232,8 @@ function handleEvents() {
 
         else if (isEditing) {
             // update the card in the array
-            coffeeCards[Number(currentId)] = coffeeCardObject;
+            console.log(coffeeCardObject)
+            coffeeCards[(currentId)] = coffeeCardObject;
             console.log("form is editing card at index: " + currentId);
             isEditing = false;
         }
@@ -263,60 +252,6 @@ function handleEvents() {
     cancelButton.addEventListener("click", () => {
         closeForm();
     })
-
-
-
-    /*
-     * TODO: When user clicks on a coffee card in the gallery, the popUpBox
-     * should appear so the user can edit the information.
-     * Eventually, when we create a custom <coffeeCard> element
-     * we can add an event listener to all the <coffeeCard>
-     * Basic Idea: When we create a new card, we will assign it
-     * a numerical ID corresponding to its index in the array of cards
-     * So when we click on a card, we can identify it based on its id
-     * We will have to think about this implementation in the next few days
-
-     * 
-     */
-    /*setInterval(function () { 
-        document.querySelectorAll('coffee-card').forEach(coffee_card => {
-            coffee_card.addEventListener('click', event => {
-                const card_to_change = Number(coffee_card.id);
-                SAVE_BUTTON_STATE = SAVE_ON;
-                const shadow_child_nodes = Array.from(coffee_card.shadowRoot.childNodes);
-                shadow_child_nodes.forEach((node) => {
-                    if (node.nodeName === 'DIV') {
-                        console.log(node.innerText) //to see what the text_to_parse is...
-                        let text_to_parse = JSON.stringify(node.innerText);
-                        document.getElementById("str_drink_name").value = text_to_parse.slice(1, text_to_parse.indexOf("\\"));
-                        text_to_parse = text_to_parse.slice(text_to_parse.indexOf("\\"));
-                        // document.getElementById("int_drink_price");
-                        // document.getElementById("time_purchase_date");
-                        text_to_parse = text_to_parse.split("\\n\\n");
-                        document.getElementById("str_purchase_location").value = text_to_parse[1].slice(text_to_parse[1].indexOf(": ") + 2);
-                        // document.getElementyId("img_drink_image");
-                        // document.getElementyId("bool_check_chocolate");
-                        // document.getElementyId("bool_check_caramel");
-                        // document.getElementyId("bool_check_nutty");
-                        // document.getElementyId("bool_check_fruity");
-                        // document.getElementyId("int_slide_acidity");
-                        // document.getElementyId("int_slide_sweetness");
-                        // document.getElementyId("int_slide_bitterness");
-                        // document.getElementyId(int_slide_saltiness").value;
-                        document.getElementById("str_drink_type").value = text_to_parse[3].slice(text_to_parse[3].indexOf(": ") + 2);
-                        document.getElementById("str_brew_style").value = text_to_parse[2].slice(text_to_parse[2].indexOf(": ") + 2);
-                        document.getElementById("int_dropdown_color").value = text_to_parse[4].slice(text_to_parse[4].indexOf(": ") + 2);
-                        // form.elements["str_notes"];
-                    }
-                });
-                form.style.opacity = 1;
-                form.style.visibility = "visible";
-            })
-        })
-    //}, 1000);
-    */
-
-
 
 
     /* TODO: When user clicks a card's delete button, it should remove
