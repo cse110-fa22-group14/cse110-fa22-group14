@@ -186,7 +186,7 @@
       *
       * For Example:
       * let coffeeCard = document.createElement('recipe-card'); // Calls constructor()
-      * coffeeCard.getChildren=  [HTML collecion] // Calls the function
+      * coffeeCard.getChildren() =  [HTML collection] // Calls the function
       *
       */
     get getChildren() {

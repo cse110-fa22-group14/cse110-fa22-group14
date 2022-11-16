@@ -59,7 +59,7 @@ function addCoffeeCardsToDocument(coffeeCards) {
 
         // set the id of the card and edit button 
         coffeeCard.id = index;
-        console.log(coffeeCard.getChildren[2].id = index);
+        coffeeCard.getChildren[2].id = index;
     })
 
 }
@@ -156,16 +156,16 @@ function handleEvents() {
             let coffeeCardObject = getCoffeeCardsFromStorage()[position];
             console.log(coffeeCardObject);
 
-            // Populate the input fields of the form with the card's data
-            for (const [key, val] of Object.entries(coffeeCardObject)) {
+            // The following code works just fine to populate an input field
+            // document.getElementById("str_drink_name").value = coffeeCardObject["str_drink_name"];
 
-                document.getElementById(key)
-                //document.getElementById(key).value = val;
-        
-                //document.getElementById(key).value = val;
-                console.log(key, val)
-                
+
+            // But looping and getting elements using the keys throws a null error :(
+            for (let key in Object.keys(coffeeCardObject)){
+                document.getElementById(key).value = coffeeCardObject[key];
             }
+            
+            
 
             // Keep track of which card we are editing
             currentId = position;
@@ -189,11 +189,7 @@ function handleEvents() {
             "int_drink_price": data.get('int_drink_price'),
             "time_purchase_date": data.get('time_purchase_date'),
             "str_purchase_location": data.get('str_purchase_location'),
-            "img_drink_image": data.get('img_drink_image'),
-            "bool_check_chocolate": data.get('bool_check_chocolate'),
-            "bool_check_caramel": data.get('bool_check_caramel'),
-            "bool_check_nutty": data.get('bool_check_nutty'),
-            "bool_check_fruity": data.get('bool_check_fruity'),
+            "img_drink_image": document.getElementById('img_drink_image').src,
             "int_slide_acidity": data.get('int_slide_acidity'),
             "int_slide_sweetness": data.get('int_slide_sweetness'),
             "int_slide_bitterness": data.get('int_slide_bitterness'),
@@ -203,6 +199,20 @@ function handleEvents() {
             "int_dropdown_color": data.get('int_dropdown_color'),
             "str_notes": data.get('str_notes'),
         }
+
+        // This is to make checkbox values consistent across browsers
+        document.querySelectorAll("input[type = checkbox]").forEach(box => {
+            coffeeCardObject[box.id] = 1
+
+            if (box.checked == true) {
+                coffeeCardObject[box.id] = "1";
+
+            }
+            else {
+                coffeeCardObject[box.id] = "0";
+
+            }
+        })
 
 
         // If we are adding a card, make a new <coffee-card> element and add to gallery
