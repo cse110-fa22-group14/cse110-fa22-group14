@@ -121,6 +121,7 @@
       * @param {Object} data - The data to pass into the <recipe-card>, must be of the
       *                        following format:
       *                        {
+      *                            "current_card_id": "int",
       *                            "str_drink_name":"string",
       *                            "int_drink_price":"int",
       *                            "time_purchase_date":"date",
@@ -148,6 +149,7 @@
 
        const shadow_div = this.shadowRoot.querySelector('div');
 
+       //add a hidden element to the card's HTML
        shadow_div.innerHTML =
        `
        <header>
@@ -162,6 +164,7 @@
           <p><slot name="brew_style" />Brew Method: ${data["str_brew_style"]}</p>
           <p><slot name="drink_type">Serving Type: ${data["str_drink_type"]}</p>
           <p><slot name="color">Color Level: ${data["int_dropdown_color"]}</p>
+          <p id="current_card_id" value="${data["current_card_id"]}" hidden></p>
         </section>
         <button class = "toggle_edit" >Edit</button>
         `;

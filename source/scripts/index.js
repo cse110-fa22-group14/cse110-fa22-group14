@@ -87,7 +87,8 @@ function handleEvents() {
     let cancelButton = document.getElementById('cancel');
     let flavorSliders = document.getElementsByClassName('flavor_range');
     let isEditing = false;
-    let currentId = 0;
+    let current_edit_id = 0;
+    let current_card_id = 0;
 
     
     function openForm() {
@@ -157,18 +158,47 @@ function handleEvents() {
             console.log(coffeeCardObject);
 
             // The following code works just fine to populate an input field
-            // document.getElementById("str_drink_name").value = coffeeCardObject["str_drink_name"];
+            document.getElementById("str_drink_name").value = coffeeCardObject["str_drink_name"];
+            document.getElementById("int_drink_price").value = coffeeCardObject["int_drink_price"];
+            document.getElementById("time_purchase_date").value = coffeeCardObject["time_purchase_date"];
+            document.getElementById("str_purchase_location").value = coffeeCardObject["str_purchase_location"];
+            //populate the slider's display value
+            document.getElementById("acidity_val").innerText = coffeeCardObject["int_slide_acidity"];
+            document.getElementById("sweetness_val").innerText = coffeeCardObject["int_slide_sweetness"];
+            document.getElementById("bitterness_val").innerText = coffeeCardObject["int_slide_bitterness"];
+            document.getElementById("saltiness_val").innerText = coffeeCardObject["int_slide_saltiness"];
+            //change slider value
+            document.getElementById("int_slide_acidity").value = coffeeCardObject["int_slide_acidity"];
+            document.getElementById("int_slide_sweetness").value = coffeeCardObject["int_slide_sweetness"];
+            document.getElementById("int_slide_bitterness").value = coffeeCardObject["int_slide_bitterness"];
+            document.getElementById("int_slide_saltiness").value = coffeeCardObject["int_slide_saltiness"];
+            //populate the dropdowns
+            document.getElementById("str_drink_type").value = coffeeCardObject["str_drink_type"];
+            document.getElementById("str_brew_style").value = coffeeCardObject["str_brew_style"];
+            document.getElementById("int_dropdown_color").value = coffeeCardObject["int_dropdown_color"];
+            document.getElementById("str_notes").value = coffeeCardObject["str_notes"];
 
-
-            // But looping and getting elements using the keys throws a null error :(
-            for (let key in Object.keys(coffeeCardObject)){
-                document.getElementById(key).value = coffeeCardObject[key];
+            //set the coffee card's image using the function in switchCoffeeImages.js
+            set_image(coffeeCardObject["img_drink_image"]);
+            //check chocolate box if the card's bool_check_chocolate key has value 1
+            if(coffeeCardObject["bool_check_chocolate"] == 1) {
+                document.getElementById("bool_check_chocolate").checked = true;
+            }
+            //check chocolate box if the card's bool_check_caramel key has value 1
+            if(coffeeCardObject["bool_check_caramel"] == 1) {
+                document.getElementById("bool_check_caramel").checked = true;
+            }
+            //check chocolate box if the card's bool_check_nutty key has value 1
+            if(coffeeCardObject["bool_check_nutty"] == 1) {
+                document.getElementById("bool_check_nutty").checked = true;
+            }
+            //check chocolate box if the card's bool_check_fruity key has value 1
+            if(coffeeCardObject["bool_check_fruity"] == 1) {
+                document.getElementById("bool_check_fruity").checked = true;
             }
             
-            
-
             // Keep track of which card we are editing
-            currentId = position;
+            current_edit_id = position;
             openForm();
         }
     })
@@ -182,14 +212,16 @@ function handleEvents() {
         let card;
         let data = new FormData(form);
         let coffeeCards = getCoffeeCardsFromStorage();
+        
 
         const coffeeCardObject = {
             // Visible variables
+            "current_card_id": current_card_id,
             "str_drink_name": data.get('str_drink_name'),
             "int_drink_price": data.get('int_drink_price'),
             "time_purchase_date": data.get('time_purchase_date'),
             "str_purchase_location": data.get('str_purchase_location'),
-            "img_drink_image": document.getElementById('img_drink_image').src,
+            "img_drink_image": get_image_id(),
             "int_slide_acidity": data.get('int_slide_acidity'),
             "int_slide_sweetness": data.get('int_slide_sweetness'),
             "int_slide_bitterness": data.get('int_slide_bitterness'),
@@ -217,6 +249,15 @@ function handleEvents() {
 
         // If we are adding a card, make a new <coffee-card> element and add to gallery
         if (!isEditing) {
+
+            //use current_card_id to identify each card
+            if (localStorage.getItem('current_card_id') != null) {
+                current_card_id = 1 + Number(localStorage.getItem('current_card_id'));
+            }
+            localStorage.setItem('current_card_id', current_card_id);
+            //add current_card_id to the information to store in local storage
+            coffeeCardObject['current_card_id'] = current_card_id;
+
             console.log(data);
 
             /* create card object and load [key: value] pairs of the 
@@ -226,13 +267,15 @@ function handleEvents() {
             let d = new Date();
             coffeeCardObject["time_creation_time"] = d.toLocaleTimeString();
 
-
             // Store the form data inside the coffee card 
             card = document.createElement("coffee-card");
             card.data = coffeeCardObject;
 
             // assign the card an index for position in gallery and coffeeCards array
-            coffeeCards.push(coffeeCardObject);
+            coffeeCards[current_card_id] = coffeeCardObject;
+            // save to storage and update the page
+            saveCoffeeCardsToStorage(coffeeCards);
+            addCoffeeCardsToDocument(coffeeCards);
 
         }
 
@@ -242,16 +285,35 @@ function handleEvents() {
 
         else if (isEditing) {
             // update the card in the array
-            console.log(coffeeCardObject)
-            coffeeCards[(currentId)] = coffeeCardObject;
-            console.log("form is editing card at index: " + currentId);
-            isEditing = false;
+            console.log(coffeeCardObject);
+            coffeeCards[current_edit_id] = coffeeCardObject;
+            console.log("form is editing card at index: " + current_edit_id);
+            // save to storage and update the page
+            saveCoffeeCardsToStorage(coffeeCards);
+            let all_coffee_cards = document.querySelectorAll('coffee-card');
+            let card_to_edit = all_coffee_cards[current_edit_id];
+            card_to_edit.innerHTML =
+            `
+            <header>
+                 <h3><slot name="date" />${coffeeCardObject["str_drink_name"]}</h3>
+                 <h4>${coffeeCardObject["time_purchase_date"].toUpperCase()}</h4>
+                 <img id="share_button" alt = "share icon" src = "./assets/images/share-icon.png" ></img>
+     
+            </header>
+     
+             <section class="info">
+               <p><slot name="location" />Location: ${coffeeCardObject["str_purchase_location"]}</p>
+               <p><slot name="brew_style" />Brew Method: ${coffeeCardObject["str_brew_style"]}</p>
+               <p><slot name="drink_type">Serving Type: ${coffeeCardObject["str_drink_type"]}</p>
+               <p><slot name="color">Color Level: ${coffeeCardObject["int_dropdown_color"]}</p>
+               <p id="current_card_id" value="${coffeeCardObject["current_card_id"]}" hidden></p>
+             </section>
+             <button class = "toggle_edit" >Edit</button>
+             `;
         }
         
-        // save to storage and update the page
-        saveCoffeeCardsToStorage(coffeeCards);
-        addCoffeeCardsToDocument(coffeeCards);
-
+        //reset the coffee card's image to the default one, at index 0
+        reset_image_id();
         isEditing = false;
         closeForm();
 
