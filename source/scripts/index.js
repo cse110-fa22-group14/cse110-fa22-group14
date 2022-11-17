@@ -80,6 +80,9 @@ function handleEvents(){
     let form = document.getElementById('pop_up_box');
     let cancelButton = document.getElementById('cancel');
     let flavorSliders = document.getElementsByClassName('flavor_range');
+    
+    // TODO: this is an arbitrary id name
+    let deleteButton = document.getElementById('delete_button');
 
     
     // Add event listeners to each flavor range slider
@@ -208,11 +211,19 @@ function handleEvents(){
 
 
     
-    * TODO: When user clicks a card's delete button, it should remove
+    /* TODO: When user clicks a card's delete button, it should remove
     * the card from the gallery and delete it from localStorage. 
     * We could rerender the page content by loading the new set of cards 
     * by calling showCards()
      */
+    deleteButton.addEventListener("click", (event) => {
+        let gallery = document.getElementById("gallery");
+        let currCard = event.target.id; // NOTE: id is from William's edit button version
+        gallery.removeChild(currCard);
+        
+
+    })
+
 
     /* TODO: When user clicks a card's share button, it should trigger
      * a new event to post the card to social media. 
