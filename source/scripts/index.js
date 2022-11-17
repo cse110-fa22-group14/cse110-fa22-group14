@@ -99,6 +99,34 @@ function handleEvents() {
     function closeForm() {
         form.style.opacity = 0;
         form.style.visibility = "hidden";
+        //reset the form's html contents when done.
+
+        document.getElementById("str_drink_name").value = "";
+        document.getElementById("int_drink_price").value = "";
+        document.getElementById("time_purchase_date").value = "";
+        document.getElementById("str_purchase_location").value = "";
+        //populate the slider's display value
+        document.getElementById("acidity_val").innerText = "0";
+        document.getElementById("sweetness_val").innerText = "0";
+        document.getElementById("bitterness_val").innerText = "0";
+        document.getElementById("saltiness_val").innerText = "0";
+        //change slider value
+        document.getElementById("int_slide_acidity").value = 0;
+        document.getElementById("int_slide_sweetness").value = 0;
+        document.getElementById("int_slide_bitterness").value = 0;
+        document.getElementById("int_slide_saltiness").value = 0;
+        //populate the dropdowns
+        document.getElementById("str_drink_type").value = "Casual";
+        document.getElementById("str_brew_style").value = "Drip";
+        document.getElementById("int_dropdown_color").value = "Light";
+        document.getElementById("str_notes").value = "";
+
+        //set the coffee card's image using the function in switchCoffeeImages.js
+        set_image(0);
+        document.getElementById("bool_check_chocolate").checked = false;
+        document.getElementById("bool_check_caramel").checked = false;
+        document.getElementById("bool_check_nutty").checked = false;
+        document.getElementById("bool_check_fruity").checked = false;
     }
 
 
