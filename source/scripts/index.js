@@ -319,28 +319,26 @@ function handleEvents() {
             // save to storage and update the page
             saveCoffeeCardsToStorage(coffeeCards);
             let all_coffee_cards = document.querySelectorAll('coffee-card');
-            let card_to_edit = all_coffee_cards[current_edit_id];
-            card_to_edit.innerHTML =
-            `
-            <header>
-                 <h3><slot name="date" />${coffeeCardObject["str_drink_name"]}</h3>
-                 <h4>${coffeeCardObject["time_purchase_date"].toUpperCase()}</h4>
-                 <img id="share_button" alt = "share icon" src = "./assets/images/share-icon.png" ></img>
-     
-            </header>
-     
-             <section class="info">
-               <p><slot name="location" />Location: ${coffeeCardObject["str_purchase_location"]}</p>
-               <p><slot name="brew_style" />Brew Method: ${coffeeCardObject["str_brew_style"]}</p>
-               <p><slot name="drink_type">Serving Type: ${coffeeCardObject["str_drink_type"]}</p>
-               <p><slot name="color">Color Level: ${coffeeCardObject["int_dropdown_color"]}</p>
-               <p id="current_card_id" value="${coffeeCardObject["current_card_id"]}" hidden></p>
-             </section>
-             <button class = "toggle_edit" >Edit</button>
-             `;
+            let card_to_edit = all_coffee_cards[current_edit_id].shadowRoot;
+            //populate card thumbnail
+            card_to_edit.querySelector('#str_drink_name').innerText = 
+                coffeeCardObject["str_drink_name"];
+            card_to_edit.querySelector('#time_purchase_date').innerText = 
+                coffeeCardObject["time_purchase_date"].toUpperCase();
+            card_to_edit.querySelector('#str_purchase_location').innerText = 
+                "Location: " + coffeeCardObject["str_purchase_location"];
+            card_to_edit.querySelector('#str_brew_style').innerText = 
+                "Brew Method: " + coffeeCardObject["str_brew_style"];
+            card_to_edit.querySelector('#str_drink_type').innerText = 
+                "Serving Type: " + coffeeCardObject["str_drink_type"];
+            card_to_edit.querySelector('#int_dropdown_color').innerText = 
+                "Color Level: " + coffeeCardObject["int_dropdown_color"];
+            
         }
         
         //reset the coffee card's image to the default one, at index 0
+        //next time the user chooses to add a new card, the image will
+        //be the default one, which is the first one.
         reset_image_id();
         isEditing = false;
         closeForm();
