@@ -82,7 +82,6 @@ function saveCoffeeCardsToStorage(coffeeCards) {
 function handleEvents() {
 
     // Define variables to hold DOM elements
-    let gallery = document.getElementById("gallery");
     let helpButton = document.getElementById("help");
     let filterOption = document.getElementById("filter");
     let addButton = document.getElementById('add_card');
@@ -364,15 +363,52 @@ function handleEvents() {
      * We could rerender the page content by loading the new set of cards 
      * by calling showCards()
      */
-    deleteButton.addEventListener("click", (event) => {
-        // FIXME: how to get the delete button signal from that particular card
+    // FIXME: Solve null issue of empty slot, try edit add card function
+    document.addEventListener("trigger-delete", (event) => {
+        console.log("delete clicked by user");
+        if (event.composedPath) {
+            let gallery = document.getElementById("gallery");
+            let cardIndex = event.target.id;    // id of the card on which delete is triggered
+            console.log("the card to be deleted: " + cardIndex);    // DELETE: for test
+            let localCards = getCoffeeCardsFromStorage();   // Local JSON object of cards
+            // Get the card object
+            let cardObject = localCards[cardIndex];
 
-        let gallery = document.getElementById("gallery");
-        let cardIndex = event.target.id;
-        let cardObject = getCoffeeCardsFromStorage()[cardIndex];
-        gallery.removeChild(cardObject);
-        
+            // Remove the object from gallery
+            gallery.remove(cardObject);
 
+            // New JSON list after delete
+            let newLocalCards = [];
+
+            // Remove the cards to be deleted
+            if(localCards != []) {
+                for(let card of localCards) {
+                    if(card.current_card_id != cardIndex) {
+                        newLocalCards.push(card);
+                    }
+                }
+            }
+
+            // Reassign id of each coffee card after deletion
+            if(newLocalCards != []) {
+                for(let i = 0; i < newLocalCards.length; i++) {
+                    // if(newLocalCards[i] == null) {
+                    //     newLocalCards[i] = newLocalCards[i + 1];
+                    // }
+                    // console.log(card.current_card_id);
+                    let card = newLocalCards[i];
+                    card.current_card_id = i;
+                }
+            }
+
+
+            let coffeeCards = newLocalCards;
+            // localStorage.clear();
+            saveCoffeeCardsToStorage(coffeeCards);
+            
+
+            location.reload();
+        }
     })
 
 
