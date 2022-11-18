@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ruilin Hu and Yuang and William
  * @file - ShadowDOM for individual coffee card in its detail page
  * @version 0.0.1
@@ -6,7 +6,8 @@
  * @Edited Nov 9, 2022 by William
  */
 
-/* TODO:
+/*
+ * TODO:
  * coffee card should include date (Monday 12, 2022 for example)
  * a share button to post the card to social media (this will be implemented later)
  * Title of Drink
@@ -18,13 +19,14 @@
      constructor() {
          super();
          this.showInfo = true;
-         //Attach the shadow DOM to this Web Component
+         // Attach the shadow DOM to this Web Component
          const shadow = this.attachShadow({ mode: "open" });
-         //div element to hold elements
+         // Div element to hold elements
          const shadow_div = document.createElement("div");
-         //style element for the coffee cards
+         // Style element for the coffee cards
          const shadow_style = document.createElement("style");
-         //define the precise style for the card
+         // Define the precise style for the card
+
          shadow_style.textContent = `
   
             div {
@@ -40,6 +42,8 @@
                 border: none;
                 text-align: center;
             }
+
+
 
             /* adding grid structure to header */
             header {
@@ -85,25 +89,24 @@
                 font-family: "Zen Maru Gothic";
             }
 
-            #toggle_edit {
+            .toggle_edit {
                 background: brown;
                 color: #fff;
                 border: 0;
-                border-radius: 5px;
+                border-bottom-left-radius: 5px;
+                border-bottom-right-radius: 5px;
+
                 padding: 5px 20px;
             }
 
-            #toggle_edit:hover {
+            .toggle_edit:hover {
                 opacity: 0.8;
                 cursor: pointer;
                 transition: all 0.2s ease-in;
         }`;
 
-        //Append the <style> and <article> elements to the Shadow DOM
+        // Append the <style> and <article> elements to the Shadow DOM
         shadow.append(shadow_style, shadow_div);
-
-        //XXX: name might not be defined
-        //this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
      }
 
 
@@ -141,13 +144,14 @@
       */
      set data(data) {
        // If nothing was passed in, return
-       if (!data) return;
+       if (!data) { return; }
 
-       let shadow_div = this.shadowRoot.querySelector('div');
+       const shadow_div = this.shadowRoot.querySelector('div');
 
        shadow_div.innerHTML =
-       `<header>
-            <h3><slot name="date" />${data["str_drink_name"].toUpperCase()}</h3>
+       `
+       <header>
+            <h3><slot name="date" />${data["str_drink_name"]}</h3>
             <h4>${data["time_purchase_date"].toUpperCase()}</h4>
             <img id="share_button" alt = "share icon" src = "./assets/images/share-icon.png" ></img>
 
@@ -159,13 +163,46 @@
           <p><slot name="drink_type">Serving Type: ${data["str_drink_type"]}</p>
           <p><slot name="color">Color Level: ${data["int_dropdown_color"]}</p>
         </section>
-
-        <button id="toggle_edit">Edit</button>
+        <button class = "toggle_edit" >Edit</button>
+        <button class = "toggle_delete" >Delete</button>
         `;
+
+        // Custom event trigger that the DOM will catch whenever we click on "edit"
+        shadow_div.getElementsByTagName("button")[0].onclick = (event)=> {
+
+            // Don't dispatch the click event. Instead use a custom event
+            event.preventDefault();
+
+            this.dispatchEvent(new CustomEvent("trigger-edit", {
+                composed: true,
+                bubbles: true,
+                detail: "composed"
+            }))
+        }
      }
+
+     
+     /**
+      * Called when the getChildren is called on a coffee-card
+      *
+      * For Example:
+      * let coffeeCard = document.createElement('recipe-card'); // Calls constructor()
+      * coffeeCard.getChildren() =  [HTML collection] // Calls the function
+      *
+      */
+    get getChildren() {
+        let shadow_div = this.shadowRoot.querySelector('div');
+        return shadow_div.children;
+    }
+
+
+
  }
 
+ 
 
- //Define the Class as a customElement so we can create coffee-card elements
+
+
+ // Define the Class as a customElement so we can create coffee-card elements
  customElements.define('coffee-card', CoffeeCard);
 

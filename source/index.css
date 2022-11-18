@@ -35,7 +35,7 @@ main {
 
 /* Hidden popup form */
 #pop_up_box {
-    position: absolute;
+    position: fixed;
     opacity: 0;
     visibility: hidden;
     z-index: 1;
@@ -45,17 +45,17 @@ main {
     font-family: "Zen Maru Gothic", Helvetica, Arial; 
     height: auto;
     width: 50vw;
-    margin: auto;
-    align-self: center;
-    transform: translateY(30vh);
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
     
 
     /* Because we have so many components, it's best to make it a grid */
     display: grid;
 
     /* We have 11 rows and 6 columns in the grid */
-    grid-template-rows: repeat(11, 55px);
-    grid-template-columns: repeat(6, minmax(60px, 1fr));
+    grid-template-rows: repeat(11, 40px);
+    grid-template-columns: repeat(6, minmax(10px, 1fr));
 
     /* Space between each form child */
     gap: 10px;
@@ -184,14 +184,17 @@ input[type="text"] {
 }
 
 #switch_photo_container {
-    background-color: #ffff;
     grid-row-start: 4;
     grid-column-start: 5;
     grid-row-end: 5;
     grid-column-end: 7;
     border-radius: 10px;
+    
 }
-
+#img_drink_image {
+    margin: auto;
+    transform: scale(0.9);
+}
 /* reference: https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp */
 /* implemented left and right arrows to change inage */
 #switch_photo_left_arrow,
@@ -209,6 +212,11 @@ input[type="text"] {
   grid-column-start: 5;
   grid-row-end: 5;
   grid-column-end: 7;
+}
+
+#switch_photo_left_arrow:hover, 
+#switch_photo_right_arrow:hover {
+    opacity: 0.5;
 }
 /* out left and right arrows on two sides*/
 #switch_photo_left_arrow {
