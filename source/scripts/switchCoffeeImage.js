@@ -23,26 +23,46 @@ const COFFEE_PICTURE_EXTENSION = ".png";
  * This function will adjust the coffee image on the card based on the 
  * user's control.
  * @param int_change - the change in the index of the coffee picture to display.
+ * @return void
  */ 
 function next_image(int_change) {
    show_coffee_image(coffee_picture_index += int_change);
    console.log('imaged changed to: ' + COFFEE_PICTURE_PATH + 
         coffee_picture_index + COFFEE_PICTURE_EXTENSION);
 }
+
+/**
+ * This function will return the current coffee_picture_index.
+ * @return coffee_picture_index, the current index of the coffee picture
+ */ 
+function get_image_id() { 
+    return coffee_picture_index;
+}
+
+/**
+ * This function will return the current coffee_picture_index.
+ * @return void
+ */ 
+ function reset_image_id() {
+    coffee_picture_index = 0;
+}
+
  
 /**
  * This function will set specific coffee image directly.
  * @param int_change - the index of the coffee picture to display on the current card.
+ * @return void
  */ 
 function set_image(int_change) {
    show_coffee_image(coffee_picture_index = int_change);
 }
- 
+
 /**
  * This function will find the coffee image's element on the html and change
  * its src to the corresponding coffee's image.
  * @param int_change - the index of the coffee picture to display on 
  * the current card.
+ * @return void
  */ 
 function show_coffee_image(int_change) {
     if (int_change >= TOTAL_COFFEE_PICTURE_CNT) {

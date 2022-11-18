@@ -6,10 +6,8 @@
 window.addEventListener('DOMContentLoaded', init);
 
 
-// When window loads,
-function init(){
-
-    // TODO: Implement these two functions. Several people can work on this
+// when window loads,
+function init() {
 
     const array = getCoffeeCardsFromStorage();
 
@@ -25,8 +23,8 @@ function init(){
  * is returned.
  * @returns {Array<Object>} An array of coffee cards found in localStorage
  */
-function getCoffeeCardsFromStorage(){
-    if (localStorage.getItem("coffeeCards") != null) {
+function getCoffeeCardsFromStorage() {
+    if (localStorage.getItem("coffeeCards")) {
         return JSON.parse(localStorage.getItem("coffeeCards"));
     } else {
         return [];
@@ -41,55 +39,99 @@ function getCoffeeCardsFromStorage(){
  * @param {Array<Object>} coffeeCards An array of recipes
  */
 function addCoffeeCardsToDocument(coffeeCards) {
-  /*
-   * A10. TODO - Get a reference to the <main> element
-   * A11. TODO - Loop through each of the recipes in the passed in array,
-   *            create a <recipe-card> element for each one, and populate
-   *            each <recipe-card> with that recipe data using element.data = ...
-   *            Append each element to <main>
-   */
-  const gallery = document.getElementById("gallery");
-  for (let i = 0; i < coffeeCards.length; i++){
-    const coffeeCard = gallery.appendChild(document.createElement("coffee-card"));
-    coffeeCard.data = coffeeCards[i];
-  }
+
+    if (!coffeeCards) {
+        return;
+    }
+
+    const gallery = document.getElementById("gallery");
+
+    // Clear the gallery and add new list to gallery
+    document.querySelectorAll('coffee-card').forEach(card => {
+        console.log("removing card")
+        card.remove();
+    })
+
+    // the card is a a coffeeCard object and index is the position of that card in the array
+    coffeeCards.forEach((card, index) => {
+        const coffeeCard = gallery.appendChild(document.createElement("coffee-card"));
+        coffeeCard.data = card;
+
+        // set the id of the card and edit button 
+        coffeeCard.id = index;
+        coffeeCard.getChildren[2].id = index;
+    })
 
 }
 
-/**
+/** 
  * Takes in an array of recipes, converts it to a string, and then
  * saves that string to 'recipes' in localStorage
  * @param {Array<Object>} coffeeCards An array of recipes
  */
 function saveCoffeeCardsToStorage(coffeeCards) {
-  /*
-   * EXPLORE - START (All explore numbers start with B)
-   * B1. TODO - Complete the functionality as described in this function
-   *            header. It is possible in only a single line, but should
-   *            be no more than a few lines.
-   */
-  localStorage.setItem("coffeeCards", JSON.stringify(coffeeCards));
+
+    localStorage.setItem("coffeeCards", JSON.stringify(coffeeCards));
 }
 
 
-/*
- * Note: Perhaps to avoid having to refresh the page to reload content
- * we could also call showCards() everytime we add or delete a card
- */
-function handleEvents(){
+
+function handleEvents() {
 
     // Define variables to hold DOM elements
-    const gallery = document.getElementById("gallery");
-    const helpButton = document.getElementById("help");
-    const filterOption = document.getElementById("filter");
-    const addButton = document.getElementById('add_card');
-    const form = document.getElementById('pop_up_box');
-    const cancelButton = document.getElementById('cancel');
-    const flavorSliders = document.getElementsByClassName('flavor_range');
+    let gallery = document.getElementById("gallery");
+    let helpButton = document.getElementById("help");
+    let filterOption = document.getElementById("filter");
+    let addButton = document.getElementById('add_card');
+    let form = document.getElementById('pop_up_box');
+    let cancelButton = document.getElementById('cancel');
+    let flavorSliders = document.getElementsByClassName('flavor_range');
+    let isEditing = false;
+    let current_edit_id = 0;
+    let current_card_id = 0;
+
+    
+    function openForm() {
+        form.style.opacity = 1;
+        form.style.visibility = "visible";
+    }
+
+    function closeForm() {
+        form.style.opacity = 0;
+        form.style.visibility = "hidden";
+        //reset the form's html contents when done.
+
+        document.getElementById("str_drink_name").value = "";
+        document.getElementById("int_drink_price").value = "";
+        document.getElementById("time_purchase_date").value = "";
+        document.getElementById("str_purchase_location").value = "";
+        //populate the slider's display value
+        document.getElementById("acidity_val").innerText = "0";
+        document.getElementById("sweetness_val").innerText = "0";
+        document.getElementById("bitterness_val").innerText = "0";
+        document.getElementById("saltiness_val").innerText = "0";
+        //change slider value
+        document.getElementById("int_slide_acidity").value = 0;
+        document.getElementById("int_slide_sweetness").value = 0;
+        document.getElementById("int_slide_bitterness").value = 0;
+        document.getElementById("int_slide_saltiness").value = 0;
+        //populate the dropdowns
+        document.getElementById("str_drink_type").value = "Casual";
+        document.getElementById("str_brew_style").value = "Drip";
+        document.getElementById("int_dropdown_color").value = "Light";
+        document.getElementById("str_notes").value = "";
+
+        //set the coffee card's image using the function in switchCoffeeImages.js
+        set_image(0);
+        document.getElementById("bool_check_chocolate").checked = false;
+        document.getElementById("bool_check_caramel").checked = false;
+        document.getElementById("bool_check_nutty").checked = false;
+        document.getElementById("bool_check_fruity").checked = false;
+    }
 
 
     // Add event listeners to each flavor range slider
-    for (let i=0; i<flavorSliders.length; i++) {
+    for (let i = 0; i < flavorSliders.length; i++) {
 
         const slider = flavorSliders[i];
 
@@ -99,7 +141,7 @@ function handleEvents(){
             const output = slider.nextElementSibling;
 
             // Display value
-            output.innerHTML= slider.value;
+            output.innerHTML = slider.value;
         });
     }
 
@@ -123,32 +165,91 @@ function handleEvents(){
         // Make popupBox visible. Just change the opacity
         form.style.opacity = "1";
         form.style.visibility = "visible";
+        isEditing = false;
     })
 
 
 
-    // Saving a card and adding to the gallery
-    form.addEventListener("submit", (event)=> {
-        event.preventDefault();
-        const data = new FormData(form);
-        console.log(data);
+    // Event delegation to handle editing cards dynamically 
+    document.addEventListener('trigger-edit', function (event) {
 
-        /*
-         * Create card object and load [key: value] pairs of the
-         * form and any other input into object
-         */
+        if (event.composedPath) {
+
+            isEditing = true;
+
+            // The edit button stores the corresponding coffee card id/posiiton in array
+            let position = event.target.id;
+            console.log("editing card at index: " + position);
+
+            // get the corresponding card from the coffee cards array
+            let coffeeCardObject = getCoffeeCardsFromStorage()[position];
+            console.log(coffeeCardObject);
+
+            // The following code works just fine to populate an input field
+            document.getElementById("str_drink_name").value = coffeeCardObject["str_drink_name"];
+            document.getElementById("int_drink_price").value = coffeeCardObject["int_drink_price"];
+            document.getElementById("time_purchase_date").value = coffeeCardObject["time_purchase_date"];
+            document.getElementById("str_purchase_location").value = coffeeCardObject["str_purchase_location"];
+            //populate the slider's display value
+            document.getElementById("acidity_val").innerText = coffeeCardObject["int_slide_acidity"];
+            document.getElementById("sweetness_val").innerText = coffeeCardObject["int_slide_sweetness"];
+            document.getElementById("bitterness_val").innerText = coffeeCardObject["int_slide_bitterness"];
+            document.getElementById("saltiness_val").innerText = coffeeCardObject["int_slide_saltiness"];
+            //change slider value
+            document.getElementById("int_slide_acidity").value = coffeeCardObject["int_slide_acidity"];
+            document.getElementById("int_slide_sweetness").value = coffeeCardObject["int_slide_sweetness"];
+            document.getElementById("int_slide_bitterness").value = coffeeCardObject["int_slide_bitterness"];
+            document.getElementById("int_slide_saltiness").value = coffeeCardObject["int_slide_saltiness"];
+            //populate the dropdowns
+            document.getElementById("str_drink_type").value = coffeeCardObject["str_drink_type"];
+            document.getElementById("str_brew_style").value = coffeeCardObject["str_brew_style"];
+            document.getElementById("int_dropdown_color").value = coffeeCardObject["int_dropdown_color"];
+            document.getElementById("str_notes").value = coffeeCardObject["str_notes"];
+
+            //set the coffee card's image using the function in switchCoffeeImages.js
+            set_image(coffeeCardObject["img_drink_image"]);
+            //check chocolate box if the card's bool_check_chocolate key has value 1
+            if(coffeeCardObject["bool_check_chocolate"] == 1) {
+                document.getElementById("bool_check_chocolate").checked = true;
+            }
+            //check chocolate box if the card's bool_check_caramel key has value 1
+            if(coffeeCardObject["bool_check_caramel"] == 1) {
+                document.getElementById("bool_check_caramel").checked = true;
+            }
+            //check chocolate box if the card's bool_check_nutty key has value 1
+            if(coffeeCardObject["bool_check_nutty"] == 1) {
+                document.getElementById("bool_check_nutty").checked = true;
+            }
+            //check chocolate box if the card's bool_check_fruity key has value 1
+            if(coffeeCardObject["bool_check_fruity"] == 1) {
+                document.getElementById("bool_check_fruity").checked = true;
+            }
+            
+            // Keep track of which card we are editing
+            current_edit_id = position;
+            openForm();
+        }
+    })
+
+
+
+    // Saving a new card to gallery or saving edit changes to an existing card
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        let card;
+        let data = new FormData(form);
+        let coffeeCards = getCoffeeCardsFromStorage();
+        
 
         const coffeeCardObject = {
             // Visible variables
+            "current_card_id": current_card_id,
             "str_drink_name": data.get('str_drink_name'),
             "int_drink_price": data.get('int_drink_price'),
             "time_purchase_date": data.get('time_purchase_date'),
             "str_purchase_location": data.get('str_purchase_location'),
-            "img_drink_image": data.get('img_drink_image'),
-            "bool_check_chocolate": data.get('bool_check_chocolate'),
-            "bool_check_caramel": data.get('bool_check_caramel'),
-            "bool_check_nutty": data.get('bool_check_nutty'),
-            "bool_check_fruity": data.get('bool_check_fruity'),
+            "img_drink_image": get_image_id(),
             "int_slide_acidity": data.get('int_slide_acidity'),
             "int_slide_sweetness": data.get('int_slide_sweetness'),
             "int_slide_bitterness": data.get('int_slide_bitterness'),
@@ -157,76 +258,103 @@ function handleEvents(){
             "str_brew_style": data.get('str_brew_style'),
             "int_dropdown_color": data.get('int_dropdown_color'),
             "str_notes": data.get('str_notes'),
+        }
+
+        // This is to make checkbox values consistent across browsers
+        document.querySelectorAll("input[type = checkbox]").forEach(box => {
+            coffeeCardObject[box.id] = 1
+
+            if (box.checked == true) {
+                coffeeCardObject[box.id] = "1";
+
+            }
+            else {
+                coffeeCardObject[box.id] = "0";
+
+            }
+        })
+
+
+        // If we are adding a card, make a new <coffee-card> element and add to gallery
+        if (!isEditing) {
+
+            //use current_card_id to identify each card
+            if (localStorage.getItem('current_card_id') != null) {
+                current_card_id = 1 + Number(localStorage.getItem('current_card_id'));
+            }
+            localStorage.setItem('current_card_id', current_card_id);
+            //add current_card_id to the information to store in local storage
+            coffeeCardObject['current_card_id'] = current_card_id;
+
+            console.log(data);
+
+            /* create card object and load [key: value] pairs of the 
+            * form and any other input into object
+            */
+            console.log(coffeeCardObject);
+            let d = new Date();
+            coffeeCardObject["time_creation_time"] = d.toLocaleTimeString();
+
+            // Store the form data inside the coffee card 
+            card = document.createElement("coffee-card");
+            card.data = coffeeCardObject;
+
+            // assign the card an index for position in gallery and coffeeCards array
+            coffeeCards[current_card_id] = coffeeCardObject;
+            // save to storage and update the page
+            saveCoffeeCardsToStorage(coffeeCards);
+            addCoffeeCardsToDocument(coffeeCards);
 
         }
 
-        console.log(coffeeCardObject);
-        /*
-         * TODO how to implement bool of check chocolate? and other bool values
-         * TODO how to implement str_creator
+        /* Otherwise we can assume the user is trying to edit the card
+         * so we just save the changes without changing size of the array
          */
 
-        const d = new Date();
-        coffeeCardObject["time_creation_time"] = d.toLocaleTimeString();
+        else if (isEditing) {
+            // update the card in the array
+            console.log(coffeeCardObject);
+            coffeeCards[current_edit_id] = coffeeCardObject;
+            console.log("form is editing card at index: " + current_edit_id);
+            // save to storage and update the page
+            saveCoffeeCardsToStorage(coffeeCards);
+            let all_coffee_cards = document.querySelectorAll('coffee-card');
+            let card_to_edit = all_coffee_cards[current_edit_id].shadowRoot;
+            //populate card thumbnail
+            card_to_edit.querySelector('#str_drink_name').innerText = 
+                coffeeCardObject["str_drink_name"];
+            card_to_edit.querySelector('#time_purchase_date').innerText = 
+                coffeeCardObject["time_purchase_date"].toUpperCase();
+            card_to_edit.querySelector('#str_purchase_location').innerText = 
+                "Location: " + coffeeCardObject["str_purchase_location"];
+            card_to_edit.querySelector('#str_brew_style').innerText = 
+                "Brew Method: " + coffeeCardObject["str_brew_style"];
+            card_to_edit.querySelector('#str_drink_type').innerText = 
+                "Serving Type: " + coffeeCardObject["str_drink_type"];
+            card_to_edit.querySelector('#int_dropdown_color').innerText = 
+                "Color Level: " + coffeeCardObject["int_dropdown_color"];
+            
+        }
+        
+        //reset the coffee card's image to the default one, at index 0
+        //next time the user chooses to add a new card, the image will
+        //be the default one, which is the first one.
+        reset_image_id();
+        isEditing = false;
+        closeForm();
 
-        // Set modified time to false to denote that this card has not been modified before
-        coffeeCardObject["time_modified_time"] = false;
-
-
-        /*
-         *  Insert card into the gallery at the front or back of the list
-         *  NOTE: The grid's rows have to be dynamically growing so this might take some
-         *        working around with javascript and css
-         * FIX: need to create a new coffee card thumbnail object
-         */
-        const coffeeCard = document.createElement("coffee-card");
-        // Load the object into a new <coffeeCard> element
-        coffeeCard.data = coffeeCardObject;
-
-        const gallery = document.getElementById("gallery");
-        gallery.appendChild(coffeeCard);
-
-
-
-        /*
-         * Get array of cards from localStorage and save this new Card (same position in array)
-         * and then save the array as a string in storage
-         */
-        const coffeeCards = getCoffeeCardsFromStorage();
-        coffeeCards.push(coffeeCardObject);
-        saveCoffeeCardsToStorage(coffeeCards);
-
-        // Hide the form
-        form.style.opacity = 0;
     })
 
 
     // Clears fields of popUpBox element using "reset" attribute in index.html
     cancelButton.addEventListener("click", () => {
-        form.style.opacity = "0";
-        form.style.visibility = "hidden";
+        closeForm();
     })
 
 
-
-    /*
-     * TODO: When user clicks on a coffee card in the gallery, the popUpBox
-     * should appear so the user can edit the information.
-     * Eventually, when we create a custom <coffeeCard> element
-     * we can add an event listener to all the <coffeeCard>
-     * Basic Idea: When we create a new card, we will assign it
-     * a numerical ID corresponding to its index in the array of cards
-     * So when we click on a card, we can identify it based on its id
-     * We will have to think about this implementation in the next few days
-     *
-     * /
-     *
-     *
-     *
-     *
-     * TODO: When user clicks a card's delete button, it should remove
-     * the card from the gallery and delete it from localStorage.
-     * We could rerender the page content by loading the new set of cards
+    /* TODO: When user clicks a card's delete button, it should remove
+     * the card from the gallery and delete it from localStorage. 
+     * We could rerender the page content by loading the new set of cards 
      * by calling showCards()
      */
 

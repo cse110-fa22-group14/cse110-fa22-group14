@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ruilin Hu and Yuang and William
  * @file - ShadowDOM for individual coffee card in its detail page
  * @version 0.0.1
@@ -26,6 +26,7 @@
          // Style element for the coffee cards
          const shadow_style = document.createElement("style");
          // Define the precise style for the card
+
          shadow_style.textContent = `
   
             div {
@@ -41,6 +42,8 @@
                 border: none;
                 text-align: center;
             }
+
+
 
             /* adding grid structure to header */
             header {
@@ -86,15 +89,17 @@
                 font-family: "Zen Maru Gothic";
             }
 
-            #toggle_edit {
+            .toggle_edit {
                 background: brown;
                 color: #fff;
                 border: 0;
-                border-radius: 5px;
+                border-bottom-left-radius: 5px;
+                border-bottom-right-radius: 5px;
+
                 padding: 5px 20px;
             }
 
-            #toggle_edit:hover {
+            .toggle_edit:hover {
                 opacity: 0.8;
                 cursor: pointer;
                 transition: all 0.2s ease-in;
@@ -102,11 +107,6 @@
 
         // Append the <style> and <article> elements to the Shadow DOM
         shadow.append(shadow_style, shadow_div);
-
-        /*
-         * XXX: name might not be defined
-         * this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
-         */
      }
 
 
@@ -121,6 +121,7 @@
       * @param {Object} data - The data to pass into the <recipe-card>, must be of the
       *                        following format:
       *                        {
+      *                            "current_card_id": "int",
       *                            "str_drink_name":"string",
       *                            "int_drink_price":"int",
       *                            "time_purchase_date":"date",
@@ -148,25 +149,60 @@
 
        const shadow_div = this.shadowRoot.querySelector('div');
 
+       //add a hidden element to the card's HTML
        shadow_div.innerHTML =
-       `<header>
-            <h3><slot name="date" />${data["str_drink_name"].toUpperCase()}</h3>
-            <h4>${data["time_purchase_date"].toUpperCase()}</h4>
-            <img id="share_button" alt = "share icon" src = "./assets/images/share-icon.png" ></img>
+       `
+       <header>
+            <h3 id = "str_drink_name"><slot name="date" />${data["str_drink_name"]}</h3>
+            <h4 id = "time_purchase_date">${data["time_purchase_date"].toUpperCase()}</h4>
+            <img id = "share_button" alt = "share icon" src = "./assets/images/share-icon.png" ></img>
 
        </header>
 
         <section class="info">
-          <p><slot name="location" />Location: ${data["str_purchase_location"]}</p>
-          <p><slot name="brew_style" />Brew Method: ${data["str_brew_style"]}</p>
-          <p><slot name="drink_type">Serving Type: ${data["str_drink_type"]}</p>
-          <p><slot name="color">Color Level: ${data["int_dropdown_color"]}</p>
+          <p id = "str_purchase_location"><slot name="location" />Location: ${data["str_purchase_location"]}</p>
+          <p id = "str_brew_style"><slot name="brew_style" />Brew Method: ${data["str_brew_style"]}</p>
+          <p id = "str_drink_type"><slot name="drink_type">Serving Type: ${data["str_drink_type"]}</p>
+          <p id = "int_dropdown_color"><slot name="color">Color Level: ${data["int_dropdown_color"]}</p>
+          <p id="current_card_id" value="${data["current_card_id"]}" hidden></p>
         </section>
-
-        <button id="toggle_edit">Edit</button>
+        <button class = "toggle_edit" >Edit</button>
         `;
+
+        // Custom event trigger that the DOM will catch whenever we click on "edit"
+        shadow_div.getElementsByTagName("button")[0].onclick = (event)=> {
+
+            // Don't dispatch the click event. Instead use a custom event
+            event.preventDefault();
+
+            this.dispatchEvent(new CustomEvent("trigger-edit", {
+                composed: true,
+                bubbles: true,
+                detail: "composed"
+            }))
+        }
      }
+
+     
+     /**
+      * Called when the getChildren is called on a coffee-card
+      *
+      * For Example:
+      * let coffeeCard = document.createElement('recipe-card'); // Calls constructor()
+      * coffeeCard.getChildren() =  [HTML collection] // Calls the function
+      *
+      */
+    get getChildren() {
+        let shadow_div = this.shadowRoot.querySelector('div');
+        return shadow_div.children;
+    }
+
+
+
  }
+
+ 
+
 
 
  // Define the Class as a customElement so we can create coffee-card elements

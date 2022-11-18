@@ -4,21 +4,22 @@
   <meta charset="UTF-8" />
   <title>Coffee Notes CRUD App</title>
 
-  <!-- Coffe Card Custom Element -->
-  <script src="scripts/coffeeCard.js" type="module"></script>
 
   <!-- Main Stylesheets & Scripts -->
   <link rel="stylesheet" href="index.css" />
-  <script src="scripts/index.js" type="module">
-  </script>
-
-  <!-- Coffe Image Switch Script -->
-  <script src="scripts/switchCoffeeImage.js" type="module"></script>
   
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap');
   </style>
+
+  <!-- Coffee Image Switch Script -->
+  <script src="scripts/switchCoffeeImage.js" type="text/javascript"></script>
+  <!--the 'type' is changed to 'text/javascript' to access functions across files-->
+
+  <!-- Coffe Card Custom Element -->
+  <script src="scripts/coffeeCard.js" type="text/javascript"></script>
+
 </head>
 
 <body>
@@ -40,10 +41,11 @@
         <button id = "save" type = "submit">SAVE</button>
         <button id = "cancel" type = "reset">CANCEL</button>
         
-        <input type = "text" id="str_drink_name" placeholder="name of drink" name = "str_drink_name" required>drink</input>
-        <input type = "text"id="int_drink_price" placeholder = "price" name = "int_drink_price" required></input>
-        <input type = "text"id="time_purchase_date" placeholder = "date purchased" name = "time_purchase_date" required></input>
-        <input type = "text" id="str_purchase_location" placeholder = "location" name = "str_purchase_location" required></input>
+        <input type = "text" id="str_drink_name" placeholder="name of drink" name = "str_drink_name" required/>
+        <input type = "text"id="int_drink_price" placeholder = "price" name = "int_drink_price" required/>
+        <input type = "text"id="time_purchase_date" placeholder = "date purchased" name = "time_purchase_date" required/>
+        <input type = "text" id="str_purchase_location" placeholder = "location" name = "str_purchase_location" required/>
+        
         <img id = "img_drink_image" src = "./assets/images/coffee-picture0.png" alt = "photo of drink" name = "img_drink_image">
         <!--Load default image, which is coffee-picture0-->
 
@@ -56,19 +58,19 @@
         <div id = "flavor_container">
 
             <fieldset id = "optional_wrapper">
-                <label for ="chocolatey">Chocolatey
-                    <input type="checkbox" id = "chocolatey" name = "bool_check_chocolate"></input>
+                <label for ="bool_check_chocolate">Chocolatey
+                    <input type="checkbox" id = "bool_check_chocolate" name = "bool_check_chocolate"></input>
                 </label>
                
-                <label for="caramel">Caramel
+                <label for="bool_check_caramel">Caramel
                     <input type="checkbox" id = "bool_check_caramel" name = "bool_check_caramel"></input>
                 </label>
                 
-                <label for="nutty">Nutty
-                    <input type="checkbox" id = "bool_check_nutty" name = "bool_check_nutty"></input>
+                <label for="bool_check_nutty">Nutty
+                    <input type="checkbox" id = "bool_check_nutty" name = "bool_check_nutty" ></input>
                 </label>
-                <label for="nutty">Fruity
-                    <input type="checkbox" id = "bool_check_fruity" name = "bool_check_fruity"></input>
+                <label for="bool_check_fruity">Fruity
+                    <input type="checkbox" id = "bool_check_fruity" name = "bool_check_fruity" ></input>
                 </label>
             </fieldset>
 
@@ -80,8 +82,8 @@
                     <input type="range" min="0" max="5" value="0" step="1" class="flavor_range" id="int_slide_acidity"  name = "int_slide_acidity"></input>
                     <span id="acidity_val">0</span> 
                 </label>
-                <label for="int_slide_saltiness">Sweetness:
-                    <input type="range" min="0" max="5" value="0" step="1" class="flavor_range" id="int_slide_saltiness" name = "int_slide_sweetness"></input>
+                <label for="int_slide_sweetness">Sweetness:
+                    <input type="range" min="0" max="5" value="0" step="1" class="flavor_range" id="int_slide_sweetness" name = "int_slide_sweetness"></input>
                     <span id="sweetness_val">0</span>
                 </label>
 
@@ -129,21 +131,20 @@
             </label>
         </div>
 
-        <textarea id = "str_notes" placeholder = "additional comments" name = "str_notes"></textarea>
+        <textarea id = "str_notes" placeholder = "additional comments" name = "str_notes" value = ""></textarea>
 
     </form>
 
 
 
-    <section id = "gallery">
-        <button id = "add_card">
-            <img id = "addIcon" src = "assets/images/add-icon.png" alt = "add icon">
-        </button>
-
-        <!--Later we will add custom <coffeeCard> elements to the gallery.-->
-        
-    </section>
+    <section id = "gallery"><button id = "add_card"><img id = "addIcon" src = "assets/images/add-icon.png" alt = "add icon"></button></section>
   </main>
   
+
+
+  <script src="scripts/index.js" type="module"></script>
+
 </body>
+
+
 </html>
