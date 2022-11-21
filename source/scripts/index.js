@@ -35,7 +35,9 @@ function getCoffeeCardsFromStorage() {
 /**
  * Takes in an array of cofee card notes and for each one
  * it copies its data into a new <coffee-card> component
- * which is then appended to the gallery
+ * which is then appended to the gallery in a for loop. 
+ * The loop is designed to automatically assign <coffee-card> a new id
+ * based on their positions in the array. 
  * @param {Array<Object>} coffeeCards An array of recipes
  */
 function addCoffeeCardsToDocument(coffeeCards) {
@@ -60,9 +62,6 @@ function addCoffeeCardsToDocument(coffeeCards) {
         // set the id of the card and edit button 
         coffeeCard.id = index;
         coffeeCard.getChildren[2].id = index;
-
-        // set id of delete button
-        coffeeCard.getChildren[3].id = index;
     })
 
 }
@@ -82,16 +81,16 @@ function saveCoffeeCardsToStorage(coffeeCards) {
 function handleEvents() {
 
     // Define variables to hold DOM elements
+    let gallery = document.getElementById("gallery");
     let helpButton = document.getElementById("help");
     let filterOption = document.getElementById("filter");
     let addButton = document.getElementById('add_card');
     let form = document.getElementById('pop_up_box');
     let cancelButton = document.getElementById('cancel');
     let flavorSliders = document.getElementsByClassName('flavor_range');
-
     let isEditing = false;
     let current_edit_id = 0;
-    let current_card_id = 0;
+    //let current_card_id = 0;
 
     
     function openForm() {
@@ -149,10 +148,13 @@ function handleEvents() {
     }
 
 
+
+
     // TODO: Triggers another popup box providing details on how to use the app
     helpButton.addEventListener("click", () => {
 
     })
+
 
 
     /*
@@ -162,6 +164,8 @@ function handleEvents() {
     filterOption.addEventListener("change", (event) => {
 
     })
+
+
 
     // Listener when user wants to add a new card
     addButton.addEventListener("click", () => {
@@ -175,8 +179,6 @@ function handleEvents() {
 
     // Event delegation to handle editing cards dynamically 
     document.addEventListener('trigger-edit', function (event) {
-
-        if (event.composedPath) {
 
             isEditing = true;
 
@@ -231,7 +233,6 @@ function handleEvents() {
             // Keep track of which card we are editing
             current_edit_id = position;
             openForm();
-        }
     })
 
 
@@ -247,7 +248,7 @@ function handleEvents() {
 
         const coffeeCardObject = {
             // Visible variables
-            "current_card_id": current_card_id,
+            //"current_card_id": current_card_id,
             "str_drink_name": data.get('str_drink_name'),
             "int_drink_price": data.get('int_drink_price'),
             "time_purchase_date": data.get('time_purchase_date'),
@@ -269,11 +270,9 @@ function handleEvents() {
 
             if (box.checked == true) {
                 coffeeCardObject[box.id] = "1";
-
             }
             else {
                 coffeeCardObject[box.id] = "0";
-
             }
         })
 
@@ -281,14 +280,17 @@ function handleEvents() {
         // If we are adding a card, make a new <coffee-card> element and add to gallery
         if (!isEditing) {
 
+            /*NOTE: This is not actually necessary 
             //use current_card_id to identify each card
             if (localStorage.getItem('current_card_id') != null) {
                 current_card_id = 1 + Number(localStorage.getItem('current_card_id'));
             }
             localStorage.setItem('current_card_id', current_card_id);
             //add current_card_id to the information to store in local storage
-            coffeeCardObject['current_card_id'] = current_card_id;
 
+          
+            //coffeeCardObject['current_card_id'] = current_card_id;
+            */
             console.log(data);
 
             /* create card object and load [key: value] pairs of the 
@@ -302,8 +304,9 @@ function handleEvents() {
             card = document.createElement("coffee-card");
             card.data = coffeeCardObject;
 
-            // assign the card an index for position in gallery and coffeeCards array
-            coffeeCards[current_card_id] = coffeeCardObject;
+            // Update the card in the coffee cards array
+            coffeeCards[current_edit_id] = coffeeCardObject;
+
             // save to storage and update the page
             saveCoffeeCardsToStorage(coffeeCards);
             addCoffeeCardsToDocument(coffeeCards);
@@ -313,7 +316,6 @@ function handleEvents() {
         /* Otherwise we can assume the user is trying to edit the card
          * so we just save the changes without changing size of the array
          */
-
         else if (isEditing) {
             // update the card in the array
             console.log(coffeeCardObject);
@@ -321,7 +323,9 @@ function handleEvents() {
             console.log("form is editing card at index: " + current_edit_id);
             // save to storage and update the page
             saveCoffeeCardsToStorage(coffeeCards);
+            
             let all_coffee_cards = document.querySelectorAll('coffee-card');
+
             let card_to_edit = all_coffee_cards[current_edit_id].shadowRoot;
             //populate card thumbnail
             card_to_edit.querySelector('#str_drink_name').innerText = 
@@ -339,12 +343,14 @@ function handleEvents() {
             
         }
         
-        //reset the coffee card's image to the default one, at index 0
-        //next time the user chooses to add a new card, the image will
-        //be the default one, which is the first one.
+        /* Reset the coffee card's image to the default one, at index 0
+         * next time the user chooses to add a new card, the image will
+         * be the default one, which is the first one.
+         */
         reset_image_id();
         isEditing = false;
         closeForm();
+        addCoffeeCardsToDocument(coffeeCards);
 
     })
 
@@ -355,10 +361,10 @@ function handleEvents() {
     })
 
 
-    /* TODO: When user clicks a card's delete button, it should remove
-     * the card from the gallery and delete it from localStorage. 
-     * We could rerender the page content by loading the new set of cards 
-     * by calling showCards()
+
+    /** 
+     * Handles the event to delete a card from the gallery and
+     * local Storage. 
      */
     document.addEventListener("trigger-delete", (event) => {
         console.log("delete clicked by user");
