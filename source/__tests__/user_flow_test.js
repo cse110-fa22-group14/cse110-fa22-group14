@@ -41,7 +41,7 @@ describe("Basic user flow for Website", () => {
 
 
      // Edit the cards so we update the four fields by appending "-edited"
-     it("Adding 10 cards should populate the gallery with 10 cards ", async () => {
+     it("Editing Cards should update their fields", async () => {
   
       let cards = await page.$$("coffee-card");
 
