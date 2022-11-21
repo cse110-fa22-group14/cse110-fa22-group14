@@ -181,6 +181,18 @@
                 detail: "composed"
             }))
         }
+
+        // Custom event trigger that the DOM will catch whenever we click on the export icon
+        shadow_div.getElementsByID("share_button").onclick = (event) =>{
+            // Don't dispatch the click event. Instead use a custom event
+            event.preventDefault();
+            this.dispatchEvent(new CustomEvent("trigger-export", {
+                composed: true,
+                bubbles: true,
+                detail: "composed"
+            }))
+
+        }
      }
 
      
