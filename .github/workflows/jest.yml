@@ -4,9 +4,6 @@ name: Lint Tests
 
 # Controls when the workflow will run
 on:
-  push:
-    branches: [features/**]
-  # Triggers the workflow on push events to "feature" and 
   pull_request:
     branches: [ "main" ]
 
@@ -25,32 +22,13 @@ on:
       steps:
         # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
         - uses: actions/checkout@v3
-  
 
-    styleLint:
+        
+      Jest:
       runs-on: ubuntu-latest
-
       steps:
         - uses: actions/checkout@v1
-        - uses: actions-hub/stylelint@master
-          env:
-            PATTERN: "**/*.css"
-
-    ESLint:
-        runs-on: ubuntu-latest
-
-        steps:
-          # Check out the repository
-          - uses: actions/checkout@v1
-
-          # Install Node.js
-          - uses: actions/setup-node@v1
-            with:
-              node-version: 12
-
-          # Install your dependencies
-          - run: npm ci
-
-          # Run ESLint
-          - uses: eslint/github-action@v0
-
+        - name: Run Tests
+          run: |
+            npm install 
+            npm test
