@@ -298,7 +298,6 @@ function handleEvents() {
             // Store the form data inside the coffee card 
             card = document.createElement("coffee-card");
             card.data = coffeeCardObject;
-
             // assign the card an index for position in gallery and coffeeCards array
             coffeeCards[current_card_id] = coffeeCardObject;
             // save to storage and update the page
