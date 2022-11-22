@@ -86,8 +86,6 @@ describe("Basic user flow for Website", () => {
          const saveButton = await page.$("#save");
          await saveButton.click();
         }
-      
-
      }, 20000);
 
      // Check to make sure that all TOTAL_CARDS <coffee-card> elements have 
@@ -97,23 +95,24 @@ describe("Basic user flow for Website", () => {
       // Query select all of the <coffee-card> elements
       const allCoffeeCards = await page.$$('coffee-card');
       //iterate through all coffee cards
-      for (i = 1; i < allCoffeeCards.length; i++) {
-        console.log(`Checking coffee card ${i}/${allCoffeeCards.length}`);
+      for (i = 0; i < allCoffeeCards.length; i++) {
+        console.log(`Checking coffee card ${i + 1}/${allCoffeeCards.length}`);
+        const shadowRoot = await allCoffeeCards[i].getProperty('shadowRoot');
         //check the name of the drink on the thumbnail
-        let value = await page.$eval("#str_drink_name", (el) => {
+        let value = await shadowRoot.$eval("#str_drink_name", (el) => {
           return el.innerText;
         });
         expect(value).toBe("Drink"+i+"-edited");
         //check the date purchased of the drink on the thumbnail
-        value = await page.$eval("#time_purchase_date", (el) => {
+        value = await shadowRoot.$eval("#time_purchase_date", (el) => {
           return el.innerText;
         });
-        expect(value).toBe("Date"+i+"-edited");
+        expect(value).toBe(("Date"+i+"-edited").toUpperCase());
         //check the location purchased of the drink on the thumbnail
-        value = await page.$eval("#str_purchase_location", (el) => {
+        value = await shadowRoot.$eval("#str_purchase_location", (el) => {
           return el.innerText;
         });
-        expect(value).toBe("Location"+i+"-edited");
+        expect(value).toBe("Location: Location"+i+"-edited");
       }
     }, 10000);
 
