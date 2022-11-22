@@ -332,7 +332,7 @@ function handleEvents() {
             card.data = coffeeCardObject;
 
             // Update the card in the coffee cards array
-            coffeeCards[current_edit_id] = coffeeCardObject;
+            coffeeCards.push(coffeeCardObject);
 
             // save to storage and update the page
             saveCoffeeCardsToStorage(coffeeCards);
