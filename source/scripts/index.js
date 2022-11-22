@@ -235,6 +235,35 @@ function handleEvents() {
             openForm();
     })
 
+    document.addEventListener('trigger-export', function (event) {
+
+        if (event.composedPath) {
+
+            // The edit button stores the corresponding coffee card id/posiiton in array
+            let position = event.target.id;
+            console.log("exporting card at index: " + position);
+
+            let filename = "CoffeeCard" + position + ".json"
+
+            // get the corresponding card from the coffee cards array
+            let coffeeCardObject = getCoffeeCardsFromStorage()[position];
+            console.log(coffeeCardObject);
+
+            let coffeeCardJson = JSON.stringify(coffeeCardObject);
+
+            let element = document.createElement('a')
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(coffeeCardJson));
+            element.setAttribute('download', filename);
+
+            element.style.display = 'none';
+            document.body.appendChild(element);
+
+            element.click();
+
+            document.body.removeChild(element);
+        }
+    })
+
 
 
     // Saving a new card to gallery or saving edit changes to an existing card
@@ -287,16 +316,14 @@ function handleEvents() {
             }
             localStorage.setItem('current_card_id', current_card_id);
             //add current_card_id to the information to store in local storage
+            coffeeCardObject['current_card_id'] = current_card_id;
 
-          
-            //coffeeCardObject['current_card_id'] = current_card_id;
-            */
             console.log(data);
 
             /* create card object and load [key: value] pairs of the 
             * form and any other input into object
             */
-            console.log(coffeeCardObject);
+            // console.log(coffeeCardObject);
             let d = new Date();
             coffeeCardObject["time_creation_time"] = d.toLocaleTimeString();
 
@@ -369,57 +396,20 @@ function handleEvents() {
     document.addEventListener("trigger-delete", (event) => {
         console.log("delete clicked by user");
         if (event.composedPath) {
-            let gallery = document.getElementById("gallery");
-            let cardIndex = event.target.id;    // id of the card on which delete is triggered
-            // console.log("the card to be deleted: " + cardIndex);    // DELETE: for test
-            let localCards = getCoffeeCardsFromStorage();   // Local JSON object of cards
-            // Get the card object
-            let cardObject = localCards[cardIndex];
-
+            let cardIndex = event.target.id;
+            let galleryCard = document.getElementById(cardIndex);
             // Remove the object from gallery
-            gallery.remove(cardObject);
-
-            // New JSON list after deleting the card
-            let newLocalCards = [];
-
-            // TRY: set that card to null, then loop from that card to bubble the rest
-            // Could be more efficient, but still BUGGY
-            // if(localCards != []) {
-            //     localCards[cardIndex] = null;
-            //     for(let i = cardIndex; i < localCards.length - 1; i++) {
-            //         console.log(localCards[i + 1]);
-            //         localCards[i] = localCards[i + 1];
-            //     }
-            // }
-
-            // Remove the cards to be deleted
-            if(localCards != []) {
-                for(let card of localCards) {
-                    if(card.current_card_id != cardIndex) {
-                        newLocalCards.push(card);
-                    }
-                }
-            }
-
-            // Reassign id of each coffee card after deletion
-            if(newLocalCards != []) {
-                for(let i = 0; i < newLocalCards.length; i++) {
-                    let card = newLocalCards[i];
-                    card.current_card_id = i;
-                }
-            }
-
-            // Set the new JSON list to local storage
-            let coffeeCards = newLocalCards;
-            // console.log(coffeeCards);    // DELETE: for test
-            saveCoffeeCardsToStorage(coffeeCards);
+            galleryCard.remove();
             
-            // Auto-reload the page to update the change
-            location.reload();
+            let coffeeCards = getCoffeeCardsFromStorage();  // Local JSON object of cards
+            coffeeCards.splice(cardIndex, 1);   // Remove the card from local sotrage
 
-            // Update the local id flag to avoid null item
-            let newCardNum = newLocalCards.length - 1;
-            localStorage.setItem("current_card_id", newCardNum);
+            // Update storage
+            saveCoffeeCardsToStorage(coffeeCards);
+            addCoffeeCardsToDocument(coffeeCards);
+
+            // Update current_card_id field in the local storage to avoid null object
+            localStorage.setItem('current_card_id', coffeeCards.length - 1);            
         }
     })
 
