@@ -289,12 +289,12 @@ function handleEvents() {
             //add current_card_id to the information to store in local storage
             coffeeCardObject['current_card_id'] = current_card_id;
 
-            console.log(data);
+            // console.log(data);
 
             /* create card object and load [key: value] pairs of the 
             * form and any other input into object
             */
-            console.log(coffeeCardObject);
+            // console.log(coffeeCardObject);
             let d = new Date();
             coffeeCardObject["time_creation_time"] = d.toLocaleTimeString();
 
@@ -363,57 +363,23 @@ function handleEvents() {
     document.addEventListener("trigger-delete", (event) => {
         console.log("delete clicked by user");
         if (event.composedPath) {
-            let gallery = document.getElementById("gallery");
-            let cardIndex = event.target.id;    // id of the card on which delete is triggered
-            // console.log("the card to be deleted: " + cardIndex);    // DELETE: for test
-            let localCards = getCoffeeCardsFromStorage();   // Local JSON object of cards
+            // id of the card on which delete is triggered
+            let cardIndex = event.target.id;
             // Get the card object
-            let cardObject = localCards[cardIndex];
-
+            let galleryCard = document.getElementById(cardIndex);
             // Remove the object from gallery
-            gallery.remove(cardObject);
+            galleryCard.remove();
 
-            // New JSON list after deleting the card
-            let newLocalCards = [];
-
-            // TRY: set that card to null, then loop from that card to bubble the rest
-            // Could be more efficient, but still BUGGY
-            // if(localCards != []) {
-            //     localCards[cardIndex] = null;
-            //     for(let i = cardIndex; i < localCards.length - 1; i++) {
-            //         console.log(localCards[i + 1]);
-            //         localCards[i] = localCards[i + 1];
-            //     }
-            // }
-
-            // Remove the cards to be deleted
-            if(localCards != []) {
-                for(let card of localCards) {
-                    if(card.current_card_id != cardIndex) {
-                        newLocalCards.push(card);
-                    }
-                }
-            }
-
-            // Reassign id of each coffee card after deletion
-            if(newLocalCards != []) {
-                for(let i = 0; i < newLocalCards.length; i++) {
-                    let card = newLocalCards[i];
-                    card.current_card_id = i;
-                }
-            }
-
-            // Set the new JSON list to local storage
-            let coffeeCards = newLocalCards;
-            // console.log(coffeeCards);    // DELETE: for test
-            saveCoffeeCardsToStorage(coffeeCards);
             
-            // Auto-reload the page to update the change
-            location.reload();
+            let coffeeCards = getCoffeeCardsFromStorage();  // Local JSON object of cards
+            coffeeCards.splice(cardIndex, 1);   // Remove the card from local sotrage
 
-            // Update the local id flag to avoid null item
-            let newCardNum = newLocalCards.length - 1;
-            localStorage.setItem("current_card_id", newCardNum);
+            // Update storage
+            saveCoffeeCardsToStorage(coffeeCards);
+            addCoffeeCardsToDocument(coffeeCards);
+
+            // Update current_card_id field in the local storage to avoid null object
+            localStorage.setItem('current_card_id', coffeeCards.length - 1);            
         }
     })
 

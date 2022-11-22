@@ -168,9 +168,10 @@
         </section>
         <button class = "toggle_edit" >Edit</button>
         <button class = "delete" >Delete</button>
-        `;
+        `;  // Delete button just for back-end testing, subject to change from front-end team
 
         // Custom event trigger that the DOM will catch whenever we click on "delete"
+        // Used William's code for custom event
         shadow_div.getElementsByTagName("button")[1].onclick = (event)=> {
 
             // Don't dispatch the click event. Instead use a custom event
