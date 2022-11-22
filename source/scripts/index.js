@@ -363,13 +363,10 @@ function handleEvents() {
     document.addEventListener("trigger-delete", (event) => {
         console.log("delete clicked by user");
         if (event.composedPath) {
-            // id of the card on which delete is triggered
             let cardIndex = event.target.id;
-            // Get the card object
             let galleryCard = document.getElementById(cardIndex);
             // Remove the object from gallery
             galleryCard.remove();
-
             
             let coffeeCards = getCoffeeCardsFromStorage();  // Local JSON object of cards
             coffeeCards.splice(cardIndex, 1);   // Remove the card from local sotrage

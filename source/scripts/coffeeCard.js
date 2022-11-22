@@ -168,7 +168,8 @@
         </section>
         <button class = "toggle_edit" >Edit</button>
         <button class = "delete" >Delete</button>
-        `;  // Delete button just for back-end testing, subject to change from front-end team
+        `;  
+        // TODO: Delete button just for back-end testing, subject to change from front-end team
 
         // Custom event trigger that the DOM will catch whenever we click on "delete"
         // Used William's code for custom event
