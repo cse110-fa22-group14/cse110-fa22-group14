@@ -234,6 +234,35 @@ function handleEvents() {
         }
     })
 
+    document.addEventListener('trigger-export', function (event) {
+
+        if (event.composedPath) {
+
+            // The edit button stores the corresponding coffee card id/posiiton in array
+            let position = event.target.id;
+            console.log("exporting card at index: " + position);
+
+            let filename = "CoffeeCard" + position + ".json"
+
+            // get the corresponding card from the coffee cards array
+            let coffeeCardObject = getCoffeeCardsFromStorage()[position];
+            console.log(coffeeCardObject);
+
+            let coffeeCardJson = JSON.stringify(coffeeCardObject);
+
+            let element = document.createElement('a')
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(coffeeCardJson));
+            element.setAttribute('download', filename);
+
+            element.style.display = 'none';
+            document.body.appendChild(element);
+
+            element.click();
+
+            document.body.removeChild(element);
+        }
+    })
+
 
 
     // Saving a new card to gallery or saving edit changes to an existing card
