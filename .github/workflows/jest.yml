@@ -4,9 +4,11 @@ name: Lint Tests
 
 # Controls when the workflow will run
 on:
+  push:
+    branches: [features/**]
+  # Triggers the workflow on push events to "feature" and 
   pull_request:
     branches: [ "main" ]
-
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
