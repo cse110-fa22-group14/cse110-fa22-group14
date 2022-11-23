@@ -42,6 +42,7 @@ function getCoffeeCardsFromStorage() {
  */
 function addCoffeeCardsToDocument(coffeeCards) {
 
+    
     if (!coffeeCards) {
         return;
     }
@@ -90,8 +91,8 @@ function handleEvents() {
     let flavorSliders = document.getElementsByClassName('flavor_range');
     let isEditing = false;
     let current_edit_id = 0;
+    
     //let current_card_id = 0;
-
     
     function openForm() {
         form.style.opacity = 1;
@@ -155,14 +156,77 @@ function handleEvents() {
 
     })
 
+    function sortPrice(a, b) {
+        if (parseInt(a["int_drink_price"]) < parseInt(b["int_drink_price"])) {
+            return -1;
+        }
+        else if (parseInt(a["int_drink_price"]) > parseInt(b["int_drink_price"])) {
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
 
+    function sortDate(a, b) {
+        
+        
+        if (a["time_purchase_date"] < b["time_purchase_date"]) {
+            return -1;
+        }
+        else if (a["time_purchase_date"] > b["time_purchase_date"]) {
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
 
     /*
      * DO LATER: Grabs the value of whatever filter option was selected and applies
      * it to narrow the results of the gallery
      */
     filterOption.addEventListener("change", (event) => {
+        //define sorting function for price
+        //define sorting function for rating
+        //get the sorting selection
+        //get all the coffee cards
+        
+        /**
+         * "Default">Default</option>
+            <option value = "0Price: Low-High">Price: Low-High</option>
+            <option value = "1Price: High-Low">Price: High-Low</option>
+            <option value = "0Rating: Low-High">Rating: Low-High</option>
+            <option value = "1Rating: High-Low">Rating: High-Low</option>
+            <option value = "0Date: Oldest-Newest">
+         */
+        let coffeeCards = getCoffeeCardsFromStorage();
+        
+        const sortSelect = document.getElementById("filter")
+        let choice = sortSelect.value;
 
+        console.log(coffeeCards[0]["time_purchase_date"])
+        
+        if (choice[1] == "P") {
+            coffeeCards.sort(sortPrice)
+        }
+        else if (choice[1] == "D") {
+            coffeeCards.sort(sortDate)
+        }
+
+
+        if (choice[0] == "1") {
+            //flip it in the end
+            coffeeCards.reverse()
+
+        
+        }
+        
+        addCoffeeCardsToDocument(coffeeCards);
+        saveCoffeeCardsToStorage(coffeeCards)
+
+
+        
     })
 
 
@@ -412,6 +476,8 @@ function handleEvents() {
             localStorage.setItem('current_card_id', coffeeCards.length - 1);            
         }
     })
+
+    // sorting button
 
 
     /*
