@@ -150,6 +150,108 @@ describe("Basic user flow for Website", () => {
     }
   }, 25000);
 
+  // Check caramel checkbox edit functionality
+  it('Checking the caramel checkbox values have been successfully edited when opend', async () => {
+    console.log('Checking the caramel checkbox value after edits...');
+    // Query a <coffee-card> element using puppeteer
+    let allCoffeeCards = await page.$$('coffee-card');
+    for (let i = 0; i < allCoffeeCards.length; i++) {
+      console.log(`Checking coffee card ${i + 1}/${allCoffeeCards.length}'s caramel checkbox edit`);
+      //click the edit button
+      let itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
+      let buttonFromShadow = await itemFromShadow.$('button');
+      await buttonFromShadow.click();
+      //initially, the check box should not be checked
+      let checkboxOnPage = await page.$('#bool_check_caramel');
+      let checkboxValue = await (await checkboxOnPage.getProperty("checked")).jsonValue();
+      expect(checkboxValue).toBe(false);
+      //check the checkbox
+      await page.click('#bool_check_caramel', {clickCount:1});
+      //check box value immediately after click
+      checkboxValue= await (await checkboxOnPage.getProperty("checked")).jsonValue();
+      expect(checkboxValue).toBe(true);
+      //save the edit of the card
+      let saveButton = await page.$("#save");
+      await saveButton.click();
+      await buttonFromShadow.click();
+      //when the page is open again
+      checkboxOnPage = await page.$('#bool_check_caramel');
+      //the check box should remain checked
+      checkboxValue= await (await checkboxOnPage.getProperty("checked")).jsonValue();
+      expect(checkboxValue).toBe(true);
+      //save the edit of the card
+      await saveButton.click();
+    }
+  }, 25000);
+
+  // Check nutty checkbox edit functionality
+  it('Checking the nutty checkbox values have been successfully edited when opend', async () => {
+    console.log('Checking the nutty checkbox value after edits...');
+    // Query a <coffee-card> element using puppeteer
+    let allCoffeeCards = await page.$$('coffee-card');
+    for (let i = 0; i < allCoffeeCards.length; i++) {
+      console.log(`Checking coffee card ${i + 1}/${allCoffeeCards.length}'s nutty checkbox edit`);
+      //click the edit button
+      let itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
+      let buttonFromShadow = await itemFromShadow.$('button');
+      await buttonFromShadow.click();
+      //initially, the check box should not be checked
+      let checkboxOnPage = await page.$('#bool_check_nutty');
+      let checkboxValue = await (await checkboxOnPage.getProperty("checked")).jsonValue();
+      expect(checkboxValue).toBe(false);
+      //check the checkbox
+      await page.click('#bool_check_nutty', {clickCount:1});
+      //check box value immediately after click
+      checkboxValue= await (await checkboxOnPage.getProperty("checked")).jsonValue();
+      expect(checkboxValue).toBe(true);
+      //save the edit of the card
+      let saveButton = await page.$("#save");
+      await saveButton.click();
+      await buttonFromShadow.click();
+      //when the page is open again
+      checkboxOnPage = await page.$('#bool_check_nutty');
+      //the check box should remain checked
+      checkboxValue= await (await checkboxOnPage.getProperty("checked")).jsonValue();
+      expect(checkboxValue).toBe(true);
+      //save the edit of the card
+      await saveButton.click();
+    }
+  }, 25000);
+
+  // Check fruity checkbox edit functionality
+  it('Checking the fruity checkbox values have been successfully edited when opend', async () => {
+    console.log('Checking the fruity checkbox value after edits...');
+    // Query a <coffee-card> element using puppeteer
+    let allCoffeeCards = await page.$$('coffee-card');
+    for (let i = 0; i < allCoffeeCards.length; i++) {
+      console.log(`Checking coffee card ${i + 1}/${allCoffeeCards.length}'s fruity checkbox edit`);
+      //click the edit button
+      let itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
+      let buttonFromShadow = await itemFromShadow.$('button');
+      await buttonFromShadow.click();
+      //initially, the check box should not be checked
+      let checkboxOnPage = await page.$('#bool_check_fruity');
+      let checkboxValue = await (await checkboxOnPage.getProperty("checked")).jsonValue();
+      expect(checkboxValue).toBe(false);
+      //check the checkbox
+      await page.click('#bool_check_fruity', {clickCount:1});
+      //check box value immediately after click
+      checkboxValue= await (await checkboxOnPage.getProperty("checked")).jsonValue();
+      expect(checkboxValue).toBe(true);
+      //save the edit of the card
+      let saveButton = await page.$("#save");
+      await saveButton.click();
+      await buttonFromShadow.click();
+      //when the page is open again
+      checkboxOnPage = await page.$('#bool_check_fruity');
+      //the check box should remain checked
+      checkboxValue= await (await checkboxOnPage.getProperty("checked")).jsonValue();
+      expect(checkboxValue).toBe(true);
+      //save the edit of the card
+      await saveButton.click();
+    }
+  }, 25000);
+
   // Check acidity slider edit functionality
   it('Checking the acidity slider values have been successfully edited when opend', async () => {
     console.log('Checking the card acidity slider value after edits...');
