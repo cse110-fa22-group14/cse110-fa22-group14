@@ -116,7 +116,40 @@ describe("Basic user flow for Website", () => {
       }
     }, 10000);
 
-  
+  // Check chocoloate checkbox edit functionality
+  it('Checking the chocoloate checkbox values have been successfully edited when opend', async () => {
+    console.log('Checking the chocoloate checkbox value after edits...');
+    // Query a <coffee-card> element using puppeteer
+    let allCoffeeCards = await page.$$('coffee-card');
+    for (let i = 0; i < allCoffeeCards.length; i++) {
+      console.log(`Checking coffee card ${i + 1}/${allCoffeeCards.length}'s chocoloate checkbox edit`);
+      //click the edit button
+      let itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
+      let buttonFromShadow = await itemFromShadow.$('button');
+      await buttonFromShadow.click();
+      //initially, the check box should not be checked
+      let checkboxOnPage = await page.$('#bool_check_chocolate');
+      let checkboxValue = await (await checkboxOnPage.getProperty("checked")).jsonValue();
+      expect(checkboxValue).toBe(false);
+      //check the checkbox
+      await page.click('#bool_check_chocolate', {clickCount:1});
+      //check box value immediately after click
+      checkboxValue= await (await checkboxOnPage.getProperty("checked")).jsonValue();
+      expect(checkboxValue).toBe(true);
+      //save the edit of the card
+      let saveButton = await page.$("#save");
+      await saveButton.click();
+      await buttonFromShadow.click();
+      //when the page is open again
+      checkboxOnPage = await page.$('#bool_check_chocolate');
+      //the check box should remain checked
+      checkboxValue= await (await checkboxOnPage.getProperty("checked")).jsonValue();
+      expect(checkboxValue).toBe(true);
+      //save the edit of the card
+      await saveButton.click();
+    }
+  }, 25000);
+
   // Check acidity slider edit functionality
   it('Checking the acidity slider values have been successfully edited when opend', async () => {
     console.log('Checking the card acidity slider value after edits...');
@@ -129,13 +162,16 @@ describe("Basic user flow for Website", () => {
         let itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
         let buttonFromShadow = await itemFromShadow.$('button');
         await buttonFromShadow.click();
+        //change the slider value
         await page.$eval("#int_slide_acidity", (el, j) => el.value = j, j);
         //save the edit of the card
         let saveButton = await page.$("#save");
         await saveButton.click();
         await buttonFromShadow.click();
+        //check for the changed slider value
         let sliderValue = await page.$eval("#int_slide_acidity", (el) => {return el.value;});
         expect(Number(sliderValue)).toBe(j);
+        await saveButton.click();
       }
     }
   }, 25000);
@@ -152,13 +188,16 @@ describe("Basic user flow for Website", () => {
         let itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
         let buttonFromShadow = await itemFromShadow.$('button');
         await buttonFromShadow.click();
+        //change the slider value
         await page.$eval("#int_slide_sweetness", (el, j) => el.value = j, j);
         //save the edit of the card
         let saveButton = await page.$("#save");
         await saveButton.click();
         await buttonFromShadow.click();
+        //check for the changed slider value
         let sliderValue = await page.$eval("#int_slide_sweetness", (el) => {return el.value;});
         expect(Number(sliderValue)).toBe(j);
+        await saveButton.click();
       }
     }
   }, 25000);
@@ -175,13 +214,16 @@ describe("Basic user flow for Website", () => {
         let itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
         let buttonFromShadow = await itemFromShadow.$('button');
         await buttonFromShadow.click();
+        //change the slider value
         await page.$eval("#int_slide_bitterness", (el, j) => el.value = j, j);
         //save the edit of the card
         let saveButton = await page.$("#save");
         await saveButton.click();
         await buttonFromShadow.click();
+        //check for the changed slider value
         let sliderValue = await page.$eval("#int_slide_bitterness", (el) => {return el.value;});
         expect(Number(sliderValue)).toBe(j);
+        await saveButton.click();
       }
     }
   }, 25000);
@@ -198,16 +240,20 @@ describe("Basic user flow for Website", () => {
         let itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
         let buttonFromShadow = await itemFromShadow.$('button');
         await buttonFromShadow.click();
+        //change the slider value
         await page.$eval("#int_slide_saltiness", (el, j) => el.value = j, j);
         //save the edit of the card
         let saveButton = await page.$("#save");
         await saveButton.click();
         await buttonFromShadow.click();
+        //check for the changed slider value
         let sliderValue = await page.$eval("#int_slide_saltiness", (el) => {return el.value;});
         expect(Number(sliderValue)).toBe(j);
+        await saveButton.click();
       }
     }
   }, 25000);
+
 
   // Check to make sure that after you reload the page it remembers all coffee cards after edit
   it('Checking number of cards on screen after reload', async () => {
