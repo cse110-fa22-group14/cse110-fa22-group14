@@ -72,7 +72,6 @@ function addCoffeeCardsToDocument(coffeeCards) {
  * @param {Array<Object>} coffeeCards An array of recipes
  */
 function saveCoffeeCardsToStorage(coffeeCards) {
-
     localStorage.setItem("coffeeCards", JSON.stringify(coffeeCards));
 }
 
@@ -90,6 +89,7 @@ function handleEvents() {
     let flavorSliders = document.getElementsByClassName('flavor_range');
     let isEditing = false;
     let current_edit_id = 0;
+    let importButton = document.getElementById("import");
     //let current_card_id = 0;
 
     
@@ -264,7 +264,42 @@ function handleEvents() {
         }
     })
 
+    importButton.addEventListener("change", (event) => {
+        console.log("import clicked");  // DELETE: for test
+        let importFile = event.target.files[0];    // Get the file uploaded by user
+        // console.log(importFile.name);    // DELETE: for test
 
+        // Basic type-check for the uploaded file
+        if(importFile.type != "application/json") {
+            console.error("Wrong file type: must import a JSON file!");
+            return;
+        }
+
+        let reader = new FileReader();  // Reader to read the imported file content
+
+        reader.addEventListener("load", () => {
+            let fileText = JSON.parse(reader.result);
+            // console.log(fileText);  // DELETE: for test
+
+            // Update local cards
+            let coffeeCards = getCoffeeCardsFromStorage();
+            coffeeCards.push(fileText);
+            saveCoffeeCardsToStorage(coffeeCards);
+
+            // Update gallery with new card
+            addCoffeeCardsToDocument(coffeeCards);
+
+            // Update current_card_id field
+            localStorage.setItem('current_card_id', coffeeCards.length - 1);
+
+            // FIXME: Upload field is not clearing itself after each upload
+        }, false);
+        
+        // Reader reads the file as text if valid
+        if (importFile) {
+            reader.readAsText(importFile);
+        }
+    })
 
     // Saving a new card to gallery or saving edit changes to an existing card
     form.addEventListener("submit", (event) => {
