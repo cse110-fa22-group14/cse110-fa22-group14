@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>单位换算</title>
+
+    <meta n ame="description" content="About Us" />
+
+    <!-- customize text: google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- custom text 2 -->
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet"> -->
+
+    <!-- add icon
+    在网站中加入一些小图标 -->
+    <script
+      src="https://kit.fontawesome.com/a3ec84fd77.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- google charts -->
+    <script
+      type="text/javascript"
+      src="https://www.gstatic.com/charts/loader.js"
+    ></script>
+    <script type="text/javascript">
+      google.charts.load("current", {
+        packages: ["geochart"],
+      });
+      google.charts.setOnLoadCallback(drawRegionsMap);
+
+      function drawRegionsMap() {
+        var data = google.visualization.arrayToDataTable([
+          ["Country", "Popularity"],
+          ["Germany", 200],
+          ["United States", 300],
+          ["Brazil", 400],
+          ["Canada", 500],
+          ["France", 600],
+          ["RU", 700],
+        ]);
+
+        var options = {};
+
+        var chart = new google.visualization.GeoChart(
+          document.getElementById("regions_div")
+        );
+
+        chart.draw(data, options);
+      }
+    </script>
+
+    <!-- <link rel="stylesheet" href="./dhstyle.css" /> -->
+
+    <style>
+      /* *表示所有的标签的设定 */
+      * {
+        margin: 0px;
+        padding: 0px;
+        /* 当你设定padding时候，是上下左右都增加了1rem 32px，所以会出现超出界面，出现水平移动轴 */
+        /* 会用到box-sizing
+                有两种
+                content-box 预设
+                border-box: 我们相拥的
+            */
+        box-sizing: border-box;
+      }
+
+      header {
+        background-color: rgba(36, 34, 34, 0.399);
+        width: 100%;
+
+        padding: 1rem;
+      }
+
+      nav {
+        background-color: #3b383c95;
+        /* nav的子类是ul，但是只有一个ul，display：flex还是无法将其变成横向 */
+        /* display: flex; */
+      }
+
+      h1,
+      h2,
+      h3 {
+        -webkit-text-stroke: 0.1px gold;
+        font-family: "ZCOOL XiaoWei", serif;
+      }
+      h3 {
+        text-align: center;
+      }
+
+      h4 {
+        font-family: "Times New Roman", Times, serif;
+        text-indent: 32px;
+      }
+
+      .textHeader {
+        font-size: 2rem;
+      }
+
+      /* h2 {
+            background-color: rgba(rgb(70, 49, 49), rgb(13, 41, 13), rgb(6, 6, 48), 0.5);
+        } */
+      p {
+        text-indent: 32px;
+        font-family: "Gill Sans", sans-serif;
+      }
+
+      /* it is not working */
+      /* main {
+            background-color: rgba(rgb(70, 49, 49), rgb(13, 41, 13), rgb(6, 6, 48), 0.5);
+        } */
+
+      body {
+        background-color: #3b383c9b;
+      }
+
+      main {
+        width: 100%;
+        display: flex;
+      }
+
+      section.left {
+        padding: 1rem;
+        /* border: grey; */
+      }
+
+      section.right {
+        display: flex;
+        padding: 1rem;
+        flex-direction: column;
+        /* border: grey; */
+        /* 地图是align-item，设置为居中 */
+        align-items: center;
+      }
+
+      section.right p {
+        text-align: center;
+        margin: 0rem 1rem;
+      }
+      /*   */
+
+      .active {
+        color: gold;
+      }
+
+      .image {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        height: 200px;
+        /* background-color: bisque; */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 这个是标题部分 -->
+    <header>
+      <h1 class="textHeader">ABout Coffee log</h1>
+      <h4>This is the information about Coffee Log</h4>
+    </header>
+
+    <!-- 导览列部分 -->
+    <nav></nav>
+
+    <!-- 主要内容  Main 是一个flex container-->
+    <main>
+      <section class="left">
+        <h2>Why using Coffee Log?</h2>
+        <p>
+          It helps you to... content.. Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Quisquam Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Quisquam Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Quisquam Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Quisquam Lorem ipsum Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Quisquam
+          <!-- <img class="image" width="600px" height="200px" src="./Tradeicon.png" alt="网站图标"> -->
+        </p>
+        <br />
+      </section>
+      <br />
+      <section class="left">
+        <h2>Why using Coffee Log?</h2>
+        <p>
+          It helps you to... content.. Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Quisquam Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Quisquam Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Quisquam Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Quisquam Lorem ipsum Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Quisquam
+          <!-- <img class="image" width="600px" height="200px" src="./Tradeicon.png" alt="网站图标"> -->
+        </p>
+        <br />
+      </section>
+
+      <section class="right">
+        <h3>Team 14</h3>
+        <p>Location: UCSD Geisel Library</p>
+        <p>This is where the office of team 14 is at</p>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6701.353076605748!2d-117.24704137354678!3d32.8802766737636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dc07853cb13045%3A0x2d2f19f483aaaace!2sGeisel%20Library!5e0!3m2!1szh-CN!2sus!4v1668665703132!5m2!1szh-CN!2sus"
+          width="300"
+          height="200"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+
+        <br />
+        About us: feedback:
+        <br />
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+      </section>
+    </main>
+
+    <h2>Daily Good Music</h2>
+    <iframe
+      src="https://www.youtube.com/embed/Jg5wkZ-dJXA"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+
+    <h1>Amount of users that use this webiste</h1>
+    <div id="regions_div" style="width: 600px; height: 300px"></div>
+  </body>
+</html>
