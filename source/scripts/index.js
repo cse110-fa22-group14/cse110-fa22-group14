@@ -80,7 +80,7 @@ function saveCoffeeCardsToStorage(coffeeCards) {
 function handleEvents() {
 
     // Define variables to hold DOM elements
-    let gallery = document.getElementById("gallery");
+    let dropBox = document.querySelector("body");
     let helpButton = document.getElementById("help");
     let filterOption = document.getElementById("filter");
     let addButton = document.getElementById('add_card');
@@ -264,8 +264,9 @@ function handleEvents() {
         }
     })
 
+    // Select-file import
     importButton.addEventListener("change", (event) => {
-        console.log("import clicked");  // DELETE: for test
+        // console.log("import clicked");  // DELETE: for test
         let importFile = event.target.files[0];    // Get the file uploaded by user
         // console.log(importFile.name);    // DELETE: for test
 
@@ -300,6 +301,60 @@ function handleEvents() {
             reader.readAsText(importFile);
         }
     })
+
+    // Drag-and-drop import
+    dropBox.addEventListener("dragenter", dragenter, false);
+    dropBox.addEventListener("dragover", dragover, false);
+    dropBox.addEventListener("drop", drop, false);
+
+    function dragenter(e) {
+        e.stopPropagation();
+        e.preventDefault();
+    }
+      
+      function dragover(e) {
+        e.stopPropagation();
+        e.preventDefault();
+    }
+
+    function drop(e) {
+        e.stopPropagation();
+        e.preventDefault();
+      
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        let importFile = files[0];
+      
+        // console.log(files[0].name);
+        // Basic type-check for the uploaded file
+        if(importFile.type != "application/json") {
+            console.error("Wrong file type: must import a JSON file!");
+            return;
+        }
+
+        let reader = new FileReader();  // Reader to read the imported file content
+
+        reader.addEventListener("load", () => {
+            let fileText = JSON.parse(reader.result);
+            // console.log(fileText);  // DELETE: for test
+
+            // Update local cards
+            let coffeeCards = getCoffeeCardsFromStorage();
+            coffeeCards.push(fileText);
+            saveCoffeeCardsToStorage(coffeeCards);
+
+            // Update gallery with new card
+            addCoffeeCardsToDocument(coffeeCards);
+
+            // Update current_card_id field
+            localStorage.setItem('current_card_id', coffeeCards.length - 1);
+        }, false);
+        
+        // Reader reads the file as text if valid
+        if (importFile) {
+            reader.readAsText(importFile);
+        }
+    }
 
     // Saving a new card to gallery or saving edit changes to an existing card
     form.addEventListener("submit", (event) => {
