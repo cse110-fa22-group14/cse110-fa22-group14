@@ -148,7 +148,7 @@
 
        const shadow_div = this.shadowRoot.querySelector('div');
 
-       //add a hidden element to the card's HTML
+       // Add a hidden element to the card's HTML
        shadow_div.innerHTML =
        `
        <header>
@@ -166,12 +166,10 @@
         </section>
         <button class = "toggle_edit" >Edit</button>
         <button class = "delete" >Delete</button>
-        `;  
-        // TODO: Delete button just for back-end testing, subject to change from front-end team
+        `;
 
         // Custom event trigger that the DOM will catch whenever we click on "delete"
-        // Used William's code for custom event
-        shadow_div.getElementsByTagName("button")[1].onclick = (event)=> {
+        shadow_div.querySelector(".toggle_edit").onclick = (event)=> {
 
             // Don't dispatch the click event. Instead use a custom event
             event.preventDefault();
@@ -184,7 +182,7 @@
         }
 
         // Custom event trigger that the DOM will catch whenever we click on "edit"
-        shadow_div.getElementsByTagName("button")[0].onclick = (event)=> {
+        shadow_div.querySelector(".delete").onclick = (event)=> {
 
             // Don't dispatch the click event. Instead use a custom event
             event.preventDefault();
