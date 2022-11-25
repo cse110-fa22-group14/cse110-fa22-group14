@@ -16,8 +16,8 @@ describe("Basic user flow for Website", () => {
     // Check to make sure that adding 10 cards to the page will create 10 cards
     it("Adding 10 cards should populate the gallery with 10 cards ", async () => {
       // In a for loop click on the add button, provide input, and save
+      const addButton = await page.$("#add_card");
       for(let i = 0; i < TOTAL_CARDS; i++) {
-        const addButton = await page.$("#add_card");
         await addButton.click();
         console.log("Adding card #" + i);
         await page.$eval("#str_drink_name", (el, value) => el.value = "Drink"+value, i);
@@ -34,12 +34,11 @@ describe("Basic user flow for Website", () => {
       });
       console.log(numCards);
       expect(numCards).toBe(TOTAL_CARDS);
-    });
+    }, TOTAL_TEST_TIME);
 
     // Edit the cards so we update the four fields by appending "-edited"
     it("Editing Cards should update their fields", async () => {
-      cards = await page.$$("coffee-card");
-
+      const cards = await page.$$("coffee-card");
       // In a for loop click on each card and edit the first four fields
       for(let i = 0; i < cards.length; i++) {
         const currCard = cards[i];

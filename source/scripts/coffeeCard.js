@@ -164,12 +164,12 @@
           <p id = "str_drink_type"><slot name="drink_type">Serving Type: ${data["str_drink_type"]}</p>
           <p id = "int_dropdown_color"><slot name="color">Color Level: ${data["int_dropdown_color"]}</p>
         </section>
-        <button class = "toggle_edit" >Edit</button>
-        <button class = "delete" >Delete</button>
+        <button class = "toggle_edit" id = "toggle_edit" >Edit</button>
+        <button class = "delete" id = "delete_card" >Delete</button>
         `;
 
         // Custom event trigger that the DOM will catch whenever we click on "delete"
-        shadow_div.querySelector(".toggle_edit").onclick = (event)=> {
+        this.shadowRoot.getElementById('delete_card').onclick = (event)=> {
 
             // Don't dispatch the click event. Instead use a custom event
             event.preventDefault();
@@ -182,7 +182,7 @@
         }
 
         // Custom event trigger that the DOM will catch whenever we click on "edit"
-        shadow_div.querySelector(".delete").onclick = (event)=> {
+        this.shadowRoot.getElementById('toggle_edit').onclick = (event)=> {
 
             // Don't dispatch the click event. Instead use a custom event
             event.preventDefault();
@@ -195,7 +195,6 @@
         }
 
         // Custom event trigger that the DOM will catch whenever we click on the export icon
-       
         this.shadowRoot.getElementById("share_button").onclick = (event) =>{
             // Don't dispatch the click event. Instead use a custom event
             event.preventDefault();
@@ -204,32 +203,21 @@
                 bubbles: true,
                 detail: "composed"
             }))
-
         }
-     }
-
-     
-     /**
-      * Called when the getChildren is called on a coffee-card
-      *
-      * For Example:
-      * let coffeeCard = document.createElement('recipe-card'); // Calls constructor()
-      * coffeeCard.getChildren() =  [HTML collection] // Calls the function
-      *
-      */
-    get getChildren() {
-        let shadow_div = this.shadowRoot.querySelector('div');
-        return shadow_div.children;
     }
 
-
-
- }
-
- 
-
-
+    /**
+     * Called when the getChildren is called on a coffee-card
+     *
+     * For Example:
+     * let coffeeCard = document.createElement('recipe-card'); // Calls constructor()
+     * coffeeCard.getChildren() =  [HTML collection] // Calls the functions
+     */
+    get getChildren() {
+        const shadow_div = this.shadowRoot.querySelector('div');
+        return shadow_div.children;
+    }
+}
 
  // Define the Class as a customElement so we can create coffee-card elements
  customElements.define('coffee-card', CoffeeCard);
-
