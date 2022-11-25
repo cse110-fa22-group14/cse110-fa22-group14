@@ -7,7 +7,7 @@
  * 
  */
 
- /*TODO: Yuang*/
+    /* TODO: Yuang */
 * {
     margin: 0;
     padding: 0;
@@ -16,7 +16,6 @@
     font-size: 100%;
     vertical-align: baseline;
     background: transparent;
-    
 }
 
 
@@ -128,6 +127,8 @@ fieldset {
     grid-row-end: 4;
     grid-column-end: 7;
     z-index: 2;
+    margin: auto;
+    transform: scale(0.9);
 }
 
 /* Gets rid of default styling for text boxes */
@@ -202,12 +203,8 @@ input[type="text"] {
     grid-row-end: 5;
     grid-column-end: 7;
     border-radius: 10px;
-    
 }
-#img_drink_image {
-    margin: auto;
-    transform: scale(0.9);
-}
+
 /* reference: https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp */
 /* implemented left and right arrows to change inage */
 #switch_photo_left_arrow,
