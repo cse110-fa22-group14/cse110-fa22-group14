@@ -204,23 +204,24 @@ input[type="text"] {
     grid-column-end: 7;
     border-radius: 10px;
 }
-/* reference: https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp */
-/* implemented left and right arrows to change inage */
+
 #switch_photo_left_arrow,
 #switch_photo_right_arrow {
-  cursor: pointer;
-  position: absolute;
-  width: auto;
-  color: #502e2a;
-  font-weight: bold;
-  font-size: 40px;
-  user-select: none;
-  -webkit-user-select: none;
-  /* inherented from parent #switch_photo_container*/
-  grid-row-start: 4;
-  grid-column-start: 5;
-  grid-row-end: 5;
-  grid-column-end: 7;
+    /* reference: https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp */
+    /* implemented left and right arrows to change inage */
+    cursor: pointer;
+    position: absolute;
+    width: auto;
+    color: #502e2a;
+    font-weight: bold;
+    font-size: 40px;
+    user-select: none;
+    -webkit-user-select: none;
+    /* inherented from parent #switch_photo_container*/
+    grid-row-start: 4;
+    grid-column-start: 5;
+    grid-row-end: 5;
+    grid-column-end: 7;
 }
 
 #switch_photo_left_arrow:hover, 
@@ -287,7 +288,7 @@ input[type="text"] {
     justify-content: space-between;
     margin: auto;
     width: 80%;
-    /*TODO: Yuang*/
+    /* TODO: Yuang */
     height: 3rem;
 
     text-align: center;
@@ -320,7 +321,7 @@ input[type="text"] {
     transition: all 0.2s ease-in;
 } */
 
-//TODO add hover effect to help, filter, and changeColor
+/* TODO add hover effect to help, filter, and changeColor */
 #functionality a {
     font-family: "Playfair Display", Arial, Georgia;
     font-size: 100%;
@@ -334,7 +335,6 @@ input[type="text"] {
     height: 100%;
     border-radius: 5px;
     -webkit-text-stroke: 0.8px gold;
-    
 }
 
 
