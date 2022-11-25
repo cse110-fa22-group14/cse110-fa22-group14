@@ -487,6 +487,22 @@ function handleEvents() {
     })
 
 
+            //Main page background color change (user picks color) -- Yuang Cui
+   
+            let dropdown = document.getElementById("changeColor");
+
+            dropdown.addEventListener("change", function () {
+                const color = this.value;
+                if (color === "default-color") {
+                    document.body.style.backgroundColor = "#6F4E37";
+                } else {
+                    document.body.style.backgroundColor = color;
+                }
+            });
+    
+
+
+
     /*
      * TODO: When user clicks a card's share button, it should trigger
      * a new event to post the card to social media.
