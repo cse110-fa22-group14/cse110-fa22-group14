@@ -277,7 +277,6 @@ function handleEvents() {
 
         const coffeeCardObject = {
             // Visible variables
-            //"current_card_id": current_card_id,
             "str_drink_name": data.get('str_drink_name'),
             "int_drink_price": data.get('int_drink_price'),
             "time_purchase_date": data.get('time_purchase_date'),
@@ -309,17 +308,6 @@ function handleEvents() {
         // If we are adding a card, make a new <coffee-card> element and add to gallery
         if (!isEditing) {
 
-            /*NOTE: This is not actually necessary 
-            //use current_card_id to identify each card
-            if (localStorage.getItem('current_card_id') != null) {
-                current_card_id = 1 + Number(localStorage.getItem('current_card_id'));
-            }
-            localStorage.setItem('current_card_id', current_card_id);
-            //add current_card_id to the information to store in local storage
-            coffeeCardObject['current_card_id'] = current_card_id;
-
-            console.log(data);
-
             /* create card object and load [key: value] pairs of the 
             * form and any other input into object
             */
@@ -333,7 +321,7 @@ function handleEvents() {
 
             // Update the card in the coffee cards array
             coffeeCards.push(coffeeCardObject);
-
+            
             // save to storage and update the page
             saveCoffeeCardsToStorage(coffeeCards);
             addCoffeeCardsToDocument(coffeeCards);
@@ -377,8 +365,6 @@ function handleEvents() {
         reset_image_id();
         isEditing = false;
         closeForm();
-        addCoffeeCardsToDocument(coffeeCards);
-
     })
 
 
@@ -406,10 +392,7 @@ function handleEvents() {
 
             // Update storage
             saveCoffeeCardsToStorage(coffeeCards);
-            addCoffeeCardsToDocument(coffeeCards);
-
-            // Update current_card_id field in the local storage to avoid null object
-            localStorage.setItem('current_card_id', coffeeCards.length - 1);            
+            addCoffeeCardsToDocument(coffeeCards);         
         }
     })
 
