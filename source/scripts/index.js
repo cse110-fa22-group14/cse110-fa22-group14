@@ -268,7 +268,7 @@ function handleEvents() {
             // Update gallery with new card
             addCoffeeCardsToDocument(coffeeCards);
             // Update current_card_id field
-            const LAST_CARD_INDEX = coffeeCards.length;
+            let LAST_CARD_INDEX = coffeeCards.length;
             localStorage.setItem('current_card_id', --LAST_CARD_INDEX);
             // FIXME: Upload field is not clearing itself after each upload
         }, false);
@@ -281,35 +281,28 @@ function handleEvents() {
     dropBox.addEventListener("dragenter", dragenter, false);
     dropBox.addEventListener("dragover", dragover, false);
     dropBox.addEventListener("drop", drop, false);
-
     function dragenter(e) {
         e.stopPropagation();
         e.preventDefault();
     }
-    
     function dragover(e) {
         e.stopPropagation();
         e.preventDefault();
     }
-
     function drop(e) {
         e.stopPropagation();
         e.preventDefault();
-      
         const dt = e.dataTransfer;
         const files = dt.files;
         const FIRST_FILE_INDEX = 0;
         const importFile = files[FIRST_FILE_INDEX];
-      
         // Basic type-check for the uploaded file
         if(importFile.type != "application/json") {
             console.error("Wrong file type: must import a JSON file!");
             return;
         }
-
         // Reader to read the imported file content
-        const reader = new FileReader();  
-
+        const reader = new FileReader();
         reader.addEventListener("load", () => {
             const fileText = JSON.parse(reader.result);
 
@@ -322,31 +315,27 @@ function handleEvents() {
             addCoffeeCardsToDocument(coffeeCards);
 
             // Update current_card_id field
-            const LAST_CARD_INDEX = coffeeCards.length;
+            let LAST_CARD_INDEX = coffeeCards.length;
             localStorage.setItem('current_card_id', --LAST_CARD_INDEX);
         }, false);
-        
         // Reader reads the file as text if valid
         if (importFile) {
             reader.readAsText(importFile);
         }
     }
-
     // Saving a new card to gallery or saving edit changes to an existing card
     form.addEventListener("submit", (event) => {
         event.preventDefault();
-
         let card;
-        let data = new FormData(form);
-        let coffeeCards = getCoffeeCardsFromStorage();
-        
-
+        const data = new FormData(form);
+        const coffeeCards = getCoffeeCardsFromStorage();
         const coffeeCardObject = {
             // Visible variables
             "str_drink_name": data.get('str_drink_name'),
             "int_drink_price": data.get('int_drink_price'),
             "time_purchase_date": data.get('time_purchase_date'),
             "str_purchase_location": data.get('str_purchase_location'),
+            /* global get_image_id*/
             "img_drink_image": get_image_id(),
             "int_slide_acidity": data.get('int_slide_acidity'),
             "int_slide_sweetness": data.get('int_slide_sweetness'),
@@ -374,27 +363,23 @@ function handleEvents() {
 
         // If we are adding a card, make a new <coffee-card> element and add to gallery
         if (!isEditing) {
-
-            /* Create card object and load [key: value] pairs of the
+            /*
+             * Create card object and load [key: value] pairs of the
              * form and any other input into object
              */
             const d = new Date();
             coffeeCardObject["time_creation_time"] = d.toLocaleTimeString();
-
-            // Store the form data inside the coffee card 
+            // Store the form data inside the coffee card
             card = document.createElement("coffee-card");
             card.data = coffeeCardObject;
-
             // Update the card in the coffee cards array
             coffeeCards.push(coffeeCardObject);
-            
             // Save to storage and update the page
             saveCoffeeCardsToStorage(coffeeCards);
             addCoffeeCardsToDocument(coffeeCards);
-
         }
-
-        /* Otherwise we can assume the user is trying to edit the card
+        /*
+         * Otherwise we can assume the user is trying to edit the card
          * so we just save the changes without changing size of the array
          */
         else if (isEditing) {
@@ -404,65 +389,60 @@ function handleEvents() {
             console.log("form is editing card at index: " + current_edit_id);
             // Save to storage and update the page
             saveCoffeeCardsToStorage(coffeeCards);
-            
-            let all_coffee_cards = document.querySelectorAll('coffee-card');
-
-            let card_to_edit = all_coffee_cards[current_edit_id].shadowRoot;
+            const all_coffee_cards = document.querySelectorAll('coffee-card');
+            const card_to_edit = all_coffee_cards[current_edit_id].shadowRoot;
             // Populate card thumbnail
-            card_to_edit.querySelector('#str_drink_name').innerText = 
+            card_to_edit.querySelector('#str_drink_name').innerText =
                 coffeeCardObject["str_drink_name"];
-            card_to_edit.querySelector('#time_purchase_date').innerText = 
+            card_to_edit.querySelector('#time_purchase_date').innerText =
                 coffeeCardObject["time_purchase_date"].toUpperCase();
-            card_to_edit.querySelector('#str_purchase_location').innerText = 
+            card_to_edit.querySelector('#str_purchase_location').innerText =
                 "Location: " + coffeeCardObject["str_purchase_location"];
-            card_to_edit.querySelector('#str_brew_style').innerText = 
+            card_to_edit.querySelector('#str_brew_style').innerText =
                 "Brew Method: " + coffeeCardObject["str_brew_style"];
-            card_to_edit.querySelector('#str_drink_type').innerText = 
+            card_to_edit.querySelector('#str_drink_type').innerText =
                 "Serving Type: " + coffeeCardObject["str_drink_type"];
-            card_to_edit.querySelector('#int_dropdown_color').innerText = 
+            card_to_edit.querySelector('#int_dropdown_color').innerText =
                 "Color Level: " + coffeeCardObject["int_dropdown_color"];
-            
         }
-        
-        /* Reset the coffee card's image to the default one, at index 0
+        /*
+         * Reset the coffee card's image to the default one, at index 0
          * next time the user chooses to add a new card, the image will
          * be the default one, which is the first one.
          */
+        /* global reset_image_id */
         reset_image_id();
         isEditing = false;
         closeForm();
     })
-
     // Clears fields of popUpBox element using "reset" attribute in index.html
     cancelButton.addEventListener("click", () => {
         closeForm();
     })
-
-    /** 
+    /**
      * Handles the event to delete a card from the gallery and
-     * local Storage. 
+     * local Storage.
      */
     document.addEventListener("trigger-delete", (event) => {
         console.log("delete clicked by user");
         if (event.composedPath) {
-            let cardIndex = event.target.id;
-            let galleryCard = document.getElementById(cardIndex);
+            const cardIndex = event.target.id;
+            const galleryCard = document.getElementById(cardIndex);
             // Remove the object from gallery
             galleryCard.remove();
-            
-            let coffeeCards = getCoffeeCardsFromStorage();  // Local JSON object of cards
+            // Local JSON object of cards
+            const coffeeCards = getCoffeeCardsFromStorage();
             const REMOVAL_COUNT = 1;
-            coffeeCards.splice(cardIndex, REMOVAL_COUNT);   // Remove the card from local sotrage
-
+            // Remove the card from local sotrage
+            coffeeCards.splice(cardIndex, REMOVAL_COUNT);
             // Update storage
             saveCoffeeCardsToStorage(coffeeCards);
-            addCoffeeCardsToDocument(coffeeCards);         
+            addCoffeeCardsToDocument(coffeeCards);
         }
     })
-    //Main page background color change (user picks color) -- Yuang Cui
 
-    let dropdown = document.getElementById("changeColor");
-
+    // Main page background color change (user picks color) -- Yuang Cui
+    const dropdown = document.getElementById("changeColor");
     dropdown.addEventListener("change", function () {
         const color = this.value;
         if (color === "default-color") {
