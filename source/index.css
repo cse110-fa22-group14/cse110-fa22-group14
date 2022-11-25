@@ -210,6 +210,7 @@ input[type="text"] {
 #switch_photo_right_arrow {
 
     /* INFO: reference: https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp */
+    
     /* NOTE: implemented left and right arrows to change inage */
     cursor: pointer;
     position: absolute;
@@ -227,16 +228,18 @@ input[type="text"] {
     grid-column-end: 7;
 }
 
-#switch_photo_left_arrow:hover, 
-#switch_photo_right_arrow:hover {
-    opacity: 0.5;
-}
 /* NOTE: spread out left and right arrows on two sides */
 #switch_photo_left_arrow {
     left: 10%;
 }
+
 #switch_photo_right_arrow {
     right: 10%;
+}
+
+#switch_photo_left_arrow:hover, 
+#switch_photo_right_arrow:hover {
+    opacity: 0.5;
 }
 
 #str_purchase_location {
@@ -287,6 +290,7 @@ input[type="text"] {
     justify-content: space-between;
     margin: auto;
     width: 80%;
+
     /* TODO: Yuang */
     height: 3rem;
 
