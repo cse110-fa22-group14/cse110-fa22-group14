@@ -159,17 +159,17 @@ function handleEvents() {
         isEditing = false;
     })
 
-    // Event delegation to handle editing cards dynamically 
+    // Event delegation to handle editing cards dynamically
     document.addEventListener('trigger-edit', function (event) {
 
             isEditing = true;
 
             // The edit button stores the corresponding coffee card id/posiiton in array
-            let position = event.target.id;
+            const position = event.target.id;
             console.log("editing card at index: " + position);
 
-            // get the corresponding card from the coffee cards array
-            let coffeeCardObject = getCoffeeCardsFromStorage()[position];
+            // Get the corresponding card from the coffee cards array
+            const coffeeCardObject = getCoffeeCardsFromStorage()[position];
             console.log(coffeeCardObject);
 
             // The following code works just fine to populate an input field
@@ -177,41 +177,41 @@ function handleEvents() {
             document.getElementById("int_drink_price").value = coffeeCardObject["int_drink_price"];
             document.getElementById("time_purchase_date").value = coffeeCardObject["time_purchase_date"];
             document.getElementById("str_purchase_location").value = coffeeCardObject["str_purchase_location"];
-            //populate the slider's display value
+            // Populate the slider's display value
             document.getElementById("acidity_val").innerText = coffeeCardObject["int_slide_acidity"];
             document.getElementById("sweetness_val").innerText = coffeeCardObject["int_slide_sweetness"];
             document.getElementById("bitterness_val").innerText = coffeeCardObject["int_slide_bitterness"];
             document.getElementById("saltiness_val").innerText = coffeeCardObject["int_slide_saltiness"];
-            //change slider value
+            // Change slider value
             document.getElementById("int_slide_acidity").value = coffeeCardObject["int_slide_acidity"];
             document.getElementById("int_slide_sweetness").value = coffeeCardObject["int_slide_sweetness"];
             document.getElementById("int_slide_bitterness").value = coffeeCardObject["int_slide_bitterness"];
             document.getElementById("int_slide_saltiness").value = coffeeCardObject["int_slide_saltiness"];
-            //populate the dropdowns
+            // Populate the dropdowns
             document.getElementById("str_drink_type").value = coffeeCardObject["str_drink_type"];
             document.getElementById("str_brew_style").value = coffeeCardObject["str_brew_style"];
             document.getElementById("int_dropdown_color").value = coffeeCardObject["int_dropdown_color"];
             document.getElementById("str_notes").value = coffeeCardObject["str_notes"];
 
-            //set the coffee card's image using the function in switchCoffeeImages.js
+            // Set the coffee card's image using the function in switchCoffeeImages.js
             set_image(coffeeCardObject["img_drink_image"]);
-            //check chocolate box if the card's bool_check_chocolate key has value 1
-            if(coffeeCardObject["bool_check_chocolate"] == 1) {
+            const TRUE_CHECKED = 1;
+            // Check chocolate box if the card's bool_check_chocolate key has value 1
+            if(coffeeCardObject["bool_check_chocolate"] == TRUE_CHECKED) {
                 document.getElementById("bool_check_chocolate").checked = true;
             }
-            //check chocolate box if the card's bool_check_caramel key has value 1
-            if(coffeeCardObject["bool_check_caramel"] == 1) {
+            // Check chocolate box if the card's bool_check_caramel key has value 1
+            if(coffeeCardObject["bool_check_caramel"] == TRUE_CHECKED) {
                 document.getElementById("bool_check_caramel").checked = true;
             }
-            //check chocolate box if the card's bool_check_nutty key has value 1
-            if(coffeeCardObject["bool_check_nutty"] == 1) {
+            // Check chocolate box if the card's bool_check_nutty key has value 1
+            if(coffeeCardObject["bool_check_nutty"] == TRUE_CHECKED) {
                 document.getElementById("bool_check_nutty").checked = true;
             }
-            //check chocolate box if the card's bool_check_fruity key has value 1
-            if(coffeeCardObject["bool_check_fruity"] == 1) {
+            // Check chocolate box if the card's bool_check_fruity key has value 1
+            if(coffeeCardObject["bool_check_fruity"] == TRUE_CHECKED) {
                 document.getElementById("bool_check_fruity").checked = true;
             }
-            
             // Keep track of which card we are editing
             current_edit_id = position;
             openForm();
@@ -222,18 +222,18 @@ function handleEvents() {
         if (event.composedPath) {
 
             // The edit button stores the corresponding coffee card id/posiiton in array
-            let position = event.target.id;
+            const position = event.target.id;
             console.log("exporting card at index: " + position);
 
-            let filename = "CoffeeCard" + position + ".json"
+            const filename = "CoffeeCard" + position + ".json"
 
-            // get the corresponding card from the coffee cards array
-            let coffeeCardObject = getCoffeeCardsFromStorage()[position];
+            // Get the corresponding card from the coffee cards array
+            const coffeeCardObject = getCoffeeCardsFromStorage()[position];
             console.log(coffeeCardObject);
 
-            let coffeeCardJson = JSON.stringify(coffeeCardObject);
+            const coffeeCardJson = JSON.stringify(coffeeCardObject);
 
-            let element = document.createElement('a')
+            const element = document.createElement('a')
             element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(coffeeCardJson));
             element.setAttribute('download', filename);
 
@@ -248,42 +248,35 @@ function handleEvents() {
 
     // Select-file import
     importButton.addEventListener("change", (event) => {
-        // console.log("import clicked");  // DELETE: for test
-        let importFile = event.target.files[0];    // Get the file uploaded by user
-        // console.log(importFile.name);    // DELETE: for test
+        // Get the file uploaded by user
+        const FIRST_FILE_INDEX = 0;
+        const importFile = event.target.files[FIRST_FILE_INDEX];
 
         // Basic type-check for the uploaded file
         if(importFile.type != "application/json") {
             console.error("Wrong file type: must import a JSON file!");
             return;
         }
-
-        let reader = new FileReader();  // Reader to read the imported file content
-
+        // Reader to read the imported file content
+        const reader = new FileReader();
         reader.addEventListener("load", () => {
-            let fileText = JSON.parse(reader.result);
-            // console.log(fileText);  // DELETE: for test
-
+            const fileText = JSON.parse(reader.result);
             // Update local cards
-            let coffeeCards = getCoffeeCardsFromStorage();
+            const coffeeCards = getCoffeeCardsFromStorage();
             coffeeCards.push(fileText);
             saveCoffeeCardsToStorage(coffeeCards);
-
             // Update gallery with new card
             addCoffeeCardsToDocument(coffeeCards);
-
             // Update current_card_id field
-            localStorage.setItem('current_card_id', coffeeCards.length - 1);
-
+            const LAST_CARD_INDEX = coffeeCards.length;
+            localStorage.setItem('current_card_id', --LAST_CARD_INDEX);
             // FIXME: Upload field is not clearing itself after each upload
         }, false);
-        
         // Reader reads the file as text if valid
         if (importFile) {
             reader.readAsText(importFile);
         }
     })
-
     // Drag-and-drop import
     dropBox.addEventListener("dragenter", dragenter, false);
     dropBox.addEventListener("dragover", dragover, false);
@@ -293,8 +286,8 @@ function handleEvents() {
         e.stopPropagation();
         e.preventDefault();
     }
-      
-      function dragover(e) {
+    
+    function dragover(e) {
         e.stopPropagation();
         e.preventDefault();
     }
@@ -305,23 +298,23 @@ function handleEvents() {
       
         const dt = e.dataTransfer;
         const files = dt.files;
-        let importFile = files[0];
+        const FIRST_FILE_INDEX = 0;
+        const importFile = files[FIRST_FILE_INDEX];
       
-        // console.log(files[0].name);
         // Basic type-check for the uploaded file
         if(importFile.type != "application/json") {
             console.error("Wrong file type: must import a JSON file!");
             return;
         }
 
-        let reader = new FileReader();  // Reader to read the imported file content
+        // Reader to read the imported file content
+        const reader = new FileReader();  
 
         reader.addEventListener("load", () => {
-            let fileText = JSON.parse(reader.result);
-            // console.log(fileText);  // DELETE: for test
+            const fileText = JSON.parse(reader.result);
 
             // Update local cards
-            let coffeeCards = getCoffeeCardsFromStorage();
+            const coffeeCards = getCoffeeCardsFromStorage();
             coffeeCards.push(fileText);
             saveCoffeeCardsToStorage(coffeeCards);
 
@@ -329,7 +322,8 @@ function handleEvents() {
             addCoffeeCardsToDocument(coffeeCards);
 
             // Update current_card_id field
-            localStorage.setItem('current_card_id', coffeeCards.length - 1);
+            const LAST_CARD_INDEX = coffeeCards.length;
+            localStorage.setItem('current_card_id', --LAST_CARD_INDEX);
         }, false);
         
         // Reader reads the file as text if valid
@@ -366,7 +360,8 @@ function handleEvents() {
 
         // This is to make checkbox values consistent across browsers
         document.querySelectorAll("input[type = checkbox]").forEach(box => {
-            coffeeCardObject[box.id] = 1
+            const CHECKED_TRUE = 1;
+            coffeeCardObject[box.id] = CHECKED_TRUE;
 
             if (box.checked == true) {
                 coffeeCardObject[box.id] = "1";
@@ -380,11 +375,10 @@ function handleEvents() {
         // If we are adding a card, make a new <coffee-card> element and add to gallery
         if (!isEditing) {
 
-            /* create card object and load [key: value] pairs of the 
-            * form and any other input into object
-            */
-            // console.log(coffeeCardObject);
-            let d = new Date();
+            /* Create card object and load [key: value] pairs of the
+             * form and any other input into object
+             */
+            const d = new Date();
             coffeeCardObject["time_creation_time"] = d.toLocaleTimeString();
 
             // Store the form data inside the coffee card 
@@ -394,7 +388,7 @@ function handleEvents() {
             // Update the card in the coffee cards array
             coffeeCards.push(coffeeCardObject);
             
-            // save to storage and update the page
+            // Save to storage and update the page
             saveCoffeeCardsToStorage(coffeeCards);
             addCoffeeCardsToDocument(coffeeCards);
 
@@ -404,17 +398,17 @@ function handleEvents() {
          * so we just save the changes without changing size of the array
          */
         else if (isEditing) {
-            // update the card in the array
+            // Update the card in the array
             console.log(coffeeCardObject);
             coffeeCards[current_edit_id] = coffeeCardObject;
             console.log("form is editing card at index: " + current_edit_id);
-            // save to storage and update the page
+            // Save to storage and update the page
             saveCoffeeCardsToStorage(coffeeCards);
             
             let all_coffee_cards = document.querySelectorAll('coffee-card');
 
             let card_to_edit = all_coffee_cards[current_edit_id].shadowRoot;
-            //populate card thumbnail
+            // Populate card thumbnail
             card_to_edit.querySelector('#str_drink_name').innerText = 
                 coffeeCardObject["str_drink_name"];
             card_to_edit.querySelector('#time_purchase_date').innerText = 
@@ -439,13 +433,10 @@ function handleEvents() {
         closeForm();
     })
 
-
     // Clears fields of popUpBox element using "reset" attribute in index.html
     cancelButton.addEventListener("click", () => {
         closeForm();
     })
-
-
 
     /** 
      * Handles the event to delete a card from the gallery and
@@ -460,30 +451,26 @@ function handleEvents() {
             galleryCard.remove();
             
             let coffeeCards = getCoffeeCardsFromStorage();  // Local JSON object of cards
-            coffeeCards.splice(cardIndex, 1);   // Remove the card from local sotrage
+            const REMOVAL_COUNT = 1;
+            coffeeCards.splice(cardIndex, REMOVAL_COUNT);   // Remove the card from local sotrage
 
             // Update storage
             saveCoffeeCardsToStorage(coffeeCards);
             addCoffeeCardsToDocument(coffeeCards);         
         }
     })
+    //Main page background color change (user picks color) -- Yuang Cui
 
+    let dropdown = document.getElementById("changeColor");
 
-            //Main page background color change (user picks color) -- Yuang Cui
-   
-            let dropdown = document.getElementById("changeColor");
-
-            dropdown.addEventListener("change", function () {
-                const color = this.value;
-                if (color === "default-color") {
-                    document.body.style.backgroundColor = "#6F4E37";
-                } else {
-                    document.body.style.backgroundColor = color;
-                }
-            });
-    
-
-
+    dropdown.addEventListener("change", function () {
+        const color = this.value;
+        if (color === "default-color") {
+            document.body.style.backgroundColor = "#6F4E37";
+        } else {
+            document.body.style.backgroundColor = color;
+        }
+    });
 
     /*
      * TODO: When user clicks a card's share button, it should trigger
