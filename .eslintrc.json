@@ -9,11 +9,21 @@
     "parserOptions": {
         "ecmaVersion": "latest"
     },
+    // added a plug in to test for snake_case
+    "plugins": [
+        "snakecasejs"
+    ],
+    "settings":
+    {
+        "snakecasejs/filter": ["ClassDeclaration", "NewExpression"],
+        "snakecasejs/whitelist": ["externalPath", "setNumber"]
+    },
     "rules": {
         "no-eq-null": "error",
         "no-async-promise-executor":"error",
         "no-unused-vars": "error",
-        "camelCase": "error",
+        // "camelcase": "error", do not use camel case, use snake case instead
+        "snakecasejs/snakecasejs": "error",
         "capitalized-comments": "error",
         "multiline-comment-style": ["error", "starred-block"],
         "line-comment-position":["error", "above"],

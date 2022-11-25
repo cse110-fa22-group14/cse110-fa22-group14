@@ -50,6 +50,7 @@ jobs:
 
           # Install your dependencies
           - run: npm ci
+          - run: npm install eslint-plugin-snakecasejs --save-dev
           - run: ./node_modules/.bin/eslint ./source/
 
           # Run ESLint
