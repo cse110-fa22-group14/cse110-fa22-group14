@@ -299,7 +299,7 @@ input[type="text"] {
 }
 
 #functionality #help, 
-#filter, #changeColor {
+#filter, #changeColor, #select_file {
     background-color: black;
     color: white;
     border-radius: 5px;
