@@ -1,16 +1,14 @@
+/* global describe, beforeAll, page, it, expect */
 describe("Basic user flow for Website", () => {
-    
+    // Load the page in url
     beforeAll(async () => {
       await page.goto('http://127.0.0.1:5501/source/index.html');
-     });
-    
+    });
 
-
-    // NOTE: The name and implementation of these tests are open to change. 
-    // Feel free to change anything. This is all just to get some basic code down
-    // But we should be thinking about testing for performance of our app 
-
-    let TOTAL_CARDS = 10; //total number of cards to add to the database
+    // Define the total number of cards to add to the database
+    const TOTAL_CARDS = 10; 
+    // Define the total time allowed for each test
+    const TOTAL_TEST_TIME = 25000;
     // Check to make sure that adding 10 cards to the page will create 10 cards
     it("Adding 10 cards should populate the gallery with 10 cards ", async () => {
   
@@ -35,9 +33,9 @@ describe("Basic user flow for Website", () => {
       });
 
       console.log(numCards);
-      expect(numCards).toBe(10);
+      expect(numCards).toBe(TOTAL_CARDS);
 
-    }, 20000);
+    }, TOTAL_TEST_TIME);
 
 
      // Edit the cards so we update the four fields by appending "-edited"
@@ -86,7 +84,7 @@ describe("Basic user flow for Website", () => {
          const saveButton = await page.$("#save");
          await saveButton.click();
         }
-     }, 20000);
+     }, TOTAL_TEST_TIME);
 
      // Check to make sure that all TOTAL_CARDS <coffee-card> elements have 
      // correct data in thumbnail
@@ -114,7 +112,7 @@ describe("Basic user flow for Website", () => {
         });
         expect(value).toBe("Location: Location"+i+"-edited");
       }
-    }, 10000);
+    }, TOTAL_TEST_TIME);
 
   // Check chocoloate checkbox edit functionality
   it('Checking the chocoloate checkbox values have been successfully edited when opend', async () => {
@@ -148,7 +146,7 @@ describe("Basic user flow for Website", () => {
       //save the edit of the card
       await saveButton.click();
     }
-  }, 25000);
+  }, TOTAL_TEST_TIME);
 
   // Check caramel checkbox edit functionality
   it('Checking the caramel checkbox values have been successfully edited when opend', async () => {
@@ -182,7 +180,7 @@ describe("Basic user flow for Website", () => {
       //save the edit of the card
       await saveButton.click();
     }
-  }, 25000);
+  }, TOTAL_TEST_TIME);
 
   // Check nutty checkbox edit functionality
   it('Checking the nutty checkbox values have been successfully edited when opend', async () => {
@@ -216,7 +214,7 @@ describe("Basic user flow for Website", () => {
       //save the edit of the card
       await saveButton.click();
     }
-  }, 25000);
+  }, TOTAL_TEST_TIME);
 
   // Check fruity checkbox edit functionality
   it('Checking the fruity checkbox values have been successfully edited when opend', async () => {
@@ -250,7 +248,7 @@ describe("Basic user flow for Website", () => {
       //save the edit of the card
       await saveButton.click();
     }
-  }, 25000);
+  }, TOTAL_TEST_TIME);
 
   // Check acidity slider edit functionality
   it('Checking the acidity slider values have been successfully edited when opend', async () => {
@@ -276,7 +274,7 @@ describe("Basic user flow for Website", () => {
         await saveButton.click();
       }
     }
-  }, 25000);
+  }, TOTAL_TEST_TIME);
 
   // Check sweetness slider edit functionality
   it('Checking the sweetness slider values have been successfully edited when opend', async () => {
@@ -302,7 +300,7 @@ describe("Basic user flow for Website", () => {
         await saveButton.click();
       }
     }
-  }, 25000);
+  }, TOTAL_TEST_TIME);
 
   // Check bitterness slider edit functionality
   it('Checking the bitterness slider values have been successfully edited when opend', async () => {
@@ -354,7 +352,7 @@ describe("Basic user flow for Website", () => {
         await saveButton.click();
       }
     }
-  }, 25000);
+  }, TOTAL_TEST_TIME);
 
 
   // Check to make sure that after you reload the page it remembers all coffee cards after edit
@@ -366,7 +364,7 @@ describe("Basic user flow for Website", () => {
       return coffeeCards.length;
     });
     expect(allCoffeeCardsLength).toBe(TOTAL_CARDS);
-  }, 10000);
+  }, TOTAL_TEST_TIME);
 
   /*
   TODO: check local storage
@@ -379,6 +377,4 @@ describe("Basic user flow for Website", () => {
     expect(coffeeCardsStored).toBe('[ FILL IN HERE ]');
   });
   */
-
-
   });
