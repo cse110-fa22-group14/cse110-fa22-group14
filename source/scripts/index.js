@@ -5,14 +5,10 @@
  */
 window.addEventListener('DOMContentLoaded', init);
 
-
-// when window loads,
+// Executes when the window loads
 function init() {
-
     const array = getCoffeeCardsFromStorage();
-
     addCoffeeCardsToDocument(array)
-
     handleEvents();
 }
 
@@ -31,17 +27,15 @@ function getCoffeeCardsFromStorage() {
     }
 }
 
-
 /**
  * Takes in an array of cofee card notes and for each one
  * it copies its data into a new <coffee-card> component
- * which is then appended to the gallery in a for loop. 
+ * which is then appended to the gallery in a for loop.
  * The loop is designed to automatically assign <coffee-card> a new id
- * based on their positions in the array. 
+ * based on their positions in the array.
  * @param {Array<Object>} coffeeCards An array of recipes
  */
 function addCoffeeCardsToDocument(coffeeCards) {
-
     if (!coffeeCards) {
         return;
     }
@@ -54,19 +48,20 @@ function addCoffeeCardsToDocument(coffeeCards) {
         card.remove();
     })
 
-    // the card is a a coffeeCard object and index is the position of that card in the array
+    // The card is a a coffeeCard object and index is the position of that card in the array
     coffeeCards.forEach((card, index) => {
         const coffeeCard = gallery.appendChild(document.createElement("coffee-card"));
         coffeeCard.data = card;
 
-        // set the id of the card and edit button 
+        // Set the id of the card and edit button
         coffeeCard.id = index;
-        coffeeCard.getChildren[2].id = index;
+        const EDIT_BUTTON_INDEX = 2;
+        coffeeCard.getChildren[EDIT_BUTTON_INDEX].id = index;
     })
 
 }
 
-/** 
+/**
  * Takes in an array of recipes, converts it to a string, and then
  * saves that string to 'recipes' in localStorage
  * @param {Array<Object>} coffeeCards An array of recipes
@@ -75,24 +70,18 @@ function saveCoffeeCardsToStorage(coffeeCards) {
     localStorage.setItem("coffeeCards", JSON.stringify(coffeeCards));
 }
 
-
-
 function handleEvents() {
-
     // Define variables to hold DOM elements
-    let dropBox = document.querySelector("body");
-    let helpButton = document.getElementById("help");
-    let filterOption = document.getElementById("filter");
-    let addButton = document.getElementById('add_card');
-    let form = document.getElementById('pop_up_box');
-    let cancelButton = document.getElementById('cancel');
-    let flavorSliders = document.getElementsByClassName('flavor_range');
+    const dropBox = document.querySelector("body");
+    const helpButton = document.getElementById("help");
+    const filterOption = document.getElementById("filter");
+    const addButton = document.getElementById('add_card');
+    const form = document.getElementById('pop_up_box');
+    const cancelButton = document.getElementById('cancel');
+    const flavorSliders = document.getElementsByClassName('flavor_range');
+    const importButton = document.getElementById("import");
     let isEditing = false;
     let current_edit_id = 0;
-    let importButton = document.getElementById("import");
-    //let current_card_id = 0;
-
-    
     function openForm() {
         form.style.opacity = 1;
         form.style.visibility = "visible";
@@ -101,30 +90,32 @@ function handleEvents() {
     function closeForm() {
         form.style.opacity = 0;
         form.style.visibility = "hidden";
-        //reset the form's html contents when done.
+        // Reset the form's html contents when done.
 
         document.getElementById("str_drink_name").value = "";
         document.getElementById("int_drink_price").value = "";
         document.getElementById("time_purchase_date").value = "";
         document.getElementById("str_purchase_location").value = "";
-        //populate the slider's display value
+        // Populate the slider's display value
         document.getElementById("acidity_val").innerText = "0";
         document.getElementById("sweetness_val").innerText = "0";
         document.getElementById("bitterness_val").innerText = "0";
         document.getElementById("saltiness_val").innerText = "0";
-        //change slider value
+        // Change slider value
         document.getElementById("int_slide_acidity").value = 0;
         document.getElementById("int_slide_sweetness").value = 0;
         document.getElementById("int_slide_bitterness").value = 0;
         document.getElementById("int_slide_saltiness").value = 0;
-        //populate the dropdowns
+        // Populate the dropdowns
         document.getElementById("str_drink_type").value = "Casual";
         document.getElementById("str_brew_style").value = "Drip";
         document.getElementById("int_dropdown_color").value = "Light";
         document.getElementById("str_notes").value = "";
 
-        //set the coffee card's image using the function in switchCoffeeImages.js
-        set_image(0);
+        // Set the coffee card's image using the function in switchCoffeeImages.js
+        const DEFAULT_IMAGE_INDEX = 0;
+        /* global set_image */
+        set_image(DEFAULT_IMAGE_INDEX);
         document.getElementById("bool_check_chocolate").checked = false;
         document.getElementById("bool_check_caramel").checked = false;
         document.getElementById("bool_check_nutty").checked = false;
@@ -138,7 +129,7 @@ function handleEvents() {
         const slider = flavorSliders[i];
 
         // When user changes value, display it to user
-        slider.addEventListener("change", (e) => {
+        slider.addEventListener("change", () => {
             // Get <span> tag next to current range slider
             const output = slider.nextElementSibling;
 
@@ -147,25 +138,18 @@ function handleEvents() {
         });
     }
 
-
-
-
     // TODO: Triggers another popup box providing details on how to use the app
     helpButton.addEventListener("click", () => {
 
     })
 
-
-
     /*
      * DO LATER: Grabs the value of whatever filter option was selected and applies
      * it to narrow the results of the gallery
      */
-    filterOption.addEventListener("change", (event) => {
+    filterOption.addEventListener("change", () => {
 
     })
-
-
 
     // Listener when user wants to add a new card
     addButton.addEventListener("click", () => {
@@ -174,8 +158,6 @@ function handleEvents() {
         form.style.visibility = "visible";
         isEditing = false;
     })
-
-
 
     // Event delegation to handle editing cards dynamically 
     document.addEventListener('trigger-edit', function (event) {
