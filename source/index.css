@@ -8,6 +8,7 @@
  */
 
 * {
+
     /* TODO: Yuang */
     margin: 0;
     padding: 0;
@@ -207,8 +208,9 @@ input[type="text"] {
 
 #switch_photo_left_arrow,
 #switch_photo_right_arrow {
-    /* reference: https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp */
-    /* implemented left and right arrows to change inage */
+
+    /* INFO: reference: https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp */
+    /* NOTE: implemented left and right arrows to change inage */
     cursor: pointer;
     position: absolute;
     width: auto;
@@ -217,7 +219,8 @@ input[type="text"] {
     font-size: 40px;
     user-select: none;
     -webkit-user-select: none;
-    /* inherented from parent #switch_photo_container*/
+
+    /* NOTE: inherented from parent #switch_photo_container */
     grid-row-start: 4;
     grid-column-start: 5;
     grid-row-end: 5;
@@ -228,7 +231,7 @@ input[type="text"] {
 #switch_photo_right_arrow:hover {
     opacity: 0.5;
 }
-/* out left and right arrows on two sides*/
+/* NOTE: spread out left and right arrows on two sides */
 #switch_photo_left_arrow {
     left: 10%;
 }
@@ -236,14 +239,12 @@ input[type="text"] {
     right: 10%;
 }
 
-
 #str_purchase_location {
     grid-row-start: 5;
     grid-column-start: 1;
     grid-row-end: 6;
     grid-column-end: 5;
 }
-
 
 #type_info_container {
     background-color: #ffff;
@@ -279,8 +280,6 @@ input[type="text"] {
      */
 }
 
-
-
 /* Holds the help and filter options above gallery */
 #functionality {
     display: flex;
@@ -295,7 +294,6 @@ input[type="text"] {
     align-items: center;
     table-layout: fixed;
 }
-
 
 #functionality #help, 
 #filter, #changeColor {
@@ -313,7 +311,6 @@ input[type="text"] {
     font-size: 2em;
     font-weight: 100;
 }
-
 
 /* #functionality #help:hover, #filter:hover, #changeColor:hover {
     cursor: pointer;
