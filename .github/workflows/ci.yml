@@ -50,7 +50,7 @@ jobs:
 
           # Install your dependencies
           - run: npm ci
-          - run: npm lint
+          - run: ./node_modules/.bin/eslint ./source/
 
           # Run ESLint
           # - uses: eslint/github-action@v0
