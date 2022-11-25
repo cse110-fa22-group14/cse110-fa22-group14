@@ -11,6 +11,8 @@ describe("Basic user flow for Website", () => {
     const TOTAL_TEST_TIME = 25000;
     // Increment by 1 in console.log()
     const INCREMENT = 1;
+    // Increment by 1 in console.log()
+    const SLIDER_MAX_VALUE = 5;
     // Check to make sure that adding 10 cards to the page will create 10 cards
     it("Adding 10 cards should populate the gallery with 10 cards ", async () => {
       // In a for loop click on the add button, provide input, and save
@@ -103,12 +105,12 @@ describe("Basic user flow for Website", () => {
   it('Checking the chocoloate checkbox values have been successfully edited when opend', async () => {
     console.log('Checking the chocoloate checkbox value after edits...');
     // Query a <coffee-card> element using puppeteer
-    let allCoffeeCards = await page.$$('coffee-card');
+    const allCoffeeCards = await page.$$('coffee-card');
     for (let i = 0; i < allCoffeeCards.length; i++) {
       console.log(`Checking coffee card ${i + INCREMENT}/${allCoffeeCards.length}'s chocoloate checkbox edit`);
       // Click the edit button
-      let itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
-      let buttonFromShadow = await itemFromShadow.$('button');
+      const itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
+      const buttonFromShadow = await itemFromShadow.$('button');
       await buttonFromShadow.click();
       // Initially, the check box should not be checked
       let checkboxOnPage = await page.$('#bool_check_chocolate');
@@ -120,7 +122,7 @@ describe("Basic user flow for Website", () => {
       checkboxValue= await (await checkboxOnPage.getProperty("checked")).jsonValue();
       expect(checkboxValue).toBe(true);
       // Save the edit of the card
-      let saveButton = await page.$("#save");
+      const saveButton = await page.$("#save");
       await saveButton.click();
       await buttonFromShadow.click();
       // When the page is open again
@@ -137,12 +139,12 @@ describe("Basic user flow for Website", () => {
   it('Checking the caramel checkbox values have been successfully edited when opend', async () => {
     console.log('Checking the caramel checkbox value after edits...');
     // Query a <coffee-card> element using puppeteer
-    let allCoffeeCards = await page.$$('coffee-card');
+    const allCoffeeCards = await page.$$('coffee-card');
     for (let i = 0; i < allCoffeeCards.length; i++) {
       console.log(`Checking coffee card ${i + INCREMENT}/${allCoffeeCards.length}'s caramel checkbox edit`);
      // Click the edit button
-      let itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
-      let buttonFromShadow = await itemFromShadow.$('button');
+      const itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
+      const buttonFromShadow = await itemFromShadow.$('button');
       await buttonFromShadow.click();
       // Initially, the check box should not be checked
       let checkboxOnPage = await page.$('#bool_check_caramel');
@@ -154,7 +156,7 @@ describe("Basic user flow for Website", () => {
       checkboxValue= await (await checkboxOnPage.getProperty("checked")).jsonValue();
       expect(checkboxValue).toBe(true);
       // Save the edit of the card
-      let saveButton = await page.$("#save");
+      const saveButton = await page.$("#save");
       await saveButton.click();
       await buttonFromShadow.click();
       // When the page is open again
@@ -171,12 +173,12 @@ describe("Basic user flow for Website", () => {
   it('Checking the nutty checkbox values have been successfully edited when opend', async () => {
     console.log('Checking the nutty checkbox value after edits...');
     // Query a <coffee-card> element using puppeteer
-    let allCoffeeCards = await page.$$('coffee-card');
+    const allCoffeeCards = await page.$$('coffee-card');
     for (let i = 0; i < allCoffeeCards.length; i++) {
       console.log(`Checking coffee card ${i + INCREMENT}/${allCoffeeCards.length}'s nutty checkbox edit`);
      // Click the edit button
-      let itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
-      let buttonFromShadow = await itemFromShadow.$('button');
+      const itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
+      const buttonFromShadow = await itemFromShadow.$('button');
       await buttonFromShadow.click();
       // Initially, the check box should not be checked
       let checkboxOnPage = await page.$('#bool_check_nutty');
@@ -188,7 +190,7 @@ describe("Basic user flow for Website", () => {
       checkboxValue= await (await checkboxOnPage.getProperty("checked")).jsonValue();
       expect(checkboxValue).toBe(true);
       // Save the edit of the card
-      let saveButton = await page.$("#save");
+      const saveButton = await page.$("#save");
       await saveButton.click();
       await buttonFromShadow.click();
       // When the page is open again
@@ -205,12 +207,12 @@ describe("Basic user flow for Website", () => {
   it('Checking the fruity checkbox values have been successfully edited when opend', async () => {
     console.log('Checking the fruity checkbox value after edits...');
     // Query a <coffee-card> element using puppeteer
-    let allCoffeeCards = await page.$$('coffee-card');
+    const allCoffeeCards = await page.$$('coffee-card');
     for (let i = 0; i < allCoffeeCards.length; i++) {
       console.log(`Checking coffee card ${i + INCREMENT}/${allCoffeeCards.length}'s fruity checkbox edit`);
      // Click the edit button
-      let itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
-      let buttonFromShadow = await itemFromShadow.$('button');
+      const itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
+      const buttonFromShadow = await itemFromShadow.$('button');
       await buttonFromShadow.click();
       // Initially, the check box should not be checked
       let checkboxOnPage = await page.$('#bool_check_fruity');
@@ -239,13 +241,13 @@ describe("Basic user flow for Website", () => {
   it('Checking the acidity slider values have been successfully edited when opend', async () => {
     console.log('Checking the card acidity slider value after edits...');
     // Query a <coffee-card> element using puppeteer
-    let allCoffeeCards = await page.$$('coffee-card');
+    const allCoffeeCards = await page.$$('coffee-card');
     for (let i = 0; i < allCoffeeCards.length; i++) {
       console.log(`Checking coffee card ${i + INCREMENT}/${allCoffeeCards.length}'s acidity slider edit`);
-      for (let j = 0; j <= 5; j++) {
+      for (let j = 0; j <= SLIDER_MAX_VALUE; j++) {
        // Click the edit button
-        let itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
-        let buttonFromShadow = await itemFromShadow.$('button');
+        const itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
+        const buttonFromShadow = await itemFromShadow.$('button');
         await buttonFromShadow.click();
         //change the slider value
         await page.$eval("#int_slide_acidity", (el, j) => el.value = j, j);
@@ -268,7 +270,7 @@ describe("Basic user flow for Website", () => {
     let allCoffeeCards = await page.$$('coffee-card');
     for (let i = 0; i < allCoffeeCards.length; i++) {
       console.log(`Checking coffee card ${i + INCREMENT}/${allCoffeeCards.length}'s sweetness slider edit`);
-      for (let j = 0; j <= 5; j++) {
+      for (let j = 0; j <= SLIDER_MAX_VALUE; j++) {
        // Click the edit button
         let itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
         let buttonFromShadow = await itemFromShadow.$('button');
@@ -294,7 +296,7 @@ describe("Basic user flow for Website", () => {
     let allCoffeeCards = await page.$$('coffee-card');
     for (let i = 0; i < allCoffeeCards.length; i++) {
       console.log(`Checking coffee card ${i + INCREMENT}/${allCoffeeCards.length}'s bitterness slider edit`);
-      for (let j = 0; j <= 5; j++) {
+      for (let j = 0; j <= SLIDER_MAX_VALUE; j++) {
        // Click the edit button
         let itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
         let buttonFromShadow = await itemFromShadow.$('button');
