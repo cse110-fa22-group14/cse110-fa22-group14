@@ -121,7 +121,6 @@
       * @param {Object} data - The data to pass into the <recipe-card>, must be of the
       *                        following format:
       *                        {
-      *                            "current_card_id": "int",
       *                            "str_drink_name":"string",
       *                            "int_drink_price":"int",
       *                            "time_purchase_date":"date",
@@ -164,7 +163,6 @@
           <p id = "str_brew_style"><slot name="brew_style" />Brew Method: ${data["str_brew_style"]}</p>
           <p id = "str_drink_type"><slot name="drink_type">Serving Type: ${data["str_drink_type"]}</p>
           <p id = "int_dropdown_color"><slot name="color">Color Level: ${data["int_dropdown_color"]}</p>
-          <p id="current_card_id" value="${data["current_card_id"]}" hidden></p>
         </section>
         <button class = "toggle_edit" >Edit</button>
         <button class = "delete" >Delete</button>
