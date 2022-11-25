@@ -27,7 +27,7 @@ jobs:
         - name: Start Live Server
           run:
             npm install http-server
-            http-server ./source/
+            http-server .
 
         
     Jest:
