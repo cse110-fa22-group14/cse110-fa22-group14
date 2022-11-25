@@ -41,16 +41,17 @@ jobs:
 
         steps:
           # Check out the repository
-          - uses: actions/checkout@v1
+          - uses: actions/checkout@v3
 
           # Install Node.js
-          - uses: actions/setup-node@v1
+          - uses: actions/setup-node@v3
             with:
-              node-version: 12
+              node-version: 16
 
           # Install your dependencies
           - run: npm ci
+          - run: npm lint
 
           # Run ESLint
-          - uses: eslint/github-action@v0
+          # - uses: eslint/github-action@v0
 
