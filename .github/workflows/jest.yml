@@ -24,6 +24,10 @@ jobs:
       steps:
         # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
         - uses: actions/checkout@v3
+        - name: Start Live Server
+          run:
+            npm install -g live-server
+            live-server
 
         
     Jest:
