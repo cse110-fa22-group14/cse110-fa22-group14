@@ -3,7 +3,7 @@ describe("Basic user flow for Website", () => {
     // Load the page in url
     beforeAll(async () => {
       // Now using Github Page URL. Feel free to change back to Live Server URL for manual testing!
-      await page.goto('http://127.0.0.1:8000/');
+      await page.goto('./source/index.html');
     });
 
     // Define the total number of cards to add to the database

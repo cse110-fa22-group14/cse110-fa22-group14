@@ -24,19 +24,27 @@ jobs:
       steps:
         # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
         - uses: actions/checkout@v3
-        - name: Start Live Server
-          run:
-            npm install -g local-web-server
-            ws --spa ./source/index.html
 
         
     Jest:
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v1
-        
-        - name: Run Tests
-          run: |
-            npm install 
-            npm test
+        - name: Install Dependencies
+        uses: actions/setup-node@v2
+        env:
+          PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: "true"
+        with:
+          args: install
+      - name: Test Code
+        uses: mujo-code/puppeteer-headful@16.6.0
+        env:
+          CI: "true"
+        with:
+          args: npm test
+
+        #- name: Run Tests
+          #run: |
+            #npm install 
+            #npm test
             
