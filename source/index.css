@@ -61,7 +61,6 @@ main {
     transform: translate(-50%, -50%);
     left: 50%;
     top: 50%;
-    
 
     /* Because we have so many components, it's best to make it a grid */
     display: grid;
@@ -73,7 +72,6 @@ main {
     /* Space between each form child */
     gap: 10px;
 }
-
 
 /* Encapsulation for different inputs in form */
 fieldset {
@@ -97,6 +95,7 @@ fieldset {
 
 /* TOOD: smoothly change opacity when hoverning */
 #save:hover {
+    cursor: pointer;
     opacity: 0.8;
     transition: all 0.2s ease-in;
 }
@@ -141,6 +140,7 @@ input[type="text"] {
     border-radius: 10px;
     font-size: 1.2em;
     font-family: "Zen Maru Gothic", Arial, Georgia;
+    background-color: #ffff;
 }
 
 #flavor_container {
@@ -219,7 +219,6 @@ input[type="text"] {
     font-weight: bold;
     font-size: 40px;
     user-select: none;
-    -webkit-user-select: none;
 
     /* NOTE: inherented from parent #switch_photo_container */
     grid-row-start: 4;
@@ -269,6 +268,7 @@ input[type="text"] {
 }
 
 #str_notes {
+    background-color: #ffff;
     grid-row-start: 9;
     grid-column-start: 4;
     grid-row-end: 13;
@@ -293,7 +293,6 @@ input[type="text"] {
 
     /* TODO: Yuang */
     height: 3rem;
-
     text-align: center;
     align-items: center;
     table-layout: fixed;
@@ -337,8 +336,6 @@ input[type="text"] {
     border-radius: 5px;
     -webkit-text-stroke: 0.8px gold;
 }
-
-
 
 /* The list that stores all the cards
  * Three columns but its rows should grow dynamically with number of cards added
