@@ -7,8 +7,8 @@
  * 
  */
 
-    /* TODO: Yuang */
 * {
+    /* TODO: Yuang */
     margin: 0;
     padding: 0;
     border: 0;
@@ -204,7 +204,6 @@ input[type="text"] {
     grid-column-end: 7;
     border-radius: 10px;
 }
-
 /* reference: https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp */
 /* implemented left and right arrows to change inage */
 #switch_photo_left_arrow,
