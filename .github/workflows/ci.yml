@@ -14,41 +14,43 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+  # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    # This workflow contains a single job called "build"
+    build:
+      # The type of runner that the job will run on
+      runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
- 
-  styleLint:
-    runs-on: ubuntu-latest
+      # Steps represent a sequence of tasks that will be executed as part of the job
+      steps:
+        # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+        - uses: actions/checkout@v3
+  
 
-    steps:
-      - uses: actions/checkout@v1
-      - uses: actions-hub/stylelint@master
-        env:
-          PATTERN: "**/*.css"
-
-  ESLint:
+    styleLint:
       runs-on: ubuntu-latest
 
       steps:
-        # Check out the repository
         - uses: actions/checkout@v1
+        - uses: actions-hub/stylelint@master
+          env:
+            PATTERN: "**/*.css"
 
-        # Install Node.js
-        - uses: actions/setup-node@v1
-          with:
-            node-version: 12
+    ESLint:
+        runs-on: ubuntu-latest
 
-        # Install your dependencies
-        - run: npm ci
+        steps:
+          # Check out the repository
+          - uses: actions/checkout@v1
 
-        # Run ESLint
-        - uses: eslint/github-action@v0
+          # Install Node.js
+          - uses: actions/setup-node@v1
+            with:
+              node-version: 12
+
+          # Install your dependencies
+          - run: npm ci
+
+          # Run ESLint
+          - uses: eslint/github-action@v0
+
