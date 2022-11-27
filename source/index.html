@@ -48,10 +48,12 @@
                 </span> </h1>
     
             <!--the filter should be implemented later -->
-            <select id= "filter"> 
-                <option value = "Default">Default sort</option>
-                <option value = "Low-High">Low-High</option>
-                <option value = "High-Low">High-Low</option>
+            <select id= "filter">
+              <option value = "1Date: Oldest-Newest">Default</option>
+              <option value = "0Price: Low-High">Price: Low-High</option>
+              <option value = "1Price: High-Low">Price: High-Low</option>
+              <option value = "0Date: Oldest-Newest">Date: Oldest-Newest</option>
+              <option value = "1Date: Oldest-Newest">Date: Newest-Oldest</option>
             </select> 
             
             <!-- allow user to change background color -->
@@ -71,13 +73,15 @@
         </section>
     </header>
 
+
     <form id = "pop_up_box">
         <button id = "save" type = "submit">SAVE</button>
         <button id = "cancel" type = "reset">CANCEL</button>
         
         <input type = "text" id="str_drink_name" placeholder="name of drink" name = "str_drink_name" required/>
         <input type = "text"id="int_drink_price" placeholder = "price" name = "int_drink_price" required/>
-        <input type = "text"id="time_purchase_date" placeholder = "date purchased" name = "time_purchase_date" required/>
+        <!-- <input type = "text"id="time_purchase_date" placeholder = "date purchased" name = "time_purchase_date" required/> -->
+        <input type="date" id="time_purchase_date"  name = "time_purchase_date" required/>
         <input type = "text" id="str_purchase_location" placeholder = "location" name = "str_purchase_location" required/>
         
         <img id = "img_drink_image" src = "./assets/images/coffee-picture0.png" alt = "photo of drink" name = "img_drink_image">
