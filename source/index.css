@@ -131,7 +131,7 @@ fieldset {
 }
 
 /* Gets rid of default styling for text boxes */
-input[type="text"] {
+input {
 
     /* How much negative space to the left of input inside textbox */
     padding-left: 15px;
