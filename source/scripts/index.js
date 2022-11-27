@@ -101,36 +101,42 @@ function handleEvents() {
     }
 
     function closeForm() {
+
         form.style.opacity = 0;
         form.style.visibility = "hidden";
-        //reset the form's html contents when done.
 
+        /*
+        // Reset the form's html contents when done.
         document.getElementById("str_drink_name").value = "";
         document.getElementById("int_drink_price").value = "";
         document.getElementById("time_purchase_date").value = "";
         document.getElementById("str_purchase_location").value = "";
-        //populate the slider's display value
+
+        // Populate the slider's display value
         document.getElementById("acidity_val").innerText = "0";
         document.getElementById("sweetness_val").innerText = "0";
         document.getElementById("bitterness_val").innerText = "0";
         document.getElementById("saltiness_val").innerText = "0";
-        //change slider value
+
+        // Change slider value
         document.getElementById("int_slide_acidity").value = 0;
         document.getElementById("int_slide_sweetness").value = 0;
         document.getElementById("int_slide_bitterness").value = 0;
         document.getElementById("int_slide_saltiness").value = 0;
-        //populate the dropdowns
+
+        // Populate the dropdowns
         document.getElementById("str_drink_type").value = "Casual";
         document.getElementById("str_brew_style").value = "Drip";
         document.getElementById("int_dropdown_color").value = "Light";
         document.getElementById("str_notes").value = "";
 
-        //set the coffee card's image using the function in switchCoffeeImages.js
+        // Set the coffee card's image using the function in switchCoffeeImages.js
         set_image(0);
         document.getElementById("bool_check_chocolate").checked = false;
         document.getElementById("bool_check_caramel").checked = false;
         document.getElementById("bool_check_nutty").checked = false;
         document.getElementById("bool_check_fruity").checked = false;
+        */
     }
 
 
@@ -141,6 +147,7 @@ function handleEvents() {
 
         // When user changes value, display it to user
         slider.addEventListener("change", (e) => {
+
             // Get <span> tag next to current range slider
             const output = slider.nextElementSibling;
 
@@ -157,7 +164,11 @@ function handleEvents() {
 
     })
 
+
+
+    // FIXME: Add comments and documentation! Explain what this is doing!
     function sortPrice(a, b) {
+
         if (parseInt(a["int_drink_price"]) < parseInt(b["int_drink_price"])) {
             return -1;
         }
@@ -169,8 +180,9 @@ function handleEvents() {
         }
     }
 
+
+
     function sortDate(a, b) {
-        
         
         if (a["time_purchase_date"] < b["time_purchase_date"]) {
             return -1;
@@ -183,15 +195,14 @@ function handleEvents() {
         }
     }
 
+
+
+
     /*
-     * DO LATER: Grabs the value of whatever filter option was selected and applies
+     * Grabs the value of whatever filter option was selected and applies
      * it to narrow the results of the gallery
      */
     filterOption.addEventListener("change", (event) => {
-        //define sorting function for price
-        //define sorting function for rating
-        //get the sorting selection
-        //get all the coffee cards
         
         /**
          * "Default">Default</option>
@@ -203,37 +214,39 @@ function handleEvents() {
          */
         let coffeeCards = getCoffeeCardsFromStorage();
         
+        //get the sorting selection
         const sortSelect = document.getElementById("filter")
         let choice = sortSelect.value;
 
-        console.log(coffeeCards[0]["time_purchase_date"])
+        // console.log(coffeeCards[0]["time_purchase_date"])
         
-        if (choice[1] == "P") {
+        // Define sorting function for price
+        if (choice.match("Price")) {
             coffeeCards.sort(sortPrice)
         }
-        else if (choice[1] == "D") {
+
+        // Define sorting function for rating
+        else if (choice.match("Date")) {
             coffeeCards.sort(sortDate)
         }
 
-
+        /* If the value has a prepended 1, then sort the list
+         * from high to low
+         */
         if (choice[0] == "1") {
-            //flip it in the end
             coffeeCards.reverse()
-
-        
         }
         
+        // Save the changes 
         addCoffeeCardsToDocument(coffeeCards);
         saveCoffeeCardsToStorage(coffeeCards)
-
-
-        
     })
 
 
 
     // Listener when user wants to add a new card
     addButton.addEventListener("click", () => {
+
         // Make popupBox visible. Just change the opacity
         form.style.opacity = "1";
         form.style.visibility = "visible";
@@ -251,7 +264,7 @@ function handleEvents() {
             let position = event.target.id;
             console.log("editing card at index: " + position);
 
-            // get the corresponding card from the coffee cards array
+            // Get the corresponding card from the coffee cards array
             let coffeeCardObject = getCoffeeCardsFromStorage()[position];
             console.log(coffeeCardObject);
 
@@ -260,37 +273,38 @@ function handleEvents() {
             document.getElementById("int_drink_price").value = coffeeCardObject["int_drink_price"];
             document.getElementById("time_purchase_date").value = coffeeCardObject["time_purchase_date"];
             document.getElementById("str_purchase_location").value = coffeeCardObject["str_purchase_location"];
-            //populate the slider's display value
+            // Ppulate the slider's display value
             document.getElementById("acidity_val").innerText = coffeeCardObject["int_slide_acidity"];
             document.getElementById("sweetness_val").innerText = coffeeCardObject["int_slide_sweetness"];
             document.getElementById("bitterness_val").innerText = coffeeCardObject["int_slide_bitterness"];
             document.getElementById("saltiness_val").innerText = coffeeCardObject["int_slide_saltiness"];
-            //change slider value
+            // Change slider value
             document.getElementById("int_slide_acidity").value = coffeeCardObject["int_slide_acidity"];
             document.getElementById("int_slide_sweetness").value = coffeeCardObject["int_slide_sweetness"];
             document.getElementById("int_slide_bitterness").value = coffeeCardObject["int_slide_bitterness"];
             document.getElementById("int_slide_saltiness").value = coffeeCardObject["int_slide_saltiness"];
-            //populate the dropdowns
+            // Populate the dropdowns
             document.getElementById("str_drink_type").value = coffeeCardObject["str_drink_type"];
             document.getElementById("str_brew_style").value = coffeeCardObject["str_brew_style"];
             document.getElementById("int_dropdown_color").value = coffeeCardObject["int_dropdown_color"];
             document.getElementById("str_notes").value = coffeeCardObject["str_notes"];
 
-            //set the coffee card's image using the function in switchCoffeeImages.js
+            // Set the coffee card's image using the function in switchCoffeeImages.js
             set_image(coffeeCardObject["img_drink_image"]);
-            //check chocolate box if the card's bool_check_chocolate key has value 1
+
+            // Check chocolate box if the card's bool_check_chocolate key has value 1
             if(coffeeCardObject["bool_check_chocolate"] == 1) {
                 document.getElementById("bool_check_chocolate").checked = true;
             }
-            //check chocolate box if the card's bool_check_caramel key has value 1
+            // Check chocolate box if the card's bool_check_caramel key has value 1
             if(coffeeCardObject["bool_check_caramel"] == 1) {
                 document.getElementById("bool_check_caramel").checked = true;
             }
-            //check chocolate box if the card's bool_check_nutty key has value 1
+            // Check chocolate box if the card's bool_check_nutty key has value 1
             if(coffeeCardObject["bool_check_nutty"] == 1) {
                 document.getElementById("bool_check_nutty").checked = true;
             }
-            //check chocolate box if the card's bool_check_fruity key has value 1
+            // Check chocolate box if the card's bool_check_fruity key has value 1
             if(coffeeCardObject["bool_check_fruity"] == 1) {
                 document.getElementById("bool_check_fruity").checked = true;
             }
@@ -300,7 +314,12 @@ function handleEvents() {
             openForm();
     })
 
-    document.addEventListener('trigger-export', function (event) {
+
+
+
+
+
+    document.addEventListener('trigger-export', event => {
 
         if (event.composedPath) {
 
@@ -329,8 +348,8 @@ function handleEvents() {
         }
     })
 
-    // Select-file import
-    importButton.addEventListener("change", (event) => {
+    /* Select-file import
+    importButton.addEventListener("change", event => {
         // console.log("import clicked");  // DELETE: for test
         let importFile = event.target.files[0];    // Get the file uploaded by user
         // console.log(importFile.name);    // DELETE: for test
@@ -420,6 +439,7 @@ function handleEvents() {
             reader.readAsText(importFile);
         }
     }
+    */
 
     // Saving a new card to gallery or saving edit changes to an existing card
     form.addEventListener("submit", (event) => {
