@@ -5,7 +5,7 @@
  */
 window.addEventListener('DOMContentLoaded', init);
 
-const NEGATIVE_ONE = -1;
+/* Removed constant: const NEGATIVE_ONE = -1; */
 const ZERO = 0;
 const ONE = 1;
 const TWO = 2;
@@ -211,13 +211,13 @@ function handleEvents() {
         }
     }
 
-   /**
-      * 
-      * @param {object} a the first card to be compared
-      * @param {object} b the second card to be compared 
-      * @returns the result of a 3 way camprison of a and b
-      * camparitor function that gives priority to the card with the higher price.
-      */
+    /**
+     * 
+     * @param {object} a the first card to be compared
+     * @param {object} b the second card to be compared 
+     * @returns the result of a 3 way camprison of a and b
+     * camparitor function that gives priority to the card with the higher price.
+     */
     function sortPrice(a, b) {
         const priceA = parseInt(a['int_dring_price']);
         const priceB = parseInt(b['int_drink_price']);
