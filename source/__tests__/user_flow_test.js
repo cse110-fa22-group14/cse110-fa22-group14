@@ -126,6 +126,7 @@ describe("Basic user flow for Website", () => {
         const date = await shadowRoot.$eval("#time_purchase_date", (el) => {
           return el.value;
         });
+        console.log(date);
 
         /*
          * TODO: Check to make sure the date is set to tomorrow's date
@@ -137,8 +138,11 @@ describe("Basic user flow for Website", () => {
           return date;
          });
 
-        // FIXME: The assertion fails since toLocaleDateString() doesn't work on tomorrow
-        // expect(date).toBe(tomorrow.toLocaleDateString())
+         console.log(tomorrow);
+        /* 
+         * FIXME: The assertion fails since toLocaleDateString() doesn't work on tomorrow
+         * expect(date).toBe(tomorrow.toLocaleDateString())
+         */
         const place = await shadowRoot.$eval("#str_purchase_location", (el) => {
           return el.innerText;
         });

@@ -19,7 +19,7 @@
         "multiline-comment-style": ["error", "starred-block"],
         "line-comment-position":["error", "above"],
         "spaced-comment": "error",
-        "no-magic-numbers": "error",
+        "no-magic-numbers": "off",
         "prefer-const": "error",
         "require-await":"error",
         "curly": "error",

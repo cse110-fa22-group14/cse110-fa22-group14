@@ -100,3 +100,4 @@ function init(){
     get_image_id();
     reset_image_id();
 }
+
