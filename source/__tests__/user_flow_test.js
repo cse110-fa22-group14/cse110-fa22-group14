@@ -49,11 +49,11 @@ describe("Basic user flow for Website", () => {
 
       const cards = await page.$$('coffee-card');
       // In a for loop click on each card and edit the first four fields
-      for(let i = 0; i < TOTAL_CARDS; i++) {
-        console.log("editing card #" + i);
-        const currCard = cards[i];
-        const shadowRoot =  await currCard.getProperty("shadowRoot");
-        await shadowRoot.$eval("#toggle_edit", el => el.click());
+      for(let i = 0; i < cards.length; i++) {
+        
+        const shadowRoot = await cards[i].getProperty("shadowRoot");
+        const editButton = await shadowRoot.$("button");
+        await editButton.click();
     
         await page.$eval("#str_drink_name", (el, value) => el.value = "Drink"+value+"-edited", i);
         await page.$eval("#int_drink_price", (el, value) => el.value = "Price"+value+"-edited", i);
@@ -70,22 +70,23 @@ describe("Basic user flow for Website", () => {
       }
 
       // Then check to make sure the fields match our assumptions
-      await page.reload();
       //console.log("Total Coffee Cards is " + cardsUpdated.length)
-      let updatedCards = await page.$$('coffee-card');
+      let cardsUpdated = await page.$$('coffee-card');
       for (let i = 0; i < TOTAL_CARDS; i++) {
 
         console.log("Checking edited card #" + i);
-        const shadowRoot = await updatedCards[i].getProperty('shadowRoot');
-        await shadowRoot.$eval("#toggle_edit", el => el.click());
-
-        const drinkName = await page.$eval("#str_drink_name", el => {
+        const shadowRoot = await cardsUpdated[i].getProperty('shadowRoot');
+        const editButton = await shadowRoot.$("button");
+        await editButton.click();
+        const drinkName = await page.$eval("#str_drink_name", (el) => {
           return el.value;
         });
 
         console.log("card #"+i+ " has name " + drinkName)
-        //expect(drinkName).toBe("Drink"+i+"-edited");
-         await page.$eval("#save", el => el.click());
+        expect(drinkName).toBe("Drink"+i+"-edited");
+        const cancelButton = await page.$("#cancel");
+        await cancelButton.click();
+        
       }
     
     }, TOTAL_TEST_TIME);
