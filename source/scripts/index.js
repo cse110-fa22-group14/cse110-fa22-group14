@@ -178,9 +178,6 @@ function handleEvents() {
         });
     }
 
-
-
-
     /* 
      * TODO: Triggers another popup box providing details on how to use the app
      * helpButton.addEventListener("click", () => {
@@ -190,38 +187,51 @@ function handleEvents() {
      * })
      */
 
-
-
-    // FIXME: Add comments and documentation! Explain what this is doing!
-    function sortPrice(a, b) {
-
-        if (parseInt(a["int_drink_price"]) < parseInt(b["int_drink_price"])) {
-            return NEGATIVE_ONE;
-        }
-        else if (parseInt(a["int_drink_price"]) > parseInt(b["int_drink_price"])) {
-            return ONE;
-        }
-        else{
-            return ZERO;
-        }
-    }
-
-
-
+    /**
+     * 
+     * @param {object} a the first card to be compared
+     * @param {object} b the second card to be compared
+     * @returns the result between a 3 way comparison of a and b
+     * caomparitor function that gives priority to the card with the earliest date.
+     * works by comparing the dates as strings which works because the date input field formats
+     * responses as YYYY/MM/DD allowing for direct string comparison
+     */
     function sortDate(a, b) {
-
-        if (a["time_purchase_date"] < b["time_purchase_date"]) {
-            return NEGATIVE_ONE;
+        
+        const dateA = a['time_purchased_date'];
+        const dateB = b['time_purchased_date'];
+        if (dateA < dateB) {
+            return -1;
         }
-        else if (a["time_purchase_date"] > b["time_purchase_date"]) {
-            return ONE;
+        else if (dateA > dateB) {
+            return 1;
         }
         else{
             return ZERO;
         }
     }
 
+   /**
+      * 
+      * @param {object} a the first card to be compared
+      * @param {object} b the second card to be compared 
+      * @returns the result of a 3 way camprison of a and b
+      * camparitor function that gives priority to the card with the higher price.
+      */
+    function sortPrice(a, b) {
+        const priceA = parseInt(a['int_dring_price']);
+        const priceB = parseInt(b['int_drink_price']);
 
+        if (priceA < priceB) {
+            return -1;
+        }
+        if (priceA > priceB) {
+            return 1;
+        }
+        else{
+            return ZERO;
+        }
+    }
 
 
     /*
@@ -249,12 +259,12 @@ function handleEvents() {
 
         // Define sorting function for price
         if (choice.match("Price")) {
-            coffeeCards.sort(sortPrice)
+            coffeeCards.sort(sortPrice);
         }
 
         // Define sorting function for rating
         else if (choice.match("Date")) {
-            coffeeCards.sort(sortDate)
+            coffeeCards.sort(sortDate);
         }
 
         /*
