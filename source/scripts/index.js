@@ -5,7 +5,7 @@
  */
 window.addEventListener('DOMContentLoaded', init);
 
-/* Removed constant: const NEGATIVE_ONE = -1; */
+const NEGATIVE_ONE = -1;
 const ZERO = 0;
 const ONE = 1;
 const TWO = 2;
@@ -201,10 +201,10 @@ function handleEvents() {
         const dateA = a['time_purchased_date'];
         const dateB = b['time_purchased_date'];
         if (dateA < dateB) {
-            return -1;
+            return NEGATIVE_ONE;
         }
         else if (dateA > dateB) {
-            return 1;
+            return ONE;
         }
         else{
             return ZERO;
@@ -223,10 +223,10 @@ function handleEvents() {
         const priceB = parseInt(b['int_drink_price']);
 
         if (priceA < priceB) {
-            return -1;
+            return NEGATIVE_ONE;
         }
         if (priceA > priceB) {
-            return 1;
+            return ONE;
         }
         else{
             return ZERO;
