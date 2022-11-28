@@ -52,7 +52,7 @@ describe("Basic user flow for Website", () => {
       for(let i = 0; i < cards.length; i++) {
         
         const shadowRoot = await cards[i].getProperty("shadowRoot");
-        const editButton = await shadowRoot.$("#toggle_edit");
+        const editButton = await shadowRoot.$("button");
         await editButton.click();
     
         await page.$eval("#str_drink_name", (el, value) => el.value = "Drink"+value+"-edited", i);
@@ -73,13 +73,13 @@ describe("Basic user flow for Website", () => {
       for (let i = 0; i < cardsUpdated.length; i++) {
         console.log("Checking edited card #" + i);
         const shadowRoot = await cardsUpdated[i].getProperty('shadowRoot');
-        const editButton = await shadowRoot.$(".toggle_edit");
+        const editButton = await shadowRoot.$("button");
         await editButton.click();
         const drinkName = await page.$eval("#str_drink_name", (el) => {
           return el.value;
         });
         console.log("card #"+i+ " has name " + drinkName)
-        //expect(drinkName).toBe("Drink"+i+"-edited");
+        expect(drinkName).toBe("Drink"+i+"-edited");
         const cancelButton = await page.$("#cancel");
         await cancelButton.click();
         
