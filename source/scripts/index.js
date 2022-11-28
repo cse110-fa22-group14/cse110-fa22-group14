@@ -68,6 +68,7 @@ function addCoffeeCardsToDocument(coffeeCards) {
 
     let all_coffee_cards = document.querySelectorAll('coffee-card');
 
+    // Change the fields on the existing coffee-card elements
     for (let counter = 0; counter < all_coffee_cards.length; counter++) {
         const coffeeCardObject = coffeeCards[counter];
         const card_to_edit = all_coffee_cards[counter].shadowRoot;
@@ -86,6 +87,7 @@ function addCoffeeCardsToDocument(coffeeCards) {
             "Color Level: " + coffeeCardObject["int_dropdown_color"];
     }
 
+    // Make new coffee-card elements if necessary
     for (let counter = all_coffee_cards.length; counter < coffeeCards.length; counter++) {
         const coffeeCard = gallery.appendChild(document.createElement("coffee-card"));
          coffeeCard.data = coffeeCards[counter];
@@ -501,11 +503,9 @@ function handleEvents() {
         let card;
         let data = new FormData(form);
         let coffeeCards = getCoffeeCardsFromStorage();
-        
 
         const coffeeCardObject = {
             // Visible variables
-            //"current_card_id": current_card_id,
             "str_drink_name": data.get('str_drink_name'),
             "int_drink_price": data.get('int_drink_price'),
             "time_purchase_date": data.get('time_purchase_date'),
@@ -523,8 +523,7 @@ function handleEvents() {
 
         // This is to make checkbox values consistent across browsers
         document.querySelectorAll("input[type = checkbox]").forEach(box => {
-            coffeeCardObject[box.id] = 1
-
+            coffeeCardObject[box.id] = 1;
             if (box.checked == true) {
                 coffeeCardObject[box.id] = "1";
             }
@@ -564,8 +563,8 @@ function handleEvents() {
             
             let all_coffee_cards = document.querySelectorAll('coffee-card');
 
-            //let card_to_edit = all_coffee_cards[current_edit_id].shadowRoot;
-            /*populate card thumbnail
+            let card_to_edit = all_coffee_cards[current_edit_id].shadowRoot;
+            // Populate card thumbnail
             card_to_edit.querySelector('#str_drink_name').innerText = 
                 coffeeCardObject["str_drink_name"];
             card_to_edit.querySelector('#time_purchase_date').innerText = 
@@ -578,7 +577,7 @@ function handleEvents() {
                 "Serving Type: " + coffeeCardObject["str_drink_type"];
             card_to_edit.querySelector('#int_dropdown_color').innerText = 
                 "Color Level: " + coffeeCardObject["int_dropdown_color"];
-            */
+            
         }
         
         /* Reset the coffee card's image to the default one, at index 0
@@ -588,7 +587,8 @@ function handleEvents() {
         reset_image_id();
         isEditing = false;
         closeForm();
-        addCoffeeCardsToDocument(coffeeCards);
+        // Do not refresh all cards when only editing one card!
+        // addCoffeeCardsToDocument(coffeeCards); 
     })
 
 
