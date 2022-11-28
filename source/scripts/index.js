@@ -564,8 +564,8 @@ function handleEvents() {
             
             let all_coffee_cards = document.querySelectorAll('coffee-card');
 
-            //let card_to_edit = all_coffee_cards[current_edit_id].shadowRoot;
-            /*populate card thumbnail
+            let card_to_edit = all_coffee_cards[current_edit_id].shadowRoot;
+            // Populate card thumbnail
             card_to_edit.querySelector('#str_drink_name').innerText = 
                 coffeeCardObject["str_drink_name"];
             card_to_edit.querySelector('#time_purchase_date').innerText = 
@@ -578,7 +578,7 @@ function handleEvents() {
                 "Serving Type: " + coffeeCardObject["str_drink_type"];
             card_to_edit.querySelector('#int_dropdown_color').innerText = 
                 "Color Level: " + coffeeCardObject["int_dropdown_color"];
-            */
+            
         }
         
         /* Reset the coffee card's image to the default one, at index 0
@@ -588,7 +588,7 @@ function handleEvents() {
         reset_image_id();
         isEditing = false;
         closeForm();
-        addCoffeeCardsToDocument(coffeeCards);
+        // addCoffeeCardsToDocument(coffeeCards);
     })
 
 
