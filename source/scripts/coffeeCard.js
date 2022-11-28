@@ -101,7 +101,7 @@
 
 
 
-     
+
 
      /**
       * Called when the .data property is set on this element.
@@ -161,7 +161,7 @@
         `;
 
         // Custom event trigger that the DOM will catch whenever we click on "delete"
-        this.shadowRoot.getElementById('delete_card').addEventListener("click", (event)=> {
+        this.shadowRoot.getElementById('delete_card').addEventListener("click", ()=> {
             // Don't dispatch the click event. Instead use a custom event
             this.dispatchEvent(new CustomEvent("trigger-delete", {
                 composed: true,
@@ -171,7 +171,7 @@
         })
 
         // Custom event trigger that the DOM will catch whenever we click on "edit"
-        this.shadowRoot.getElementById('toggle_edit').addEventListener("click", (event) => {
+        this.shadowRoot.getElementById('toggle_edit').addEventListener("click", () => {
 
             // Don't dispatch the click event. Instead use a custom event
             this.dispatchEvent(new CustomEvent("trigger-edit", {
@@ -182,7 +182,7 @@
         })
 
         // Custom event trigger that the DOM will catch whenever we click on the export icon
-        this.shadowRoot.getElementById("share_button").addEventListener("click", (event) => {
+        this.shadowRoot.getElementById("share_button").addEventListener("click", () => {
             // Don't dispatch the click event. Instead use a custom event
             this.dispatchEvent(new CustomEvent("trigger-export", {
                 composed: true,

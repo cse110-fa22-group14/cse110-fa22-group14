@@ -24,6 +24,6 @@
         "require-await":"error",
         "curly": "error",
         "block-spacing": "error",
-        "no-trailing-spaces":"error"
+        "no-undef": "off"
     }
 }
