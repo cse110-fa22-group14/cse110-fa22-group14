@@ -33,42 +33,21 @@
 
 <body>
   <main>
-    <header>
-        <section id = "functionality">
-            <button id = "help">Help <span class="material-symbols-outlined">help</span></button>
-            <!-- TODO: Import button is not at correct position -->
-            <!-- <button id = "import">Import</button> -->
-            <input id = "import" type = "file" name = "fileName"/>
-            <!-- <input id = "inSubmit" type = "submit"/> -->
-            <a href="./aboutUs.html">About us <span class="material-symbols-outlined">diversity_3</span></a>
-    
-            <h1>COFFEE LOG <span class="material-symbols-outlined">
-                coffee_maker
-                </span> </h1>
-    
-            <!--the filter should be implemented later -->
-            <select id= "filter"> 
-                <option value = "Default">Default sort</option>
-                <option value = "Low-High">Low-High</option>
-                <option value = "High-Low">High-Low</option>
-            </select> 
-            
-            <!-- allow user to change background color -->
-            <select id="changeColor">
-                <option value="default-color">Customize &#</option>
-                <option value="#6F4E37">level-1</option>
-                <option value="#89664E">level-2</option>
-                <option value="#A47F66">level-3</option>
-                <option value="#C0997F">level-4</option>
-                <option value="#DCB499">level-5</option>
-                <option value="#F9CFB4">level-6</option>
-                <option value="#FFECD0">level-7</option>
-                <option value="#FFFFEC">level-8</option>
-                <option value="#FFFFFF">level-9</option>
-                <!-- #6F4E37 #89664E #A47F66 #C0997F #DCB499 #F9CFB4 #FFECD0 #FFFFEC #FFFFFF -->
-              </select>
-        </section>
-    </header>
+
+
+    <section id = "functionality">
+        <button id = "help">Help</button>
+        <h1>COFFEE LOG</h1>
+
+        <!--the filter should be implemented later -->
+        <select id= "filter">
+            <option value = "1Date: Oldest-Newest">Default</option>
+            <option value = "0Price: Low-High">Price: Low-High</option>
+            <option value = "1Price: High-Low">Price: High-Low</option>
+            <option value = "0Date: Oldest-Newest">Date: Oldest-Newest</option>
+            <option value = "1Date: Oldest-Newest">Date: Newest-Oldest</option>
+        </select> 
+    </section>
 
     <form id = "pop_up_box">
         <button id = "save" type = "submit">SAVE</button>
@@ -76,7 +55,8 @@
         
         <input type = "text" id="str_drink_name" placeholder="name of drink" name = "str_drink_name" required/>
         <input type = "text"id="int_drink_price" placeholder = "price" name = "int_drink_price" required/>
-        <input type = "text"id="time_purchase_date" placeholder = "date purchased" name = "time_purchase_date" required/>
+        <!-- <input type = "text"id="time_purchase_date" placeholder = "date purchased" name = "time_purchase_date" required/> -->
+        <input type="date" id="time_purchase_date"  name = "time_purchase_date" required/>
         <input type = "text" id="str_purchase_location" placeholder = "location" name = "str_purchase_location" required/>
         
         <img id = "img_drink_image" src = "./assets/images/coffee-picture0.png" alt = "photo of drink" name = "img_drink_image">
