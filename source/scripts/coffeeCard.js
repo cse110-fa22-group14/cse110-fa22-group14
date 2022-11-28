@@ -89,7 +89,7 @@
                 font-family: "Zen Maru Gothic";
             }
 
-            .toggle_edit {
+            #toggle_edit {
                 background: brown;
                 color: #fff;
                 border: 0;
@@ -99,7 +99,7 @@
                 padding: 5px 20px;
             }
 
-            .toggle_edit:hover {
+            #toggle_edit:hover {
                 opacity: 0.8;
                 cursor: pointer;
                 transition: all 0.2s ease-in;
@@ -164,46 +164,40 @@
           <p id = "str_drink_type"><slot name="drink_type">Serving Type: ${data["str_drink_type"]}</p>
           <p id = "int_dropdown_color"><slot name="color">Color Level: ${data["int_dropdown_color"]}</p>
         </section>
-        <button class = "toggle_edit" id = "toggle_edit" >Edit</button>
+        <button id = "toggle_edit" >Edit</button>
         <button class = "delete" id = "delete_card" >Delete</button>
         `;
 
         // Custom event trigger that the DOM will catch whenever we click on "delete"
-        this.shadowRoot.getElementById('delete_card').onclick = (event)=> {
-
+        this.shadowRoot.getElementById('delete_card').addEventListener("click", (event)=> {
             // Don't dispatch the click event. Instead use a custom event
-            event.preventDefault();
-
             this.dispatchEvent(new CustomEvent("trigger-delete", {
                 composed: true,
                 bubbles: true,
                 detail: "composed"
             }))
-        }
+        })
 
         // Custom event trigger that the DOM will catch whenever we click on "edit"
-        this.shadowRoot.getElementById('toggle_edit').onclick = (event)=> {
+        this.shadowRoot.getElementById('toggle_edit').addEventListener("click", (event) => {
 
             // Don't dispatch the click event. Instead use a custom event
-            event.preventDefault();
-
             this.dispatchEvent(new CustomEvent("trigger-edit", {
                 composed: true,
                 bubbles: true,
                 detail: "composed"
             }))
-        }
+        })
 
         // Custom event trigger that the DOM will catch whenever we click on the export icon
-        this.shadowRoot.getElementById("share_button").onclick = (event) =>{
+        this.shadowRoot.getElementById("share_button").addEventListener("click", (event) => {
             // Don't dispatch the click event. Instead use a custom event
-            event.preventDefault();
             this.dispatchEvent(new CustomEvent("trigger-export", {
                 composed: true,
                 bubbles: true,
                 detail: "composed"
             }))
-        }
+        })
     }
 
     /**

@@ -63,7 +63,7 @@ function addCoffeeCardsToDocument(coffeeCards) {
 
         // set the id of the card and edit button 
         coffeeCard.id = index;
-        coffeeCard.getChildren[2].id = index;
+        //coffeeCard.getChildren[2].id = index;
     })
 
 }
@@ -111,7 +111,7 @@ function handleEvents() {
         form.style.opacity = 0;
         form.style.visibility = "hidden";
 
-        /*
+    
         // Reset the form's html contents when done.
         document.getElementById("str_drink_name").value = "";
         document.getElementById("int_drink_price").value = "";
@@ -143,6 +143,7 @@ function handleEvents() {
         document.getElementById("bool_check_nutty").checked = false;
         document.getElementById("bool_check_fruity").checked = false;
         isFormOpen = false;
+        
     }
 
 
@@ -211,7 +212,7 @@ function handleEvents() {
      * it to narrow the results of the gallery
      */
     filterOption.addEventListener("change", (event) => {
-        if (!isFormOpen) {
+        //if (!isFormOpen) {
         
         /**
          * "Default">Default</option>
@@ -249,7 +250,7 @@ function handleEvents() {
         // Save the changes 
         addCoffeeCardsToDocument(coffeeCards);
         saveCoffeeCardsToStorage(coffeeCards)
-        }
+        //}
     })
 
 
@@ -265,7 +266,7 @@ function handleEvents() {
 
     // Event delegation to handle editing cards dynamically 
     document.addEventListener('trigger-edit', function (event) {
-        if (!isFormOpen) {
+        //if (!isFormOpen) {
             isEditing = true;
 
             // The edit button stores the corresponding coffee card id/posiiton in array
@@ -320,7 +321,7 @@ function handleEvents() {
             // Keep track of which card we are editing
             current_edit_id = position;
             openForm();
-        }
+        //}
     })
 
     document.addEventListener('trigger-export', function (event) {
@@ -352,6 +353,8 @@ function handleEvents() {
         }
     })
 
+
+
     fileSelectButton.addEventListener("click", (event) => {
         if(!isFormOpen) {
             if(importButton) {
@@ -359,6 +362,9 @@ function handleEvents() {
             }
         }
     }, false)
+
+
+
 
     // Select-file import
     importButton.addEventListener("change", (event) => {
@@ -400,6 +406,7 @@ function handleEvents() {
         }
         importButton.value = null;
     })
+
 
     // Drag-and-drop import
     dropBox.addEventListener("dragenter", dragenter, false);
@@ -454,8 +461,11 @@ function handleEvents() {
             reader.readAsText(importFile);
         }
     }
-    */
+    
 
+
+
+    
     // Saving a new card to gallery or saving edit changes to an existing card
     form.addEventListener("submit", (event) => {
         event.preventDefault();
@@ -498,22 +508,6 @@ function handleEvents() {
 
         // If we are adding a card, make a new <coffee-card> element and add to gallery
         if (!isEditing) {
-
-            /*NOTE: This is not actually necessary 
-            //use current_card_id to identify each card
-            if (localStorage.getItem('current_card_id') != null) {
-                current_card_id = 1 + Number(localStorage.getItem('current_card_id'));
-            }
-            localStorage.setItem('current_card_id', current_card_id);
-            //add current_card_id to the information to store in local storage
-            coffeeCardObject['current_card_id'] = current_card_id;
-
-            console.log(data);
-
-            /* create card object and load [key: value] pairs of the 
-            * form and any other input into object
-            */
-            // console.log(coffeeCardObject);
             let d = new Date();
             coffeeCardObject["time_creation_time"] = d.toLocaleTimeString();
 
@@ -527,7 +521,6 @@ function handleEvents() {
             // save to storage and update the page
             saveCoffeeCardsToStorage(coffeeCards);
             addCoffeeCardsToDocument(coffeeCards);
-
         }
 
         /* Otherwise we can assume the user is trying to edit the card
@@ -543,8 +536,8 @@ function handleEvents() {
             
             let all_coffee_cards = document.querySelectorAll('coffee-card');
 
-            let card_to_edit = all_coffee_cards[current_edit_id].shadowRoot;
-            //populate card thumbnail
+            //let card_to_edit = all_coffee_cards[current_edit_id].shadowRoot;
+            /*populate card thumbnail
             card_to_edit.querySelector('#str_drink_name').innerText = 
                 coffeeCardObject["str_drink_name"];
             card_to_edit.querySelector('#time_purchase_date').innerText = 
@@ -557,7 +550,7 @@ function handleEvents() {
                 "Serving Type: " + coffeeCardObject["str_drink_type"];
             card_to_edit.querySelector('#int_dropdown_color').innerText = 
                 "Color Level: " + coffeeCardObject["int_dropdown_color"];
-            
+            */
         }
         
         /* Reset the coffee card's image to the default one, at index 0
@@ -568,8 +561,10 @@ function handleEvents() {
         isEditing = false;
         closeForm();
         addCoffeeCardsToDocument(coffeeCards);
-
     })
+
+
+
 
 
     // Clears fields of popUpBox element using "reset" attribute in index.html
@@ -579,12 +574,15 @@ function handleEvents() {
 
 
 
+
+
+
     /** 
      * Handles the event to delete a card from the gallery and
      * local Storage. 
      */
     document.addEventListener("trigger-delete", (event) => {
-        if(!isFormOpen) {
+        //if(!isFormOpen) {
             console.log("delete clicked by user");
             if (event.composedPath) {
                 let cardIndex = event.target.id;
@@ -600,17 +598,10 @@ function handleEvents() {
                 addCoffeeCardsToDocument(coffeeCards);
 
                 // Update current_card_id field in the local storage to avoid null object
-                localStorage.setItem('current_card_id', coffeeCards.length - 1);            
+                //localStorage.setItem('current_card_id', coffeeCards.length - 1);            
             }
-        }
+        //}
     })
 
-    // sorting button
-
-
-    /*
-     * TODO: When user clicks a card's share button, it should trigger
-     * a new event to post the card to social media.
-     * We will not do this until later when backend figures out a way to do this
-     */
 }
+
