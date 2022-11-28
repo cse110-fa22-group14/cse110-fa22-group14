@@ -6,13 +6,6 @@
  * @Edited Nov 9, 2022 by William
  */
 
-/*
- * TODO:
- * coffee card should include date (Monday 12, 2022 for example)
- * a share button to post the card to social media (this will be implemented later)
- * Title of Drink
- * Short Description of the drink: this content is still to be decided
- */
 
 
  class CoffeeCard extends HTMLElement {
@@ -42,8 +35,6 @@
                 border: none;
                 text-align: center;
             }
-
-
 
             /* adding grid structure to header */
             header {
@@ -95,7 +86,6 @@
                 border: 0;
                 border-bottom-left-radius: 5px;
                 border-bottom-right-radius: 5px;
-
                 padding: 5px 20px;
             }
 
@@ -110,6 +100,8 @@
      }
 
 
+
+     
 
      /**
       * Called when the .data property is set on this element.

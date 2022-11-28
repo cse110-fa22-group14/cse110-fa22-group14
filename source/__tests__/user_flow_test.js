@@ -24,7 +24,7 @@ describe("Basic user flow for Website", () => {
         await addButton.click();
         await page.$eval("#str_drink_name", (el, value) => el.value = "Drink"+value, i);
         await page.$eval("#int_drink_price", (el, value) => el.value = "Price"+value, i);
-        let date = new Date().toLocaleDateString();
+        let date = await page.evaluate( () => { return new Date().toLocaleDateString()});
         await page.type("#time_purchase_date", date);
                 
         await page.$eval("#str_purchase_location", (el, value) => el.value = "Location"+value, i);
@@ -47,45 +47,51 @@ describe("Basic user flow for Website", () => {
     // Edit the cards so we update the four fields by appending "-edited"
     it("Editing Cards should update their fields", async () => {
 
-      const cards = await page.$$("coffee-card");
+      const cards = await page.$$('coffee-card');
       // In a for loop click on each card and edit the first four fields
-      for(let i = 0; i < cards.length; i++) {
-        
-        const shadowRoot = await cards[i].getProperty("shadowRoot");
-        const editButton = await shadowRoot.$("#toggle_edit");
-        await editButton.click();
+      for(let i = 0; i < TOTAL_CARDS; i++) {
+        console.log("editing card #" + i);
+        const currCard = cards[i];
+        const shadowRoot =  await currCard.getProperty("shadowRoot");
+        await shadowRoot.$eval("#toggle_edit", el => el.click());
     
         await page.$eval("#str_drink_name", (el, value) => el.value = "Drink"+value+"-edited", i);
         await page.$eval("#int_drink_price", (el, value) => el.value = "Price"+value+"-edited", i);
 
-        let tomorrow = new Date();
-        tomorrow.setDate(tomorrow.getDate() + 1);
-        await page.type("#time_purchase_date", tomorrow.toLocaleDateString());
-
+        let tomorrow = await page.evaluate( ()=> {
+           let date = new Date();
+           date.setDate(date.getDate() + 1);
+           return date.toLocaleDateString();
+          });
+        
+        await page.type("#time_purchase_date", tomorrow);
         await page.$eval("#str_purchase_location", (el, value) => el.value = "Location"+value+"-edited", i);
-        const saveButton = await page.$("#save");
-        await saveButton.click();        
+        await page.$eval("#save", el => el.click());
       }
 
       // Then check to make sure the fields match our assumptions
-      const cardsUpdated = await page.$$("coffee-card");
-      console.log("Total Coffee Cards is " + cardsUpdated.length)
-      for (let i = 0; i < cardsUpdated.length; i++) {
+      await page.reload();
+      //console.log("Total Coffee Cards is " + cardsUpdated.length)
+      let updatedCards = await page.$$('coffee-card');
+      for (let i = 0; i < TOTAL_CARDS; i++) {
+
         console.log("Checking edited card #" + i);
-        const shadowRoot = await cardsUpdated[i].getProperty('shadowRoot');
-        const editButton = await shadowRoot.$(".toggle_edit");
-        await editButton.click();
-        const drinkName = await page.$eval("#str_drink_name", (el) => {
+        const shadowRoot = await updatedCards[i].getProperty('shadowRoot');
+        await shadowRoot.$eval("#toggle_edit", el => el.click());
+
+        const drinkName = await page.$eval("#str_drink_name", el => {
           return el.value;
         });
+
         console.log("card #"+i+ " has name " + drinkName)
         //expect(drinkName).toBe("Drink"+i+"-edited");
-        const cancelButton = await page.$("#cancel");
-        await cancelButton.click();
-        
+         await page.$eval("#save", el => el.click());
       }
+    
     }, TOTAL_TEST_TIME);
 
+
+    /*
     // Check to make sure that all TOTAL_CARDS <coffee-card> elements have correct data in thumbnail
     it('Make sure <coffee-card> elements are populated', async () => {
       console.log('Checking to make sure <coffee-card> elements are populated...');
@@ -377,4 +383,7 @@ describe("Basic user flow for Website", () => {
    * expect(coffeeCardsStored).toBe('[ FILL IN HERE ]');
    * });
    */
+
+  
 });
+
