@@ -7,8 +7,9 @@
  * 
  */
 
- //Yuang 
 * {
+
+    /* TODO: Yuang */
     margin: 0;
     padding: 0;
     border: 0;
@@ -16,7 +17,6 @@
     font-size: 100%;
     vertical-align: baseline;
     background: transparent;
-    
 }
 
 
@@ -61,7 +61,6 @@ main {
     transform: translate(-50%, -50%);
     left: 50%;
     top: 50%;
-    
 
     /* Because we have so many components, it's best to make it a grid */
     display: grid;
@@ -73,7 +72,6 @@ main {
     /* Space between each form child */
     gap: 10px;
 }
-
 
 /* Encapsulation for different inputs in form */
 fieldset {
@@ -97,6 +95,7 @@ fieldset {
 
 /* TOOD: smoothly change opacity when hoverning */
 #save:hover {
+    cursor: pointer;
     opacity: 0.8;
     transition: all 0.2s ease-in;
 }
@@ -128,6 +127,8 @@ fieldset {
     grid-row-end: 4;
     grid-column-end: 7;
     z-index: 2;
+    margin: auto;
+    transform: scale(0.9);
 }
 
 /* Gets rid of default styling for text boxes */
@@ -139,6 +140,7 @@ input {
     border-radius: 10px;
     font-size: 1.2em;
     font-family: "Zen Maru Gothic", Arial, Georgia;
+    background-color: #ffff;
 }
 
 #flavor_container {
@@ -202,43 +204,42 @@ input {
     grid-row-end: 5;
     grid-column-end: 7;
     border-radius: 10px;
-    
 }
-#img_drink_image {
-    margin: auto;
-    transform: scale(0.9);
-}
-/* reference: https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp */
-/* implemented left and right arrows to change inage */
+
 #switch_photo_left_arrow,
 #switch_photo_right_arrow {
-  cursor: pointer;
-  position: absolute;
-  width: auto;
-  color: #502e2a;
-  font-weight: bold;
-  font-size: 40px;
-  user-select: none;
-  -webkit-user-select: none;
-  /* inherented from parent #switch_photo_container*/
-  grid-row-start: 4;
-  grid-column-start: 5;
-  grid-row-end: 5;
-  grid-column-end: 7;
+
+    /* INFO: reference: https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp */
+    
+    /* NOTE: implemented left and right arrows to change inage */
+    cursor: pointer;
+    position: absolute;
+    width: auto;
+    color: #502e2a;
+    font-weight: bold;
+    font-size: 40px;
+    user-select: none;
+
+    /* NOTE: inherented from parent #switch_photo_container */
+    grid-row-start: 4;
+    grid-column-start: 5;
+    grid-row-end: 5;
+    grid-column-end: 7;
+}
+
+/* NOTE: spread out left and right arrows on two sides */
+#switch_photo_left_arrow {
+    left: 10%;
+}
+
+#switch_photo_right_arrow {
+    right: 10%;
 }
 
 #switch_photo_left_arrow:hover, 
 #switch_photo_right_arrow:hover {
     opacity: 0.5;
 }
-/* out left and right arrows on two sides*/
-#switch_photo_left_arrow {
-    left: 10%;
-}
-#switch_photo_right_arrow {
-    right: 10%;
-}
-
 
 #str_purchase_location {
     grid-row-start: 5;
@@ -246,7 +247,6 @@ input {
     grid-row-end: 6;
     grid-column-end: 5;
 }
-
 
 #type_info_container {
     background-color: #ffff;
@@ -268,6 +268,7 @@ input {
 }
 
 #str_notes {
+    background-color: #ffff;
     grid-row-start: 9;
     grid-column-start: 4;
     grid-row-end: 13;
@@ -282,8 +283,6 @@ input {
      */
 }
 
-
-
 /* Holds the help and filter options above gallery */
 #functionality {
     display: flex;
@@ -291,17 +290,16 @@ input {
     justify-content: space-between;
     margin: auto;
     width: 80%;
-    /* Yuang */
-    height: 3rem;
 
+    /* TODO: Yuang */
+    height: 3rem;
     text-align: center;
     align-items: center;
     table-layout: fixed;
 }
 
-
 #functionality #help, 
-#filter, #changeColor {
+#filter, #changeColor, #select_file {
     background-color: black;
     color: white;
     border-radius: 5px;
@@ -317,14 +315,13 @@ input {
     font-weight: 100;
 }
 
-
 /* #functionality #help:hover, #filter:hover, #changeColor:hover {
     cursor: pointer;
     opacity: 0.8;
     transition: all 0.2s ease-in;
 } */
 
-//TODO add hover effect to help, filter, and changeColor
+/* TODO add hover effect to help, filter, and changeColor */
 #functionality a {
     font-family: "Playfair Display", Arial, Georgia;
     font-size: 100%;
@@ -338,10 +335,7 @@ input {
     height: 100%;
     border-radius: 5px;
     -webkit-text-stroke: 0.8px gold;
-    
 }
-
-
 
 /* The list that stores all the cards
  * Three columns but its rows should grow dynamically with number of cards added

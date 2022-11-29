@@ -5,6 +5,7 @@
     },
     "extends":  "eslint:recommended",
     "overrides": [
+        
     ],
     "parserOptions": {
         "ecmaVersion": "latest"
@@ -13,7 +14,7 @@
         "no-eq-null": "error",
         "no-async-promise-executor":"error",
         "no-unused-vars": "error",
-        "camelCase": "error",
+        // "camelcase": "error", we have not decided to use camel case or snake case
         "capitalized-comments": "error",
         "multiline-comment-style": ["error", "starred-block"],
         "line-comment-position":["error", "above"],
@@ -23,6 +24,6 @@
         "require-await":"error",
         "curly": "error",
         "block-spacing": "error",
-        "no-trailing-spaces":"error"
+        "no-undef": "off"
     }
 }

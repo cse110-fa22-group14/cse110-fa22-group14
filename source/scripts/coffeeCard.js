@@ -6,13 +6,6 @@
  * @Edited Nov 9, 2022 by William
  */
 
-/*
- * TODO:
- * coffee card should include date (Monday 12, 2022 for example)
- * a share button to post the card to social media (this will be implemented later)
- * Title of Drink
- * Short Description of the drink: this content is still to be decided
- */
 
 
  class CoffeeCard extends HTMLElement {
@@ -42,8 +35,6 @@
                 border: none;
                 text-align: center;
             }
-
-
 
             /* adding grid structure to header */
             header {
@@ -89,17 +80,16 @@
                 font-family: "Zen Maru Gothic";
             }
 
-            .toggle_edit {
+            #toggle_edit {
                 background: brown;
                 color: #fff;
                 border: 0;
                 border-bottom-left-radius: 5px;
                 border-bottom-right-radius: 5px;
-
                 padding: 5px 20px;
             }
 
-            .toggle_edit:hover {
+            #toggle_edit:hover {
                 opacity: 0.8;
                 cursor: pointer;
                 transition: all 0.2s ease-in;
@@ -108,6 +98,8 @@
         // Append the <style> and <article> elements to the Shadow DOM
         shadow.append(shadow_style, shadow_div);
      }
+
+
 
 
 
@@ -148,7 +140,7 @@
 
        const shadow_div = this.shadowRoot.querySelector('div');
 
-       //add a hidden element to the card's HTML
+       // Add a hidden element to the card's HTML
        shadow_div.innerHTML =
        `
        <header>
@@ -164,74 +156,54 @@
           <p id = "str_drink_type"><slot name="drink_type">Serving Type: ${data["str_drink_type"]}</p>
           <p id = "int_dropdown_color"><slot name="color">Color Level: ${data["int_dropdown_color"]}</p>
         </section>
-        <button class = "toggle_edit" >Edit</button>
-        <button class = "delete" >Delete</button>
-        `;  
-        // TODO: Delete button just for back-end testing, subject to change from front-end team
+        <button id = "toggle_edit" >Edit</button>
+        <button class = "delete" id = "delete_card" >Delete</button>
+        `;
 
         // Custom event trigger that the DOM will catch whenever we click on "delete"
-        // Used William's code for custom event
-        shadow_div.getElementsByTagName("button")[1].onclick = (event)=> {
-
+        this.shadowRoot.getElementById('delete_card').addEventListener("click", ()=> {
             // Don't dispatch the click event. Instead use a custom event
-            event.preventDefault();
-
             this.dispatchEvent(new CustomEvent("trigger-delete", {
                 composed: true,
                 bubbles: true,
                 detail: "composed"
             }))
-        }
+        })
 
         // Custom event trigger that the DOM will catch whenever we click on "edit"
-        shadow_div.getElementsByTagName("button")[0].onclick = (event)=> {
+        this.shadowRoot.getElementById('toggle_edit').addEventListener("click", () => {
 
             // Don't dispatch the click event. Instead use a custom event
-            event.preventDefault();
-
             this.dispatchEvent(new CustomEvent("trigger-edit", {
                 composed: true,
                 bubbles: true,
                 detail: "composed"
             }))
-        }
+        })
 
         // Custom event trigger that the DOM will catch whenever we click on the export icon
-       
-        this.shadowRoot.getElementById("share_button").onclick = (event) =>{
+        this.shadowRoot.getElementById("share_button").addEventListener("click", () => {
             // Don't dispatch the click event. Instead use a custom event
-            event.preventDefault();
             this.dispatchEvent(new CustomEvent("trigger-export", {
                 composed: true,
                 bubbles: true,
                 detail: "composed"
             }))
-
-        }
-     }
-
-     
-     /**
-      * Called when the getChildren is called on a coffee-card
-      *
-      * For Example:
-      * let coffeeCard = document.createElement('recipe-card'); // Calls constructor()
-      * coffeeCard.getChildren() =  [HTML collection] // Calls the function
-      *
-      */
-    get getChildren() {
-        let shadow_div = this.shadowRoot.querySelector('div');
-        return shadow_div.children;
+        })
     }
 
-
-
- }
-
- 
-
-
+    /**
+     * Called when the getChildren is called on a coffee-card
+     *
+     * For Example:
+     * let coffeeCard = document.createElement('recipe-card'); // Calls constructor()
+     * coffeeCard.getChildren() =  [HTML collection] // Calls the functions
+     */
+    get getChildren() {
+        const shadow_div = this.shadowRoot.querySelector('div');
+        return shadow_div.children;
+    }
+}
 
  // Define the Class as a customElement so we can create coffee-card elements
  customElements.define('coffee-card', CoffeeCard);
-

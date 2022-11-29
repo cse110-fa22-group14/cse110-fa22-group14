@@ -1,16 +1,17 @@
-// unit_tests.js
-// const sum = require('../code-to-unit-test/sum.js');
-// TODO: add directive to the sorting function script
+/**
+ * This script is used to complete Unit tests to functions
+ * Use global [function name] to declare functions and suppress ESLint warnings
+ * Use const sum = require('../code-to-unit-test/sum.js'); to link to file
+ */
 
-// dummy test to suppress warning
+/* global test, expect */
+
+// Dummy test to suppress warning
 test('adds 1 + 2 to equal 3', () => {
-    expect(1 + 2).toBe(3);
+    const operand1 = 1;
+    const operand2 = 2;
+    const expected = 3;
+    expect(operand1 + operand2).toBe(expected);
 });
 
-// TODO: Test to make sure that interacting with a checkbox results in 
-// either 0 for unchecked or 1 for checked
-
-
-// TODO: We should also check the functionality of the slider input perhaps
-// The sliders need to be checked in the end-to-end test
-
+// TODO: add directive to the sorting function script
