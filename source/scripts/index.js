@@ -602,11 +602,11 @@ function handleEvents() {
 
 
 
-        //Main page background color change (user picks color) -- Yuang Cui
+        // Main page background color change (user picks color) -- Yuang Cui
    
-        let dropdown = document.getElementById("changeColor");
+        const int_dropdown_color = document.getElementById("changeColor");
 
-        dropdown.addEventListener("change", function () {
+        int_dropdown_color.addEventListener("change", function () {
             const color = this.value;
             if (color === "default-color") {
                 document.body.style.backgroundColor = "#6F4E37";
