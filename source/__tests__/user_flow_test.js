@@ -18,7 +18,6 @@ describe("Basic user flow for Website", () => {
     // Flavor slider max value
     const SLIDER_MAX_VALUE = 5;
 
-
     // Check to make sure that adding 10 cards to the page will create 10 cards
     it("Adding 10 cards should populate the gallery with 10 cards ", async () => {
 
@@ -63,9 +62,9 @@ describe("Basic user flow for Website", () => {
         await page.$eval("#str_drink_name", (el, value) => el.value = "Drink"+value+"-edited", i);
         await page.$eval("#int_drink_price", (el, value) => el.value = "Price"+value+"-edited", i);
 
-        const tomorrow = await page.evaluate( ()=> {
+        const tomorrow = await page.evaluate( (INCREMENT)=> {
            const date = new Date();
-           date.setDate(date.getDate() + 1);
+           date.setDate(date.getDate() + INCREMENT);
            return date.toLocaleDateString();
           });
 
@@ -96,7 +95,6 @@ describe("Basic user flow for Website", () => {
         expect(drinkName).toBe("Drink"+i+"-edited");
         const cancelButton = await page.$("#cancel");
         await cancelButton.click();
-
       }
 
     }, TOTAL_TEST_TIME);
@@ -132,9 +130,9 @@ describe("Basic user flow for Website", () => {
          * TODO: Check to make sure the date is set to tomorrow's date
          * Check the location purchased of the drink on the thumbnail
          */
-        const tomorrow = await page.evaluate( ()=> {
+        const tomorrow = await page.evaluate( (INCREMENT)=> {
           const date = new Date();
-          date.setDate(date.getDate() + 1);
+          date.setDate(date.getDate() + INCREMENT);
           return date;
          });
 
