@@ -8,7 +8,6 @@ window.addEventListener('DOMContentLoaded', init);
 const NEGATIVE_ONE = -1;
 const ZERO = 0;
 const ONE = 1;
-const TWO = 2;
 
 
 // Executes when the window loads
@@ -53,36 +52,7 @@ function addCoffeeCardsToDocument(coffeeCards) {
         return;
     }
 
-
-    /* Change the fields on the existing coffee-card elements
-     * const all_coffee_cards = document.querySelectorAll('coffee-card');
-    /* for (let counter = 0; counter < all_coffee_cards.length; counter++) {
-    /*     const coffeeCardObject = coffeeCards[counter];
-    /*     const card_to_edit = all_coffee_cards[counter].shadowRoot;
-
-     *     // Populate card thumbnail
-     *     card_to_edit.querySelector('#str_drink_name').innerText =
-     *         coffeeCardObject["str_drink_name"];
-     *     card_to_edit.querySelector('#time_purchase_date').innerText =
-     *         coffeeCardObject["time_purchase_date"].toUpperCase();
-     *     card_to_edit.querySelector('#str_purchase_location').innerText =
-     *         "Location: " + coffeeCardObject["str_purchase_location"];
-     *    card_to_edit.querySelector('#str_brew_style').innerText =
-     *         "Brew Method: " + coffeeCardObject["str_brew_style"];
-     *     card_to_edit.querySelector('#str_drink_type').innerText =
-     *        "Serving Type: " + coffeeCardObject["str_drink_type"];
-     *    card_to_edit.querySelector('#int_dropdown_color').innerText =
-     *        "Color Level: " + coffeeCardObject["int_dropdown_color"];
-     * }
-     * Make new coffee-card elements if necessary
-
-     * const gallery = document.getElementById("gallery");
-     * for (let counter = all_coffee_cards.length; counter < coffeeCards.length; counter++) {
-     *     const coffeeCard = gallery.appendChild(document.createElement("coffee-card"));
-     *      coffeeCard.data = coffeeCards[counter];
-     * }
-     */
-
+     
     const gallery = document.getElementById("gallery");
 
     // Clear the gallery and add new list to gallery
@@ -91,14 +61,14 @@ function addCoffeeCardsToDocument(coffeeCards) {
         card.remove();
     })
 
-    // the card is a a coffeeCard object and index is the position of that card in the array
+    // The card is a a coffeeCard object and index is the position of that card in the array
     coffeeCards.forEach((card, index) => {
         const coffeeCard = gallery.appendChild(document.createElement("coffee-card"));
         coffeeCard.data = card;
 
-        // set the id of the card and edit button 
+        // Set the id of the card and edit button 
         coffeeCard.id = index;
-        coffeeCard.getChildren[2].id = index;
+        coffeeCard.getChildren[TWO].id = index;
     })
 }
 
@@ -655,7 +625,7 @@ function handleEvents() {
                 const coffeeCards = getCoffeeCardsFromStorage(); 
                 
                 // Remove the card from local sotrage
-                coffeeCards.splice(cardIndex, 1);   
+                coffeeCards.splice(cardIndex, ONE);   
 
                 // Update storage
                 saveCoffeeCardsToStorage(coffeeCards);
