@@ -8,7 +8,7 @@ window.addEventListener('DOMContentLoaded', init);
 const NEGATIVE_ONE = -1;
 const ZERO = 0;
 const ONE = 1;
-
+const TWO = 2;
 
 // Executes when the window loads
 
