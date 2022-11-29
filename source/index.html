@@ -32,17 +32,31 @@
 </head>
 
 <body>
-  <main>
+  
     <header>
         <section id = "functionality">
-            <button id = "help">Help <span class="material-symbols-outlined">help</span></button>
+            <!-- <button id = "help">Help <span class="material-symbols-outlined">help</span></button> -->
             <!-- TODO: Import button is not at correct position -->
             <!-- <button id = "import">Import</button> -->
-            <button id = "select_file">Choose File</button>
-            <input id = "import" type = "file" style = "display:none;" name = "fileName"/>
             <!-- <input id = "inSubmit" type = "submit"/> -->
-            <a href="./aboutUs.html">About us <span class="material-symbols-outlined">diversity_3</span></a>
+            <!-- //--TODO: Export button is not at correct position -->
+            <!-- <a href="./aboutUs.html">About us <span class="material-symbols-outlined">diversity_3</span></a> --> 
     
+            <!-- this is import button -->
+            <button id = "select_file">Upload</button>
+            <input id = "import" type = "file" style = "display:none;" name = "fileName"/>
+
+            <!-- this is a div class that contains "about us" and "help button as a dropDown" -->
+            <div class="dropdown">
+                <button class="dropbtn">Help</button>
+                <div class="dropdown-content">
+                    <a href="./aboutUs.html">About us <span class="material-symbols-outlined">diversity_3</span></a>
+                  <a href="./guidance.html">guidance</a>
+                </div>
+              </div>
+
+            <!-- this is  -->
+
             <h1>COFFEE LOG <span class="material-symbols-outlined">
                 coffee_maker
                 </span> </h1>
@@ -73,7 +87,7 @@
         </section>
     </header>
 
-
+    <main>
     <form id = "pop_up_box">
         <button id = "save" type = "submit">SAVE</button>
         <button id = "cancel" type = "reset">CANCEL</button>
