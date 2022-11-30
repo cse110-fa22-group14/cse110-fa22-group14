@@ -206,8 +206,8 @@ function handleEvents() {
      * camparitor function that gives priority to the card with the higher price.
      */
     function sortPrice(a, b) {
-        const priceA = parseInt(a['int_dring_price']);
-        const priceB = parseInt(b['int_drink_price']);
+        const priceA = parseFloat(a['int_dring_price']);
+        const priceB = parseFloat(b['int_drink_price']);
 
         if (priceA < priceB) {
             return NEGATIVE_ONE;
