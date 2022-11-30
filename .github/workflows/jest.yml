@@ -32,7 +32,6 @@ jobs:
         - uses: actions/checkout@v1
         - name: Run Tests
           run: |
-            npm install 
-            npm install http-server
+            npm install
             npx http-server ./source/
             npm test
