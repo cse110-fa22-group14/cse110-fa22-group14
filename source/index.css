@@ -19,8 +19,8 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-left: 0px;
-    padding-right: 0px;
+    
+
     
 }
 
@@ -134,8 +134,7 @@ fieldset {
     transform: scale(0.9);
 }
 
-/* Gets rid of default styling for text boxes */
-/* How much negative space to the left of input inside textbox */
+/* Gets rid of default styling for text boxes, How much negative space to the left of input inside textbox */
 input {
     padding-left: 15px;
     border: none;
@@ -297,8 +296,6 @@ input {
     align-items: center;
     table-layout: fixed;
     padding: 0.5rem;
-    
-    /*margin: 5rem;*/
 }
 
 #functionality #filter,
@@ -330,9 +327,6 @@ input {
     align-items: center;
     width: 6rem;
     text-align: center;
-
-    /*align-items: center;*/
-    justify-content: center;
     background-color: black;
     color: white;
     padding: 16px;
@@ -360,8 +354,7 @@ input {
     justify-content: center;
     background-color: #f1f1f1;
     min-width: 160px;
-
-    /*box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);*/
+    box-shadow: 0px 8px 16px 0px rgba(0 0 0 / 20%);
     z-index: 1;
 }
 
