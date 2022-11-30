@@ -70,10 +70,12 @@ test('sort coffee cards by ascending price', () => {
 
     coffeeCards = [coffeeCardObject1, coffeeCardObject2, coffeeCardObject3];
 
-    
+    const id0 = 0;
+    const id1 = 1;
+    const id2 = 2;
     coffeeCards.sort(sortFunctions.sortPrice);
-    expect(coffeeCards[0]["float_drink_price"]).toBe("5.21");
-    expect(coffeeCards[1]["float_drink_price"]).toBe("10.0");
-    expect(coffeeCards[2]["float_drink_price"]).toBe("12.5");
+    expect(coffeeCards[id0]["float_drink_price"]).toBe("5.21");
+    expect(coffeeCards[id1]["float_drink_price"]).toBe("10.0");
+    expect(coffeeCards[id2]["float_drink_price"]).toBe("12.5");
 
 })
