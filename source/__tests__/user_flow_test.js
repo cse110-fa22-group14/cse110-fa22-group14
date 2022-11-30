@@ -42,7 +42,7 @@ describe("Basic user flow for Website", () => {
       });
 
       console.log("Total Cards: " + numCards);
-      expect(numCards).toBe(TOTAL_CARDS + 1);
+      expect(numCards).toBe(TOTAL_CARDS);
     }, TOTAL_TEST_TIME);
 
 
