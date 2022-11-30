@@ -39,7 +39,6 @@ header {
   align-items: center; */
 /* } */
 
-
 main {
   display: flex;
   flex-direction: column;
@@ -308,7 +307,6 @@ input {
      */
 }
 
-
 /* Holds the help and filter options above gallery */
 #functionality {
   display: flex;
@@ -326,8 +324,7 @@ input {
   margin: 5rem;
 }
 
-#functionality 
-#filter,
+#functionality #filter,
 #changeColor,
 #select_file {
   background-color: black;
@@ -342,7 +339,6 @@ input {
   font-size: 0.8rem;
 }
 
-
 #functionality h1 {
   font-family: "Playfair Display", Arial, Georgia;
   font-size: 2em;
@@ -351,7 +347,6 @@ input {
 
 /* Dropdown Button */
 .dropbtn {
-
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -369,7 +364,6 @@ input {
   cursor: pointer;
   border-radius: 5px;
   -webkit-text-stroke: 0.8px gold;
-
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -389,7 +383,7 @@ input {
   justify-content: center;
   background-color: #f1f1f1;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
@@ -403,26 +397,17 @@ input {
   display: block;
 }
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: silver;}
+.dropdown-content a:hover {
+  background-color: silver;
+}
 /* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {background-color: rgb(111, 78, 55);}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.dropdown:hover .dropbtn {
+  background-color: rgb(111, 78, 55);
+}
 
 /* The list that stores all the cards
  * Three columns but its rows should grow dynamically with number of cards added
@@ -444,18 +429,7 @@ input {
   justify-content: center;
 }
 
-
-
-
-
-
-
-
-
-
-
-
- /* #functionality #help:hover, #filter:hover, #changeColor:hover {
+/* #functionality #help:hover, #filter:hover, #changeColor:hover {
     cursor: pointer;
     opacity: 0.8;
     transition: all 0.2s ease-in;
