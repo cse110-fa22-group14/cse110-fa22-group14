@@ -33,5 +33,5 @@ jobs:
         - name: Run Tests
           run: |
             npm install
-            npx http-server ./source/
+            (npx http-server ./source/ &)
             npm test
