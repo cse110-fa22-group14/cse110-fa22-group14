@@ -26,7 +26,7 @@ describe("Basic user flow for Website", () => {
       for(let i = 0; i < TOTAL_CARDS; i++) {
         await addButton.click();
         await page.$eval("#str_drink_name", (el, value) => el.value = "Drink"+value, i);
-        await page.$eval("#int_drink_price", (el, value) => el.value = "Price"+value, i);
+        await page.$eval("#float_drink_price", (el, value) => el.value = "Price"+value, i);
         const date = await page.evaluate( () => { return new Date().toLocaleDateString() });
         await page.type("#time_purchase_date", date);
 
@@ -60,7 +60,7 @@ describe("Basic user flow for Website", () => {
         await editButton.click();
 
         await page.$eval("#str_drink_name", (el, value) => el.value = "Drink"+value+"-edited", i);
-        await page.$eval("#int_drink_price", (el, value) => el.value = "Price"+value+"-edited", i);
+        await page.$eval("#float_drink_price", (el, value) => el.value = "Price"+value+"-edited", i);
 
         const tomorrow = await page.evaluate( (INCREMENT)=> {
            const date = new Date();

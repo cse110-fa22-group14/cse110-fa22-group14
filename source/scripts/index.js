@@ -5,6 +5,9 @@
  */
 window.addEventListener('DOMContentLoaded', init);
 
+// Get sort_functions
+const sortFunctions = require('./sortFunctions.js');
+
 const NEGATIVE_ONE = -1;
 const ZERO = 0;
 const ONE = 1;
@@ -116,7 +119,7 @@ function handleEvents() {
 
         // Reset the form's html contents when done.
         document.getElementById("str_drink_name").value = "";
-        document.getElementById("int_drink_price").value = "";
+        document.getElementById("float_drink_price").value = "";
         document.getElementById("time_purchase_date").value = "";
         document.getElementById("str_purchase_location").value = "";
 
@@ -174,68 +177,12 @@ function handleEvents() {
      * })
      */
 
-    /**
-     * 
-     * @param {object} a the first card to be compared
-     * @param {object} b the second card to be compared
-     * @returns the result between a 3 way comparison of a and b
-     * caomparitor function that gives priority to the card with the earliest date.
-     * works by comparing the dates as strings which works because the date input field formats
-     * responses as YYYY/MM/DD allowing for direct string comparison
-     */
-    function sortDate(a, b) {
-        
-        const dateA = a['time_purchased_date'];
-        const dateB = b['time_purchased_date'];
-        if (dateA < dateB) {
-            return NEGATIVE_ONE;
-        }
-        else if (dateA > dateB) {
-            return ONE;
-        }
-        else{
-            return ZERO;
-        }
-    }
-
-    /**
-     * 
-     * @param {object} a the first card to be compared
-     * @param {object} b the second card to be compared 
-     * @returns the result of a 3 way camprison of a and b
-     * camparitor function that gives priority to the card with the higher price.
-     */
-    function sortPrice(a, b) {
-        const priceA = parseFloat(a['int_dring_price']);
-        const priceB = parseFloat(b['int_drink_price']);
-
-        if (priceA < priceB) {
-            return NEGATIVE_ONE;
-        }
-        if (priceA > priceB) {
-            return ONE;
-        }
-        else{
-            return ZERO;
-        }
-    }
-
-
     /*
      * Grabs the value of whatever filter option was selected and applies
      * it to narrow the results of the gallery
      */
     filterOption.addEventListener("change", () => {
 
-        // If (!isFormOpen) {
-        /**
-         * "Default">Default</option>
-         *  <option value = "0Price: Low-High">Price: Low-High</option>
-         *  <option value = "1Price: High-Low">Price: High-Low</option>
-         *  <option value = "0Rating: Low-High">Rating: Low-High</option>
-         *  <option value = "1Rating: High-Low">Rating: High-Low</option>
-         *  <option value = "0Date: Oldest-Newest">
-         */
         const coffeeCards = getCoffeeCardsFromStorage();
 
         // Get the sorting selection
@@ -246,12 +193,12 @@ function handleEvents() {
 
         // Define sorting function for price
         if (choice.match("Price")) {
-            coffeeCards.sort(sortPrice);
+            coffeeCards.sort(sortFunctions.sortPrice);
         }
 
         // Define sorting function for rating
         else if (choice.match("Date")) {
-            coffeeCards.sort(sortDate);
+            coffeeCards.sort(sortFunctions.sortDate);
         }
 
         /*
@@ -296,7 +243,7 @@ function handleEvents() {
 
             // The following code works just fine to populate an input field
             document.getElementById("str_drink_name").value = coffeeCardObject["str_drink_name"];
-            document.getElementById("int_drink_price").value = coffeeCardObject["int_drink_price"];
+            document.getElementById("float_drink_price").value = coffeeCardObject["float_drink_price"];
             document.getElementById("time_purchase_date").value = coffeeCardObject["time_purchase_date"];
             document.getElementById("str_purchase_location").value = coffeeCardObject["str_purchase_location"];
 
@@ -501,7 +448,7 @@ function handleEvents() {
 
             // Visible variables
             "str_drink_name": data.get('str_drink_name'),
-            "int_drink_price": data.get('int_drink_price'),
+            "float_drink_price": data.get('float_drink_price'),
             "time_purchase_date": data.get('time_purchase_date'),
             "str_purchase_location": data.get('str_purchase_location'),
             "img_drink_image": get_image_id(),

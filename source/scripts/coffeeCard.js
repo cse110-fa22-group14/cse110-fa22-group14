@@ -114,7 +114,7 @@
       *                        following format:
       *                        {
       *                            "str_drink_name":"string",
-      *                            "int_drink_price":"int",
+      *                            "float_drink_price":"int",
       *                            "time_purchase_date":"date",
       *                            "str_purchase_location":"string",
       *                            "img_drink_image":"string",
