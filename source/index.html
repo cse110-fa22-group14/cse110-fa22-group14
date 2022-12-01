@@ -17,6 +17,11 @@
   <script src="./scripts/switchCoffeeImage.js" type="text/javascript"></script>
   <!--the 'type' is changed to 'text/javascript' to access functions across files-->
 
+
+  <script src="./scripts/switchColors.js" type="text/javascript"></script>
+
+  <script src="scripts/index.js" type="module"></script>
+
   <!-- Coffe Card Custom Element -->
   <script src="./scripts/coffeeCard.js" type="text/javascript"></script>
 
@@ -43,55 +48,50 @@
         <section id = "functionality">
         
             <!-- this is import button -->
-            <button id = "select_file">Upload</button>
+            <button id = "select_file">IMPORT</button>
             <input id = "import" type = "file" style = "display:none;" name = "fileName"/>
 
-            <!-- this is a div class that contains "about us" and "help button as a dropDown" -->
-            <div class="dropdown">
-                <button class="dropbtn">Help</button>
-                <div class="dropdown-content">
-                    <a href="./aboutUs.html">About us <span class="material-symbols-outlined">diversity_3</span></a>
-                  <a href="./guidance.html">guidance</a>
+            <!-- this is a div class that contains "about us" and "help button as a dropDown" 
+                <button id = "help" class = "dropdown">HELP</button>
+                <div class = "dropdown-content">
+                    <a href = "./aboutUs.html">ABOUT US</a>
+                    <span class="material-symbols-outlined">diversity_3</span>
+                  <a href="./guidance.html">GUIDANCE</a>
                 </div>
-              </div>
+              </div> -->
+            <select id= "help" class = "dropdown">
+                <option value = "" hidden>HELP</option>"
+                <option value = "./aboutUs.html">ABOUT</option>
+                <option value = "">GUIDANCE</option>
+            </select>
 
-            <!-- this is -->
+        
 
-            <h1>COFFEE LOG <span class="material-symbols-outlined">
-                coffee_maker
-                </span> </h1>
-    
+            <h1>BREW NOTES</h1>
+            <!--<span class="material-symbols-outlined">coffee_maker</span> -->
             <!--the filter should be implemented later -->
-            <select id= "filter">
-              <option value = "1Date: Oldest-Newest">Default</option>
-              <option value = "0Price: Low-High">Price: Low-High</option>
-              <option value = "1Price: High-Low">Price: High-Low</option>
-              <option value = "0Date: Oldest-Newest">Date: Oldest-Newest</option>
-              <option value = "1Date: Oldest-Newest">Date: Newest-Oldest</option>
+            <select id= "filter" class = "dropdown">
+              <option value = "" hidden>SORT</option>
+              <option value = "0Price: Low-High">PRICE: LO-HI</option>
+              <option value = "1Price: High-Low">PRICE: HI-LO </option>
+              <option value = "0Date: Oldest-Newest">DATE: OLD-NEW</option>
+              <option value = "1Date: Newest-Oldest">DATE: NEW-OLD</option>
             </select> 
             
             <!-- allow user to change background color -->
-            <select id="changeColor">
-                <option value="default-color">Customize</option>
-                <option value="#6F4E37">level-1</option>
-                <option value="#89664E">level-2</option>
-                <option value="#A47F66">level-3</option>
-                <option value="#C0997F">level-4</option>
-                <option value="#DCB499">level-5</option>
-                <option value="#F9CFB4">level-6</option>
-                <option value="#FFECD0">level-7</option>
-                <option value="#FFFFEC">level-8</option>
-                <option value="#FFFFFF">level-9</option>
-                <!-- #6F4E37 #89664E #A47F66 #C0997F #DCB499 #F9CFB4 #FFECD0 #FFFFEC #FFFFFF -->
+            <!-- #6F4E37 #89664E #A47F66 #C0997F #DCB499 #F9CFB4 #FFECD0 #FFFFEC #FFFFFF -->
+            <select id="change_color" class = "dropdown">
+                <option value="default-color" hidden>THEME</option>
+                <option value="dark">DARK</option>
+                <option value="cool">COOL</option>
+                <option value="pastel">PASTEL</option>
+      
               </select>
-
-           
-
-
-
-
         </section>
     </header>
+
+
+
 
     <main>
     <form id = "pop_up_box">
@@ -100,15 +100,16 @@
         
         <input type = "text" id="str_drink_name" placeholder="name of drink" name = "str_drink_name" required/>
         <input type = "text"id="int_drink_price" placeholder = "price" name = "int_drink_price" required/>
+
         <!-- <input type = "text"id="time_purchase_date" placeholder = "date purchased" name = "time_purchase_date" required/> -->
         <input type="date" id="time_purchase_date"  name = "time_purchase_date" required/>
         <input type = "text" id="str_purchase_location" placeholder = "location" name = "str_purchase_location" required/>
         
-        <img id = "img_drink_image" src = "./assets/images/coffee-picture0.png" alt = "photo of drink" name = "img_drink_image">
         <!--Load default image, which is coffee-picture0-->
+        <img id = "img_drink_image" src = "./assets/images/coffee-picture0.png" alt = "photo of drink" name = "img_drink_image">
 
         <!--Implement functionality to cycle through images-->
-        <div id = "switch_photo_container">switch images functionality
+        <div id = "switch_photo_container">
             <a id="switch_photo_left_arrow">&#10094;</a>
             <a id="switch_photo_right_arrow">&#10095;</a>
         </div>
@@ -132,8 +133,7 @@
                 </label>
             </fieldset>
 
-            <!--TODO: Fix the range of each silder and Add tags next to the sliders 
-                      to display the salue of the ALL the sliders-->
+ 
             <fieldset id = "range_wrapper">
 
                 <label for="int_slide_acidity">Acidity:
@@ -157,7 +157,6 @@
             </fieldset>
         </div>
 
-        <!--TODO: Style the dropdown boxes to make them consistent with rest of form style -->
         <div id = "type_info_container">
 
             <label for ="str_drink_type">Serving Type:
@@ -194,14 +193,9 @@
     </form>
 
 
-
     <section id = "gallery"><button id = "add_card"><img id = "addIcon" src = "assets/images/add-icon.png" alt = "add icon"></button></section>
   </main>
   
-
-
-  <script src="scripts/index.js" type="module"></script>
-
 </body>
 
 

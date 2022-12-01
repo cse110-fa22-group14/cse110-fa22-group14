@@ -30,8 +30,8 @@
                 min-width: 300px;
                 max-width: 1fr;
                 height: 300px;
-                background-color: #BF8162;
-                border-radius: 10px;
+                background-color: rgb(181, 117, 81);
+                border-radius: 30px;
                 border: none;
                 text-align: center;
             }
@@ -81,7 +81,7 @@
             }
 
             #toggle_edit {
-                background: brown;
+                background-color: brown;
                 color: #fff;
                 border: 0;
                 border-bottom-left-radius: 5px;
@@ -190,6 +190,8 @@
                 detail: "composed"
             }))
         })
+
+        
     }
 
     /**
@@ -203,6 +205,18 @@
         const shadow_div = this.shadowRoot.querySelector('div');
         return shadow_div.children;
     }
+
+
+    /**
+     * Sets the card's color theme
+     * 
+     * @param pair - object containing two colors for background and text
+     */
+    set color(pair) {
+        this.shadowRoot.querySelector('div').style.background = pair["background"];
+        this.shadowRoot.querySelector('div').style.color = pair["text"];
+
+      }
 }
 
  // Define the Class as a customElement so we can create coffee-card elements
