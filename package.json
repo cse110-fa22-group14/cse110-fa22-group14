@@ -11,7 +11,8 @@
     "jest-puppeteer": "^6.1.1",
     "puppeteer": "^19.3.0",
     "stylelint": "^14.14.1",
-    "stylelint-config-standard": "^29.0.0"
+    "stylelint-config-standard": "^29.0.0",
+    "http-server": "^14.1.1"
   },
   "scripts": {
     "eslint:github-action": "eslint src/",
@@ -23,8 +24,5 @@
     "transform": {
       "^.+\\.[t|j]sx?$": "babel-jest"
     },
-    "dependencies": {
-      "http-server": "^14.1.1"
-    }
   }
 }
