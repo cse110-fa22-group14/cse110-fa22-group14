@@ -161,9 +161,9 @@ describe("Basic user flow for Website", () => {
       let tomorrow = new Date(tomorrowDateStr);
       tomorrow = tomorrow.toLocaleDateString('en-US');
       await page.type("#time_purchase_date", tomorrow.replace(/[^0-9]/g, ''));
-      console.log("Drink"+i+"\'s new date on edit page is: " + tomorrow);
       tomorrow = new Date(tomorrow);
       tomorrow = tomorrow.toLocaleDateString('zh-Hans-CN');
+      console.log("Drink"+i+"\'s new date on edit page is: " + tomorrow);
 
       // Save the edit of the card
       const saveButton = await page.$("#save");
@@ -173,9 +173,9 @@ describe("Basic user flow for Website", () => {
       let newThumbDate = await itemFromShadow.$eval("#time_purchase_date", (el) => {
         return el.innerText;
       });
-      console.log("Drink"+i+"\'s updated date on thumbnail is: " + newThumbDate);
       newThumbDate = new Date(tomorrow);
       newThumbDate = newThumbDate.toLocaleDateString('zh-Hans-CN');
+      console.log("Drink"+i+"\'s updated date on thumbnail is: " + newThumbDate);
       expect(newThumbDate).toBe(tomorrow);
     }
   }, TOTAL_TEST_TIME);
