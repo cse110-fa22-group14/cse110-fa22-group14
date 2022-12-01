@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Dosis:300,400');
+@import url("https://fonts.googleapis.com/css?family=Dosis:300,400");
 
 * {
     margin: 0;
@@ -48,7 +48,7 @@ main {
 /* TODO: Smoothly change opacity when hovering over addCard button */
 #addCard:hover {
     opacity: 0.8;
-    transition: all 0.5s ease-in;
+    transition: all 0.2s ease-in;
 }
 
 /* Hidden popup form */
@@ -82,7 +82,7 @@ main {
 fieldset {
     border: none;
 }
-        
+
 /* The following are containers and inputs that occupy 
     * a row range and column range in the grid form
 */
@@ -211,7 +211,6 @@ input {
 
 #switch_photo_left_arrow,
 #switch_photo_right_arrow {
-
     /* INFO: reference: https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp */
 
     /* NOTE: implemented left and right arrows to change inage */
@@ -259,8 +258,8 @@ input {
     grid-column-end: 4;
 
     /* Flex with direction "column" tells DOM to 
-        * structure all child elements vrtically
-        */
+            * structure all child elements vrtically
+            */
     display: flex;
     flex-direction: column;
 
@@ -282,8 +281,8 @@ input {
     font-size: 1.2em;
 
     /* TOOD: If user types in more characters than box can fit
-        * add scrolling to allow for more input 
-        */
+            * add scrolling to allow for more input 
+            */
 }
 
 /* Holds the help and filter options above gallery */
@@ -347,20 +346,25 @@ input {
     cursor: pointer;
     opacity: 0.8;
     transition: all 0.2s ease-in;
-    -webkit-mask-image: linear-gradient(-75deg, rgba(0,0,0,.6) 30%, #000 50%, rgba(0,0,0,.6) 70%);
-  -webkit-mask-size: 200%;
-  animation: shine 1.5s infinite;
+    -webkit-mask-image: linear-gradient(
+        -75deg,
+        rgba(0, 0, 0, 0.6) 30%,
+        #000 50%,
+        rgba(0, 0, 0, 0.6) 70%
+    );
+    -webkit-mask-size: 200%;
+    animation: shine 1.5s infinite;
 }
 
 @-webkit-keyframes shine {
     from {
-      -webkit-mask-position: 150%;
+        -webkit-mask-position: 150%;
     }
-    
+
     to {
-      -webkit-mask-position: -50%;
+        -webkit-mask-position: -50%;
     }
-  }
+}
 
 /* Dropdown Button */
 .dropbtn {
@@ -431,14 +435,26 @@ input {
 }
 
 @keyframes popout {
-    from{transform:scale(0.6)}
-    80%{transform:scale(1.5)}
-    to{transform:scale(1)}
+    from {
+        transform: scale(0.6);
+    }
+    80% {
+        transform: scale(1.5);
+    }
+    to {
+        transform: scale(1);
+    }
 }
 @-webkit-keyframes popout {
-    from{-webkit-transform:scale(0.6)}
-    80%{-webkit-transform:scale(1.5)}
-    to{-webkit-transform:scale(1)}
+    from {
+        -webkit-transform: scale(0.6);
+    }
+    80% {
+        -webkit-transform: scale(1.5);
+    }
+    to {
+        -webkit-transform: scale(1);
+    }
 }
 
 /* The list that stores all the cards
@@ -451,11 +467,11 @@ input {
     display: grid;
 
     /* Autofill tells the DOM to move content to the next
-        * row if it overfills the current row as many times as needed
-        *
-        * Minmax property will determine if items need
-        * to stretch to consume any horizontal space up to 1fr
-    */
+            * row if it overfills the current row as many times as needed
+            *
+            * Minmax property will determine if items need
+            * to stretch to consume any horizontal space up to 1fr
+        */
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 30px;
     justify-content: center;
@@ -467,12 +483,3 @@ input {
     * Chocolate: #3E1404
     * Cream: #E3E2C9
 */
-
-
-
-
- 
-
-
-
-
