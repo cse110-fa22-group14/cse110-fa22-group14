@@ -9,7 +9,7 @@ const ONE = 1;
  * @param {object} a the first card to be compared
  * @param {object} b the second card to be compared
  * @returns the result between a 3 way comparison of a and b
- * caomparitor function that gives priority to the card with the earliest date.
+ * comparator function that gives priority to the card with the earliest date.
  * works by comparing the dates as strings which works because the date input field formats
  * responses as YYYY/MM/DD allowing for direct string comparison
  */
@@ -33,7 +33,7 @@ const ONE = 1;
  * @param {object} a the first card to be compared
  * @param {object} b the second card to be compared 
  * @returns the result of a 3 way camprison of a and b
- * camparitor function that gives priority to the card with the higher price.
+ * comparator function that gives priority to the card with the higher price.
  */
 function sortPrice(a, b) {
     const priceA = parseFloat(a['float_drink_price']);
