@@ -295,10 +295,6 @@ input {
     text-align: center;
     align-items: center;
     table-layout: fixed;
-
-    /*padding: 0rem;
-    margin: 0rem;
-    border: 0rem;*/
 }
 
 #functionality #filter,
@@ -344,12 +340,8 @@ input {
     cursor: pointer;
     opacity: 0.8;
     transition: all 0.2s ease-in;
-    -webkit-mask-image: linear-gradient(
-        -75deg,
-        rgba(0 0 0 / 0.6) 30%, 
-         #000 50%, 
-         rgba(0 0 0 / 0.6)) 70%
-    );
+    -webkit-mask-image: 
+    linear-gradient(-75deg, rgba(0 0 0 / 60%) 30%, #000 50%, rgba(0 0 0 / 60%) 70%);
     -webkit-mask-size: 200%;
     animation: shine 1.5s infinite;
 }
@@ -429,33 +421,22 @@ input {
     letter-spacing: 0.5em;
     font-size: 1rem;
     animation: popout 3s ease;
-
-    /*-webkit-animation: popout 3s ease;*/
 }
 
 @keyframes popout {
     from {
         transform: scale(60%);
     }
+
     80% {
         transform: scale(150%);
     }
+
     to {
         transform: scale(100%);
     }
 }
 
-/*@-webkit-keyframes popout {
-    from {
-        -webkit-transform: scale(0.6);
-    }
-    80% {
-        -webkit-transform: scale(1.5);
-    }
-    to {
-        -webkit-transform: scale(1);
-    }
-}*/
 
 /* The list that stores all the cards
     * Three columns but its rows should grow dynamically with number of cards added
