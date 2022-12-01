@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Dosis:300,400);
+@import url('https://fonts.googleapis.com/css?family=Dosis:300,400');
 
 * {
     margin: 0;
@@ -304,8 +304,6 @@ input {
 
 #functionality #filter,
 #select_file {
-
-    /*background-color: rgb(111, 78, 55);*/
     position: relative;
     background: rgb(111, 78, 55);
     color: white;
@@ -321,7 +319,6 @@ input {
 
 #changeColor {
     position: relative;
-    /*background-color: rgb(111, 78, 55);*/
     background: rgb(111, 78, 55);
     color: white;
     border-radius: 0px;
@@ -332,11 +329,11 @@ input {
     align-items: center;
     padding: 16px;
     font-size: 0.8rem;
-    /*box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 20%);*/
     border: 0;
 }
 
 #functionality h1 {
+    color: black;
     font-family: "Playfair Display", Arial, Georgia;
     font-size: 2em;
     font-weight: 100;
@@ -352,7 +349,7 @@ input {
     transition: all 0.2s ease-in;
     -webkit-mask-image: linear-gradient(-75deg, rgba(0,0,0,.6) 30%, #000 50%, rgba(0,0,0,.6) 70%);
   -webkit-mask-size: 200%;
-  animation: shine 2s infinite;
+  animation: shine 1.5s infinite;
 }
 
 @-webkit-keyframes shine {
@@ -363,13 +360,7 @@ input {
     to {
       -webkit-mask-position: -50%;
     }
-
-    100% { 
-        -webkit-transform: rotate(360deg); 
-        transform:rotate(360deg); 
-    } 
   }
-  
 
 /* Dropdown Button */
 .dropbtn {
@@ -384,8 +375,6 @@ input {
     font-size: 0.8rem;
     border: none;
     cursor: pointer;
-
-    /*border-radius: 5px;*/
     -webkit-text-stroke: 0.8px gold;
 }
 
@@ -437,18 +426,18 @@ input {
 .dropdown:hover .dropbtn {
     letter-spacing: 0.5em;
     font-size: 1rem;
-    animation: popout 2s ease;
-    -webkit-animation: popout 2s ease;
+    animation: popout 3s ease;
+    -webkit-animation: popout 3s ease;
 }
 
 @keyframes popout {
-    from{transform:scale(0)}
-    80%{transform:scale(1.2)}
+    from{transform:scale(0.6)}
+    80%{transform:scale(1.5)}
     to{transform:scale(1)}
 }
 @-webkit-keyframes popout {
-    from{-webkit-transform:scale(0)}
-    80%{-webkit-transform:scale(1.2)}
+    from{-webkit-transform:scale(0.6)}
+    80%{-webkit-transform:scale(1.5)}
     to{-webkit-transform:scale(1)}
 }
 
@@ -466,22 +455,20 @@ input {
         *
         * Minmax property will determine if items need
         * to stretch to consume any horizontal space up to 1fr
-        */
+    */
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 30px;
     justify-content: center;
 }
 
 /* Background Color Schemes 
-    *
     * Pink-Lavendar: #BF8162
     * Black: #FFFFFF
     * Chocolate: #3E1404
-    * Cream: #E3E2C5
-    * 
+    * Cream: #E3E2C9
 */
 
-/* select all hover */
+
 
 
  
