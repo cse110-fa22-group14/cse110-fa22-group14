@@ -48,7 +48,7 @@ main {
 /* TODO: Smoothly change opacity when hovering over addCard button */
 #addCard:hover {
     opacity: 0.8;
-    transition: all 0.2s ease-in;
+    transition: all 0.5s ease-in;
 }
 
 /* Hidden popup form */
