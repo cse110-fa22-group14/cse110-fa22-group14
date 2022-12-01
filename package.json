@@ -22,8 +22,9 @@
     "verbose": true,
     "transform": {
       "^.+\\.[t|j]sx?$": "babel-jest"
-  },
-  "dependencies": {
-    "http-server": "^14.1.1"
+    },
+    "dependencies": {
+      "http-server": "^14.1.1"
+    }
   }
 }
