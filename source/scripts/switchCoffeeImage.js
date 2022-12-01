@@ -30,7 +30,7 @@ const DEFAULT_IMAGE_ID = 0;
  * @param int_change - the change in the index of the coffee picture to display.
  * @return void
  */
-function next_image(int_change) {
+export function next_image(int_change) {
    show_coffee_image(coffee_picture_index += int_change);
    console.log('imaged changed to: ' + COFFEE_PICTURE_PATH +
         coffee_picture_index + COFFEE_PICTURE_EXTENSION);
@@ -40,7 +40,7 @@ function next_image(int_change) {
  * This function will return the current coffee_picture_index.
  * @return coffee_picture_index, the current index of the coffee picture
  */
-function get_image_id() {
+export function get_image_id() {
     return coffee_picture_index;
 }
 
@@ -48,7 +48,7 @@ function get_image_id() {
  * This function will return the current coffee_picture_index.
  * @return void
  */
- function reset_image_id() {
+export function reset_image_id() {
     coffee_picture_index = DEFAULT_IMAGE_ID;
 }
 
@@ -57,7 +57,7 @@ function get_image_id() {
  * @param int_change - the index of the coffee picture to display on the current card.
  * @return void
  */
-function set_image(int_change) {
+export function set_image(int_change) {
    show_coffee_image(coffee_picture_index = int_change);
 }
 

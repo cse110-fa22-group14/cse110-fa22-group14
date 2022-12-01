@@ -1,5 +1,3 @@
-module.exports = {sortDate, sortPrice};
-
 const NEGATIVE_ONE = -1;
 const ZERO = 0;
 const ONE = 1;
@@ -13,7 +11,7 @@ const ONE = 1;
  * works by comparing the dates as strings which works because the date input field formats
  * responses as YYYY/MM/DD allowing for direct string comparison
  */
- function sortDate(a, b) {
+export function sortDate(a, b) {
         
     const dateA = a['time_purchased_date'];
     const dateB = b['time_purchased_date'];
@@ -35,7 +33,7 @@ const ONE = 1;
  * @returns the result of a 3 way camprison of a and b
  * camparitor function that gives priority to the card with the higher price.
  */
-function sortPrice(a, b) {
+export function sortPrice(a, b) {
     const priceA = parseFloat(a['float_drink_price']);
     const priceB = parseFloat(b['float_drink_price']);
 
@@ -50,3 +48,4 @@ function sortPrice(a, b) {
     }
 }
 
+// module.exports = {sortDate, sortPrice};

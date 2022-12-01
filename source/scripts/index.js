@@ -6,8 +6,9 @@
 window.addEventListener('DOMContentLoaded', init);
 
 // Get sort_functions
-const sortFunctions = require('./sortFunctions.js');
-
+// const sortFunctions = require('./sortFunctions.js');
+import {sortDate, sortPrice} from "./sortFunctions.js";
+import {set_image, get_image_id, reset_image_id} from "./switchCoffeeImage.js";
 
 const ZERO = 0;
 const ONE = 1;
@@ -193,12 +194,12 @@ function handleEvents() {
 
         // Define sorting function for price
         if (choice.match("Price")) {
-            coffeeCards.sort(sortFunctions.sortPrice);
+            coffeeCards.sort(sortPrice);
         }
 
         // Define sorting function for rating
         else if (choice.match("Date")) {
-            coffeeCards.sort(sortFunctions.sortDate);
+            coffeeCards.sort(sortDate);
         }
 
         /*

@@ -68,7 +68,7 @@ test('sort coffee cards by ascending price', () => {
     coffeeCardObject2["time_creation_time"] = d.toLocaleTimeString();
     coffeeCardObject3["time_creation_time"] = d.toLocaleTimeString();
 
-    coffeeCards = [coffeeCardObject1, coffeeCardObject2, coffeeCardObject3];
+    let coffeeCards = [coffeeCardObject1, coffeeCardObject2, coffeeCardObject3];
 
     const id0 = 0;
     const id1 = 1;
