@@ -143,7 +143,7 @@
        `
        <header>
             <h3 id = "str_drink_name"><slot name="date" />${data["str_drink_name"]}</h3>
-            <h4 id = "time_purchase_date">${data["time_purchase_date"].toUpperCase()}</h4>
+            <h4 id = "time_purchase_date">${data["time_purchase_date"]}</h4>
             <img id = "share_button" alt = "share icon" src = "./assets/images/share-icon.png" ></img>
 
        </header>

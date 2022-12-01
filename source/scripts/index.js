@@ -512,7 +512,7 @@ function handleEvents() {
             card_to_edit.querySelector('#str_drink_name').innerText =
                 coffeeCardObject["str_drink_name"];
             card_to_edit.querySelector('#time_purchase_date').innerText =
-                coffeeCardObject["time_purchase_date"].toUpperCase();
+                coffeeCardObject["time_purchase_date"]
             card_to_edit.querySelector('#str_purchase_location').innerText =
                 "Location: " + coffeeCardObject["str_purchase_location"];
             card_to_edit.querySelector('#str_brew_style').innerText =
