@@ -3,7 +3,8 @@ describe("Basic user flow for Website", () => {
     // Load the page in url
     beforeAll(async () => {
       // Now using Github Page URL. Feel free to change back to Live Server URL for manual testing!
-      await page.goto('http://localhost:8080')
+      // await page.goto('http://localhost:8080')
+      await page.goto('http://127.0.0.1:5500/cse110-fa22-group14/source/index.html')  // DELETE: For local testing
     });
 
     // Define the total number of cards to add to the database
@@ -17,6 +18,8 @@ describe("Basic user flow for Website", () => {
 
     // Flavor slider max value
     const SLIDER_MAX_VALUE = 5;
+
+    // Testing
 
     // Check to make sure that adding 10 cards to the page will create 10 cards
     it("Adding 10 cards should populate the gallery with 10 cards ", async () => {
@@ -489,7 +492,75 @@ describe("Basic user flow for Website", () => {
    * });
    */
 
-  
+  /**
+   * Delete tests start here
+   */
+
+  // Check to make sure clicking delete button deletes exactly one card
+  it('Check if delete button deletes exactly one card per click', async () => {
+    // Get the first coffeecard
+    const coffeeCards = await page.$$('coffee-card');
+    const cardNum = coffeeCards.length;
+    const card = coffeeCards[0];
+
+    // Get the delete button and click on it
+    const shadowRoot = await card.getProperty("shadowRoot");
+    const buttons = await shadowRoot.$$('button');
+    const deleteButton = buttons[1];
+    await deleteButton.click();
+
+    // Check the gallery and make sure exactly one coffecard is deleted
+    const numCards = await page.$$eval('coffee-card', (cards) => {
+      return cards.length;
+    });
+    expect(numCards).toBe(cardNum - 1);
+
+  }, TOTAL_TEST_TIME);
+
+  // Check and make sure the deleted card is the desired one
+  // NOTE: This test is expected to fail if two cards of same name exists
+  it('Check if deleted card is the clicked card', async () => {
+    // Randomly get a card
+    const coffeeCards = await page.$$('coffee-card');
+    const cardNum = coffeeCards.length;
+    const cardIndex = Math.floor(Math.random() * cardNum);
+    const card = coffeeCards[cardIndex];
+    const shadowRoot = await card.getProperty("shadowRoot");
+
+    // Get the name of drink as an identifier of that card
+    const editButton = await shadowRoot.$("button");
+    await editButton.click();
+    const drinkName = await page.$eval("#str_drink_name", (el) => {
+      return el.value;
+    });
+    const cancelButton = await page.$("#cancel");
+    await cancelButton.click();
+
+    // Get the delete button and click on it
+    const buttons = await shadowRoot.$$('button');
+    const deleteButton = buttons[1];
+    await deleteButton.click();
+
+    // Iterate through the cards and make sure that specific card no longer exists
+    let existCard = false;
+    const cardsDeleted = await page.$$('coffee-card');
+    for (let i = 0; i < cardsDeleted.length; i++) {
+      const shadowRoot = await cardsDeleted[i].getProperty('shadowRoot');
+      const editButton = await shadowRoot.$("button");
+      await editButton.click();
+      const currentName = await page.$eval("#str_drink_name", (el) => {
+        return el.value;
+      });
+      const cancelButton = await page.$("#cancel");
+      await cancelButton.click();
+      if(currentName == drinkName) {
+        existCard = true;
+      }
+    }
+
+    expect(existCard).toBe(false);
+
+  }, TOTAL_TEST_TIME);
   
 
 });
