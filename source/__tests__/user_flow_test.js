@@ -140,7 +140,7 @@ describe("Basic user flow for Website", () => {
       const thumbDate = await itemFromShadow.$eval("#time_purchase_date", (el) => {
         return el.innerText;
       });
-      console.log("Drink"+i+"\'s current date on thumbnail is: " + thumbDate);
+      console.log("Drink"+i+"'s current date on thumbnail is: " + thumbDate);
 
       // Click the edit button
       const buttonFromShadow = await itemFromShadow.$('button');
@@ -150,7 +150,7 @@ describe("Basic user flow for Website", () => {
       const cardDate = await page.$eval("#time_purchase_date", (el) => {
         return el.value;
       });
-      console.log("Drink"+i+"\'s current date on edit page is: " + cardDate);
+      console.log("Drink"+i+"'s current date on edit page is: " + cardDate);
 
       // Check if the thumbnail's date matches the one on the card edit page
       expect(thumbDate).toBe(cardDate);
@@ -164,7 +164,7 @@ describe("Basic user flow for Website", () => {
       await page.type("#time_purchase_date", tomorrow.replace(/[^0-9]/g, ''));
       tomorrow = new Date(tomorrow);
       tomorrow = tomorrow.toLocaleDateString('zh-Hans-CN');
-      console.log("Drink"+i+"\'s new date on edit page is: " + tomorrow);
+      console.log("Drink"+i+"'s new date on edit page is: " + tomorrow);
 
       // Save the edit of the card
       const saveButton = await page.$("#save");
@@ -176,7 +176,7 @@ describe("Basic user flow for Website", () => {
       });
       newThumbDate = new Date(tomorrow);
       newThumbDate = newThumbDate.toLocaleDateString('zh-Hans-CN');
-      console.log("Drink"+i+"\'s updated date on thumbnail is: " + newThumbDate);
+      console.log("Drink"+i+"'s updated date on thumbnail is: " + newThumbDate);
       expect(newThumbDate).toBe(tomorrow);
     }
   }, TOTAL_TEST_TIME);
