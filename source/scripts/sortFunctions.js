@@ -20,7 +20,7 @@ const ONE = 1;
     if (dateA < dateB) {
         return NEGATIVE_ONE;
     }
-    else if (dateA > dateB) {
+    if (dateA > dateB) {
         return ONE;
     }
     else{
