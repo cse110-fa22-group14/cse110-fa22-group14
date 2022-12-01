@@ -156,7 +156,8 @@ describe("Basic user flow for Website", () => {
       expect(thumbDate).toBe(cardDate);
 
       // Create a new date
-      const modifiedDay = i%9+INCREMENT;
+      const NINE = 9;
+      const modifiedDay = i%NINE+INCREMENT;
       const tomorrowDateStr = "2053-"+"0"+String(modifiedDay)+"-1"+String(modifiedDay);
       let tomorrow = new Date(tomorrowDateStr);
       tomorrow = tomorrow.toLocaleDateString('en-US');
