@@ -5,58 +5,76 @@ window.addEventListener('DOMContentLoaded', init);
 
 /**
  * This function will adjust the app's color theme
- * user's control.
+ * 
  * @param cards - html collection of <coffee-cards>
  * @param str_theme_name
  * @return void
  */
 function switch_theme(cards, str_theme_name) {
-    console.log("switchColors.js received cards:" + cards);
-    console.log("swithcColors.js received:" + str_theme_name)
 
     if (!cards) {
         return;
     }
 
+    // Define color variables
     let cardBackground, 
         cardText, 
-        cardIcon,
         pageBackground,
-        navbar,
-        navButtons;
+        navBarBackground,
+        navTitleText,
+        navButtonsBackground,
+        navButtonsText;
 
-    // set the variables according to the theme chosen
+    // set the color variables according to the chosen theme 
     switch(str_theme_name) {
+
         case "dark":
-            console.log("theme is dark")
             cardBackground = "#646F77";
             cardText = "#FFFFFF";
             pageBackground = "#000000";
-            navbar = "#666B5E";
-            navButtons = "#000000";
+            navBarBackground = "#949999";
+            navButtonsBackground = "#1a1a1a";
+            navButtonsText = "#FFFFFF",
+            navTitleText = "#FFFFFF"
+        break;
+
+        case "vibrant":
+            cardBackground = "#f2ba1d";
+            cardText = "#000000";
+            pageBackground = "#fffcee";
+            navBarBackground ="#c45335";
+            navButtonsBackground = "#fffcee";
+            navButtonsText = "#000000";
+            navTitleText = "#FFFFFF"
         break;
 
         default:
-            console.log("theme is default")
-            cardBackground = "#BF8162";
+            cardBackground = "#7d6b57";
             cardText = "#FFFFFF";
             pageBackground = "#FFFFFF";
-            navbar = "#666B5E";
-            navButtons = "#000000";
+            navBarBackground ="#879e82";
+            navButtonsBackground = "#262f2d";
+            navButtonsText = "#FFFFFF";
         break;
-
     }
 
-    // set the colors of the elements on page 
-    let nav = document.querySelector("header");
-    console.log(nav)
-    nav.style.background = navbar;
+    // Set the colors of the nav bar elements
+    document.querySelector("header").style.background = navBarBackground;
+    document.querySelector("h1").style.color = navTitleText;
+    
+    document.getElementById("select_file").style.background = navButtonsBackground;
+    document.getElementById("select_file").style.color = navButtonsText;
 
+    document.querySelectorAll(".dropdown").forEach(button => {
+        button.style.background = navButtonsBackground;
+        button.style.color = navButtonsText;
+    })
 
-    // change all gallery elements to same color
+    // Set background color of card and page
     document.getElementById("add_card").style.background = cardBackground;
     document.querySelector("body").style.background = pageBackground;
 
+    // Change all gallery elements to same color scheme
     for (let i = 0; i < cards.length; i++) {
         console.log("setting colors for card" + i)
         cards[i].color = {
@@ -64,8 +82,6 @@ function switch_theme(cards, str_theme_name) {
             "text": cardText
         };
     }
-
-    
 }
 
 

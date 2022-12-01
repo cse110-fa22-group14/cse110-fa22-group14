@@ -31,9 +31,6 @@ main {
     justify-content: center;
 }
 
-/* TODO: remove pseudoCard selector after custom elements are made 
-    * TODO: The custom card element should be same size and color as the add button
-*/
 #add_card {
     min-width: 300px;
     max-width: 1fr;
@@ -44,7 +41,7 @@ main {
     box-shadow: 12px 17px 14px -12px rgba(0, 0, 0, 0.41);
 }
 
-/* TODO: Smoothly change opacity when hovering over addCard button */
+/* Smoothly change opacity when hovering over addCard button */
 #add_card:hover {
     opacity: 0.8;
     transition: all 0.2s ease-in;
@@ -84,8 +81,8 @@ fieldset {
 }
 
 /* The following are containers and inputs that occupy 
-    * a row range and column range in the grid form
-*/
+ * a row range and column range in the grid form
+ */
 #save {
     grid-row-start: 1;
     grid-column-start: 1;
@@ -98,7 +95,6 @@ fieldset {
     text-align: left;
 }
 
-/* TOOD: smoothly change opacity when hoverning */
 #save:hover {
     cursor: pointer;
     opacity: 0.8;
@@ -136,7 +132,8 @@ fieldset {
     transform: scale(0.8);
 }
 
-/* Gets rid of default styling for text boxes, How much negative space to the left of input inside textbox */
+
+/* input boxes in popup form */
 input {
     padding-left: 15px;
     text-align: left;
@@ -171,6 +168,7 @@ input {
     font-size: 1.2em;
 }
 
+/* Wrapper for checkboxes in form */
 #optional_wrapper {
     text-align: left;
     width: 40%;
@@ -261,8 +259,8 @@ input {
     grid-column-end: 4;
 
     /* Flex with direction "column" tells DOM to 
-            * structure all child elements vrtically
-            */
+     * structure all child elements vertically
+     */
     display: flex;
     flex-direction: column;
 
@@ -283,8 +281,6 @@ input {
     padding: 15px;
     font-size: 1.2em;
 }
-
-
 
 
 
@@ -425,19 +421,7 @@ input {
 }
 
 
-#change_color {
-    position: relative;
-    background: rgb(1,1,1);
-    color: white;
-    width: 8rem;
-    height: 95%;
-    text-align: center;
-    align-items: center;
-    padding: 16px;
-    font-size: 0.8rem;
-    border-radius: 10px;
 
-}
 
 /*
 
@@ -466,33 +450,27 @@ input {
 }
 */
 
-
-
-
-
 /* The list that stores all the cards
-    * Three columns but its rows should grow dynamically with number of cards added
-    * This was actually very simple. Just had to do some exploration online
-*/
+ * Three columns but its rows should grow dynamically with number of cards added
+ */
 #gallery {
     width: 80%;
     margin: 5vh auto;
     display: grid;
 
     /* Autofill tells the DOM to move content to the next
-            * row if it overfills the current row as many times as needed
-            *
-            * Minmax property will determine if items need
-            * to stretch to consume any horizontal space up to 1fr
-        */
+     * row if it overfills the current row as many times as needed
+     *
+     * Minmax property will determine if items need
+     * to stretch to consume any horizontal space up to 1fr
+     */
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 30px;
     justify-content: center;
 }
 
-/* Background Color Schemes 
-    * Pink-Lavendar: #BF8162
-    * Black: #FFFFFF
-    * Chocolate: #3E1404
-    * Cream: #E3E2C9
-*/
+
+
+
+
+

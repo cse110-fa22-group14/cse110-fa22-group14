@@ -305,6 +305,7 @@ function handleEvents() {
 
 
 
+
     function sort() {
         
         /**
@@ -332,7 +333,6 @@ function handleEvents() {
             coffeeCards.sort(sortPrice2);
 
         }
-
 
         // Define sorting function for rating
         if (choice.match("Date") && choice[ZERO] == "0") {
@@ -519,6 +519,8 @@ function handleEvents() {
             saveCoffeeCardsToStorage(coffeeCards);
             addCoffeeCardsToDocument(coffeeCards);
 
+            // Set sort to the default setting for import
+            filterOption.selectedIndex = 1;
             sort();
 
         }, false);
@@ -729,6 +731,8 @@ function handleEvents() {
                 // Update storage
                 saveCoffeeCardsToStorage(coffeeCards);
                 addCoffeeCardsToDocument(coffeeCards);
+
+                sort();
 
                 /*
                  *  Update current_card_id field in the local storage to avoid null object
