@@ -49,13 +49,16 @@
                 font-size: 1em;
             }
 
+            /* Drink Title */
             h3 {
                 grid-row-start: 1;
                 grid-row-end: 2;
                 grid-column-start: 1;
                 grid-column-end: 6;
+                font-weight: 900;
             }
 
+            /* Drink Date */
             h4{
                 grid-row-start: 2;
                 grid-row-end: 3;
@@ -64,6 +67,7 @@
                 font-size: 0.9em;
             }
 
+            /* Share Icon */
             img {
                 transform: scale(0.8);
                 grid-row-start: 1;
@@ -75,6 +79,11 @@
                 align-self: right;
             }
 
+            img:hover {
+                cursor:pointer;
+            }
+
+            /* Container to hold flavor details */
             .info{
                 margin: auto;
                 font-family: "Zen Maru Gothic";

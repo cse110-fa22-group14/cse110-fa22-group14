@@ -140,10 +140,11 @@ function handleEvents() {
 
     // Main page background color change (user picks color) -- Yuang Cui
     color_picker.addEventListener("change",  (event)=> {
-        let cards = document.querySelectorAll('coffee-card');
-        switch_theme(cards, event.target.value);
-        localStorage.setItem("theme", JSON.stringify(event.target.value));
-        color_picker.selectedIndex = 0;
+        if (event.target.value != JSON.parse(localStorage.getItem("theme"))) {
+            let cards = document.querySelectorAll('coffee-card');
+            switch_theme(cards, event.target.value);
+            localStorage.setItem("theme", JSON.stringify(event.target.value));
+        }
     });
 
 
@@ -371,7 +372,7 @@ function handleEvents() {
         if (event.target.value != JSON.parse(localStorage.getItem("sort"))) {
             sort();
         }
-        filterOption.selectedIndex = 0;
+        //filterOption.selectedIndex = 0;
     })
 
 
@@ -514,15 +515,12 @@ function handleEvents() {
             // Update local cards
             const coffeeCards = getCoffeeCardsFromStorage();
             coffeeCards.push(fileText);
-            saveCoffeeCardsToStorage(coffeeCards);
 
-            // Update gallery with new card
+            saveCoffeeCardsToStorage(coffeeCards);
             addCoffeeCardsToDocument(coffeeCards);
 
-            // Update current_card_id field
-            //localStorage.setItem('current_card_id', coffeeCards.length - ONE);
+            sort();
 
-            // FIXME: Upload field is not clearing itself after each upload
         }, false);
 
         // Reader reads the file as text if valid
@@ -530,6 +528,7 @@ function handleEvents() {
             reader.readAsText(importFile);
         }
         importButton.value = null;
+
     })
 
 
@@ -587,6 +586,8 @@ function handleEvents() {
         if (importFile) {
             reader.readAsText(importFile);
         }
+        sort();
+
     }
 
 

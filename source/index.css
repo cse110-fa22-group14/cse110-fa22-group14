@@ -41,6 +41,7 @@ main {
     background-color: #bf8162;
     border-radius: 30px;
     border: none;
+    box-shadow: 12px 17px 14px -12px rgba(0, 0, 0, 0.41);
 }
 
 /* TODO: Smoothly change opacity when hovering over addCard button */

@@ -36,6 +36,15 @@ function switch_theme(cards, str_theme_name) {
             navButtons = "#000000";
         break;
 
+        default:
+            console.log("theme is default")
+            cardBackground = "#BF8162";
+            cardText = "#FFFFFF";
+            pageBackground = "#FFFFFF";
+            navbar = "#666B5E";
+            navButtons = "#000000";
+        break;
+
     }
 
     // set the colors of the elements on page 
