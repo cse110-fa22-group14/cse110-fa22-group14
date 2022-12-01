@@ -19,9 +19,7 @@
          // Style element for the coffee cards
          const shadow_style = document.createElement("style");
          // Define the precise style for the card
-
-         shadow_style.textContent = `
-  
+        shadow_style.textContent = `
             div {
                 position: relative;
                 display: flex;
@@ -80,7 +78,7 @@
                 font-family: "Zen Maru Gothic";
             }
 
-            #toggle_edit {
+            .edit {
                 background: brown;
                 color: #fff;
                 border: 0;
@@ -156,8 +154,8 @@
           <p id = "str_drink_type"><slot name="drink_type">Serving Type: ${data["str_drink_type"]}</p>
           <p id = "int_dropdown_color"><slot name="color">Color Level: ${data["int_dropdown_color"]}</p>
         </section>
-        <button id = "toggle_edit" >Edit</button>
-        <button class = "delete" id = "delete_card" >Delete</button>
+        <button class = "edit" id="toggle_edit" >Edit</button>
+        <button class = "delete" id="delete_card" >Delete</button>
         `;
 
         // Custom event trigger that the DOM will catch whenever we click on "delete"
