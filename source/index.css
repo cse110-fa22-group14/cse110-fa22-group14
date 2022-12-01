@@ -18,11 +18,9 @@ header {
     position: relative;
     height: 20%;
     width: 100%;
-    background-color: rgb(111, 78, 55);
-    display: flex;
-    justify-content: center;
+    background-color: rgb(111 78 55);
     align-items: center;
-    border-bottom: 3px double rgb(111, 78, 55);
+    border-bottom: 3px double rgb(111 78 55);
     border-top: 2px solid gold;
 }
 
@@ -211,6 +209,7 @@ input {
 
 #switch_photo_left_arrow,
 #switch_photo_right_arrow {
+
     /* INFO: reference: https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp */
 
     /* NOTE: implemented left and right arrows to change inage */
@@ -296,17 +295,17 @@ input {
     text-align: center;
     align-items: center;
     table-layout: fixed;
-    padding: 0rem;
+
+    /*padding: 0rem;
     margin: 0rem;
-    border: 0rem;
+    border: 0rem;*/
 }
 
 #functionality #filter,
 #select_file {
     position: relative;
-    background: rgb(111, 78, 55);
+    background: rgb(111 78 55);
     color: white;
-    border-radius: 0px;
     -webkit-text-stroke: 0.8px gold;
     width: 8rem;
     height: 95%;
@@ -318,9 +317,8 @@ input {
 
 #changeColor {
     position: relative;
-    background: rgb(111, 78, 55);
+    background: rgb(111 78 55);
     color: white;
-    border-radius: 0px;
     -webkit-text-stroke: 0.8px gold;
     width: 8rem;
     height: 95%;
@@ -348,9 +346,9 @@ input {
     transition: all 0.2s ease-in;
     -webkit-mask-image: linear-gradient(
         -75deg,
-        rgba(0, 0, 0, 0.6) 30%,
-        #000 50%,
-        rgba(0, 0, 0, 0.6) 70%
+        rgba(0 0 0 / 0.6) 30%, 
+         #000 50%, 
+         rgba(0 0 0 / 0.6)) 70%
     );
     -webkit-mask-size: 200%;
     animation: shine 1.5s infinite;
@@ -373,7 +371,7 @@ input {
     align-items: center;
     width: 8rem;
     text-align: center;
-    background-color: rgb(111, 78, 55);
+    background-color: rgb(111 78 55);
     color: white;
     padding: 16px;
     font-size: 0.8rem;
@@ -431,21 +429,23 @@ input {
     letter-spacing: 0.5em;
     font-size: 1rem;
     animation: popout 3s ease;
-    -webkit-animation: popout 3s ease;
+
+    /*-webkit-animation: popout 3s ease;*/
 }
 
 @keyframes popout {
     from {
-        transform: scale(0.6);
+        transform: scale(60%);
     }
     80% {
-        transform: scale(1.5);
+        transform: scale(150%);
     }
     to {
-        transform: scale(1);
+        transform: scale(100%);
     }
 }
-@-webkit-keyframes popout {
+
+/*@-webkit-keyframes popout {
     from {
         -webkit-transform: scale(0.6);
     }
@@ -455,7 +455,7 @@ input {
     to {
         -webkit-transform: scale(1);
     }
-}
+}*/
 
 /* The list that stores all the cards
     * Three columns but its rows should grow dynamically with number of cards added
