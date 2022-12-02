@@ -16,12 +16,13 @@ header {
     justify-content: center;
     display: flex;
     position: relative;
-    height: 20%;
-    width: 100%;
-    background-color: rgb(111 78 55);
+    height: 15vh;
+    width: 80%;
+    margin: 10px auto 0 auto;
+    background-color:  rgb(217, 217, 217);
     align-items: center;
-    border-bottom: 3px double rgb(111 78 55);
-    border-top: 2px solid gold;
+    border: none;
+    border-radius: 10px;
 }
 
 main {
@@ -30,23 +31,21 @@ main {
     justify-content: center;
 }
 
-/* TODO: remove pseudoCard selector after custom elements are made 
-    * TODO: The custom card element should be same size and color as the add button
-*/
-#add_card,
-#pseudoCard {
+#add_card {
     min-width: 300px;
     max-width: 1fr;
     height: 300px;
     background-color: #bf8162;
-    border-radius: 10px;
+    border-radius: 30px;
     border: none;
+    box-shadow: 12px 17px 14px -12px rgba(0, 0, 0, 0.41);
 }
 
-/* TODO: Smoothly change opacity when hovering over addCard button */
-#addCard:hover {
+/* Smoothly change opacity when hovering over addCard button */
+#add_card:hover {
     opacity: 0.8;
     transition: all 0.2s ease-in;
+    cursor: pointer;
 }
 
 /* Hidden popup form */
@@ -55,13 +54,13 @@ main {
     opacity: 0;
     visibility: hidden;
     z-index: 1;
-    background-color: black;
-    border-radius: 10px;
+    background-color: rgb(11, 17, 17);
+    border-radius: 20px;
     padding: 20px;
     font-family: "Zen Maru Gothic", Helvetica, Arial;
     height: auto;
     width: 50vw;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -40%);
     left: 50%;
     top: 50%;
 
@@ -69,7 +68,7 @@ main {
     display: grid;
 
     /* We have 11 rows and 6 columns in the grid */
-    grid-template-rows: repeat(11, 40px);
+    grid-template-rows: repeat(11, 30px);
     grid-template-columns: repeat(6, minmax(10px, 1fr));
 
     /* Space between each form child */
@@ -82,8 +81,8 @@ fieldset {
 }
 
 /* The following are containers and inputs that occupy 
-    * a row range and column range in the grid form
-*/
+ * a row range and column range in the grid form
+ */
 #save {
     grid-row-start: 1;
     grid-column-start: 1;
@@ -96,7 +95,6 @@ fieldset {
     text-align: left;
 }
 
-/* TOOD: smoothly change opacity when hoverning */
 #save:hover {
     cursor: pointer;
     opacity: 0.8;
@@ -134,15 +132,18 @@ fieldset {
     transform: scale(0.8);
 }
 
-/* Gets rid of default styling for text boxes, How much negative space to the left of input inside textbox */
+
+/* input boxes in popup form */
 input {
     padding-left: 15px;
+    text-align: left;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     font-size: 1.2em;
     font-family: "Zen Maru Gothic", Arial, Georgia;
     background-color: #ffff;
 }
+
 
 #flavor_container {
     background-color: #ffff;
@@ -167,6 +168,7 @@ input {
     font-size: 1.2em;
 }
 
+/* Wrapper for checkboxes in form */
 #optional_wrapper {
     text-align: left;
     width: 40%;
@@ -257,8 +259,8 @@ input {
     grid-column-end: 4;
 
     /* Flex with direction "column" tells DOM to 
-            * structure all child elements vrtically
-            */
+     * structure all child elements vertically
+     */
     display: flex;
     flex-direction: column;
 
@@ -278,11 +280,10 @@ input {
     font-family: "Zen Maru Gothic", Arial, Georgia;
     padding: 15px;
     font-size: 1.2em;
-
-    /* TOOD: If user types in more characters than box can fit
-            * add scrolling to allow for more input 
-            */
 }
+
+
+
 
 /* Holds the help and filter options above gallery */
 #functionality {
@@ -294,36 +295,123 @@ input {
     height: 3rem;
     text-align: center;
     align-items: center;
-    table-layout: fixed;
 }
 
-#functionality #filter,
-#select_file {
+/* Define structure for the four buttons in nav bar */
+#functionality 
+#select_file,
+#help, 
+#filter,
+#change_color {
+    display: flex;
     position: relative;
-    background: rgb(111 78 55);
+    background-color: rgb(1,1,1);
     color: white;
-    -webkit-text-stroke: 0.8px gold;
     width: 8rem;
     height: 95%;
     text-align: center;
     align-items: center;
-    padding: 16px;
+    font-size: 0.8rem;
+    border-radius: 10px;
+}
+
+
+/* Help Dropdown Button */
+#help{
+    display: flex;
+    align-items: center;
+    width: 8rem;
+    min-width: 4rem;
+    text-align: center;
+}
+
+
+.dropdown {
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    display: inline-block;
+    text-align: center;
+
+    /* removes the arrow icon */
+    appearance: none;
+}
+
+.dropdown:hover {
+    opacity: 0.9;
+    transition: all 0.1s ease-in-out;
+    cursor: pointer;
+    background-color: red;
+}
+
+
+#select_file:hover {
+    opacity: 0.9;
+    transition: all 0.1s ease-in-out;
+    cursor: pointer;
+}
+
+
+
+/* Dropdown Content (Hidden by Default) 
+.dropdown-content {
+    display: none;
+    position: absolute;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    background-color: rgb(128, 111, 111);
+    z-index: 1;
+    width: 8rem;
+    height: 10vh;
+    border-bottom-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+/* Links inside the dropdown 
+.dropdown-content a {
+    color: rgb(255,255,255);
+    font-size: 0.8rem;
+    text-decoration: none;
+    justify-content: center;
+    display: block;
+}
+
+
+/* Show the dropdown menu on hover 
+.dropdown:hover .dropdown-content {
+    display: block;
     font-size: 0.8rem;
 }
 
-#changeColor {
-    position: relative;
-    background: rgb(111 78 55);
-    color: white;
-    -webkit-text-stroke: 0.8px gold;
-    width: 8rem;
-    height: 95%;
-    text-align: center;
-    align-items: center;
-    padding: 16px;
-    font-size: 0.8rem;
-    border: 0;
+/* Change the background color of the dropdown button when the dropdown content is shown 
+.dropdown:hover .dropbtn {
+
+    cursor: pointer;
+    opacity: 0.8;
+    transition: all 0.2s ease-in;
+    /*
+    letter-spacing: 0.5em;
+    font-size: 1rem;
+    animation: popout 3s ease; 
 }
+
+
+@keyframes popout {
+    from {
+        transform: scale(60%);
+    }
+
+    80% {
+        transform: scale(150%);
+    }
+
+    to {
+        transform: scale(100%);
+    }
+}
+*/
+
 
 #functionality h1 {
     color: black;
@@ -331,6 +419,11 @@ input {
     font-size: 2em;
     font-weight: 100;
 }
+
+
+
+
+/*
 
 #functionality h1:hover {
     font-size: 2.2em;
@@ -355,112 +448,29 @@ input {
         -webkit-mask-position: -50%;
     }
 }
-
-/* Dropdown Button */
-.dropbtn {
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 8rem;
-    text-align: center;
-    background-color: rgb(111 78 55);
-    color: white;
-    padding: 16px;
-    font-size: 0.8rem;
-    border: none;
-    cursor: pointer;
-    -webkit-text-stroke: 0.8px gold;
-}
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    display: inline-block;
-    text-align: center;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    background-color: #f1f1f1;
-    z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    align-items: center;
-    justify-content: center;
-    display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-    background-color: silver;
-    border: 1px solid black;
-    transform: scale(1.1);
-    transition: all 0.2s ease-in;
-}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-    display: block;
-    font-size: 0.8rem;
-}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-    letter-spacing: 0.5em;
-    font-size: 1rem;
-    animation: popout 3s ease;
-}
-
-@keyframes popout {
-    from {
-        transform: scale(60%);
-    }
-
-    80% {
-        transform: scale(150%);
-    }
-
-    to {
-        transform: scale(100%);
-    }
-}
-
+*/
 
 /* The list that stores all the cards
-    * Three columns but its rows should grow dynamically with number of cards added
-    * This was actually very simple. Just had to do some exploration online
-*/
+ * Three columns but its rows should grow dynamically with number of cards added
+ */
 #gallery {
     width: 80%;
-    margin: 10vh auto;
+    margin: 5vh auto;
     display: grid;
 
     /* Autofill tells the DOM to move content to the next
-            * row if it overfills the current row as many times as needed
-            *
-            * Minmax property will determine if items need
-            * to stretch to consume any horizontal space up to 1fr
-        */
+     * row if it overfills the current row as many times as needed
+     *
+     * Minmax property will determine if items need
+     * to stretch to consume any horizontal space up to 1fr
+     */
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 30px;
     justify-content: center;
 }
 
-/* Background Color Schemes 
-    * Pink-Lavendar: #BF8162
-    * Black: #FFFFFF
-    * Chocolate: #3E1404
-    * Cream: #E3E2C9
-*/
+
+
+
+
+
