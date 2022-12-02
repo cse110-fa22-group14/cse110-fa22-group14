@@ -107,7 +107,7 @@ fieldset {
     grid-column-end: 5;
 }
 
-#int_drink_price {
+#float_drink_price {
     grid-row-start: 3;
     grid-column-start: 1;
     grid-row-end: 4;
