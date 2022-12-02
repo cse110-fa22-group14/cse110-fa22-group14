@@ -286,7 +286,38 @@ function handleEvents() {
     filterOption.addEventListener("change", (event) => {
 
         if (event.target.value != JSON.parse(localStorage.getItem("sort"))) {
-            sort();
+            const coffeeCards = getCoffeeCardsFromStorage();
+
+        // Get the sorting selection
+        const sortSelect = document.getElementById("filter")
+        const choice = sortSelect.value;
+
+        // Console.log(coffeeCards[0]["time_purchase_date"])
+
+        // Define sorting function for price
+        if (choice.match("Price")) {
+            coffeeCards.sort(sortPrice);
+        }
+
+        // Define sorting function for rating
+        else if (choice.match("Date")) {
+            coffeeCards.sort(sortDate);
+        }
+
+        /*
+         * If the value has a prepended 1, then sort the list
+         * from high to low
+         */
+        if (choice[ZERO] == "1") {
+            coffeeCards.reverse()
+        }
+
+
+        // Save the changes
+        saveCoffeeCardsToStorage(coffeeCards)
+
+        addCoffeeCardsToDocument(coffeeCards);
+        // }
         }
         //filterOption.selectedIndex = 0;
     })
