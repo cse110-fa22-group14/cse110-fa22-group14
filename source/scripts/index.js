@@ -5,7 +5,10 @@
  */
 window.addEventListener('DOMContentLoaded', init);
 
-const NEGATIVE_ONE = -1;
+// Get sort_functions
+import {sortDate, sortPrice} from "./sortFunctions.js";
+import {set_image, get_image_id, reset_image_id} from "./switchCoffeeImage.js";
+
 const ZERO = 0;
 const ONE = 1;
 const TWO = 2;
@@ -165,7 +168,7 @@ function handleEvents() {
 
         // Reset the form's html contents when done.
         document.getElementById("str_drink_name").value = "";
-        document.getElementById("int_drink_price").value = "";
+        document.getElementById("float_drink_price").value = "";
         document.getElementById("time_purchase_date").value = "";
         document.getElementById("str_purchase_location").value = "";
 
@@ -223,99 +226,12 @@ function handleEvents() {
      * })
      */
 
-    /**
-     * 
-     * @param {object} a the first card to be compared
-     * @param {object} b the second card to be compared
-     * @returns the result between a 3 way comparison of a and b
-     * caomparitor function that gives priority to the card with the earliest date.
-     * works by comparing the dates as strings which works because the date input field formats
-     * responses as YYYY/MM/DD allowing for direct string comparison
+    /*
+     * Grabs the value of whatever filter option was selected and applies
+     * it to narrow the results of the gallery
      */
-    function sortDate(a, b) {
-        
-        const dateA = a['time_purchase_date'];
-        const dateB = b['time_purchase_date'];
+    filterOption.addEventListener("change", () => {
 
-        console.log("Comparing date: " + dateA + " with date " + dateB)
-        if (dateA < dateB) {
-            return NEGATIVE_ONE;
-        }
-        else if (dateA > dateB) {
-            return ONE;
-        }
-        else{
-            return ZERO;
-        }
-    }
-
-    function sortDate2(a, b) {
-        
-        const dateA = a['time_purchase_date'];
-        const dateB = b['time_purchase_date'];
-
-        console.log("Comparing date: " + dateA + " with date " + dateB)
-        if (dateA > dateB) {
-            return NEGATIVE_ONE;
-        }
-        else if (dateA < dateB) {
-            return ONE;
-        }
-        else{
-            return ZERO;
-        }
-    }
-
-    /**
-     * 
-     * @param {object} a the first card to be compared
-     * @param {object} b the second card to be compared 
-     * @returns the result of a 3 way camprison of a and b
-     * camparitor function that gives priority to the card with the higher price.
-     */
-    function sortPrice(a, b) {
-        const priceA = parseInt(a['int_drink_price']);
-        const priceB = parseInt(b['int_drink_price']);
-
-        if (priceA < priceB) {
-            return NEGATIVE_ONE;
-        }
-        if (priceA > priceB) {
-            return ONE;
-        }
-        else{
-            return ZERO;
-        }
-    }
-
-    function sortPrice2(a, b) {
-        const priceA = parseInt(a['int_drink_price']);
-        const priceB = parseInt(b['int_drink_price']);
-
-        if (priceA > priceB) {
-            return NEGATIVE_ONE;
-        }
-        if (priceA < priceB) {
-            return ONE;
-        }
-        else{
-            return ZERO;
-        }
-    }
-
-
-
-
-    function sort() {
-        
-        /**
-         * "Default">Default</option>
-         *  <option value = "0Price: Low-High">Price: Low-High</option>
-         *  <option value = "1Price: High-Low">Price: High-Low</option>
-         *  <option value = "0Rating: Low-High">Rating: Low-High</option>
-         *  <option value = "1Rating: High-Low">Rating: High-Low</option>
-         *  <option value = "0Date: Oldest-Newest">
-         */
         const coffeeCards = getCoffeeCardsFromStorage();
 
         // Get the sorting selection
@@ -401,7 +317,7 @@ function handleEvents() {
 
             // The following code works just fine to populate an input field
             document.getElementById("str_drink_name").value = coffeeCardObject["str_drink_name"];
-            document.getElementById("int_drink_price").value = coffeeCardObject["int_drink_price"];
+            document.getElementById("float_drink_price").value = coffeeCardObject["float_drink_price"];
             document.getElementById("time_purchase_date").value = coffeeCardObject["time_purchase_date"];
             document.getElementById("str_purchase_location").value = coffeeCardObject["str_purchase_location"];
 
@@ -608,7 +524,7 @@ function handleEvents() {
 
             // Visible variables
             "str_drink_name": data.get('str_drink_name'),
-            "int_drink_price": data.get('int_drink_price'),
+            "float_drink_price": data.get('float_drink_price'),
             "time_purchase_date": data.get('time_purchase_date'),
             "str_purchase_location": data.get('str_purchase_location'),
             "img_drink_image": get_image_id(),
@@ -671,7 +587,7 @@ function handleEvents() {
             card_to_edit.querySelector('#str_drink_name').innerText =
                 coffeeCardObject["str_drink_name"];
             card_to_edit.querySelector('#time_purchase_date').innerText =
-                coffeeCardObject["time_purchase_date"].toUpperCase();
+                coffeeCardObject["time_purchase_date"]
             card_to_edit.querySelector('#str_purchase_location').innerText =
                 "Location: " + coffeeCardObject["str_purchase_location"];
             card_to_edit.querySelector('#str_brew_style').innerText =

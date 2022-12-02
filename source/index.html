@@ -14,7 +14,11 @@
   </style>
 
   <!-- Coffee Image Switch Script -->
-  <script src="./scripts/switchCoffeeImage.js" type="text/javascript"></script>
+  <script src="./scripts/switchCoffeeImage.js" type="module"></script>
+  <!--the 'type' is changed to 'text/javascript' to access functions across files-->
+
+  <!-- Coffee Image Switch Script -->
+  <script src="./scripts/sortFunctions.js" type="module"></script>
   <!--the 'type' is changed to 'text/javascript' to access functions across files-->
 
 
@@ -23,7 +27,7 @@
   <script src="scripts/index.js" type="module"></script>
 
   <!-- Coffe Card Custom Element -->
-  <script src="./scripts/coffeeCard.js" type="text/javascript"></script>
+  <script src="./scripts/coffeeCard.js" type="module"></script>
 
     <!-- icons from google font  -- Yuang--> 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
@@ -99,8 +103,7 @@
         <button id = "cancel" type = "reset">CANCEL</button>
         
         <input type = "text" id="str_drink_name" placeholder="name of drink" name = "str_drink_name" required/>
-        <input type = "text"id="int_drink_price" placeholder = "price" name = "int_drink_price" required/>
-
+        <input type = "text"id="float_drink_price" placeholder = "price" name = "float_drink_price" required/>
         <!-- <input type = "text"id="time_purchase_date" placeholder = "date purchased" name = "time_purchase_date" required/> -->
         <input type="date" id="time_purchase_date"  name = "time_purchase_date" required/>
         <input type = "text" id="str_purchase_location" placeholder = "location" name = "str_purchase_location" required/>
