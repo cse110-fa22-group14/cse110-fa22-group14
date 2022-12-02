@@ -48,4 +48,3 @@ export function sortPrice(a, b) {
     }
 }
 
-// module.exports = {sortDate, sortPrice};

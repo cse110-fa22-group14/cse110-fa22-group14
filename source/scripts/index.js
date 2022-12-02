@@ -6,7 +6,6 @@
 window.addEventListener('DOMContentLoaded', init);
 
 // Get sort_functions
-// const sortFunctions = require('./sortFunctions.js');
 import {sortDate, sortPrice} from "./sortFunctions.js";
 import {set_image, get_image_id, reset_image_id} from "./switchCoffeeImage.js";
 
