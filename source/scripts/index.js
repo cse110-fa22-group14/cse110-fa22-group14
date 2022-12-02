@@ -274,7 +274,7 @@ function handleEvents() {
         addCoffeeCardsToDocument(coffeeCards);
 
         localStorage.setItem("sort", JSON.stringify(sortSelect.value));
-    }
+    });
 
 
 
