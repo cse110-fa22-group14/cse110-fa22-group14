@@ -468,7 +468,6 @@ function handleEvents() {
 
             // Set sort to the default setting for import
             filterOption.selectedIndex = 1;
-            sort();
 
         }, false);
 
@@ -535,7 +534,9 @@ function handleEvents() {
         if (importFile) {
             reader.readAsText(importFile);
         }
-        sort();
+
+        // Set sort to the default setting for import
+        filterOption.selectedIndex = 1;
 
     }
 
@@ -635,10 +636,12 @@ function handleEvents() {
          * next time the user chooses to add a new card, the image will
          * be the default one, which is the first one.
          */
+        
+        // Set sort to the default setting for import
+        filterOption.selectedIndex = 1;
         reset_image_id();
         isEditing = false;
         closeForm();
-        sort();
     })
 
 
@@ -678,8 +681,6 @@ function handleEvents() {
                 // Update storage
                 saveCoffeeCardsToStorage(coffeeCards);
                 addCoffeeCardsToDocument(coffeeCards);
-
-                sort();
 
                 /*
                  *  Update current_card_id field in the local storage to avoid null object
