@@ -19,7 +19,8 @@ describe("Basic user flow for Website", () => {
     // Flavor slider max value
     const SLIDER_MAX_VALUE = 5;
 
-    // Testing
+    // Default date
+    const DEFAULT_DATE = "2022-11-30";
 
     // Check to make sure that adding 10 cards to the page will create 10 cards
     it("Adding 10 cards should populate the gallery with 10 cards ", async () => {
@@ -29,9 +30,13 @@ describe("Basic user flow for Website", () => {
       for(let i = 0; i < TOTAL_CARDS; i++) {
         await addButton.click();
         await page.$eval("#str_drink_name", (el, value) => el.value = "Drink"+value, i);
-        await page.$eval("#int_drink_price", (el, value) => el.value = "Price"+value, i);
-        const date = await page.evaluate( () => { return new Date().toLocaleDateString() });
-        await page.type("#time_purchase_date", date);
+        await page.$eval("#float_drink_price", (el, value) => el.value = "Price"+value, i);
+
+        // Give the cards a default date
+        console.log("The default date to test is: " + DEFAULT_DATE);
+        let date = new Date(DEFAULT_DATE);
+        date = date.toLocaleDateString('en-US');
+        await page.type("#time_purchase_date", date.replace(/[^0-9]/g, ''));
 
         await page.$eval("#str_purchase_location", (el, value) => el.value = "Location"+value, i);
         const saveButton = await page.$("#save");
@@ -63,21 +68,10 @@ describe("Basic user flow for Website", () => {
         await editButton.click();
 
         await page.$eval("#str_drink_name", (el, value) => el.value = "Drink"+value+"-edited", i);
-        await page.$eval("#int_drink_price", (el, value) => el.value = "Price"+value+"-edited", i);
-
-        const tomorrow = await page.evaluate( (INCREMENT)=> {
-           const date = new Date();
-           date.setDate(date.getDate() + INCREMENT);
-           return date.toLocaleDateString();
-          });
-
-        await page.type("#time_purchase_date", tomorrow);
+        await page.$eval("#float_drink_price", (el, value) => el.value = "Price"+value+"-edited", i);
         await page.$eval("#str_purchase_location", (el, value) => el.value = "Location"+value+"-edited", i);
         await page.$eval("#save", el => el.click());
       }
-    
-
-    
 
       /*
        * Then check to make sure the fields match our assumptions
@@ -123,27 +117,7 @@ describe("Basic user flow for Website", () => {
         });
         expect(drinkName).toBe("Drink"+i+"-edited");
 
-        // Check the date purchased of the drink on the thumbnail
-        const date = await shadowRoot.$eval("#time_purchase_date", (el) => {
-          return el.value;
-        });
-        console.log(date);
-
-        /*
-         * TODO: Check to make sure the date is set to tomorrow's date
-         * Check the location purchased of the drink on the thumbnail
-         */
-        const tomorrow = await page.evaluate( (INCREMENT)=> {
-          const date = new Date();
-          date.setDate(date.getDate() + INCREMENT);
-          return date;
-         });
-
-         console.log(tomorrow);
-        /* 
-         * FIXME: The assertion fails since toLocaleDateString() doesn't work on tomorrow
-         * expect(date).toBe(tomorrow.toLocaleDateString())
-         */
+        // Check the location of the drink on the thumbnail
         const place = await shadowRoot.$eval("#str_purchase_location", (el) => {
           return el.innerText;
         });
@@ -151,7 +125,62 @@ describe("Basic user flow for Website", () => {
       }
     }, TOTAL_TEST_TIME);
 
+  // Check to make sure that all TOTAL_CARDS <coffee-card> elements have correct date modification
+  it('Make sure <coffee-card> elements dates are functioning', async () => {
+    console.log('Checking to make sure <coffee-card> elements dates are functioning...');
 
+    // Query select all of the <coffee-card> elements
+    const allCoffeeCards = await page.$$('coffee-card');
+
+    // Iterate through all coffee cards
+    for (let i = 0; i < allCoffeeCards.length; i++) {
+      console.log(`Checking coffee card ${i}/${allCoffeeCards.length}`);
+      const itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
+      
+      // Check info on Thumbnail
+      const thumbDate = await itemFromShadow.$eval("#time_purchase_date", (el) => {
+        return el.innerText;
+      });
+      console.log("Drink"+i+"'s current date on thumbnail is: " + thumbDate);
+
+      // Click the edit button
+      const buttonFromShadow = await itemFromShadow.$('button');
+      await buttonFromShadow.click();
+
+      // Check info on edit page
+      const cardDate = await page.$eval("#time_purchase_date", (el) => {
+        return el.value;
+      });
+      console.log("Drink"+i+"'s current date on edit page is: " + cardDate);
+
+      // Check if the thumbnail's date matches the one on the card edit page
+      expect(thumbDate).toBe(cardDate);
+
+      // Create a new date
+      const NINE = 9;
+      const modifiedDay = i%NINE+INCREMENT;
+      const tomorrowDateStr = "2053-"+"0"+String(modifiedDay)+"-1"+String(modifiedDay);
+      let tomorrow = new Date(tomorrowDateStr);
+      tomorrow = tomorrow.toLocaleDateString('en-US');
+      await page.type("#time_purchase_date", tomorrow.replace(/[^0-9]/g, ''));
+      tomorrow = new Date(tomorrow);
+      tomorrow = tomorrow.toLocaleDateString('zh-Hans-CN');
+      console.log("Drink"+i+"'s new date on edit page is: " + tomorrow);
+
+      // Save the edit of the card
+      const saveButton = await page.$("#save");
+      await saveButton.click();
+
+      // Check and see if the date on thumbnail is updated
+      let newThumbDate = await itemFromShadow.$eval("#time_purchase_date", (el) => {
+        return el.innerText;
+      });
+      newThumbDate = new Date(tomorrow);
+      newThumbDate = newThumbDate.toLocaleDateString('zh-Hans-CN');
+      console.log("Drink"+i+"'s updated date on thumbnail is: " + newThumbDate);
+      expect(newThumbDate).toBe(tomorrow);
+    }
+  }, TOTAL_TEST_TIME);
 
   // Check chocoloate checkbox edit functionality
   it('Checking the chocoloate checkbox values have been successfully edited when opend', async () => {
