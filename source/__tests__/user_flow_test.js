@@ -18,6 +18,9 @@ describe("Basic user flow for Website", () => {
     // Used to fetch delete button from the card
     const DELETE = 1;
 
+    // Used to avoid magic number
+    const ZERO = 0;
+
     // Flavor slider max value
     const SLIDER_MAX_VALUE = 5;
 
@@ -531,7 +534,7 @@ describe("Basic user flow for Website", () => {
     // Get the first coffeecard
     const coffeeCards = await page.$$('coffee-card');
     const cardNum = coffeeCards.length;
-    const card = coffeeCards[0];
+    const card = coffeeCards[ZERO];
 
     // Get the delete button and click on it
     const shadowRoot = await card.getProperty("shadowRoot");
@@ -546,8 +549,10 @@ describe("Basic user flow for Website", () => {
     expect(afterNum).toBe(cardNum - INCREMENT);
   }, TOTAL_TEST_TIME);
 
-  // Check and make sure the deleted card is the desired one
-  // NOTE: This test is expected to fail if two cards of same name exist
+  /**
+   * Check and make sure the deleted card is the target card
+   * NOTE: This test is expected to fail if two cards of same name exist
+   */
   it('Check if deleted card is the clicked card', async () => {
     // Randomly get a card
     const coffeeCards = await page.$$('coffee-card');
@@ -603,7 +608,7 @@ describe("Basic user flow for Website", () => {
       // Re-fetch the cards array because the cards bubbles with every delete
       const coffeeCards = await page.$$('coffee-card');
       // Delete the first card every time
-      const card = coffeeCards[0];
+      const card = coffeeCards[ZERO];
 
       // Get the button and click
       const shadowRoot = await card.getProperty("shadowRoot");
@@ -615,13 +620,13 @@ describe("Basic user flow for Website", () => {
     // Check if the array is empty
     const cardsDeleted = await page.$$('coffee-card');
     const actualNum = cardsDeleted.length;
-    expect(actualNum).toBe(0);
+    expect(actualNum).toBe(ZERO);
 
     // Check if the gallery is empty
     const numCards = await page.$$eval('coffee-card', (cards) => {
       return cards.length;
     });
-    expect(numCards).toBe(0);
+    expect(numCards).toBe(ZERO);
 
   }, TOTAL_TEST_TIME);
 });
