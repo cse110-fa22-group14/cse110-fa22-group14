@@ -40,7 +40,7 @@
         <section id = "functionality">
         
             <!-- this is import button -->
-            <button id = "select_file">IMPORT</button>
+            <button id = "select_file" disabled>IMPORT</button>
             <input id = "import" type = "file" style = "display:none;" name = "fileName"/>
 
             <!-- this is a div class that contains "about us" and "help button as a dropDown" 
@@ -51,7 +51,7 @@
                   <a href="./guidance.html">GUIDANCE</a>
                 </div>
               </div> -->
-            <select id= "help" class = "dropdown">
+            <select id= "help" class = "dropdown" disabled>
                 <option value = "" hidden>HELP</option>"
                 <option value = "./aboutUs.html">ABOUT</option>
                 <option value = "">GUIDANCE</option>
@@ -62,7 +62,7 @@
             <h1>brew notes.</h1>
             <!--<span class="material-symbols-outlined">coffee_maker</span> -->
             <!--the filter should be implemented later -->
-            <select id= "filter" class = "dropdown">
+            <select id= "filter" class = "dropdown" disabled>
               <option value = "" hidden>SORT</option>
               <option value = "0Price: Low-High">PRICE: LO-HI</option>
               <option value = "1Price: High-Low">PRICE: HI-LO </option>
@@ -71,7 +71,7 @@
             </select> 
             
             <!-- allow user to change background color -->
-            <select id="change_color" class = "dropdown">
+            <select id="change_color" class = "dropdown" disabled>
                 <option value="default" hidden>THEME</option>
                 <option value="default">DEFAULT</option>
                 <option value="dark">DARK</option>
@@ -86,9 +86,9 @@
 
 
     <main>
-    <form id = "pop_up_box">
-        <button id = "save" type = "submit">SAVE</button>
-        <button id = "cancel" type = "reset">CANCEL</button>
+    <form id = "pop_up_box" disabled>
+        <button id = "save" type = "submit" disabled>SAVE</button>
+        <button id = "cancel" type = "reset" disabled>CANCEL</button>
         
         <input type = "text" id="str_drink_name" placeholder="name of drink" name = "str_drink_name" required/>
         <input type = "text"id="float_drink_price" placeholder = "price" name = "float_drink_price" required/>
