@@ -57,7 +57,7 @@ main {
     background-color: rgb(11 17 17);
     border-radius: 20px;
     padding: 20px;
-    font-family: "Zen Maru Gothic", Arial, Georgia;
+    font-family: "Zen Maru Gothic", Arial;
     height: auto;
     width: 50vw;
     transform: translate(-50%, -40%);
@@ -89,7 +89,7 @@ fieldset {
     grid-row-end: 2;
     grid-column-end: 3;
     background: none;
-    font-family: "Zen Maru Gothic", Arial, Georgia;
+    font-family: "Zen Maru Gothic", Arial;
     font-size: 1.2em;
     color: #ffff;
     text-align: left;
@@ -140,7 +140,7 @@ input {
     border: none;
     border-radius: 5px;
     font-size: 1.2em;
-    font-family: "Zen Maru Gothic", Arial, Georgia;
+    font-family: "Zen Maru Gothic", Arial;
     background-color: #ffff;
 }
 
@@ -189,7 +189,7 @@ input {
     grid-row-end: 2;
     grid-column-end: 7;
     background: none;
-    font-family: "Zen Maru Gothic", Arial, Georgia;
+    font-family: "Zen Maru Gothic", Arial;
     font-size: 1.2em;
     color: #ffff;
     text-align: right;
@@ -277,7 +277,7 @@ input {
     grid-row-end: 13;
     grid-column-end: 7;
     border-radius: 10px;
-    font-family: "Zen Maru Gothic", Arial, Georgia;
+    font-family: "Zen Maru Gothic", Arial;
     padding: 15px;
     font-size: 1.2em;
 }
@@ -314,7 +314,7 @@ input {
     height: 95%;
     text-align: center;
     align-items: center;
-    font-family: "Zen Maru Gothic", Arial, Georgia;
+    font-family: "Zen Maru Gothic", Arial;
     font-weight: 700;
     font-size: 0.8rem;
     border-radius: 10px;
@@ -351,7 +351,7 @@ input {
 
 #functionality h1 {
     color: black;
-    font-family: "Zen Maru Gothic", Arial, Georgia;
+    font-family: "Zen Maru Gothic", Arial;
     font-size: 2.3em;
     font-weight: 600;
 }
