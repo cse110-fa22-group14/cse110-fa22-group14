@@ -28,22 +28,24 @@
                 min-width: 300px;
                 max-width: 1fr;
                 height: 300px;
-                background-color: rgb(181, 117, 81);
-                border-radius: 30px;
+                background-color: rgb(167 125 136);
+                border-radius: 20px;
                 border: none;
                 text-align: center;
+                box-shadow: 12px 17px 14px -12px rgba(0 0 0 / 41%);
+
             }
 
-            /* adding grid structure to header */
+            /* Adding grid structure to header */
             header {
+                margin: 0 auto;
+                width: 90%;
                 display: grid;
                 grid-template-rows: repeat(2, 30px);
                 grid-template-columns: repeat(6, minmax(50px, 1fr));
                 text-align: left;
-                padding: 10px 20px;
-                transform: translateY(-20px);
-                font-family: "Zen Maru Gothic";
-                font-weight: 900;
+                font-family: Arial, "Zen Maru Gothic";
+                font-weight: 100;
                 font-size: 1em;
             }
 
@@ -53,7 +55,6 @@
                 grid-row-end: 2;
                 grid-column-start: 1;
                 grid-column-end: 6;
-                font-weight: 900;
             }
 
             /* Drink Date */
@@ -83,16 +84,14 @@
 
             /* Container to hold flavor details */
             .info{
+                width: 90%;
                 margin: auto;
-                font-family: "Zen Maru Gothic";
+                font-family: Arial,"Zen Maru Gothic";
+                font-weight: 100;
+                text-align: left;
             }
 
             .edit {
-                background: brown;
-                color: #fff;
-                border: 0;
-                border-bottom-left-radius: 5px;
-                border-bottom-right-radius: 5px;
                 padding: 5px 20px;
             }
 
@@ -162,9 +161,11 @@
           <p id = "str_brew_style"><slot name="brew_style" />Brew Method: ${data["str_brew_style"]}</p>
           <p id = "str_drink_type"><slot name="drink_type">Serving Type: ${data["str_drink_type"]}</p>
           <p id = "int_dropdown_color"><slot name="color">Color Level: ${data["int_dropdown_color"]}</p>
+
+          <button class = "edit" id="toggle_edit" >Edit</button>
+          <button class = "delete" id="delete_card" >Delete</button>
         </section>
-        <button class = "edit" id="toggle_edit" >Edit</button>
-        <button class = "delete" id="delete_card" >Delete</button>
+
         `;
 
         // Custom event trigger that the DOM will catch whenever we click on "delete"

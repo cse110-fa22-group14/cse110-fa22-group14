@@ -25,36 +25,37 @@ function switch_theme(cards, str_theme_name) {
         navButtonsBackground,
         navButtonsText;
 
-    // set the color variables according to the chosen theme 
+    // Set the color variables according to the chosen theme 
     switch(str_theme_name) {
 
         case "dark":
-            cardBackground = "#646F77";
-            cardText = "#FFFFFF";
-            pageBackground = "#000000";
-            navBarBackground = "#949999";
+            cardBackground = "#435666";
+            cardText = "#ffffff";
+            pageBackground = "#1a1a1a";
+            navBarBackground = "#435666";
             navButtonsBackground = "#1a1a1a";
-            navButtonsText = "#FFFFFF",
-            navTitleText = "#FFFFFF"
+            navButtonsText = "#ffffff",
+            navTitleText = "#ffffff"
         break;
 
         case "vibrant":
             cardBackground = "#f2ba1d";
-            cardText = "#000000";
+            cardText = "#ffffff";
             pageBackground = "#fffcee";
             navBarBackground ="#c45335";
             navButtonsBackground = "#fffcee";
             navButtonsText = "#000000";
-            navTitleText = "#FFFFFF"
+            navTitleText = "#ffffff"
         break;
 
         default:
-            cardBackground = "#7d6b57";
-            cardText = "#FFFFFF";
-            pageBackground = "#FFFFFF";
-            navBarBackground ="#879e82";
-            navButtonsBackground = "#262f2d";
-            navButtonsText = "#FFFFFF";
+            cardBackground = "#a45d18";
+            cardText = "#ffffff";
+            pageBackground = "#ffffff";
+            navBarBackground ="#2b2c36";
+            navButtonsBackground = "#ffffff";
+            navButtonsText = "#000000";
+            navTitleText = "#ffffff"
         break;
     }
 

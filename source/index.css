@@ -18,8 +18,8 @@ header {
     position: relative;
     height: 15vh;
     width: 80%;
-    margin: 10px auto 0 auto;
-    background-color:  rgb(217, 217, 217);
+    margin: 10px auto 0;
+    background-color: rgb(217 217 217);
     align-items: center;
     border: none;
     border-radius: 10px;
@@ -35,10 +35,10 @@ main {
     min-width: 300px;
     max-width: 1fr;
     height: 300px;
-    background-color: #bf8162;
+    background-color: rgb(167, 125, 136);
     border-radius: 30px;
     border: none;
-    box-shadow: 12px 17px 14px -12px rgba(0, 0, 0, 0.41);
+    box-shadow: 12px 17px 14px -12px rgba(0 0 0 / 41%);
 }
 
 /* Smoothly change opacity when hovering over addCard button */
@@ -54,7 +54,7 @@ main {
     opacity: 0;
     visibility: hidden;
     z-index: 1;
-    background-color: rgb(11, 17, 17);
+    background-color: rgb(11 17 17);
     border-radius: 20px;
     padding: 20px;
     font-family: "Zen Maru Gothic", Helvetica, Arial;
@@ -133,7 +133,7 @@ fieldset {
 }
 
 
-/* input boxes in popup form */
+/* Input boxes in popup form */
 input {
     padding-left: 15px;
     text-align: left;
@@ -298,26 +298,31 @@ input {
 }
 
 /* Define structure for the four buttons in nav bar */
-#functionality 
-#select_file,
-#help, 
-#filter,
-#change_color {
+
+#select_file:hover {
+    opacity: 0.9;
+    transition: all 0.1s ease-in-out;
+    cursor: pointer;
+}
+ 
+#functionality #select_file, #help, #filter, #change_color {
     display: flex;
     position: relative;
-    background-color: rgb(1,1,1);
+    background-color: rgb(43 44 54);
     color: white;
     width: 8rem;
     height: 95%;
     text-align: center;
     align-items: center;
+    font-family: "Zen Maru Gothic", Arial;
+    font-weight: 700;
     font-size: 0.8rem;
     border-radius: 10px;
 }
 
 
 /* Help Dropdown Button */
-#help{
+#help {
     display: flex;
     align-items: center;
     width: 8rem;
@@ -333,7 +338,7 @@ input {
     display: inline-block;
     text-align: center;
 
-    /* removes the arrow icon */
+    /* Removes the arrow icon */
     appearance: none;
 }
 
@@ -341,114 +346,16 @@ input {
     opacity: 0.9;
     transition: all 0.1s ease-in-out;
     cursor: pointer;
-    background-color: red;
 }
-
-
-#select_file:hover {
-    opacity: 0.9;
-    transition: all 0.1s ease-in-out;
-    cursor: pointer;
-}
-
-
-
-/* Dropdown Content (Hidden by Default) 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    background-color: rgb(128, 111, 111);
-    z-index: 1;
-    width: 8rem;
-    height: 10vh;
-    border-bottom-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
-
-/* Links inside the dropdown 
-.dropdown-content a {
-    color: rgb(255,255,255);
-    font-size: 0.8rem;
-    text-decoration: none;
-    justify-content: center;
-    display: block;
-}
-
-
-/* Show the dropdown menu on hover 
-.dropdown:hover .dropdown-content {
-    display: block;
-    font-size: 0.8rem;
-}
-
-/* Change the background color of the dropdown button when the dropdown content is shown 
-.dropdown:hover .dropbtn {
-
-    cursor: pointer;
-    opacity: 0.8;
-    transition: all 0.2s ease-in;
-    /*
-    letter-spacing: 0.5em;
-    font-size: 1rem;
-    animation: popout 3s ease; 
-}
-
-
-@keyframes popout {
-    from {
-        transform: scale(60%);
-    }
-
-    80% {
-        transform: scale(150%);
-    }
-
-    to {
-        transform: scale(100%);
-    }
-}
-*/
 
 
 #functionality h1 {
     color: black;
-    font-family: "Playfair Display", Arial, Georgia;
-    font-size: 2em;
-    font-weight: 100;
+    font-family: Arial, Georgia;
+    font-size: 2.3em;
+    font-weight: 600;
 }
 
-
-
-
-/*
-
-#functionality h1:hover {
-    font-size: 2.2em;
-    color: white;
-    letter-spacing: 0.3em;
-    -webkit-text-stroke: 0.5px gold;
-    cursor: pointer;
-    opacity: 0.8;
-    transition: all 0.2s ease-in;
-    -webkit-mask-image: 
-    linear-gradient(-75deg, rgba(0 0 0 / 60%) 30%, #000 50%, rgba(0 0 0 / 60%) 70%);
-    -webkit-mask-size: 200%;
-    animation: shine 1.5s infinite;
-}
-
-@-webkit-keyframes shine {
-    from {
-        -webkit-mask-position: 150%;
-    }
-
-    to {
-        -webkit-mask-position: -50%;
-    }
-}
-*/
 
 /* The list that stores all the cards
  * Three columns but its rows should grow dynamically with number of cards added
@@ -468,9 +375,3 @@ input {
     grid-gap: 30px;
     justify-content: center;
 }
-
-
-
-
-
-
