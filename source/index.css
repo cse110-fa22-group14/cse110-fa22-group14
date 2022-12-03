@@ -287,17 +287,18 @@ input {
 
 /* Provides support for smaller tablets and phones */
 @media screen and (max-width: 800px) {
-
     #optional_wrapper {
         width: 35%;
         max-height: 100%;
         font-size: 0.9em;
     }
+    
     #range_wrapper {
         width: 65%;
         max-height: 100%;
         font-size: 0.9em;
     }
+    
     .flavor_range {
         width: 40%;
     }
