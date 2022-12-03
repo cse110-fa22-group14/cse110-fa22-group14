@@ -113,11 +113,47 @@
     }
 
 
+
     iframe {
       display: block;
+      object-fit: fill;
       margin: 20px auto 0 auto;
-      width: 80%;
-      height: 70vh;
+    }
+
+    
+    @media screen and (max-width: 700px) {
+
+
+
+      header a {
+        font-size: .8rem;
+      }
+
+
+      #header_title {
+        font-size: 1.4rem;
+      }
+
+      #header_subtitle {
+        font-size: .8rem;
+      }
+
+      p {
+        font-size: .8rem;
+        margin-top: 10px;
+      }
+      
+      h2 {
+        font-size: 1.3rem;
+      }
+
+      iframe {
+        display: block;
+        margin: 10px auto 0 auto;
+        width: 300px;
+        height: 300px;
+      }
+
     }
   </style>
 </head>
@@ -170,12 +206,12 @@
     </section>
 
     <section class="content_container">
-      <h2 id = "location_title">Location</h2>
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d26805.16572246099!2d-117.237566!3d32.881092!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2d2f19f483aaaace!2sGeisel%20Library!5e0!3m2!1sen!2sus!4v1670099212398!5m2!1sen!2sus"
-        width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade" width="300" height="200" style="border: 0" allowfullscreen=""
-        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <h2 id="location_title">Location</h2>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d26805.16572246099!2d-117.237566!3d32.881092!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2d2f19f483aaaace!2sGeisel%20Library!5e0!3m2!1sen!2sus!4v1670099212398!5m2!1sen!2sus"
+          width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade" width="300" height="200" style="border: 0" allowfullscreen=""
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </section>
 
   </main>
