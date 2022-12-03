@@ -285,22 +285,65 @@ input {
     font-size: 1.2em;
 }
 
-/* Provides support for smaller tablets and phones */
+/* Provides support for tablets */
 @media screen and (max-width: 800px) {
+
     #optional_wrapper {
-        width: 35%;
-        max-height: 100%;
         font-size: 0.9em;
     }
-    
+
     #range_wrapper {
-        width: 65%;
-        max-height: 100%;
         font-size: 0.9em;
     }
-    
+
     .flavor_range {
         width: 40%;
+    }
+}
+
+/* Provides support for smaller tablets */
+@media screen and (max-width: 600px) {
+    .flavor_range {
+        width: 35%;
+    }
+
+    #type_info_container {
+        font-size: 0.9em;
+    }
+
+    #img_drink_image {
+        transform: scale(0.8);
+    }
+
+    #str_notes {
+        font-size: 0.9em;
+    }
+}
+
+/* Provides support for phones */
+@media screen and (max-width: 500px) {
+    #optional_wrapper {
+        font-size: 0.8em;
+    }
+
+    #range_wrapper {
+        font-size: 0.8em;
+    }
+
+    .flavor_range {
+        width: 35%;
+    }
+
+    #type_info_container {
+        font-size: 0.8em;
+    }
+
+    #img_drink_image {
+        transform: scale(0.7);
+    }
+
+    #str_notes {
+        font-size: 0.8em;
     }
 }
 
