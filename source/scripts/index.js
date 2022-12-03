@@ -6,7 +6,7 @@
 window.addEventListener('DOMContentLoaded', init);
 
 // Get sort_functions
-import {sortDate, sortPrice} from "./sortFunctions.js";
+import {sortDate, sortDateReverse, sortPrice, sortPriceReverse} from "./sortFunctions.js";
 import {set_image, get_image_id, reset_image_id} from "./switchCoffeeImage.js";
 
 const ZERO = 0;
@@ -23,6 +23,7 @@ function init() {
 
     handleEvents();
 }
+
 
 /**
  * Reads 'coffeeCards' from localStorage and returns an array of
@@ -76,8 +77,8 @@ function addCoffeeCardsToDocument(coffeeCards) {
     })
 
     // Make sure to keep the style consistent
-    let cards = document.querySelectorAll("coffee-card");
-    let theme = localStorage.getItem("theme");
+    const cards = document.querySelectorAll("coffee-card");
+    const theme = localStorage.getItem("theme");
     switch_theme(cards, JSON.parse(theme));
 
 
@@ -125,15 +126,15 @@ function handleEvents() {
 
     help.addEventListener("change", () => {
 
-        if (help.selectedIndex == 1) {
-            // navigate to the page 
+        if (help.selectedIndex == ONE) {
+            // Navigate to the page 
             window.location.href = help.value;
-            // prevents the select from updating so it doesn't get stuck on an option 
-            help.selectedIndex = 0;
+            // Prevents the select from updating so it doesn't get stuck on an option 
+            help.selectedIndex = ZERO;
         }
         // If we click on the guidance option, it should trigger a pop up box
-        if(help.selectedIndex == 2) {
-            help.selectedIndex = 0;
+        if(help.selectedIndex == TWO) {
+            help.selectedIndex = ZERO;
         }
     });
 
@@ -144,7 +145,7 @@ function handleEvents() {
     // Main page background color change (user picks color) -- Yuang Cui
     color_picker.addEventListener("change",  (event)=> {
         if (event.target.value != JSON.parse(localStorage.getItem("theme"))) {
-            let cards = document.querySelectorAll('coffee-card');
+            const cards = document.querySelectorAll('coffee-card');
             switch_theme(cards, event.target.value);
             localStorage.setItem("theme", JSON.stringify(event.target.value));
         }
@@ -234,6 +235,7 @@ function handleEvents() {
 
         const coffeeCards = getCoffeeCardsFromStorage();
 
+
         // Get the sorting selection
         const choice = sortSelect.value;
 
@@ -246,8 +248,7 @@ function handleEvents() {
         }
         if (choice.match("Price") && choice[ZERO] == "1") {
             console.log("sorting by price: hi-lo")
-            coffeeCards.sort(sortPrice2);
-
+            coffeeCards.sort(sortPriceReverse);
         }
 
         // Define sorting function for rating
@@ -257,70 +258,26 @@ function handleEvents() {
         }
         
         if (choice.match("Date") && choice[ZERO] == "1") {
-            coffeeCards.sort(sortDate2);
-
+            console.log("sorting by date: new-old")
+            coffeeCards.sort(sortDateReverse);
         }
-
-        /* THIS CAUSED MANY ISSUES, DO NOT DO IT THIS WAY
-         * If the value has a prepended 1, then sort the list from high to low
-         *
-        if (choice[ZERO] == "1") {
-            coffeeCards.reverse()
-        }
-        */
 
         // Save the changes
-        saveCoffeeCardsToStorage(coffeeCards)
+        saveCoffeeCardsToStorage(coffeeCards);
         addCoffeeCardsToDocument(coffeeCards);
 
+        // Keep track of the current selected theme 
         localStorage.setItem("sort", JSON.stringify(sortSelect.value));
-    });
 
-
-
-
-    /*
-     * Grabs the value of whatever filter option was selected and applies
-     * it to narrow the results of the gallery
-     */
-    filterOption.addEventListener("change", (event) => {
-
-        if (event.target.value != JSON.parse(localStorage.getItem("sort"))) {
-            const coffeeCards = getCoffeeCardsFromStorage();
-
-        // Get the sorting selection
-        const sortSelect = document.getElementById("filter")
-        const choice = sortSelect.value;
-
-        // Console.log(coffeeCards[0]["time_purchase_date"])
-
-        // Define sorting function for price
-        if (choice.match("Price")) {
-            coffeeCards.sort(sortPrice);
-        }
-
-        // Define sorting function for rating
-        else if (choice.match("Date")) {
-            coffeeCards.sort(sortDate);
-        }
-
-        /*
-         * If the value has a prepended 1, then sort the list
-         * from high to low
+        /* 
+         * NOTE: This is to ensure that the user can click the same option twice
+         * in a row. Otherwise, if they happened to have added a card with 
+         * price: low-hi selected previously, the eventhandler won't let the user
+         * sort by low-hi again. A downside is that the user can't see the option
+         * selected in the dropdown
          */
-        if (choice[ZERO] == "1") {
-            coffeeCards.reverse()
-        }
-
-
-        // Save the changes
-        saveCoffeeCardsToStorage(coffeeCards)
-
-        addCoffeeCardsToDocument(coffeeCards);
-        // }
-        }
-        //filterOption.selectedIndex = 0;
-    })
+        filterOption.selectedIndex = 0;
+    });
 
 
 
@@ -335,7 +292,6 @@ function handleEvents() {
 
     // Event delegation to handle editing cards dynamically
     document.addEventListener('trigger-edit', function (event) {
-        // If (!isFormOpen) {
             isEditing = true;
 
             // The edit button stores the corresponding coffee card id/posiiton in array
@@ -393,7 +349,7 @@ function handleEvents() {
             // Keep track of which card we are editing
             current_edit_id = position;
             openForm();
-        // }
+        
     })
 
 
@@ -459,6 +415,7 @@ function handleEvents() {
         reader.addEventListener("load", () => {
             const fileText = JSON.parse(reader.result);
 
+            console.log(fileText)
             // Update local cards
             const coffeeCards = getCoffeeCardsFromStorage();
             coffeeCards.push(fileText);
@@ -526,8 +483,10 @@ function handleEvents() {
             // Update gallery with new card
             addCoffeeCardsToDocument(coffeeCards);
 
-            // Update current_card_id field
-            //localStorage.setItem('current_card_id', coffeeCards.length - ONE);
+            /*
+             *  Update current_card_id field
+             * localStorage.setItem('current_card_id', coffeeCards.length - ONE);
+             */
         }, false);
 
         // Reader reads the file as text if valid
@@ -628,7 +587,6 @@ function handleEvents() {
                 "Serving Type: " + coffeeCardObject["str_drink_type"];
             card_to_edit.querySelector('#int_dropdown_color').innerText =
                 "Color Level: " + coffeeCardObject["int_dropdown_color"];
-
         }
 
         /*
@@ -642,6 +600,7 @@ function handleEvents() {
         reset_image_id();
         isEditing = false;
         closeForm();
+
     })
 
 
