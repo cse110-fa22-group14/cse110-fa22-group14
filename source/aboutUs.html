@@ -76,26 +76,45 @@
       header {
         background-color: rgba(36, 34, 34, 0.399);
         width: 100%;
-
-        padding: 1rem;
+        padding-top: 1rem;
+        padding-right: 1rem;
+        padding-bottom: 0.5rem;
+        padding-left: 1rem;
       }
 
-      nav {
-        background-color: #3b383c95;
+      nav {        
+        padding-right:  80%;
+      }
+
+      body>header a {
+        font-family: "Gill Sans", sans-serif;
+        border-bottom: 2px solid transparent;
+        color: rgb(236, 232, 232);
+        font-size: 1.4rem;
+        padding-bottom: 2.5px;
+        text-decoration: none;
+      }
+
+      body>header a:hover {
+        
+        border-bottom: 2px solid rgb(236, 232, 232);
       }
 
       h1,
       h2,
       h3 {
         /*-webkit-text-stroke: 0.5px silver;*/
-        font-family: "ZCOOL XiaoWei", serif;
+        font-family: "Gill Sans", sans-serif;
+      }
+      h2 {
+        padding: 0.5rem;
       }
       h3 {
         text-align: center;
       }
 
       h4 {
-        font-family: "Times New Roman", Times, serif;
+        font-family: "Gill Sans", sans-serif;
         text-indent: 32px;
       }
 
@@ -121,25 +140,29 @@
         } */
 
       body {
-        background-color: #3b383c9b;
+        background-color: #dad9d29b;
       }
 
       main {
         width: 100%;
-        display: flex;
+        display: grid;
       }
 
       section.left {
-        padding: 1rem;
-        /* border: grey; */
+        padding-left: 25rem;
+        padding-right: 25rem;
+        padding-top: 2rem;
+        padding-bottom: 0rem;
       }
 
       section.right {
         display: flex;
-        padding: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 0rem;
+        padding-bottom: 2rem;
         flex-direction: column;
-        /* border: grey; */
-        /* 地 */
+        
         align-items: center;
       }
 
@@ -163,21 +186,23 @@
     </style>
   </head>
   <body>
-    <!-- topic-->
     <header>
-      <h1 class="textHeader">ABout Coffee log</h1>
+      <h1 class="textHeader">about brew notes.</h1>
       <h4>Designed by ProForce</h4>
+      <!-- Nav -->
+      <nav>
+        <a href="index.html" title="Go to main page">Main Page</a>
+      </nav>
     </header>
-
-    <!-- Nav -->
-    <nav></nav>
 
     <!--   Main is a flex container-->
     <main>
       <section class="left">
-        <h2>Why using Coffee Log?</h2>
+        <!-- topic-->
+        
+        <h2>Why using brew notes?</h2>
         <p>
-          Values/Culture: Team ProForce thrives to produce software with
+          Team ProForce thrives to produce software with
           productivity, accessibility, and efficiency. Not only do we focus on
           improving the quality of our product, but we also bring out our
           creative ideas to life in the form of applications. To achieve this
@@ -186,24 +211,12 @@
           communicating with our end users. ProForce dedicates efforts to
           gaining these valuable learning experiences in user-developer
           interactions, where the inclusive and supportive atmospheres create a
-          sense of comradery within and around all of us. Let’s overcome
-          difficulties as a family!
+          sense of comradery within and around all of us. 
           <!-- <img class="image" width="600px" height="200px" src="./Tradeicon.png" alt="网站图标"> -->
         </p>
         <br />
       </section>
       <br />
-      <section class="left">
-        <h2>Why using Coffee Log?</h2>
-        <p>
-          ProForce is committed to providing users with a simple, easy and
-          useful application; overly complex programs can take away from the
-          initial intent. Therefore, we will keep everything functional and
-          simple, easy to use and create a relaxing environment for the user.
-          <!-- <img class="image" width="600px" height="200px" src="./Tradeicon.png" alt="网站图标"> -->
-        </p>
-        <br />
-      </section>
 
       <section class="right">
         <h3>Team 14</h3>

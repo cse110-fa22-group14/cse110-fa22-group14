@@ -20,6 +20,8 @@
          const shadow_style = document.createElement("style");
          // Define the precise style for the card
         shadow_style.textContent = `
+            @import url("https://fonts.googleapis.com/css?family=Dosis:300,400");
+
             div {
                 position: relative;
                 display: flex;
@@ -44,7 +46,7 @@
                 grid-template-rows: repeat(2, 30px);
                 grid-template-columns: repeat(6, minmax(50px, 1fr));
                 text-align: left;
-                font-family: Arial, "Zen Maru Gothic";
+                font-family: "Zen Maru Gothic", Arial;
                 font-weight: 100;
                 font-size: 1em;
             }
@@ -86,13 +88,19 @@
             .info{
                 width: 90%;
                 margin: auto;
-                font-family: Arial,"Zen Maru Gothic";
+                font-family: "Zen Maru Gothic", Arial;
                 font-weight: 100;
                 text-align: left;
             }
 
             .edit {
                 padding: 5px 20px;
+                font-family: "Zen Maru Gothic", Arial;
+            }
+
+            .delete {
+                padding: 5px 20px;
+                font-family: "Zen Maru Gothic", Arial;
             }
 
             #toggle_edit:hover {
