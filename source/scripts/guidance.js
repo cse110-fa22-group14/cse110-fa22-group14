@@ -9,11 +9,57 @@ const ZERO = 0;
 const ONE = 1;
 const TWO = 2;
 
+// The variable to hold the current image's index
+let help_text_index = 0;
+// Total number of coffee images in the asset/images folder
+const TOTAL_HELP_TEXT_CNT = 4;
+// Next left image
+const PREV_TEXT = -1;
+// Next right image
+const NEXT_TEXT = 1;
+// Default image is the first one
+const DEFAULT_TEXT_INDEX = 0;
+
+const help_text = ['text_0', 'text_1', 'text_2', 'text_3'];
+
+
 // Executes when the window loads
 
 function init() {
 
     handleEvents();
+}
+
+/**
+ * This function will adjust the coffee image on the card based on the
+ * user's control.
+ * @param int_change - the change in the index of the coffee picture to display.
+ * @return void
+ */
+function next_text(int_change) {
+    show_coffee_image(help_text_index += int_change);
+}
+
+/**
+ * This function will find the coffee image's element on the html and change
+ * its src to the corresponding coffee's image.
+ * @param int_change - the index of the coffee picture to display on
+ * the current card.
+ * @return void
+ */
+function show_help_text(int_change) {
+    if (int_change >= TOTAL_HELP_TEXT_CNT) {
+        help_text_index = DEFAULT_TEXT_INDEX;
+        // Change to the first picture if index increases out of bounds
+    }
+    if (int_change < TOTAL_HELP_TEXT_CNT) {
+        help_text_index = DEFAULT_TEXT_INDEX + PREV_TEXT;
+        // Change to the last picture is index decreases out of bounds
+    }
+    // Find the image element on html
+    const coffee_picture_element = document.getElementById('str_guidance_text');
+    // Change the src of the image
+    coffee_picture_element.innerText = help_text[help_text_index];
 }
 
 /**
