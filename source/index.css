@@ -1,24 +1,29 @@
-/* Background Color Schemes 
- *
- * Pink-Lavendar: #BF8162
- * Black: #FFFFFF
- * Chocolate: #3E1404
- * Cream: #E3E2C5
- * 
- */
+@import url("https://fonts.googleapis.com/css?family=Dosis:300,400");
 
 * {
-
-    /* TODO: Yuang */
     margin: 0;
     padding: 0;
     border: 0;
     outline: 0;
-    font-size: 100%;
     vertical-align: baseline;
     background: transparent;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 
+header {
+    justify-content: center;
+    display: flex;
+    position: relative;
+    height: 15vh;
+    width: 80%;
+    margin: 10px auto 0;
+    background-color: rgb(217 217 217);
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+}
 
 main {
     display: flex;
@@ -26,25 +31,22 @@ main {
     justify-content: center;
 }
 
-/* TODO: remove pseudoCard selector after custom elements are made 
- * TODO: The custom card element should be same size and color as the add button
- */
-#add_card, 
-#pseudoCard {
+#add_card {
     min-width: 300px;
     max-width: 1fr;
     height: 300px;
-    background-color: #bf8162;
-    border-radius: 10px;
+    background-color: rgb(167 125 136);
+    border-radius: 30px;
     border: none;
+    box-shadow: 12px 17px 14px -12px rgba(0 0 0 / 41%);
 }
 
-/* TODO: Smoothly change opacity when hovering over addCard button */
-#addCard:hover {
+/* Smoothly change opacity when hovering over addCard button */
+#add_card:hover {
     opacity: 0.8;
     transition: all 0.2s ease-in;
+    cursor: pointer;
 }
-
 
 /* Hidden popup form */
 #pop_up_box {
@@ -52,13 +54,13 @@ main {
     opacity: 0;
     visibility: hidden;
     z-index: 1;
-    background-color: black;
-    border-radius: 10px;
+    background-color: rgb(11 17 17);
+    border-radius: 20px;
     padding: 20px;
-    font-family: "Zen Maru Gothic", Helvetica, Arial; 
+    font-family: "Zen Maru Gothic", Helvetica, Arial;
     height: auto;
     width: 50vw;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -40%);
     left: 50%;
     top: 50%;
 
@@ -66,7 +68,7 @@ main {
     display: grid;
 
     /* We have 11 rows and 6 columns in the grid */
-    grid-template-rows: repeat(11, 40px);
+    grid-template-rows: repeat(11, 30px);
     grid-template-columns: repeat(6, minmax(10px, 1fr));
 
     /* Space between each form child */
@@ -93,7 +95,6 @@ fieldset {
     text-align: left;
 }
 
-/* TOOD: smoothly change opacity when hoverning */
 #save:hover {
     cursor: pointer;
     opacity: 0.8;
@@ -128,20 +129,21 @@ fieldset {
     grid-column-end: 7;
     z-index: 2;
     margin: auto;
-    transform: scale(0.9);
+    transform: scale(0.8);
 }
 
-/* Gets rid of default styling for text boxes */
-input {
 
-    /* How much negative space to the left of input inside textbox */
+/* Input boxes in popup form */
+input {
     padding-left: 15px;
+    text-align: left;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     font-size: 1.2em;
     font-family: "Zen Maru Gothic", Arial, Georgia;
     background-color: #ffff;
 }
+
 
 #flavor_container {
     background-color: #ffff;
@@ -166,6 +168,7 @@ input {
     font-size: 1.2em;
 }
 
+/* Wrapper for checkboxes in form */
 #optional_wrapper {
     text-align: left;
     width: 40%;
@@ -210,7 +213,7 @@ input {
 #switch_photo_right_arrow {
 
     /* INFO: reference: https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp */
-    
+
     /* NOTE: implemented left and right arrows to change inage */
     cursor: pointer;
     position: absolute;
@@ -236,7 +239,7 @@ input {
     right: 10%;
 }
 
-#switch_photo_left_arrow:hover, 
+#switch_photo_left_arrow:hover,
 #switch_photo_right_arrow:hover {
     opacity: 0.5;
 }
@@ -256,7 +259,7 @@ input {
     grid-column-end: 4;
 
     /* Flex with direction "column" tells DOM to 
-     * structure all child elements vrtically
+     * structure all child elements vertically
      */
     display: flex;
     flex-direction: column;
@@ -277,11 +280,10 @@ input {
     font-family: "Zen Maru Gothic", Arial, Georgia;
     padding: 15px;
     font-size: 1.2em;
-
-    /* TOOD: If user types in more characters than box can fit
-     * add scrolling to allow for more input 
-     */
 }
+
+
+
 
 /* Holds the help and filter options above gallery */
 #functionality {
@@ -289,61 +291,78 @@ input {
     flex-direction: row;
     justify-content: space-between;
     margin: auto;
-    width: 80%;
-
-    /* TODO: Yuang */
+    width: 90%;
     height: 3rem;
     text-align: center;
     align-items: center;
-    table-layout: fixed;
 }
 
-#functionality #help, 
-#filter, #changeColor, #select_file {
-    background-color: black;
+/* Define structure for the four buttons in nav bar */
+
+#select_file:hover {
+    opacity: 0.9;
+    transition: all 0.1s ease-in-out;
+    cursor: pointer;
+}
+ 
+#functionality #select_file, #help, #filter, #change_color {
+    display: flex;
+    position: relative;
+    background-color: rgb(43 44 54);
     color: white;
-    border-radius: 5px;
-    -webkit-text-stroke: 0.8px gold;
-    width: 10%;
+    width: 8rem;
     height: 95%;
     text-align: center;
+    align-items: center;
+    font-family: "Zen Maru Gothic", Arial;
+    font-weight: 700;
+    font-size: 0.8rem;
+    border-radius: 10px;
 }
+
+
+/* Help Dropdown Button */
+#help {
+    display: flex;
+    align-items: center;
+    width: 8rem;
+    min-width: 4rem;
+    text-align: center;
+}
+
+
+.dropdown {
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    display: inline-block;
+    text-align: center;
+
+    /* Removes the arrow icon */
+    appearance: none;
+}
+
+.dropdown:hover {
+    opacity: 0.9;
+    transition: all 0.1s ease-in-out;
+    cursor: pointer;
+}
+
 
 #functionality h1 {
-    font-family: "Playfair Display", Arial, Georgia;
-    font-size: 2em;
-    font-weight: 100;
+    color: black;
+    font-family: Arial, Georgia;
+    font-size: 2.3em;
+    font-weight: 600;
 }
 
-/* #functionality #help:hover, #filter:hover, #changeColor:hover {
-    cursor: pointer;
-    opacity: 0.8;
-    transition: all 0.2s ease-in;
-} */
-
-/* TODO add hover effect to help, filter, and changeColor */
-#functionality a {
-    font-family: "Playfair Display", Arial, Georgia;
-    font-size: 100%;
-    font-weight: 100;
-    background-color: grey;
-    text-align: center;
-    color: white;
-    text-decoration: none;
-    display: block;
-    width: 100%;
-    height: 100%;
-    border-radius: 5px;
-    -webkit-text-stroke: 0.8px gold;
-}
 
 /* The list that stores all the cards
  * Three columns but its rows should grow dynamically with number of cards added
- * This was actually very simple. Just had to do some exploration online
  */
 #gallery {
     width: 80%;
-    margin: 10vh auto;
+    margin: 5vh auto;
     display: grid;
 
     /* Autofill tells the DOM to move content to the next

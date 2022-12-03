@@ -6,7 +6,7 @@
 window.addEventListener('DOMContentLoaded', init);
 
 // Get sort_functions
-import {sortDate, sortPrice} from "./sortFunctions.js";
+import {sortDate, sortDateReverse, sortPrice, sortPriceReverse} from "./sortFunctions.js";
 import {set_image, get_image_id, reset_image_id} from "./switchCoffeeImage.js";
 
 const ZERO = 0;
@@ -23,6 +23,7 @@ function init() {
 
     handleEvents();
 }
+
 
 /**
  * Reads 'coffeeCards' from localStorage and returns an array of
@@ -64,15 +65,23 @@ function addCoffeeCardsToDocument(coffeeCards) {
         card.remove();
     })
 
+    
     // The card is a a coffeeCard object and index is the position of that card in the array
     coffeeCards.forEach((card, index) => {
-        const coffeeCard = gallery.appendChild(document.createElement("coffee-card"));
+        const coffeeCard = document.createElement("coffee-card");
         coffeeCard.data = card;
 
         // Set the id of the card and edit button 
         coffeeCard.id = index;
-        coffeeCard.getChildren[TWO].id = index;
+        gallery.appendChild(coffeeCard);
     })
+
+    // Make sure to keep the style consistent
+    const cards = document.querySelectorAll("coffee-card");
+    const theme = localStorage.getItem("theme");
+    switch_theme(cards, JSON.parse(theme));
+
+
 }
 
 
@@ -93,17 +102,58 @@ function handleEvents() {
     // Define variables to hold DOM elements
     const dropBox = document.querySelector("body");
     // TODO: const helpButton = document.getElementById("help");
+    const help = document.getElementById("help")
     const filterOption = document.getElementById("filter");
+    const sortSelect = document.getElementById("filter");
+
+    const color_picker = document.getElementById("change_color");
+    const fileSelectButton = document.getElementById("select_file");
+    const importButton = document.getElementById("import");
+
     const addButton = document.getElementById('add_card');
     const form = document.getElementById('pop_up_box');
     const cancelButton = document.getElementById('cancel');
     const flavorSliders = document.getElementsByClassName('flavor_range');
+
     let isEditing = false;
     let isFormOpen = false;
-    let current_edit_id = 0;
-    const fileSelectButton = document.getElementById("select_file");
-    const importButton = document.getElementById("import");
+
+ 
     importButton.style.opacity = 0;
+    let current_edit_id = 0;
+
+
+
+    help.addEventListener("change", () => {
+
+        if (help.selectedIndex == ONE) {
+            // Navigate to the page 
+            window.location.href = help.value;
+            // Prevents the select from updating so it doesn't get stuck on an option 
+            help.selectedIndex = ZERO;
+        }
+        // If we click on the guidance option, it should trigger a pop up box
+        if(help.selectedIndex == TWO) {
+            help.selectedIndex = ZERO;
+        }
+    });
+
+
+
+
+
+    // Main page background color change (user picks color) -- Yuang Cui
+    color_picker.addEventListener("change",  (event)=> {
+        if (event.target.value != JSON.parse(localStorage.getItem("theme"))) {
+            const cards = document.querySelectorAll('coffee-card');
+            switch_theme(cards, event.target.value);
+            localStorage.setItem("theme", JSON.stringify(event.target.value));
+        }
+    });
+
+
+
+
 
     function openForm() {
         form.style.opacity = ONE;
@@ -185,37 +235,49 @@ function handleEvents() {
 
         const coffeeCards = getCoffeeCardsFromStorage();
 
+
         // Get the sorting selection
-        const sortSelect = document.getElementById("filter")
         const choice = sortSelect.value;
 
         // Console.log(coffeeCards[0]["time_purchase_date"])
 
         // Define sorting function for price
-        if (choice.match("Price")) {
+        if (choice.match("Price") && choice[ZERO] == "0") {
+            console.log("sorting by price: lo-hi")
             coffeeCards.sort(sortPrice);
+        }
+        if (choice.match("Price") && choice[ZERO] == "1") {
+            console.log("sorting by price: hi-lo")
+            coffeeCards.sort(sortPriceReverse);
         }
 
         // Define sorting function for rating
-        else if (choice.match("Date")) {
+        if (choice.match("Date") && choice[ZERO] == "0") {
+            console.log("sorting by date: old-new")
             coffeeCards.sort(sortDate);
         }
-
-        /*
-         * If the value has a prepended 1, then sort the list
-         * from high to low
-         */
-        if (choice[ZERO] == "1") {
-            coffeeCards.reverse()
+        
+        if (choice.match("Date") && choice[ZERO] == "1") {
+            console.log("sorting by date: new-old")
+            coffeeCards.sort(sortDateReverse);
         }
 
-
         // Save the changes
-        saveCoffeeCardsToStorage(coffeeCards)
-
+        saveCoffeeCardsToStorage(coffeeCards);
         addCoffeeCardsToDocument(coffeeCards);
-        // }
-    })
+
+        // Keep track of the current selected theme 
+        localStorage.setItem("sort", JSON.stringify(sortSelect.value));
+
+        /* 
+         * NOTE: This is to ensure that the user can click the same option twice
+         * in a row. Otherwise, if they happened to have added a card with 
+         * price: low-hi selected previously, the eventhandler won't let the user
+         * sort by low-hi again. A downside is that the user can't see the option
+         * selected in the dropdown
+         */
+        filterOption.selectedIndex = 0;
+    });
 
 
 
@@ -230,7 +292,6 @@ function handleEvents() {
 
     // Event delegation to handle editing cards dynamically
     document.addEventListener('trigger-edit', function (event) {
-        // If (!isFormOpen) {
             isEditing = true;
 
             // The edit button stores the corresponding coffee card id/posiiton in array
@@ -288,7 +349,7 @@ function handleEvents() {
             // Keep track of which card we are editing
             current_edit_id = position;
             openForm();
-        // }
+        
     })
 
 
@@ -354,18 +415,17 @@ function handleEvents() {
         reader.addEventListener("load", () => {
             const fileText = JSON.parse(reader.result);
 
+            console.log(fileText)
             // Update local cards
             const coffeeCards = getCoffeeCardsFromStorage();
             coffeeCards.push(fileText);
-            saveCoffeeCardsToStorage(coffeeCards);
 
-            // Update gallery with new card
+            saveCoffeeCardsToStorage(coffeeCards);
             addCoffeeCardsToDocument(coffeeCards);
 
-            // Update current_card_id field
-            localStorage.setItem('current_card_id', coffeeCards.length - ONE);
+            // Set sort to the default setting for import
+            filterOption.selectedIndex = 1;
 
-            // FIXME: Upload field is not clearing itself after each upload
         }, false);
 
         // Reader reads the file as text if valid
@@ -373,6 +433,7 @@ function handleEvents() {
             reader.readAsText(importFile);
         }
         importButton.value = null;
+
     })
 
 
@@ -422,14 +483,20 @@ function handleEvents() {
             // Update gallery with new card
             addCoffeeCardsToDocument(coffeeCards);
 
-            // Update current_card_id field
-            localStorage.setItem('current_card_id', coffeeCards.length - ONE);
+            /*
+             *  Update current_card_id field
+             * localStorage.setItem('current_card_id', coffeeCards.length - ONE);
+             */
         }, false);
 
         // Reader reads the file as text if valid
         if (importFile) {
             reader.readAsText(importFile);
         }
+
+        // Set sort to the default setting for import
+        filterOption.selectedIndex = 1;
+
     }
 
 
@@ -520,7 +587,6 @@ function handleEvents() {
                 "Serving Type: " + coffeeCardObject["str_drink_type"];
             card_to_edit.querySelector('#int_dropdown_color').innerText =
                 "Color Level: " + coffeeCardObject["int_dropdown_color"];
-
         }
 
         /*
@@ -528,14 +594,13 @@ function handleEvents() {
          * next time the user chooses to add a new card, the image will
          * be the default one, which is the first one.
          */
+        
+        // Set sort to the default setting for import
+        filterOption.selectedIndex = 1;
         reset_image_id();
         isEditing = false;
         closeForm();
 
-        /*
-         * Do not refresh all cards when only editing one card!
-         * addCoffeeCardsToDocument(coffeeCards);
-         */
     })
 
 
@@ -545,11 +610,9 @@ function handleEvents() {
     // Clears fields of popUpBox element using "reset" attribute in index.html
     cancelButton.addEventListener("click", () => {
         closeForm();
+        isEditing = false;
+
     })
-
-
-
-
 
 
     /**

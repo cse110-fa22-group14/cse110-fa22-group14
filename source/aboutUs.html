@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>单位换算</title>
+    <title>Coffee Log</title>
 
     <meta n ame="description" content="About Us" />
 
@@ -21,15 +21,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
     <link href="https://fonts.googleapis.com/css2?family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet"> -->
 
-    <!-- add icon
-    在网站中加入一些小图标 -->
+    <!-- add icon-->
     <script
       src="https://kit.fontawesome.com/a3ec84fd77.js"
       crossorigin="anonymous"
     ></script>
 
     <!-- google charts -->
-    <script
+    <!--<script
       type="text/javascript"
       src="https://www.gstatic.com/charts/loader.js"
     ></script>
@@ -58,22 +57,20 @@
 
         chart.draw(data, options);
       }
-    </script>
+    </script>-->
 
     <!-- <link rel="stylesheet" href="./dhstyle.css" /> -->
 
     <style>
-      /* *表示所有的标签的设定 */
+      /* * means for all */
       * {
         margin: 0px;
         padding: 0px;
-        /* 当你设定padding时候，是上下左右都增加了1rem 32px，所以会出现超出界面，出现水平移动轴 */
-        /* 会用到box-sizing
-                有两种
-                content-box 预设
-                border-box: 我们相拥的
-            */
+
         box-sizing: border-box;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
       }
 
       header {
@@ -85,14 +82,12 @@
 
       nav {
         background-color: #3b383c95;
-        /* nav的子类是ul，但是只有一个ul，display：flex还是无法将其变成横向 */
-        /* display: flex; */
       }
 
       h1,
       h2,
       h3 {
-        -webkit-text-stroke: 0.1px gold;
+        /*-webkit-text-stroke: 0.5px silver;*/
         font-family: "ZCOOL XiaoWei", serif;
       }
       h3 {
@@ -116,6 +111,10 @@
         font-family: "Gill Sans", sans-serif;
       }
 
+      h1:hover {
+        color: rgb(255, 255, 255);
+
+      }
       /* it is not working */
       /* main {
             background-color: rgba(rgb(70, 49, 49), rgb(13, 41, 13), rgb(6, 6, 48), 0.5);
@@ -140,7 +139,7 @@
         padding: 1rem;
         flex-direction: column;
         /* border: grey; */
-        /* 地图是align-item，设置为居中 */
+        /* 地 */
         align-items: center;
       }
 
@@ -148,7 +147,6 @@
         text-align: center;
         margin: 0rem 1rem;
       }
-      /*   */
 
       .active {
         color: gold;
@@ -165,26 +163,31 @@
     </style>
   </head>
   <body>
-    <!-- 这个是标题部分 -->
+    <!-- topic-->
     <header>
       <h1 class="textHeader">ABout Coffee log</h1>
-      <h4>This is the information about Coffee Log</h4>
+      <h4>Designed by ProForce</h4>
     </header>
 
-    <!-- 导览列部分 -->
+    <!-- Nav -->
     <nav></nav>
 
-    <!-- 主要内容  Main 是一个flex container-->
+    <!--   Main is a flex container-->
     <main>
       <section class="left">
         <h2>Why using Coffee Log?</h2>
         <p>
-          It helps you to... content.. Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Quisquam Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Quisquam Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Quisquam Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Quisquam Lorem ipsum Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Quisquam
+          Values/Culture: Team ProForce thrives to produce software with
+          productivity, accessibility, and efficiency. Not only do we focus on
+          improving the quality of our product, but we also bring out our
+          creative ideas to life in the form of applications. To achieve this
+          goal, we are committed to creating good alignments in the team,
+          learning various concepts, tools, and methods, as well as effectively
+          communicating with our end users. ProForce dedicates efforts to
+          gaining these valuable learning experiences in user-developer
+          interactions, where the inclusive and supportive atmospheres create a
+          sense of comradery within and around all of us. Let’s overcome
+          difficulties as a family!
           <!-- <img class="image" width="600px" height="200px" src="./Tradeicon.png" alt="网站图标"> -->
         </p>
         <br />
@@ -193,12 +196,10 @@
       <section class="left">
         <h2>Why using Coffee Log?</h2>
         <p>
-          It helps you to... content.. Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Quisquam Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Quisquam Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Quisquam Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Quisquam Lorem ipsum Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Quisquam
+          ProForce is committed to providing users with a simple, easy and
+          useful application; overly complex programs can take away from the
+          initial intent. Therefore, we will keep everything functional and
+          simple, easy to use and create a relaxing environment for the user.
           <!-- <img class="image" width="600px" height="200px" src="./Tradeicon.png" alt="网站图标"> -->
         </p>
         <br />
@@ -218,23 +219,25 @@
           referrerpolicy="no-referrer-when-downgrade"
         ></iframe>
 
-        <br />
+        <!--<br />
         About us: feedback:
         <br />
-        <textarea name="" id="" cols="30" rows="10"></textarea>
+        <textarea name="" id="" cols="30" rows="10"></textarea>-->
       </section>
     </main>
 
-    <h2>Daily Good Music</h2>
+    <h2>Team Video</h2>
     <iframe
       src="https://www.youtube.com/embed/Jg5wkZ-dJXA"
       title="YouTube video player"
       frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen
+      height="300"
+      width="500"
     ></iframe>
-
+    <!--
     <h1>Amount of users that use this webiste</h1>
-    <div id="regions_div" style="width: 600px; height: 300px"></div>
+    <div id="regions_div" style="width: 600px; height: 300px"></div>-->
   </body>
 </html>
