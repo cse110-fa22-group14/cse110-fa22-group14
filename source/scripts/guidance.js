@@ -75,7 +75,6 @@ function addCoffeeCardsToDocument(coffeeCards) {
         return;
     }
 
-     
     const gallery = document.getElementById("gallery");
 
     // Clear the gallery and add new list to gallery
@@ -139,21 +138,6 @@ function handleEvents() {
         next_text(NEXT_TEXT);
     });
 
-    help.addEventListener("change", () => {
-
-        if (help.selectedIndex == ONE) {
-            // Navigate to the page 
-            window.location.href = help.value;
-            // Prevents the select from updating so it doesn't get stuck on an option 
-            help.selectedIndex = ZERO;
-        }
-        // If we click on the guidance option, it should trigger a pop up box
-        if(help.selectedIndex == TWO) {
-            help.selectedIndex = ZERO;
-        }
-    });
-
-
     function openForm() {
         form.style.opacity = ONE;
         form.style.visibility = "visible";
@@ -199,20 +183,5 @@ function handleEvents() {
         isFormOpen = false;
 
     }
-
-    // Listener when user wants to add a new card
-    addButton.addEventListener("click", () => {
-
-        // Make popupBox visible. Just change the opacity
-        openForm();
-    });
-
-    // Clears fields of popUpBox element using "reset" attribute in index.html
-    cancelButton.addEventListener("click", () => {
-        closeForm();
-        isEditing = false;
-
-    });
-
 }
 
