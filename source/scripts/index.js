@@ -269,11 +269,12 @@ function handleEvents() {
         // Keep track of the current selected theme 
         localStorage.setItem("sort", JSON.stringify(sortSelect.value));
 
-        // NOTE: This is to ensure that the user can click the same option twice
-        // in a row. Otherwise, if they happened to have added a card with 
-        // price: low-hi selected previously, the eventhandler won't let the user
-        // sort by low-hi again. A downside is that the user can't see the option
-        // selected in the dropdown
+        /* NOTE: This is to ensure that the user can click the same option twice
+         * in a row. Otherwise, if they happened to have added a card with 
+         * price: low-hi selected previously, the eventhandler won't let the user
+         * sort by low-hi again. A downside is that the user can't see the option
+         * selected in the dropdown
+         */
         filterOption.selectedIndex = 0;
     });
 
