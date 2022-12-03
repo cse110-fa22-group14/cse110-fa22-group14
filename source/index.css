@@ -161,14 +161,14 @@ input {
 }
 
 #range_wrapper {
-    width: 40%;
+    width: 65%;
     max-height: 100%;
     font-size: 1.2em;
 }
 
 #optional_wrapper {
     text-align: left;
-    width: 40%;
+    width: 35%;
     max-height: 100%;
     font-size: 1.2em;
 }
@@ -211,7 +211,7 @@ input {
 
     /* INFO: reference: https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp */
     
-    /* NOTE: implemented left and right arrows to change inage */
+    /* NOTE: implemented left and right arrows to change image */
     cursor: pointer;
     position: absolute;
     width: auto;
@@ -219,6 +219,9 @@ input {
     font-weight: bold;
     font-size: 40px;
     user-select: none;
+
+    /* Make sure the arrows are a fixed distance away from the coffee bean image */
+    top: 10%;
 
     /* NOTE: inherented from parent #switch_photo_container */
     grid-row-start: 4;
@@ -256,7 +259,7 @@ input {
     grid-column-end: 4;
 
     /* Flex with direction "column" tells DOM to 
-     * structure all child elements vrtically
+     * structure all child elements vertically
      */
     display: flex;
     flex-direction: column;
@@ -281,6 +284,23 @@ input {
     /* TOOD: If user types in more characters than box can fit
      * add scrolling to allow for more input 
      */
+}
+
+/* Provides support for smaller tablets and phones */
+@media screen and (max-width: 800px){
+    #optional_wrapper {
+        width: 35%;
+        max-height: 100%;
+        font-size: 0.9em;
+    }
+    #range_wrapper {
+        width: 65%;
+        max-height: 100%;
+        font-size: 0.9em
+    }
+    .flavor_range {
+        width: 40%;
+    }
 }
 
 /* Holds the help and filter options above gallery */
