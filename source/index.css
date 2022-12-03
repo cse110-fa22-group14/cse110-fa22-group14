@@ -35,7 +35,7 @@ main {
     min-width: 300px;
     max-width: 1fr;
     height: 300px;
-    background-color: #bf8162;
+    color: #bf8162;
     border-radius: 30px;
     border: none;
     box-shadow: 12px 17px 14px -12px rgba(0, 0, 0, 0.41);
