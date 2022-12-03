@@ -22,7 +22,6 @@ const DEFAULT_TEXT_INDEX = 0;
 
 const help_text = ['text_0', 'text_1', 'text_2', 'text_3'];
 
-
 // Executes when the window loads
 
 function init() {
@@ -31,20 +30,19 @@ function init() {
 }
 
 /**
- * This function will adjust the coffee image on the card based on the
- * user's control.
- * @param int_change - the change in the index of the coffee picture to display.
+ * This function will adjust the help text on the bottom of the page based 
+ * on the user's control.
+ * @param int_change - the change in the index of the help text to display.
  * @return void
  */
 function next_text(int_change) {
-    show_coffee_image(help_text_index += int_change);
+    show_help_text(help_text_index += int_change);
 }
 
 /**
- * This function will find the coffee image's element on the html and change
- * its src to the corresponding coffee's image.
- * @param int_change - the index of the coffee picture to display on
- * the current card.
+ * This function will find the help text's element on the html and change
+ * its text to the corresponding help text
+ * @param int_change - the index of the help to display on the bottom.
  * @return void
  */
 function show_help_text(int_change) {
@@ -57,9 +55,9 @@ function show_help_text(int_change) {
         // Change to the last picture is index decreases out of bounds
     }
     // Find the image element on html
-    const coffee_picture_element = document.getElementById('str_guidance_text');
+    const help_text_element = document.getElementById('str_guidance_text');
     // Change the src of the image
-    coffee_picture_element.innerText = help_text[help_text_index];
+    help_text_element.innerText = help_text[help_text_index];
 }
 
 /**
@@ -128,9 +126,18 @@ function handleEvents() {
 
  
     importButton.style.opacity = 0;
-    let current_edit_id = 0;
 
-
+    // Find the button elements
+    show_help_text(help_text_index);
+    const help_left_arrow = document.getElementById('prev_help');
+    const help_right_arrow = document.getElementById('next_help');
+    // Attach event listeners to the arrow anchors
+    help_left_arrow.addEventListener("click", function() {
+        next_text(PREV_TEXT);
+    });
+    help_right_arrow.addEventListener("click", function() {
+        next_text(NEXT_TEXT);
+    });
 
     help.addEventListener("change", () => {
 
