@@ -25,7 +25,7 @@ const help_text = ['text_0', 'text_1', 'text_2', 'text_3'];
 // Executes when the window loads
 
 function init() {
-
+    help_text_index = 0;
     handleEvents();
 }
 
@@ -50,7 +50,7 @@ function show_help_text(int_change) {
         help_text_index = DEFAULT_TEXT_INDEX;
         // Change to the first picture if index increases out of bounds
     }
-    if (int_change < TOTAL_HELP_TEXT_CNT) {
+    if (int_change < DEFAULT_TEXT_INDEX) {
         help_text_index = DEFAULT_TEXT_INDEX + PREV_TEXT;
         // Change to the last picture is index decreases out of bounds
     }
@@ -127,7 +127,7 @@ function handleEvents() {
     importButton.style.opacity = 0;
 
     // Find the button elements
-    show_help_text(help_text_index);
+    show_help_text(DEFAULT_TEXT_INDEX);
     const help_left_arrow = document.getElementById('prev_help');
     const help_right_arrow = document.getElementById('next_help');
     // Attach event listeners to the arrow anchors
