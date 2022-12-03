@@ -39,14 +39,25 @@ main {
     border-radius: 30px;
     border: none;
     box-shadow: 12px 17px 14px -12px rgba(0 0 0 / 41%);
+    animation: glowing 1300ms infinite; 
 }
+@keyframes glowing {
 
-/* Smoothly change opacity when hovering over addCard button */
-#add_card:hover {
-    opacity: 0.8;
-    transition: all 0.2s ease-in;
-    cursor: pointer;
-}
+    /* INFO: https://www.w3docs.com/snippets/css/how-to-create-flashing-glowing-button-using-animation-in-css3.html */
+
+    0% {
+      background-color: rgb(167 125 136);
+      box-shadow: 0 0 3px rgb(167 125 136);
+    }
+    50% {
+      background-color: rgb(255, 255, 255);
+      box-shadow: 0 0 10px rgb(167 125 136);
+    }
+    100% {
+      background-color: rgb(167 125 136);
+      box-shadow: 0 0 3px rgb(167 125 136);
+    }
+  }
 
 /* Hidden popup form */
 #pop_up_box {
@@ -93,12 +104,6 @@ fieldset {
     font-size: 1.2em;
     color: #ffff;
     text-align: left;
-}
-
-#save:hover {
-    cursor: pointer;
-    opacity: 0.8;
-    transition: all 0.2s ease-in;
 }
 
 #str_drink_name {
@@ -195,12 +200,6 @@ input {
     text-align: right;
 }
 
-#cancel:hover {
-    cursor: pointer;
-    opacity: 0.8;
-    transition: all 0.2s ease-in;
-}
-
 #switch_photo_container {
     grid-row-start: 4;
     grid-column-start: 5;
@@ -237,11 +236,6 @@ input {
 
 #switch_photo_right_arrow {
     right: 10%;
-}
-
-#switch_photo_left_arrow:hover,
-#switch_photo_right_arrow:hover {
-    opacity: 0.5;
 }
 
 #str_purchase_location {
@@ -296,14 +290,6 @@ input {
     text-align: center;
     align-items: center;
 }
-
-/* Define structure for the four buttons in nav bar */
-
-#select_file:hover {
-    opacity: 0.9;
-    transition: all 0.1s ease-in-out;
-    cursor: pointer;
-}
  
 #functionality #select_file, #help, #filter, #change_color {
     display: flex;
@@ -341,13 +327,6 @@ input {
     /* Removes the arrow icon */
     appearance: none;
 }
-
-.dropdown:hover {
-    opacity: 0.9;
-    transition: all 0.1s ease-in-out;
-    cursor: pointer;
-}
-
 
 #functionality h1 {
     color: black;
@@ -409,4 +388,21 @@ input {
 .prev:hover,
 .next:hover {
   background-color: rgba(0, 0, 0, 0.8);
+}
+
+#str_guidance_text {
+    min-width: 300px;
+    bottom: 10px;
+    min-height: 30vh;
+    background-color: rgb(217 217 217);
+    border-radius: 10px;
+    border: none;
+
+    justify-content: center;
+    display: flex;
+    position: relative;
+    height: 15vh;
+    width: 80%;
+    margin: 10px auto 0;
+    background-color: rgb(217 217 217);
 }
