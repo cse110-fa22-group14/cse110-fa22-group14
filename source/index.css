@@ -287,7 +287,6 @@ input {
 
 /* Provides support for tablets */
 @media screen and (max-width: 800px) {
-
     #optional_wrapper {
         font-size: 0.9em;
     }
