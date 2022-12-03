@@ -351,7 +351,7 @@ input {
 
 #functionality h1 {
     color: black;
-    font-family: "Zen Maru Gothic", Arial;
+    font-family:  Arial, "Zen Maru Gothic";
     font-size: 2.3em;
     font-weight: 600;
 }
