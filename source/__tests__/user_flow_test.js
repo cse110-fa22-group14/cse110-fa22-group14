@@ -190,12 +190,12 @@ describe("Basic user flow for Website", () => {
     // Query a <coffee-card> element using puppeteer
     
     for (let i = 0; i < TOTAL_CARDS; i++) {
-      const allCoffeeCards = await page.$$('coffee-card');
+      let allCoffeeCards = await page.$$('coffee-card');
       console.log(`Checking coffee card ${i + INCREMENT}/${allCoffeeCards.length}'s chocoloate checkbox edit`);
 
       // Click the edit button
-      const itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
-      const buttonFromShadow = await itemFromShadow.$('#edit_button');
+      let itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
+      let buttonFromShadow = await itemFromShadow.$('#edit_button');
       await buttonFromShadow.click();
 
       // Initially, the check box should not be checked
