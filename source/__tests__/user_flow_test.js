@@ -188,8 +188,9 @@ describe("Basic user flow for Website", () => {
     console.log('Checking the chocoloate checkbox value after edits...');
 
     // Query a <coffee-card> element using puppeteer
-    const allCoffeeCards = await page.$$('coffee-card');
-    for (let i = 0; i < allCoffeeCards.length; i++) {
+    
+    for (let i = 0; i < TOTAL_CARDS; i++) {
+      const allCoffeeCards = await page.$$('coffee-card');
       console.log(`Checking coffee card ${i + INCREMENT}/${allCoffeeCards.length}'s chocoloate checkbox edit`);
 
       // Click the edit button
@@ -212,13 +213,18 @@ describe("Basic user flow for Website", () => {
       // Save the edit of the card
       const saveButton = await page.$("#save");
       await saveButton.click();
+
+      // Re-query the cards
+      allCoffeeCards = await page.$$('coffee-card');
+      itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
+      buttonFromShadow = await itemFromShadow.$('#edit_button');
       await buttonFromShadow.click();
 
       // When the page is open again
       checkboxOnPage = await page.$('#bool_check_chocolate');
 
       // The check box should remain checked
-      checkboxValue= await (await checkboxOnPage.getProperty("checked")).jsonValue();
+      checkboxValue = await (await checkboxOnPage.getProperty("checked")).jsonValue();
       expect(checkboxValue).toBe(true);
 
       // Save the edit of the card
