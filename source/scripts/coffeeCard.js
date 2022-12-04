@@ -200,7 +200,7 @@ class CoffeeCard extends HTMLElement {
         const shadow_div = this.shadowRoot.querySelector('div');
 
         // Converts MM-DD-YYYY to Date String
-        let date = data["time_purchase_date"].split("-").reverse().join("-");
+        let date = data["time_purchase_date"];
         date = new Date(date);
         const dateStr = date.toDateString();
 

@@ -25,7 +25,7 @@ describe("Basic user flow for Website", () => {
     const SLIDER_MAX_VALUE = 5;
 
     // Default date
-    const DEFAULT_DATE = "2022-11-30";
+    const DEFAULT_DATE = "2022-01-01";
 
     // Check to make sure that adding 10 cards to the page will create 10 cards
     it("Adding 10 cards should populate the gallery with 10 cards ", async () => {
@@ -133,16 +133,16 @@ describe("Basic user flow for Website", () => {
     // Query select all of the <coffee-card> elements
     // Iterate through all coffee cards
     for (let i = 0; i < TOTAL_CARDS; i++) {
-      const allCoffeeCards = await page.$$('coffee-card');
+      let allCoffeeCards = await page.$$('coffee-card');
       console.log(`Checking coffee card ${i}/${allCoffeeCards.length}`);
-      const itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
+      let itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
       
       // Check info on Thumbnail
       let thumbDate = await itemFromShadow.$eval("#time_purchase_date", (el) => {
         return el.innerText;
       });
-      console.log("Drink"+i+"'s current date on thumbnail is: " + thumbDate);
       thumbDate = new Date(thumbDate);
+      thumbDate = thumbDate.toDateString();
 
       // Click the edit button
       const buttonFromShadow = await itemFromShadow.$('#edit_button');
@@ -154,6 +154,7 @@ describe("Basic user flow for Website", () => {
       });
       console.log("Drink"+i+"'s current date on edit page is: " + cardDate);
       cardDate = new Date(cardDate);
+      cardDate = cardDate.toDateString();
 
       // Check if the thumbnail's date matches the one on the card edit page
       expect(thumbDate).toBe(cardDate);
@@ -172,12 +173,14 @@ describe("Basic user flow for Website", () => {
       // Save the edit of the card
       const saveButton = await page.$("#save");
       await saveButton.click();
-
+      
+      allCoffeeCards = await page.$$('coffee-card');
+      itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
       // Check and see if the date on thumbnail is updated
       let newThumbDate = await itemFromShadow.$eval("#time_purchase_date", (el) => {
         return el.innerText;
       });
-      newThumbDate = new Date(tomorrow);
+      newThumbDate = new Date(newThumbDate);
       newThumbDate = newThumbDate.toLocaleDateString('zh-Hans-CN');
       console.log("Drink"+i+"'s updated date on thumbnail is: " + newThumbDate);
       expect(newThumbDate).toBe(tomorrow);
