@@ -107,22 +107,26 @@ class CoffeeCard extends HTMLElement {
                 white-space: nowrap;
             }
 
-            #comments_container {
+            #comments {
                 background-color: white;
                 height: 100px;
                 width: 50%;
                 margin-right: 15px;
+                border: none;
                 border-radius: 10px;
-            }
-
-            #comments_container p {
                 color: black;
                 font-family: "Zen Maru Gothic";
-                font-size: .8em;
+                font-size: 0.9em;
                 text-align: left;
-                padding-left: 5px;
+                padding: 5px;
+                resize: none;
+                overflow: scroll;
+                
             }
 
+            ::-webkit-scrollbar {
+                display: none;
+            }
 
             #row {
                 display: flex;
@@ -235,9 +239,7 @@ class CoffeeCard extends HTMLElement {
                 <li id = "int_dropdown_color">${data["int_dropdown_color"]}</li>
             </ul>
 
-            <section id = "comments_container">
-                <p>${data["str_notes"]}</p>
-            </section>
+            <textarea id = "comments">${data["str_notes"]}</textarea>
         </section>
 
 
