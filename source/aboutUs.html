@@ -1,243 +1,228 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Coffee Log</title>
 
-    <meta n ame="description" content="About Us" />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>brew notes.</title>
 
-    <!-- customize text: google font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&display=swap"
-      rel="stylesheet"
-    />
+  <!--Page icon goes here-->
+  <link rel="icon" href="./assets/images/web_icon.png" type="image/png" />
+  <link rel="bookmark" href="./assets/images/web_icon.png" />
 
-    <!-- custom text 2 -->
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
-    <link href="https://fonts.googleapis.com/css2?family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet"> -->
+  <meta n ame="description" content="About Us" />
 
-    <!-- add icon-->
-    <script
-      src="https://kit.fontawesome.com/a3ec84fd77.js"
-      crossorigin="anonymous"
-    ></script>
+  <!-- customize text: google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&display=swap" rel="stylesheet" />
 
-    <!-- google charts -->
-    <!--<script
-      type="text/javascript"
-      src="https://www.gstatic.com/charts/loader.js"
-    ></script>
-    <script type="text/javascript">
-      google.charts.load("current", {
-        packages: ["geochart"],
-      });
-      google.charts.setOnLoadCallback(drawRegionsMap);
+  <!-- add icon-->
+  <script src="https://kit.fontawesome.com/a3ec84fd77.js" crossorigin="anonymous"></script>
 
-      function drawRegionsMap() {
-        var data = google.visualization.arrayToDataTable([
-          ["Country", "Popularity"],
-          ["Germany", 200],
-          ["United States", 300],
-          ["Brazil", 400],
-          ["Canada", 500],
-          ["France", 600],
-          ["RU", 700],
-        ]);
 
-        var options = {};
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap');
+    @import url("https://fonts.googleapis.com/css?family=Dosis:300,400");
 
-        var chart = new google.visualization.GeoChart(
-          document.getElementById("regions_div")
-        );
+    * {
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+    }
 
-        chart.draw(data, options);
+    header {
+      display: grid;
+      grid-template-columns: repeat(3, 33%);
+      flex-direction: row;
+      justify-content: space-around;
+      width: 80%;
+      padding: 1rem;
+      margin: 20px auto;
+      border-radius: 15px;
+      background-color: rgba(115, 73, 63, 0.399);
+    }
+
+
+    /* Main Page navigation link */
+    header a {
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-family: "Zen Maru Gothic", Arial;
+      color: rgb(236 232 232);
+      width: 30%;
+      position: relative;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s ease-in;
+    }
+
+    /* Hoevering over link will underline in a smooth fashion */
+    header a:hover {
+      border-bottom: 1px solid rgb(236, 232, 232);
+      transition: all 0.2s ease-in;
+    }
+
+    #title_container {
+      color: rgb(255 255 255);
+    }
+
+    #header_title {
+      font-family: Arial, "Zen Maru Gothic";
+      font-size: 2rem;
+    }
+
+    #header_subtitle {
+      font-family: "Zen Maru Gothic", Arial;
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+
+
+
+    body {
+      background-color: #dad9d29b;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      margin: 50px auto;
+      width: 80%;
+    }
+
+    .content_container {
+      width: 80%;
+      margin: 0px auto 50px auto;
+    }
+
+    /* Title for each section */
+    h2 {
+      font-size: 2rem;
+      font-weight: 900;
+    }
+
+    /* Section paragraph */
+    p {
+      margin: 20px;
+      font-family: "Zen Maru Gothic", Arial;
+    }
+
+
+
+    iframe {
+      display: block;
+      object-fit: fill;
+      margin: 20px auto 0 auto;
+    }
+
+    
+    @media screen and (max-width: 700px) {
+
+
+
+      header a {
+        font-size: .8rem;
       }
-    </script>-->
 
-    <!-- <link rel="stylesheet" href="./dhstyle.css" /> -->
 
-    <style>
-      /* * means for all */
-      * {
-        margin: 0px;
-        padding: 0px;
-
-        box-sizing: border-box;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
+      #header_title {
+        font-size: 1.4rem;
       }
 
-      header {
-        background-color: rgba(36, 34, 34, 0.399);
-        width: 100%;
-
-        padding: 1rem;
+      #header_subtitle {
+        font-size: .8rem;
       }
 
-      nav {
-        background-color: #3b383c95;
-      }
-
-      h1,
-      h2,
-      h3 {
-        /*-webkit-text-stroke: 0.5px silver;*/
-        font-family: "ZCOOL XiaoWei", serif;
-      }
-      h3 {
-        text-align: center;
-      }
-
-      h4 {
-        font-family: "Times New Roman", Times, serif;
-        text-indent: 32px;
-      }
-
-      .textHeader {
-        font-size: 2rem;
-      }
-
-      /* h2 {
-            background-color: rgba(rgb(70, 49, 49), rgb(13, 41, 13), rgb(6, 6, 48), 0.5);
-        } */
       p {
-        text-indent: 32px;
-        font-family: "Gill Sans", sans-serif;
+        font-size: .8rem;
+        margin-top: 10px;
+      }
+      
+      h2 {
+        font-size: 1.3rem;
       }
 
-      h1:hover {
-        color: rgb(255, 255, 255);
-
-      }
-      /* it is not working */
-      /* main {
-            background-color: rgba(rgb(70, 49, 49), rgb(13, 41, 13), rgb(6, 6, 48), 0.5);
-        } */
-
-      body {
-        background-color: #3b383c9b;
-      }
-
-      main {
-        width: 100%;
-        display: flex;
-      }
-
-      section.left {
-        padding: 1rem;
-        /* border: grey; */
-      }
-
-      section.right {
-        display: flex;
-        padding: 1rem;
-        flex-direction: column;
-        /* border: grey; */
-        /* 地 */
-        align-items: center;
-      }
-
-      section.right p {
-        text-align: center;
-        margin: 0rem 1rem;
-      }
-
-      .active {
-        color: gold;
-      }
-
-      .image {
+      iframe {
         display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 50%;
-        height: 200px;
-        /* background-color: bisque; */
+        margin: 10px auto 0 auto;
+        width: 300px;
+        height: 300px;
       }
-    </style>
-  </head>
-  <body>
-    <!-- topic-->
-    <header>
-      <h1 class="textHeader">ABout Coffee log</h1>
-      <h4>Designed by ProForce</h4>
-    </header>
 
-    <!-- Nav -->
-    <nav></nav>
+    }
+  </style>
+</head>
 
-    <!--   Main is a flex container-->
-    <main>
-      <section class="left">
-        <h2>Why using Coffee Log?</h2>
-        <p>
-          Values/Culture: Team ProForce thrives to produce software with
-          productivity, accessibility, and efficiency. Not only do we focus on
-          improving the quality of our product, but we also bring out our
-          creative ideas to life in the form of applications. To achieve this
-          goal, we are committed to creating good alignments in the team,
-          learning various concepts, tools, and methods, as well as effectively
-          communicating with our end users. ProForce dedicates efforts to
-          gaining these valuable learning experiences in user-developer
-          interactions, where the inclusive and supportive atmospheres create a
-          sense of comradery within and around all of us. Let’s overcome
-          difficulties as a family!
-          <!-- <img class="image" width="600px" height="200px" src="./Tradeicon.png" alt="网站图标"> -->
-        </p>
-        <br />
-      </section>
-      <br />
-      <section class="left">
-        <h2>Why using Coffee Log?</h2>
-        <p>
-          ProForce is committed to providing users with a simple, easy and
-          useful application; overly complex programs can take away from the
-          initial intent. Therefore, we will keep everything functional and
-          simple, easy to use and create a relaxing environment for the user.
-          <!-- <img class="image" width="600px" height="200px" src="./Tradeicon.png" alt="网站图标"> -->
-        </p>
-        <br />
-      </section>
 
-      <section class="right">
-        <h3>Team 14</h3>
-        <p>Location: UCSD Geisel Library</p>
-        <p>This is where the office of team 14 is at</p>
+
+<body>
+  <header>
+
+    <nav>
+      <a href="index.html" title="Go to main page" id="home_link">Home Page</a>
+    </nav>
+
+    <div id="title_container">
+      <h1 id="header_title">About Our Team</h1>
+      <h4 id="header_subtitle">ProForce</h4>
+    </div>
+
+  </header>
+
+
+
+  <!-- Main is a flex container -->
+  <main>
+
+    <section class="content_container">
+      <h2 id="why_title">Why Use Brew Notes?</h2>
+      <p>
+        lorem ipsum lorem ipsum lorem ipsum
+        lorem ipsum lorem ipsum lorem ipsumlorem ipsum
+        lorem ipsum lorem ipsumlorem ipsumlorem ipsumloremlorem ipsum
+        lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+      </p>
+    </section>
+
+    <section class="content_container">
+      <h2 id="mission_title">Mission Statement</h2>
+      <p>
+        Team ProForce thrives to produce software with
+        productivity, accessibility, and efficiency. Not only do we focus on
+        improving the quality of our product, but we also bring out our
+        creative ideas to life in the form of applications. To achieve this
+        goal, we are committed to creating good alignments in the team,
+        learning various concepts, tools, and methods, as well as effectively
+        communicating with our end users. ProForce dedicates efforts to
+        gaining these valuable learning experiences in user-developer
+        interactions, where the inclusive and supportive atmospheres create a
+        sense of comradery within and around all of us.
+      </p>
+    </section>
+
+    <section class="content_container">
+      <h2 id="location_title">Location</h2>
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6701.353076605748!2d-117.24704137354678!3d32.8802766737636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dc07853cb13045%3A0x2d2f19f483aaaace!2sGeisel%20Library!5e0!3m2!1szh-CN!2sus!4v1668665703132!5m2!1szh-CN!2sus"
-          width="300"
-          height="200"
-          style="border: 0"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        ></iframe>
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d26805.16572246099!2d-117.237566!3d32.881092!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2d2f19f483aaaace!2sGeisel%20Library!5e0!3m2!1sen!2sus!4v1670099212398!5m2!1sen!2sus"
+          width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade" width="300" height="200" style="border: 0" allowfullscreen=""
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </section>
 
-        <!--<br />
-        About us: feedback:
-        <br />
-        <textarea name="" id="" cols="30" rows="10"></textarea>-->
-      </section>
-    </main>
+  </main>
 
-    <h2>Team Video</h2>
-    <iframe
-      src="https://www.youtube.com/embed/Jg5wkZ-dJXA"
-      title="YouTube video player"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen
-      height="300"
-      width="500"
-    ></iframe>
-    <!--
-    <h1>Amount of users that use this webiste</h1>
-    <div id="regions_div" style="width: 600px; height: 300px"></div>-->
-  </body>
+  <!--
+  <h2>Team Video</h2>
+  <iframe src="https://www.youtube.com/embed/Jg5wkZ-dJXA" title="YouTube video player" frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+    height="300" width="500"></iframe>
+  -->
+
+</body>
+
 </html>
