@@ -201,7 +201,9 @@ class CoffeeCard extends HTMLElement {
 
         // Converts MM-DD-YYYY to Date String
         let date = data["time_purchase_date"];
-        date = new Date(date);
+        console.log(date);
+        date = date.split('-');
+        date = new Date(date[0], date[1]-1, date[2]);
         const dateStr = date.toDateString();
 
         // Add a hidden element to the card's HTML

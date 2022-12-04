@@ -152,6 +152,9 @@ describe("Basic user flow for Website", () => {
       let cardDate = await page.$eval("#time_purchase_date", (el) => {
         return el.value;
       });
+      cardDate = cardDate.split('-');
+      cardDate = new Date(cardDate[0], cardDate[1]-1, cardDate[2]);
+      cardDate = cardDate.toDateString();
       console.log("Drink"+i+"'s current date on edit page is: " + cardDate);
       cardDate = new Date(cardDate);
       cardDate = cardDate.toDateString();
@@ -161,8 +164,8 @@ describe("Basic user flow for Website", () => {
 
       // Create a new date
       const NINE = 9;
-      const modifiedDay = i%NINE+INCREMENT;
-      const tomorrowDateStr = "2053-"+"0"+String(modifiedDay)+"-1"+String(modifiedDay);
+      const modifiedDay = i%NINE;
+      const tomorrowDateStr = "2053-"+"12"+"-1"+String(modifiedDay);
       let tomorrow = new Date(tomorrowDateStr);
       tomorrow = tomorrow.toLocaleDateString('en-US');
       await page.type("#time_purchase_date", tomorrow.replace(/[^0-9]/g, ''));
@@ -173,7 +176,7 @@ describe("Basic user flow for Website", () => {
       // Save the edit of the card
       const saveButton = await page.$("#save");
       await saveButton.click();
-      
+
       allCoffeeCards = await page.$$('coffee-card');
       itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
       // Check and see if the date on thumbnail is updated
