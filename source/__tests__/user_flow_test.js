@@ -132,7 +132,7 @@ describe("Basic user flow for Website", () => {
 
     // Query select all of the <coffee-card> elements
     // Iterate through all coffee cards
-    for (let i = 0; i < allCoffeeCards.length; i++) {
+    for (let i = 0; i < TOTAL_CARDS; i++) {
       const allCoffeeCards = await page.$$('coffee-card');
       console.log(`Checking coffee card ${i}/${allCoffeeCards.length}`);
       const itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
