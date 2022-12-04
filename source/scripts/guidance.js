@@ -178,6 +178,7 @@ function glowGuidanceElement(int_help_index) {
             const cardEditButton = coffeeCardObject.querySelector('.edit');
             cardEditButton.classList.remove('disable-css-transitions');
             break;
+        
         case 11:
             filterOption.classList.remove('disable-css-transitions');
             break
