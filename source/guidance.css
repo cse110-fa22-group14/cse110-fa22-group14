@@ -12,6 +12,28 @@
     justify-content: center;
 }
 
+.disable-css-transitions {
+    -webkit-animation: none !important;
+    -moz-animation: none !important;
+    -o-animation: none !important;
+    -ms-animation: none !important;
+    animation: none !important;
+}
+
+/* Universal Glow Animation */
+@keyframes glowing {
+    /* INFO: https://www.w3docs.com/snippets/css/how-to-create-flashing-glowing-button-using-animation-in-css3.html */
+    0% {
+      box-shadow: 0 0 20px rgb(255, 77, 0);
+    }
+    50% {
+      box-shadow: 0 0 50px rgb(143, 54, 15);
+    }
+    100% {
+      box-shadow: 0 0 20px rgb(255, 77, 0);
+    }
+}
+
 header {
     justify-content: center;
     display: flex;
@@ -39,25 +61,10 @@ main {
     border-radius: 30px;
     border: none;
     box-shadow: 12px 17px 14px -12px rgba(0 0 0 / 41%);
+
+    /* Glow animation added to the element */
     animation: glowing 1300ms infinite; 
 }
-@keyframes glowing {
-
-    /* INFO: https://www.w3docs.com/snippets/css/how-to-create-flashing-glowing-button-using-animation-in-css3.html */
-
-    0% {
-      background-color: rgb(167 125 136);
-      box-shadow: 0 0 3px rgb(167 125 136);
-    }
-    50% {
-      background-color: rgb(255, 255, 255);
-      box-shadow: 0 0 10px rgb(167 125 136);
-    }
-    100% {
-      background-color: rgb(167 125 136);
-      box-shadow: 0 0 3px rgb(167 125 136);
-    }
-  }
 
 /* Hidden popup form */
 #pop_up_box {
@@ -84,6 +91,9 @@ main {
 
     /* Space between each form child */
     gap: 10px;
+
+    /* Glow animation added to the element */
+    animation: glowing 1300ms infinite; 
 }
 
 /* Encapsulation for different inputs in form */
@@ -104,6 +114,9 @@ fieldset {
     font-size: 1.2em;
     color: #ffff;
     text-align: left;
+
+    /* Glow animation added to the element */
+    animation: glowing 1300ms infinite; 
 }
 
 #str_drink_name {
@@ -198,6 +211,9 @@ input {
     font-size: 1.2em;
     color: #ffff;
     text-align: right;
+
+    /* Glow animation added to the element */
+    animation: glowing 1300ms infinite; 
 }
 
 #switch_photo_container {
@@ -304,6 +320,9 @@ input {
     font-weight: 700;
     font-size: 0.8rem;
     border-radius: 10px;
+
+    /* Glow animation added to the element */
+    animation: glowing 1300ms infinite; 
 }
 
 
@@ -376,12 +395,14 @@ input {
 .prev_help {
     left: 0;
     border-radius: 3px 0 0 3px;
-  }
+}
 
 /* Position the "next button" to the right */
 .next_help {
   right: 0;
   border-radius: 3px 0 0 3px;
+  /* Glow animation added to the element */
+  animation: glowing 1300ms infinite; 
 }
 
 /* On hover, add a black background color with a little bit see-through */
