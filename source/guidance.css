@@ -63,7 +63,6 @@ main {
 
     /* Glow animation added to the element */
     animation: glowing 1300ms infinite;
-
 }
 
 /* Hidden popup form */
@@ -94,7 +93,6 @@ main {
 
     /* Glow animation added to the element */
     animation: glowing 1300ms infinite;
-
 }
 
 /* Encapsulation for different inputs in form */
@@ -118,7 +116,6 @@ fieldset {
 
     /* Glow animation added to the element */
     animation: glowing 1300ms infinite;
-
 }
 
 #str_drink_name {
@@ -216,7 +213,6 @@ input {
 
     /* Glow animation added to the element */
     animation: glowing 1300ms infinite;
-
 }
 
 #switch_photo_container {
@@ -326,7 +322,6 @@ input {
 
     /* Glow animation added to the element */
     animation: glowing 1300ms infinite;
-
 }
 
 
@@ -404,6 +399,7 @@ input {
 .next_help {
     right: 0;
     border-radius: 3px 0 0 3px;
+
     /* Glow animation added to the element */
     animation: glowing 1300ms infinite; 
 }
@@ -421,7 +417,6 @@ input {
     background-color: rgba(147 147 147 67%);
     border-radius: 10px;
     border: none;
-
     justify-content: center;
     display: flex;
     position: relative;
@@ -443,7 +438,6 @@ input {
 
     /* Glow animation added to the element */
     animation: glowing 1300ms infinite;
-
 }
 
 /* Hoevering over link will underline in a smooth fashion */
@@ -454,7 +448,7 @@ input {
 
 #main_page.fixed {
     position: fixed;
-    left: 0px;
-    top: 15vh;
+    left: 0;
+    top: 85vh;
     z-index: 999;
 }
