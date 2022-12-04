@@ -12,7 +12,7 @@ const TWO = 2;
 // The variable to hold the current image's index
 let help_text_index = 0;
 // Total number of coffee images in the asset/images folder
-const TOTAL_HELP_TEXT_CNT = 14;
+const TOTAL_HELP_TEXT_CNT = 15;
 // Next left image
 const PREV_TEXT = -1;
 // Next right image
@@ -94,7 +94,7 @@ function show_help_text(int_change) {
         // Change to the first picture if index increases out of bounds
     }
     if (int_change < DEFAULT_TEXT_INDEX) {
-        help_text_index = DEFAULT_TEXT_INDEX + PREV_TEXT;
+        help_text_index = TOTAL_HELP_TEXT_CNT + PREV_TEXT;
         // Change to the last picture is index decreases out of bounds
     }
     // Find the image element on html
@@ -209,7 +209,19 @@ function glowGuidanceElement(int_help_index) {
             filterOption.classList.remove('disable-css-transitions');
             break;
         case 12:
-            
+            addPlaceholderCard2();
+            let coffeeCardObject3 = document.getElementsByTagName('coffee-card');
+            // Choose the first card that just added
+            coffeeCardObject3 = coffeeCardObject3[1].shadowRoot;
+            const deleteSecond = coffeeCardObject3.querySelector('#delete_card');
+            deleteSecond.classList.remove('disable-css-transitions');
+            break;
+        case 13:
+            addPlaceholderCard();
+            color_picker.classList.remove('disable-css-transitions');
+            break;
+        case 14:
+            // Add animation to main page button and remove the 'disable-css-transitions' class here
             break;
         default:
             throw new Error('Invalid message index!');
