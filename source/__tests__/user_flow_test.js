@@ -131,28 +131,29 @@ describe("Basic user flow for Website", () => {
     console.log('Checking to make sure <coffee-card> elements dates are functioning...');
 
     // Query select all of the <coffee-card> elements
-    const allCoffeeCards = await page.$$('coffee-card');
-
     // Iterate through all coffee cards
     for (let i = 0; i < allCoffeeCards.length; i++) {
+      const allCoffeeCards = await page.$$('coffee-card');
       console.log(`Checking coffee card ${i}/${allCoffeeCards.length}`);
       const itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
       
       // Check info on Thumbnail
-      const thumbDate = await itemFromShadow.$eval("#time_purchase_date", (el) => {
+      let thumbDate = await itemFromShadow.$eval("#time_purchase_date", (el) => {
         return el.innerText;
       });
       console.log("Drink"+i+"'s current date on thumbnail is: " + thumbDate);
+      thumbDate = new Date(thumbDate);
 
       // Click the edit button
       const buttonFromShadow = await itemFromShadow.$('#edit_button');
       await buttonFromShadow.click();
 
       // Check info on edit page
-      const cardDate = await page.$eval("#time_purchase_date", (el) => {
+      let cardDate = await page.$eval("#time_purchase_date", (el) => {
         return el.value;
       });
       console.log("Drink"+i+"'s current date on edit page is: " + cardDate);
+      cardDate = new Date(cardDate);
 
       // Check if the thumbnail's date matches the one on the card edit page
       expect(thumbDate).toBe(cardDate);
