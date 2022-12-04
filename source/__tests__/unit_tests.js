@@ -67,11 +67,11 @@ test('sort coffee cards by descending price', () => {
     } 
 
     let coffeeCards = [coffeeCardObject1, coffeeCardObject2, coffeeCardObject3];
+    coffeeCards = coffeeCards.sort(sortFunctions.sortPrice);
 
     const id0 = 0;
     const id1 = 1;
     const id2 = 2;
-    coffeeCards.sort(sortFunctions.sortPrice);
     expect(coffeeCards[id0]["float_drink_price"]).toBe(smallestPrice);
     expect(coffeeCards[id1]["float_drink_price"]).toBe(middlePrice);
     expect(coffeeCards[id2]["float_drink_price"]).toBe(largestPrice);
@@ -129,11 +129,11 @@ test('sort coffee cards by ascending price', () => {
     } 
 
     let coffeeCards = [coffeeCardObject1, coffeeCardObject2, coffeeCardObject3];
+    coffeeCards = coffeeCards.sort(sortFunctions.sortPriceReverse);
 
     const id0 = 0;
     const id1 = 1;
     const id2 = 2;
-    coffeeCards.sort(sortFunctions.sortPriceReverse);
     expect(coffeeCards[id0]["float_drink_price"]).toBe(largestPrice);
     expect(coffeeCards[id1]["float_drink_price"]).toBe(middlePrice);
     expect(coffeeCards[id2]["float_drink_price"]).toBe(smallestPrice);
@@ -192,11 +192,11 @@ test('sort coffee cards by decending date', () => {
 
 
     let coffeeCards = [coffeeCardObject1, coffeeCardObject2, coffeeCardObject3];
+    coffeeCards = coffeeCards.sort(sortFunctions.sortDate);
 
     const id0 = 0;
     const id1 = 1;
     const id2 = 2;
-    coffeeCards.sort(sortFunctions.sortDate);
     expect(coffeeCards[id0]["time_purchase_date"]).toBe(smallestDate);
     expect(coffeeCards[id1]["time_purchase_date"]).toBe(middleDate);
     expect(coffeeCards[id2]["time_purchase_date"]).toBe(largestDate);
@@ -253,11 +253,12 @@ test('sort coffee cards by decending date', () => {
 
 
     let coffeeCards = [coffeeCardObject1, coffeeCardObject2, coffeeCardObject3];
+    coffeeCards= coffeeCards.sort(sortFunctions.sortDateReverse);
 
     const id0 = 0;
     const id1 = 1;
     const id2 = 2;
-    coffeeCards.sort(sortFunctions.sortDateReverse);
+
     expect(coffeeCards[id0]["time_purchase_date"]).toBe(largestDate);
     expect(coffeeCards[id1]["time_purchase_date"]).toBe(middleDate);
     expect(coffeeCards[id2]["time_purchase_date"]).toBe(smallestDate);

@@ -513,9 +513,10 @@ describe("Basic user flow for Website", () => {
   }, TOTAL_TEST_TIME);
   /**
    * Sorting Tests begin here
+   *
+   * Check that sorting then deleting deletes the correct card after sort by date
+   * NOTE: test may fail if two cards are identical
    */
-  // Check that sorting then deleting deletes the correct card after sort by date
-  // NOTE: test may fail if two cards are identical
   it('Checking that the correct card is deleted after a sort', async () => {
     console.log('Checking that correct card is edited after sort');
     // Grab the filter drop down and change trigger sorting by date
