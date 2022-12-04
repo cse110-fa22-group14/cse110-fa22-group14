@@ -337,9 +337,9 @@ function populateForm() {
 function addPlaceholderCard() {
     // Information on the placeholder card
     const formData = [{"str_drink_name":"New Drink",
-                                "float_drink_price":"10","time_purchase_date":
-                                "2022-12-03","str_purchase_location":
-                                "La Jolla",
+                                "float_drink_price":"10",
+                                "time_purchase_date":"2022-12-03",
+                                "str_purchase_location":"La Jolla",
                                 "img_drink_image":0,
                                 "int_slide_acidity":"1",
                                 "int_slide_sweetness":"2",
@@ -362,9 +362,9 @@ function addPlaceholderCard() {
     // Turn off all the glows on default
     const cardBody = coffeeCardObject.querySelector('div');
     cardBody.classList.add('disable-css-transitions');
-    const editButton = coffeeCardObject.querySelector('.edit');
+    const editButton = coffeeCardObject.querySelector('#edit_button');
     editButton.classList.add('disable-css-transitions');
-    const deleteButton = coffeeCardObject.querySelector('.delete');
+    const deleteButton = coffeeCardObject.querySelector('#delete_button');
     deleteButton.classList.add('disable-css-transitions');
     const shareButton = coffeeCardObject.querySelector('#share_button');
     shareButton.classList.add('disable-css-transitions');

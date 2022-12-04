@@ -20,28 +20,10 @@
          const shadow_style = document.createElement("style");
          // Define the precise style for the card
         shadow_style.textContent = `
-            .disable-css-transitions {
-                -webkit-animation: none !important;
-                -moz-animation: none !important;
-                -o-animation: none !important;
-                -ms-animation: none !important;
-                animation: none !important;
-            }
-        
-            /* Universal Glow Animation */
-            @keyframes glowing {
-                /* INFO: https://www.w3docs.com/snippets/css/how-to-create-flashing-glowing-button-using-animation-in-css3.html */
-                0% {
-                box-shadow: 0 0 20px rgb(255, 77, 0);
-                }
-                50% {
-                box-shadow: 0 0 50px rgb(143, 54, 15);
-                }
-                100% {
-                box-shadow: 0 0 20px rgb(255, 77, 0);
-                }
-            }
+            @import url("https://fonts.googleapis.com/css?family=Dosis:300,400");
+
             div {
+                background-color: rgb(167 125 136);
                 position: relative;
                 display: flex;
                 flex-direction: column;
@@ -49,83 +31,129 @@
                 min-width: 300px;
                 max-width: 1fr;
                 height: 300px;
-                background-color: rgb(167 125 136);
                 border-radius: 20px;
                 border: none;
                 text-align: center;
                 box-shadow: 12px 17px 14px -12px rgba(0 0 0 / 41%);
                 /* Glow animation added to the element */
-                animation: glowing 1300ms infinite; 
+                animation: glowing 1300ms infinite;
             }
 
-            /* Adding grid structure to header */
             header {
-                margin: 0 auto;
+                margin: -40px auto 0 auto;
                 width: 90%;
-                display: grid;
-                grid-template-rows: repeat(2, 30px);
-                grid-template-columns: repeat(6, minmax(50px, 1fr));
+                display: flex;
+                flex-direction: column;
                 text-align: left;
-                font-family: Arial, "Zen Maru Gothic";
-                font-weight: 100;
-                font-size: 1em;
+                font-family: Arial;
+                height: auto;
+            }
+
+            hr {
+                width: 100%;
+                border: 1px solid rgb(255 255 255);
+                border-radius: 5px;
             }
 
             /* Drink Title */
-            h3 {
-                grid-row-start: 1;
-                grid-row-end: 2;
-                grid-column-start: 1;
-                grid-column-end: 6;
+            header h3 {
+                width:100%;
+                font-size: 1.8em;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
             }
 
-            /* Drink Date */
-            h4{
-                grid-row-start: 2;
-                grid-row-end: 3;
-                grid-column-start: 1;
-                grid-column-end: 6;
-                font-size: 0.9em;
+            header h4 {
+                width:100%;
+                font-size: 1em;
+                margin-top: -25px;
+            }
+
+            hr {
+                margin-top: -10px;
+                width: 90%;
+                border-width: 0.5px;
+                color: rgb(236 232 232);
+
+            }
+
+            /* Container to hold flavor details */
+
+            #info_container {
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+                height: 30%;
+                margin-top: -10px;
+            }
+
+            #list {
+                display: flex;
+                flex-direction: column;
+                width: 40%;
+                margin: auto;
+                font-family: "Zen Maru Gothic", Arial;
+                font-weight: 100;
+                text-align: left;
+                font-size: 1em;
+            }
+
+            li p {
+                width: 110px;
+                margin: 0;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+
+            #comments_container {
+                background-color: white;
+                height: 100px;
+                width: 50%;
+                margin-right: 15px;
+                border-radius: 10px;
+            }
+
+            #comments_container p {
+                color: black;
+                font-family: "Zen Maru Gothic";
+                font-size: .8em;
+                text-align: left;
+                padding-left: 5px;
+            }
+
+
+            #row {
+                display: flex;
+                justify-content: space-between;
+                height: 30px;
+                width: 90%;
+                margin: -25px auto 0 auto;
+                align-items: center;
+            }
+
+            #row h4 {
+                font-size: 20px;
+                font-family: "Zen Maru Gothic";
             }
 
             /* Share Icon */
             img {
-                transform: scale(0.8);
-                grid-row-start: 1;
-                grid-row-end: 2;
-                grid-column-start: 6;
-                grid-column-end: 6;
-                transform: scale(0.6);
-                margin-top: 10px;
-                align-self: right;
-            }
-
-            /* Container to hold flavor details */
-            .info{
-                width: 90%;
-                margin: auto;
-                font-family: Arial,"Zen Maru Gothic";
-                font-weight: 100;
-                text-align: left;
-            }
-
-            #share_button {
+                position: relative;
+                margin-left: 10px;
+                object-fit: contain;
+                margin: 0;
                 /* Glow animation added to the element */
-                animation: glowing 1300ms infinite; 
+                animation: glowing 1300ms infinite;
             }
-
-            .delete {
-                padding: 5px 20px;
-
+            #delete_button {
                 /* Glow animation added to the element */
-                animation: glowing 1300ms infinite; 
+                animation: glowing 1300ms infinite;
             }
-
-            .edit {
-                padding: 5px 20px;
-
+            #edit_button {
                 /* Glow animation added to the element */
-                animation: glowing 1300ms infinite; 
+                animation: glowing 1300ms infinite;
             }`;
 
         // Append the <style> and <article> elements to the Shadow DOM
@@ -173,30 +201,45 @@
 
        const shadow_div = this.shadowRoot.querySelector('div');
 
+       // Converts MM-DD-YYYY to Date String
+       let date = new Date(data["time_purchase_date"]);
+       const dateStr = date.toDateString();
+
        // Add a hidden element to the card's HTML
        shadow_div.innerHTML =
        `
-       <header>
-            <h3 id = "str_drink_name"><slot name="date" />${data["str_drink_name"]}</h3>
-            <h4 id = "time_purchase_date">${data["time_purchase_date"]}</h4>
+        <header>
+                <h3 id = "str_drink_name"><slot name="date" />${data["str_drink_name"]}</h3>
+                <h4 id = "time_purchase_date">${dateStr}</h4>
+        </header>
+
+        <section id = "row">
+        <h4 id = "float_drink_price">$${data["float_drink_price"]}</h4>
+        <section id = "button_container">
             <img id = "share_button" alt = "share icon" src = "./assets/images/share-icon.png" ></img>
-
-       </header>
-
-        <section class="info">
-          <p id = "str_purchase_location"><slot name="location" />Location: ${data["str_purchase_location"]}</p>
-          <p id = "str_brew_style"><slot name="brew_style" />Brew Method: ${data["str_brew_style"]}</p>
-          <p id = "str_drink_type"><slot name="drink_type">Serving Type: ${data["str_drink_type"]}</p>
-          <p id = "int_dropdown_color"><slot name="color">Color Level: ${data["int_dropdown_color"]}</p>
-
-          <button class = "edit" id="toggle_edit" >Edit</button>
-          <button class = "delete" id="delete_card" >Delete</button>
+            <img  id="delete_button" alt = "edit icon" src = "./assets/images/delete-icon.png" ></img>
+            <img  id="edit_button"  src = "./assets/images/edit-icon.png" ></img>
+        </section>
         </section>
 
+        <hr>
+
+        <section id = "info_container">
+                <ul id ="list">
+                    <li id = "str_purchase_location"><p>${data["str_purchase_location"]}</p></li>
+                    <li id = "str_brew_style">${data["str_brew_style"]}</li>
+                    <li id = "str_drink_type"> ${data["str_drink_type"]}</li>
+                    <li id = "int_dropdown_color">${data["int_dropdown_color"]}</li>
+                </ul>
+
+                <section id = "comments_container">
+                    <p>${data["str_notes"]}</p>
+                </section>
+        </section>
         `;
 
         // Custom event trigger that the DOM will catch whenever we click on "delete"
-        this.shadowRoot.getElementById('delete_card').addEventListener("click", ()=> {
+        this.shadowRoot.getElementById('delete_button').addEventListener("click", ()=> {
             // Don't dispatch the click event. Instead use a custom event
             this.dispatchEvent(new CustomEvent("trigger-delete", {
                 composed: true,
@@ -206,7 +249,7 @@
         })
 
         // Custom event trigger that the DOM will catch whenever we click on "edit"
-        this.shadowRoot.getElementById('toggle_edit').addEventListener("click", () => {
+        this.shadowRoot.getElementById('edit_button').addEventListener("click", () => {
 
             // Don't dispatch the click event. Instead use a custom event
             this.dispatchEvent(new CustomEvent("trigger-edit", {
