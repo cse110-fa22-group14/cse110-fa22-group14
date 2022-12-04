@@ -398,6 +398,7 @@ describe("Basic user flow for Website", () => {
         // Save the edit of the card
         const saveButton = await page.$("#save");
         await saveButton.click();
+        allCoffeeCards = await page.$$('coffee-card');
         itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
         buttonFromShadow = await itemFromShadow.$('#edit_button');
         await buttonFromShadow.click();
@@ -575,7 +576,7 @@ describe("Basic user flow for Website", () => {
    */
   it('Check if deleted card is the clicked card', async () => {
     // Randomly get a card
-    const coffeeCards = await page.$$('coffee-card');
+    let coffeeCards = await page.$$('coffee-card');
     const cardNum = coffeeCards.length;
     const cardIndex = Math.floor(Math.random() * cardNum);
     const card = coffeeCards[cardIndex];
