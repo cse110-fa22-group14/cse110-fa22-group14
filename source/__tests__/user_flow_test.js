@@ -64,10 +64,9 @@ describe("Basic user flow for Website", () => {
     // Edit the cards so we update the four fields by appending "-edited"
     it("Editing Cards should update their fields", async () => {
 
-      const cards = await page.$$('coffee-card');
       // In a for loop click on each card and edit the first four fields
       for(let i = 0; i < cards.length; i++) {
-
+        const cards = await page.$$('coffee-card');
         const shadowRoot = await cards[i].getProperty("shadowRoot");
         const editButton = await shadowRoot.$("#edit_button");
         await editButton.click();
@@ -82,9 +81,9 @@ describe("Basic user flow for Website", () => {
        * Then check to make sure the fields match our assumptions
        * console.log("Total Coffee Cards is " + cardsUpdated.length)
        */
-      const cardsUpdated = await page.$$('coffee-card');
+      
       for (let i = 0; i < TOTAL_CARDS; i++) {
-
+        const cardsUpdated = await page.$$('coffee-card');
         console.log("Checking edited card #" + i);
         const shadowRoot = await cardsUpdated[i].getProperty('shadowRoot');
         const editButton = await shadowRoot.$("#edit_button");
