@@ -12,7 +12,7 @@ const TWO = 2;
 // The variable to hold the current image's index
 let help_text_index = 0;
 // Total number of coffee images in the asset/images folder
-const TOTAL_HELP_TEXT_CNT = 4;
+const TOTAL_HELP_TEXT_CNT = 14;
 // Next left image
 const PREV_TEXT = -1;
 // Next right image
@@ -132,10 +132,15 @@ function glowGuidanceElement(int_help_index) {
     addButton.classList.add('disable-css-transitions');
     const cancelButton = document.getElementById('cancel');
     cancelButton.classList.add('disable-css-transitions');
+    const saveButton = document.getElementById('save');
+    saveButton.classList.add('disable-css-transitions');
     const help_left_arrow = document.getElementById('prev_help');
     help_left_arrow.classList.add('disable-css-transitions');
     const help_right_arrow = document.getElementById('next_help');
     help_right_arrow.classList.add('disable-css-transitions');
+    const form = document.getElementById('pop_up_box');
+    form.classList.add('disable-css-transitions');
+    closeForm();
     
     // Selectively enable animations
     switch(int_help_index) {
@@ -149,7 +154,34 @@ function glowGuidanceElement(int_help_index) {
             addButton.classList.remove('disable-css-transitions');
             break;
         case 3:
-
+            openForm();
+            form.classList.remove('disable-css-transitions');
+            break;
+        case 4:
+            openForm();
+            populateForm();
+            saveButton.classList.remove('disable-css-transitions');
+            break;
+        case 5:
+            const formData = [{"str_drink_name":"New Drink",
+                                "float_drink_price":"10","time_purchase_date":
+                                "2022-12-03","str_purchase_location":
+                                "La Jolla",
+                                "img_drink_image":0,
+                                "int_slide_acidity":"1",
+                                "int_slide_sweetness":"2",
+                                "int_slide_bitterness":"3",
+                                "int_slide_saltiness":"4",
+                                "str_drink_type":"Casual",
+                                "str_brew_style":"Drip",
+                                "int_dropdown_color":"Light",
+                                "str_notes":"No comments.",
+                                "bool_check_chocolate":"0",
+                                "bool_check_caramel":"1",
+                                "bool_check_nutty":"0",
+                                "bool_check_fruity":"1",
+                                "time_creation_time":"9:48:17 PM"}];
+            addCoffeeCardsToDocument(formData);
             break;
         case 11:
             filterOption.classList.remove('disable-css-transitions');
@@ -178,7 +210,6 @@ function openForm() {
     const form = document.getElementById('pop_up_box');
     form.style.opacity = ONE;
     form.style.visibility = "visible";
-    isFormOpen = true;
 }
 
 function closeForm() {
@@ -215,7 +246,41 @@ function closeForm() {
     document.getElementById("bool_check_caramel").checked = false;
     document.getElementById("bool_check_nutty").checked = false;
     document.getElementById("bool_check_fruity").checked = false;
-    isFormOpen = false;
+}
+
+// Placeholder function to populate the form
+function populateForm() {
+    const form = document.getElementById('pop_up_box');
+
+    // Reset the form's html contents when done.
+    document.getElementById("str_drink_name").value = "New Drink";
+    document.getElementById("float_drink_price").value = "10";
+    document.getElementById("time_purchase_date").value = "2022-12-03";
+    document.getElementById("str_purchase_location").value = "La Jolla";
+
+    // Populate the slider's display value
+    document.getElementById("acidity_val").innerText = "1";
+    document.getElementById("sweetness_val").innerText = "2";
+    document.getElementById("bitterness_val").innerText = "3";
+    document.getElementById("saltiness_val").innerText = "4";
+
+    // Change slider value
+    document.getElementById("int_slide_acidity").value = 1;
+    document.getElementById("int_slide_sweetness").value = 2;
+    document.getElementById("int_slide_bitterness").value = 3;
+    document.getElementById("int_slide_saltiness").value = 4;
+
+    // Populate the dropdowns
+    document.getElementById("str_drink_type").value = "Casual";
+    document.getElementById("str_brew_style").value = "Drip";
+    document.getElementById("int_dropdown_color").value = "Light";
+    document.getElementById("str_notes").value = "No comments.";
+
+    // Set the coffee card's image using the function in switchCoffeeImages.js
+    document.getElementById("bool_check_chocolate").checked = false;
+    document.getElementById("bool_check_caramel").checked = true;
+    document.getElementById("bool_check_nutty").checked = false;
+    document.getElementById("bool_check_fruity").checked = true;
 }
 
 /**
@@ -227,7 +292,6 @@ function closeForm() {
  * @param {Array<Object>} coffeeCards An array of recipes
  */
 function addCoffeeCardsToDocument(coffeeCards) {
-
     if (!coffeeCards) {
         return;
     }
@@ -240,7 +304,6 @@ function addCoffeeCardsToDocument(coffeeCards) {
         card.remove();
     })
 
-    
     // The card is a a coffeeCard object and index is the position of that card in the array
     coffeeCards.forEach((card, index) => {
         const coffeeCard = document.createElement("coffee-card");

@@ -415,7 +415,7 @@ input {
     min-width: 300px;
     bottom: 10px;
     min-height: 30vh;
-    background-color: rgb(217 217 217);
+    background-color: rgba(147, 147, 147, 0.67);
     border-radius: 10px;
     border: none;
 
@@ -425,5 +425,5 @@ input {
     height: 15vh;
     width: 80%;
     margin: 10px auto 0;
-    background-color: rgb(217 217 217);
+    z-index: 999;
 }
