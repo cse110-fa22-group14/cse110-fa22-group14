@@ -191,7 +191,7 @@ function glowGuidanceElement(int_help_index) {
             coffeeCardObject = document.getElementsByTagName('coffee-card');
             // Choose the first card that just added
             coffeeCardObject = coffeeCardObject[ZERO].shadowRoot;
-            coffeeCardObject = coffeeCardObject.querySelector('.edit');
+            coffeeCardObject = coffeeCardObject.querySelector('#edit_button');
             coffeeCardObject.classList.remove('disable-css-transitions');
             break;
         case SEVEN:
@@ -229,7 +229,7 @@ function glowGuidanceElement(int_help_index) {
             coffeeCardObject = document.getElementsByTagName('coffee-card');
             // Choose the first card that just added
             coffeeCardObject = coffeeCardObject[ONE].shadowRoot;
-            coffeeCardObject = coffeeCardObject.querySelector('#delete_card');
+            coffeeCardObject = coffeeCardObject.querySelector('#delete_button');
             coffeeCardObject.classList.remove('disable-css-transitions');
             break;
         case THIRTEEN:

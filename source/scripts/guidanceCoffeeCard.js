@@ -22,6 +22,27 @@
         shadow_style.textContent = `
             @import url("https://fonts.googleapis.com/css?family=Dosis:300,400");
 
+            /* Universal Glow Animation */
+            @keyframes glowing {
+
+                /* INFO: https://www.w3docs.com/snippets/css/how-to-create-flashing-glowing-button-using-animation-in-css3.html */
+                0% {
+                    box-shadow: 0 0 20px rgb(255 77 0);
+                }
+
+                50% {
+                    box-shadow: 0 0 50px rgb(143 54 15);
+                }
+
+                100% {
+                    box-shadow: 0 0 20px rgb(255 77 0);
+                }
+            }
+            
+            .disable-css-transitions {
+                animation: none !important;
+            }
+
             div {
                 background-color: rgb(167 125 136);
                 position: relative;
@@ -216,9 +237,9 @@
         <section id = "row">
         <h4 id = "float_drink_price">$${data["float_drink_price"]}</h4>
         <section id = "button_container">
-            <img id = "share_button" alt = "share icon" src = "./assets/images/share-icon.png" ></img>
-            <img  id="delete_button" alt = "edit icon" src = "./assets/images/delete-icon.png" ></img>
-            <img  id="edit_button"  src = "./assets/images/edit-icon.png" ></img>
+            <img id = "share_button" class = "share" alt = "share icon" src = "./assets/images/share-icon.png" ></img>
+            <img  id="delete_button" class = "delete" alt = "edit icon" src = "./assets/images/delete-icon.png" ></img>
+            <img  id="edit_button" class = "edit" src = "./assets/images/edit-icon.png" ></img>
         </section>
         </section>
 
