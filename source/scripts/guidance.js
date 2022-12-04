@@ -178,10 +178,39 @@ function glowGuidanceElement(int_help_index) {
             const cardEditButton = coffeeCardObject.querySelector('.edit');
             cardEditButton.classList.remove('disable-css-transitions');
             break;
-        
+        case 7:
+            addPlaceholderCard();
+            openForm();
+            populateForm();
+            cancelButton.classList.remove('disable-css-transitions');
+            break;
+        case 8:
+            addPlaceholderCard();
+            let coffeeCardObject1 = document.getElementsByTagName('coffee-card');
+            // Choose the first card that just added
+            coffeeCardObject1 = coffeeCardObject1[0].shadowRoot;
+            const cardShareButton = coffeeCardObject1.querySelector('#share_button');
+            cardShareButton.classList.remove('disable-css-transitions');
+            break;
+        case 9:
+            addPlaceholderCard();
+            fileSelectButton.classList.remove('disable-css-transitions');
+            break;
+        case 10:
+            addPlaceholderCard2();
+            let coffeeCardObject2 = document.getElementsByTagName('coffee-card');
+            // Choose the first card that just added
+            coffeeCardObject2 = coffeeCardObject2[1].shadowRoot;
+            const secondCard = coffeeCardObject2.querySelector('div');
+            secondCard.classList.remove('disable-css-transitions');
+            break;
         case 11:
+            addPlaceholderCard2();
             filterOption.classList.remove('disable-css-transitions');
-            break
+            break;
+        case 12:
+            
+            break;
         default:
             throw new Error('Invalid message index!');
     }
@@ -312,6 +341,73 @@ function addPlaceholderCard() {
     const deleteButton = coffeeCardObject.querySelector('.delete');
     deleteButton.classList.add('disable-css-transitions');
     const shareButton = coffeeCardObject.querySelector('#share_button');
+    shareButton.classList.add('disable-css-transitions');
+}
+
+function addPlaceholderCard2() {
+    // Information on the placeholder card
+    const formData = [{"str_drink_name":"New Drink",
+                        "float_drink_price":"10","time_purchase_date":
+                        "2022-12-03","str_purchase_location":
+                        "La Jolla",
+                        "img_drink_image":0,
+                        "int_slide_acidity":"1",
+                        "int_slide_sweetness":"2",
+                        "int_slide_bitterness":"3",
+                        "int_slide_saltiness":"4",
+                        "str_drink_type":"Casual",
+                        "str_brew_style":"Drip",
+                        "int_dropdown_color":"Light",
+                        "str_notes":"No comments.",
+                        "bool_check_chocolate":"0",
+                        "bool_check_caramel":"1",
+                        "bool_check_nutty":"0",
+                        "bool_check_fruity":"1",
+                        "time_creation_time":"9:48:17 PM"},
+                        {"str_drink_name":"New Drink2",
+                        "float_drink_price":"15","time_purchase_date":
+                        "2022-12-03","str_purchase_location":
+                        "La Jolla",
+                        "img_drink_image":0,
+                        "int_slide_acidity":"1",
+                        "int_slide_sweetness":"2",
+                        "int_slide_bitterness":"3",
+                        "int_slide_saltiness":"4",
+                        "str_drink_type":"Casual",
+                        "str_brew_style":"Drip",
+                        "int_dropdown_color":"Light",
+                        "str_notes":"No comments.",
+                        "bool_check_chocolate":"0",
+                        "bool_check_caramel":"1",
+                        "bool_check_nutty":"0",
+                        "bool_check_fruity":"1",
+                        "time_creation_time":"9:48:17 PM"}];
+                                
+
+    addCoffeeCardsToDocument(formData);
+    let coffeeCardObject = document.getElementsByTagName('coffee-card');
+    // Choose the first card that just added
+    coffeeCardObject = coffeeCardObject[0].shadowRoot;
+    // Turn off all the glows on default
+    let cardBody = coffeeCardObject.querySelector('div');
+    cardBody.classList.add('disable-css-transitions');
+    let editButton = coffeeCardObject.querySelector('.edit');
+    editButton.classList.add('disable-css-transitions');
+    let deleteButton = coffeeCardObject.querySelector('.delete');
+    deleteButton.classList.add('disable-css-transitions');
+    let shareButton = coffeeCardObject.querySelector('#share_button');
+    shareButton.classList.add('disable-css-transitions');
+    coffeeCardObject = document.getElementsByTagName('coffee-card');
+    // Choose the second card that just added
+    coffeeCardObject = coffeeCardObject[1].shadowRoot;
+    // Turn off all the glows on default
+    cardBody = coffeeCardObject.querySelector('div');
+    cardBody.classList.add('disable-css-transitions');
+    editButton = coffeeCardObject.querySelector('.edit');
+    editButton.classList.add('disable-css-transitions');
+    deleteButton = coffeeCardObject.querySelector('.delete');
+    deleteButton.classList.add('disable-css-transitions');
+    shareButton = coffeeCardObject.querySelector('#share_button');
     shareButton.classList.add('disable-css-transitions');
 }  
 
