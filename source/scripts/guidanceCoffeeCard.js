@@ -38,7 +38,7 @@
                     box-shadow: 0 0 20px rgb(255 77 0);
                 }
             }
-            
+
             .disable-css-transitions {
                 animation: none !important;
             }
@@ -223,7 +223,7 @@
        const shadow_div = this.shadowRoot.querySelector('div');
 
        // Converts MM-DD-YYYY to Date String
-       let date = new Date(data["time_purchase_date"]);
+       const date = new Date(data["time_purchase_date"]);
        const dateStr = date.toDateString();
 
        // Add a hidden element to the card's HTML

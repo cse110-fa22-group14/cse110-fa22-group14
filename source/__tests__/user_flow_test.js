@@ -15,8 +15,8 @@ describe("Basic user flow for Website", () => {
     // Increment by 1 in console.log()
     const INCREMENT = 1;
 
-    // Used to fetch delete button from the card
-    const DELETE = 1;
+    const ONE = 1;
+    const TWO = 2;
 
     // Used to avoid magic number
     const ZERO = 0;
@@ -129,10 +129,9 @@ describe("Basic user flow for Website", () => {
   // Check to make sure that all TOTAL_CARDS <coffee-card> elements have correct date modification
   it('Make sure <coffee-card> elements dates are functioning', async () => {
     console.log('Checking to make sure <coffee-card> elements dates are functioning...');
-
-    // Query select all of the <coffee-card> elements
     // Iterate through all coffee cards
     for (let i = 0; i < TOTAL_CARDS; i++) {
+      // Query select all of the <coffee-card> elements
       let allCoffeeCards = await page.$$('coffee-card');
       console.log(`Checking coffee card ${i}/${allCoffeeCards.length}`);
       let itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
@@ -153,7 +152,7 @@ describe("Basic user flow for Website", () => {
         return el.value;
       });
       cardDate = cardDate.split('-');
-      cardDate = new Date(cardDate[0], cardDate[1]-1, cardDate[2]);
+      cardDate = new Date(cardDate[ZERO], cardDate[ONE]-ONE, cardDate[TWO]);
       cardDate = cardDate.toDateString();
       console.log("Drink"+i+"'s current date on edit page is: " + cardDate);
       cardDate = new Date(cardDate);

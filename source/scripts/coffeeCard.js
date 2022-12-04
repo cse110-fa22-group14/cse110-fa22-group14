@@ -1,12 +1,14 @@
 /** 
  * @author Ruilin Hu and Yuang and William
  * @file - ShadowDOM for individual coffee card in its detail page
- * @version 0.0.1
- * @Created Nov 8, 2022
+ * @version 0.0.2
+ * @Created Dec 4, 2022
  * 
  */
 
-
+const ONE = 1;
+const ZERO = 0;
+const TWO = 2;
 
 class CoffeeCard extends HTMLElement {
     constructor() {
@@ -203,7 +205,7 @@ class CoffeeCard extends HTMLElement {
         let date = data["time_purchase_date"];
         console.log(date);
         date = date.split('-');
-        date = new Date(date[0], date[1]-1, date[2]);
+        date = new Date(date[ZERO], date[ONE]-ONE, date[TWO]);
         const dateStr = date.toDateString();
 
         // Add a hidden element to the card's HTML
