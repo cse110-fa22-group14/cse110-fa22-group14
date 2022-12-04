@@ -63,7 +63,7 @@ help_text.push("Feeling creative and would like to see a different color scheme?
                 + "A drop down menu will show after the click, and select the item in the drop down menu the change colors of the page.");
 // Step 14 text
 help_text.push("Congratulations! Now you've learned how to use Brew Notes to store all your Coffee Cards! Please click on the [main page] "
-                + "button to get back to the app to manage your Coffee Cards!")
+                + "button to get back to the app to manage your Coffee Cards!");
 
 
 // Executes when the window loads
@@ -112,6 +112,8 @@ function show_help_text(int_change) {
  * @return void
  */
 function glowGuidanceElement(int_help_index) {
+
+    // Disable animation for all elements
     const dropBox = document.querySelector("body");
     dropBox.classList.add('disable-css-transitions');
     const help = document.getElementById("help");
@@ -135,7 +137,20 @@ function glowGuidanceElement(int_help_index) {
     const help_right_arrow = document.getElementById('next_help');
     help_right_arrow.classList.add('disable-css-transitions');
     
+    // Selectively enable animations
     switch(int_help_index) {
+        case 0:
+            help_right_arrow.classList.remove('disable-css-transitions');
+            break;
+        case 1:
+            // Add animation to main page button and remove the 'disable-css-transitions' class here
+            break;
+        case 2:
+            addButton.classList.remove('disable-css-transitions');
+            break;
+        case 3:
+
+            break;
         case 11:
             filterOption.classList.remove('disable-css-transitions');
             break
