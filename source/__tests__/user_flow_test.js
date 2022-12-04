@@ -3,7 +3,7 @@ describe("Basic user flow for Website", () => {
     // Load the page in url
     beforeAll(async () => {
       // Now using Github Page URL. Feel free to change back to Live Server URL for manual testing!
-      await page.goto('http://127.0.0.1:5501');
+      await page.goto('http://127.0.0.1:5501/source/');
     });
 
     // Define the total number of cards to add to the database
@@ -517,12 +517,10 @@ describe("Basic user flow for Website", () => {
   // NOTE: test may fail if two cards are identical
   it('Checking that the correct card is deleted after a sort', async () => {
     console.log('Checking that correct card is edited after sort');
-    //grab the filter drop down and change trigger sorting by date
-    const sortDate = '0Date: Oldest-Newest';
-    await page.$eval('filter', (el, sortDate) => {
-      el.value = sortDate;
+    // Grab the filter drop down and change trigger sorting by date
+    await page.$eval('#filter', (el) => {
+      el.value = '0Date: Oldest-Newest';
     });
-
     const coffeeCards = await page.$$('coffee-card');
     const cardNum = coffeeCards.length;
     const cardIndex = Math.floor(Math.random() * cardNum);
@@ -564,80 +562,6 @@ describe("Basic user flow for Website", () => {
 
     expect(existCard).toBe(false);
   }, TOTAL_TEST_TIME);
-
-  // Check that sorting then editing edites the correct card after sort by date
-  // NOTE: test may fail if two cards are identical
-  it('Checking that the correct card is edited after a sort', async () => {
-    console.log('Checking that correct card is edited after sort');
-    //grab the filter drop down and change trigger sorting by date
-    const sortDate = '0Date: Oldest-Newest';
-    await page.$eval('filter', (el, sortDate) => {
-      el.value = sortDate;
-    });
-    //now run edit test
-    const cards = await page.$$('coffee-card');
-    // In a for loop click on each card and edit the first four fields
-    for(let i = 0; i < cards.length; i++) {
-
-      const shadowRoot = await cards[i].getProperty("shadowRoot");
-      const editButton = await shadowRoot.$("button");
-      await editButton.click();
-
-      await page.$eval("#str_drink_name", (el, value) => el.value = "Drink"+value+"-edited", i);
-      await page.$eval("#float_drink_price", (el, value) => el.value = "Price"+value+"-edited", i);
-      await page.$eval("#str_purchase_location", (el, value) => el.value = "Location"+value+"-edited", i);
-      await page.$eval("#save", el => el.click());
-      }
-
-    /*
-     * Then check to make sure the fields match our assumptions
-    * console.log("Total Coffee Cards is " + cardsUpdated.length)
-    */
-    const cardsUpdated = await page.$$('coffee-card');
-    for (let i = 0; i < TOTAL_CARDS; i++) {
-
-      console.log("Checking edited card #" + i);
-      const shadowRoot = await cardsUpdated[i].getProperty('shadowRoot');
-      const editButton = await shadowRoot.$("button");
-      await editButton.click();
-      const drinkName = await page.$eval("#str_drink_name", (el) => {
-        return el.value;
-      });
-
-      console.log("card #"+i+ " has name " + drinkName)
-      expect(drinkName).toBe("Drink"+i+"-edited");
-      const cancelButton = await page.$("#cancel");
-      await cancelButton.click();
-      }
-
-    }, TOTAL_TEST_TIME);
-
-    // Check to make sure that all TOTAL_CARDS <coffee-card> elements have correct data in thumbnail
-  it('Make sure <coffee-card> elements are populated', async () => {
-    console.log('Checking to make sure <coffee-card> elements are populated...');
-
-    // Query select all of the <coffee-card> elements
-    const allCoffeeCards = await page.$$('coffee-card');
-
-    // Iterate through all coffee cards
-    for (let i = 0; i < allCoffeeCards.length; i++) {
-      console.log(`Checking coffee card ${i}/${allCoffeeCards.length}`);
-      const shadowRoot = await allCoffeeCards[i].getProperty('shadowRoot');
-
-      // Check the name of the drink on the thumbnail
-      const drinkName = await shadowRoot.$eval("#str_drink_name", (el) => {
-        return el.innerText;
-      });
-      expect(drinkName).toBe("Drink"+i+"-edited");
-
-      // Check the location of the drink on the thumbnail
-      const place = await shadowRoot.$eval("#str_purchase_location", (el) => {
-        return el.innerText;
-      });
-      expect(place).toBe("Location: Location"+i+"-edited");
-      }
-    }, TOTAL_TEST_TIME);
-
 
   /*
    * TODO: check local storage
