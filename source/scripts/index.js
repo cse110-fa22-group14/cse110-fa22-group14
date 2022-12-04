@@ -134,6 +134,9 @@ function handleEvents() {
         }
         // If we click on the guidance option, it should trigger a pop up box
         if(help.selectedIndex == TWO) {
+            // Navigate to the page 
+            window.location.href = help.value;
+            // Prevents the select from updating so it doesn't get stuck on an option 
             help.selectedIndex = ZERO;
         }
     });
