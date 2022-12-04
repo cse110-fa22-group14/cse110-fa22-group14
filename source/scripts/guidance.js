@@ -141,6 +141,11 @@ function glowGuidanceElement(int_help_index) {
     const form = document.getElementById('pop_up_box');
     form.classList.add('disable-css-transitions');
     closeForm();
+    // Clear the gallery and add new list to gallery
+    document.querySelectorAll('coffee-card').forEach(card => {
+        console.log("removing card")
+        card.remove();
+    })
     
     // Selectively enable animations
     switch(int_help_index) {
@@ -163,25 +168,15 @@ function glowGuidanceElement(int_help_index) {
             saveButton.classList.remove('disable-css-transitions');
             break;
         case 5:
-            const formData = [{"str_drink_name":"New Drink",
-                                "float_drink_price":"10","time_purchase_date":
-                                "2022-12-03","str_purchase_location":
-                                "La Jolla",
-                                "img_drink_image":0,
-                                "int_slide_acidity":"1",
-                                "int_slide_sweetness":"2",
-                                "int_slide_bitterness":"3",
-                                "int_slide_saltiness":"4",
-                                "str_drink_type":"Casual",
-                                "str_brew_style":"Drip",
-                                "int_dropdown_color":"Light",
-                                "str_notes":"No comments.",
-                                "bool_check_chocolate":"0",
-                                "bool_check_caramel":"1",
-                                "bool_check_nutty":"0",
-                                "bool_check_fruity":"1",
-                                "time_creation_time":"9:48:17 PM"}];
-            addCoffeeCardsToDocument(formData);
+            addPlaceholderCard();
+            break;
+        case 6:
+            addPlaceholderCard();
+            let coffeeCardObject = document.getElementsByTagName('coffee-card');
+            // Choose the first card that just added
+            coffeeCardObject = coffeeCardObject[0].shadowRoot;
+            const cardEditButton = coffeeCardObject.querySelector('.edit');
+            cardEditButton.classList.remove('disable-css-transitions');
             break;
         case 11:
             filterOption.classList.remove('disable-css-transitions');
@@ -282,6 +277,42 @@ function populateForm() {
     document.getElementById("bool_check_nutty").checked = false;
     document.getElementById("bool_check_fruity").checked = true;
 }
+
+function addPlaceholderCard() {
+    // Information on the placeholder card
+    const formData = [{"str_drink_name":"New Drink",
+                                "float_drink_price":"10","time_purchase_date":
+                                "2022-12-03","str_purchase_location":
+                                "La Jolla",
+                                "img_drink_image":0,
+                                "int_slide_acidity":"1",
+                                "int_slide_sweetness":"2",
+                                "int_slide_bitterness":"3",
+                                "int_slide_saltiness":"4",
+                                "str_drink_type":"Casual",
+                                "str_brew_style":"Drip",
+                                "int_dropdown_color":"Light",
+                                "str_notes":"No comments.",
+                                "bool_check_chocolate":"0",
+                                "bool_check_caramel":"1",
+                                "bool_check_nutty":"0",
+                                "bool_check_fruity":"1",
+                                "time_creation_time":"9:48:17 PM"}];
+
+    addCoffeeCardsToDocument(formData);
+    let coffeeCardObject = document.getElementsByTagName('coffee-card');
+    // Choose the first card that just added
+    coffeeCardObject = coffeeCardObject[0].shadowRoot;
+    // Turn off all the glows on default
+    const cardBody = coffeeCardObject.querySelector('div');
+    cardBody.classList.add('disable-css-transitions');
+    const editButton = coffeeCardObject.querySelector('.edit');
+    editButton.classList.add('disable-css-transitions');
+    const deleteButton = coffeeCardObject.querySelector('.delete');
+    deleteButton.classList.add('disable-css-transitions');
+    const shareButton = coffeeCardObject.querySelector('#share_button');
+    shareButton.classList.add('disable-css-transitions');
+}  
 
 /**
  * Takes in an array of cofee card notes and for each one

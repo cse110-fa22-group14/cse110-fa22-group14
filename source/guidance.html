@@ -13,11 +13,24 @@
   <!--the 'type' is changed to 'text/javascript' to access functions across files-->
 
   <!-- Coffe Card Custom Element -->
-  <script src="./scripts/coffeeCard.js" type="module"></script>
+  <script src="./scripts/guidanceCoffeeCard.js" type="module"></script>
   
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap');
+    /* Universal Glow Animation */
+    @keyframes glowing {
+        /* INFO: https://www.w3docs.com/snippets/css/how-to-create-flashing-glowing-button-using-animation-in-css3.html */
+        0% {
+        box-shadow: 0 0 20px rgb(255, 77, 0);
+        }
+        50% {
+        box-shadow: 0 0 50px rgb(143, 54, 15);
+        }
+        100% {
+        box-shadow: 0 0 20px rgb(255, 77, 0);
+        }
+    }
   </style>
 
     <!-- icons from google font  -- Yuang--> 
