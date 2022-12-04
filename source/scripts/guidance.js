@@ -46,17 +46,25 @@ help_text.push("Make any changes to the card if necessary and save it in the sam
                 + "However, if we want to discard the changes, simply click the \"CANCEL\" button instead to revert the changes "
                 + "we made on the edit page.");
 // Step 8 text
-help_text.push();
+help_text.push("If we would like to export a Coffee Card and save it as a file on our disk, click the share icon on the card and "
+                + "the file will be downloaded to your device.");
+// Step 9 text
+help_text.push("Right now, if we would like to import an exported card, we will click the Import button and locate the file "
+                + "to upload to our gallery. ");
 // Step 10 text
-help_text.push();
+help_text.push("Any new cards added to the gallery will be appended to the end of all existing cards, and we will lose any existing "
+                + "sort settings when we added new cards.");
 // Step 11 text
-help_text.push();
+help_text.push("In order to sort all cards again, simply click the sort button and select the sorting method for all cards in the gallery.");
 // Step 12 text
-help_text.push();
+help_text.push("If any of the cards become obsolete, feel free to delete by clicking the trash can icon of the thumbnail of the cards.");
 // Step 13 text
-help_text.push();
+help_text.push("Feeling creative and would like to see a different color scheme? Find your favorite by clicking the \"THEME\" button. "
+                + "A drop down menu will show after the click, and select the item in the drop down menu the change colors of the page.");
 // Step 14 text
-help_text.push();
+help_text.push("Congratulations! Now you've learned how to use Brew Notes to store all your Coffee Cards! Please click on the [main page] "
+                + "button to get back to the app to manage your Coffee Cards!")
+
 
 // Executes when the window loads
 function init() {
