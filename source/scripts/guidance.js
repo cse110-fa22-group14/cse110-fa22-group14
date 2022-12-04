@@ -140,6 +140,8 @@ function glowGuidanceElement(int_help_index) {
     help_right_arrow.classList.add('disable-css-transitions');
     const form = document.getElementById('pop_up_box');
     form.classList.add('disable-css-transitions');
+    const mainPageButton = document.getElementById('main_page');
+    mainPageButton.classList.add('disable-css-transitions');
     closeForm();
     // Clear the gallery and add new list to gallery
     document.querySelectorAll('coffee-card').forEach(card => {
@@ -153,7 +155,7 @@ function glowGuidanceElement(int_help_index) {
             help_right_arrow.classList.remove('disable-css-transitions');
             break;
         case 1:
-            // Add animation to main page button and remove the 'disable-css-transitions' class here
+            mainPageButton.classList.remove('disable-css-transitions');
             break;
         case 2:
             addButton.classList.remove('disable-css-transitions');
@@ -221,7 +223,7 @@ function glowGuidanceElement(int_help_index) {
             color_picker.classList.remove('disable-css-transitions');
             break;
         case 14:
-            // Add animation to main page button and remove the 'disable-css-transitions' class here
+            mainPageButton.classList.remove('disable-css-transitions');
             break;
         default:
             throw new Error('Invalid message index!');

@@ -427,3 +427,28 @@ input {
     margin: 10px auto 0;
     z-index: 999;
 }
+
+#main_page {
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-family: "Zen Maru Gothic", Arial;
+    color: rgb(236 232 232);
+    width: 10vw;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease-in;
+    align-items: left;
+
+    /* Glow animation added to the element */
+    animation: glowing 1300ms infinite; 
+}
+/* Hoevering over link will underline in a smooth fashion */
+#main_page:hover {
+    border-bottom: 1px solid rgb(236, 232, 232);
+    transition: all 0.2s ease-in;
+}
+#main_page.fixed {
+    position: fixed;
+    left: 0px;
+    top: 15vh;
+    z-index: 999;
+}
