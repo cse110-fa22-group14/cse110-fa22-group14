@@ -163,7 +163,7 @@ input {
 }
 
 #range_wrapper {
-    width: 40%;
+    width: 65%;
     max-height: 100%;
     font-size: 1.2em;
 }
@@ -171,7 +171,7 @@ input {
 /* Wrapper for checkboxes in form */
 #optional_wrapper {
     text-align: left;
-    width: 40%;
+    width: 35%;
     max-height: 100%;
     font-size: 1.2em;
 }
@@ -213,8 +213,8 @@ input {
 #switch_photo_right_arrow {
 
     /* INFO: reference: https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp */
-
-    /* NOTE: implemented left and right arrows to change inage */
+    
+    /* NOTE: implemented left and right arrows to change image */
     cursor: pointer;
     position: absolute;
     width: auto;
@@ -222,6 +222,9 @@ input {
     font-weight: bold;
     font-size: 40px;
     user-select: none;
+
+    /* Make sure the arrows are a fixed distance away from the coffee bean image */
+    top: 10%;
 
     /* NOTE: inherented from parent #switch_photo_container */
     grid-row-start: 4;
@@ -282,7 +285,70 @@ input {
     font-size: 1.2em;
 }
 
+/* Provides support for tablets */
+@media screen and (max-width: 800px) {
+    #optional_wrapper {
+        font-size: 1em;
+    }
 
+    #pop_up_box {
+        width: 60vw;
+    }
+
+    #range_wrapper {
+        font-size: 1em;
+    }
+
+    .flavor_range {
+        width: 40%;
+    }
+}
+
+/* Provides support for smaller tablets */
+@media screen and (max-width: 600px) {
+    .flavor_range {
+        width: 35%;
+    }
+
+    #pop_up_box {
+        width: 70vw;
+    }
+
+    #type_info_container {
+        font-size: 1em;
+    }
+
+    #str_notes {
+        font-size: 1em;
+    }
+}
+
+/* Provides support for phones */
+@media screen and (max-width: 500px) {
+    #optional_wrapper {
+        font-size: 0.95em;
+    }
+
+    #pop_up_box {
+        width: 80vw;
+    }
+
+    #range_wrapper {
+        font-size: 0.95em;
+    }
+
+    .flavor_range {
+        width: 35%;
+    }
+
+    #type_info_container {
+        font-size: 0.95em;
+    }
+
+    #str_notes {
+        font-size: 0.95em;
+    }
+}
 
 
 /* Holds the help and filter options above gallery */
