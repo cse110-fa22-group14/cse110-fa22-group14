@@ -65,7 +65,7 @@ describe("Basic user flow for Website", () => {
     it("Editing Cards should update their fields", async () => {
 
       // In a for loop click on each card and edit the first four fields
-      for(let i = 0; i < cards.length; i++) {
+      for(let i = 0; i < TOTAL_CARDS; i++) {
         const cards = await page.$$('coffee-card');
         const shadowRoot = await cards[i].getProperty("shadowRoot");
         const editButton = await shadowRoot.$("#edit_button");
