@@ -576,7 +576,7 @@ describe("Basic user flow for Website", () => {
    */
   it('Check if deleted card is the clicked card', async () => {
     // Randomly get a card
-    let coffeeCards = await page.$$('coffee-card');
+    const coffeeCards = await page.$$('coffee-card');
     const cardNum = coffeeCards.length;
     const cardIndex = Math.floor(Math.random() * cardNum);
     const card = coffeeCards[cardIndex];
@@ -594,7 +594,6 @@ describe("Basic user flow for Website", () => {
     // Get the delete button and click on it
     const shadowRoot2 = await card.getProperty("shadowRoot");
     const deleteButton = await shadowRoot2.$('#delete_button');
-    await deleteButton.click();
     await deleteButton.click();
 
     // Iterate through the cards and make sure that specific card no longer exists
@@ -634,7 +633,6 @@ describe("Basic user flow for Website", () => {
       // Get the button and click
       const shadowRoot = await card.getProperty("shadowRoot");
       const deleteButton = await shadowRoot.$('#delete_button');
-      await deleteButton.click();
       await deleteButton.click();
     }
 
