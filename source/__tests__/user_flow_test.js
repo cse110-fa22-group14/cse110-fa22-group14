@@ -69,7 +69,7 @@ describe("Basic user flow for Website", () => {
       for(let i = 0; i < cards.length; i++) {
 
         const shadowRoot = await cards[i].getProperty("shadowRoot");
-        const editButton = await shadowRoot.$("button");
+        const editButton = await shadowRoot.$("#edit_button");
         await editButton.click();
 
         await page.$eval("#str_drink_name", (el, value) => el.value = "Drink"+value+"-edited", i);
@@ -87,7 +87,7 @@ describe("Basic user flow for Website", () => {
 
         console.log("Checking edited card #" + i);
         const shadowRoot = await cardsUpdated[i].getProperty('shadowRoot');
-        const editButton = await shadowRoot.$("button");
+        const editButton = await shadowRoot.$("#edit_button");
         await editButton.click();
         const drinkName = await page.$eval("#str_drink_name", (el) => {
           return el.value;
@@ -146,7 +146,7 @@ describe("Basic user flow for Website", () => {
       console.log("Drink"+i+"'s current date on thumbnail is: " + thumbDate);
 
       // Click the edit button
-      const buttonFromShadow = await itemFromShadow.$('button');
+      const buttonFromShadow = await itemFromShadow.$('#edit_button');
       await buttonFromShadow.click();
 
       // Check info on edit page
@@ -195,7 +195,7 @@ describe("Basic user flow for Website", () => {
 
       // Click the edit button
       const itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
-      const buttonFromShadow = await itemFromShadow.$('button');
+      const buttonFromShadow = await itemFromShadow.$('#edit_button');
       await buttonFromShadow.click();
 
       // Initially, the check box should not be checked
@@ -240,7 +240,7 @@ describe("Basic user flow for Website", () => {
 
      // Click the edit button
       const itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
-      const buttonFromShadow = await itemFromShadow.$('button');
+      const buttonFromShadow = await itemFromShadow.$('#edit_button');
       await buttonFromShadow.click();
 
       // Initially, the check box should not be checked
@@ -285,7 +285,7 @@ describe("Basic user flow for Website", () => {
      
       // Click the edit button
       const itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
-      const buttonFromShadow = await itemFromShadow.$('button');
+      const buttonFromShadow = await itemFromShadow.$('#edit_button');
       await buttonFromShadow.click();
       
       // Initially, the check box should not be checked
@@ -332,7 +332,7 @@ describe("Basic user flow for Website", () => {
      
       // Click the edit button
       const itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
-      const buttonFromShadow = await itemFromShadow.$('button');
+      const buttonFromShadow = await itemFromShadow.$('#edit_button');
       await buttonFromShadow.click();
      
       // Initially, the check box should not be checked
@@ -377,7 +377,7 @@ describe("Basic user flow for Website", () => {
       
         // Click the edit button
         const itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
-        const buttonFromShadow = await itemFromShadow.$('button');
+        const buttonFromShadow = await itemFromShadow.$('#edit_button');
         await buttonFromShadow.click();
    
         // Change the slider value
@@ -411,7 +411,7 @@ describe("Basic user flow for Website", () => {
        
         // Click the edit button
         const itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
-        const buttonFromShadow = await itemFromShadow.$('button');
+        const buttonFromShadow = await itemFromShadow.$('#edit_button');
         await buttonFromShadow.click();
        
         // Change the slider value
@@ -445,7 +445,7 @@ describe("Basic user flow for Website", () => {
        
         // Click the edit button
         const itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
-        const buttonFromShadow = await itemFromShadow.$('button');
+        const buttonFromShadow = await itemFromShadow.$('#edit_button');
         await buttonFromShadow.click();
        
         // Change the slider value
@@ -479,7 +479,7 @@ describe("Basic user flow for Website", () => {
        
         // Click the edit button
         const itemFromShadow = await allCoffeeCards[i].getProperty('shadowRoot');
-        const buttonFromShadow = await itemFromShadow.$('button');
+        const buttonFromShadow = await itemFromShadow.$('#edit_button');
         await buttonFromShadow.click();
         
         // Change the slider value
@@ -538,8 +538,7 @@ describe("Basic user flow for Website", () => {
 
     // Get the delete button and click on it
     const shadowRoot = await card.getProperty("shadowRoot");
-    const buttons = await shadowRoot.$$('button');
-    const deleteButton = buttons[DELETE];
+    const deleteButton = await shadowRoot.$('#delete_button');
     await deleteButton.click();
 
     // Check the gallery and make sure exactly one coffecard is deleted
@@ -562,7 +561,7 @@ describe("Basic user flow for Website", () => {
     const shadowRoot1 = await card.getProperty("shadowRoot");
 
     // Get the name of drink as an identifier of that card
-    const editButton = await shadowRoot1.$("button");
+    const editButton = await shadowRoot1.$("#edit_button");
     await editButton.click();
     const drinkName = await page.$eval("#str_drink_name", (el) => {
       return el.value;
@@ -572,8 +571,8 @@ describe("Basic user flow for Website", () => {
 
     // Get the delete button and click on it
     const shadowRoot2 = await card.getProperty("shadowRoot");
-    const buttons = await shadowRoot2.$$('button');
-    const deleteButton = buttons[DELETE];
+    const deleteButton = await shadowRoot.$('#delete_button');
+    await deleteButton.click();
     await deleteButton.click();
 
     // Iterate through the cards and make sure that specific card no longer exists
@@ -582,7 +581,7 @@ describe("Basic user flow for Website", () => {
     for (let i = 0; i < cardsDeleted.length; i++) {
       const card = cardsDeleted[i];
       const shadowRoot3 = await card.getProperty("shadowRoot");
-      const editButton = await shadowRoot3.$("button");
+      const editButton = await shadowRoot3.$("#edit_button");
       await editButton.click();
       const currentName = await page.$eval("#str_drink_name", (el) => {
         return el.value;
@@ -612,8 +611,8 @@ describe("Basic user flow for Website", () => {
 
       // Get the button and click
       const shadowRoot = await card.getProperty("shadowRoot");
-      const buttons = await shadowRoot.$$('button');
-      const deleteButton = buttons[DELETE];
+      const deleteButton = await shadowRoot.$('#delete_button');
+      await deleteButton.click();
       await deleteButton.click();
     }
 
