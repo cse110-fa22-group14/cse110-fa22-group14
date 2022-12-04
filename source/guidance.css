@@ -414,7 +414,8 @@ input {
     min-width: 300px;
     bottom: 10px;
     min-height: 30vh;
-    background-color: rgba(147 147 147 67%);
+    background-color: rgb(147 147 147);
+    opacity: 67%;
     border-radius: 10px;
     border: none;
     justify-content: center;
