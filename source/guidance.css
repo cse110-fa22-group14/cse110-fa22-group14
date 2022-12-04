@@ -401,7 +401,7 @@ input {
     border-radius: 3px 0 0 3px;
 
     /* Glow animation added to the element */
-    animation: glowing 1300ms infinite; 
+    animation: glowing 1300ms infinite;
 }
 
 /* On hover, add a black background color with a little bit see-through */
