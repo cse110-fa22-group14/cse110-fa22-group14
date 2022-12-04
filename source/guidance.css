@@ -415,7 +415,7 @@ input {
     bottom: 10px;
     min-height: 30vh;
     background-color: rgb(147 147 147);
-    opacity: 67%;
+    opacity: 0.67;
     border-radius: 10px;
     border: none;
     justify-content: center;
