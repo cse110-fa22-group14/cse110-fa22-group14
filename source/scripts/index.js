@@ -570,7 +570,8 @@ function handleEvents() {
 
             // Save to storage and update the page
             saveCoffeeCardsToStorage(coffeeCards);
-
+            addCoffeeCardsToDocument(coffeeCards);
+            /*
             const all_coffee_cards = document.querySelectorAll('coffee-card');
             const card_to_edit = all_coffee_cards[current_edit_id].shadowRoot;
 
@@ -580,23 +581,26 @@ function handleEvents() {
             card_to_edit.querySelector('#time_purchase_date').innerText =
                 coffeeCardObject["time_purchase_date"]
             card_to_edit.querySelector('#str_purchase_location').innerText =
-                "Location: " + coffeeCardObject["str_purchase_location"];
+                coffeeCardObject["str_purchase_location"];
             card_to_edit.querySelector('#str_brew_style').innerText =
-                "Brew Method: " + coffeeCardObject["str_brew_style"];
+                coffeeCardObject["str_brew_style"];
             card_to_edit.querySelector('#str_drink_type').innerText =
-                "Serving Type: " + coffeeCardObject["str_drink_type"];
+                coffeeCardObject["str_drink_type"];
             card_to_edit.querySelector('#int_dropdown_color').innerText =
-                "Color Level: " + coffeeCardObject["int_dropdown_color"];
+                coffeeCardObject["int_dropdown_color"];
+                */
         }
+
+    
+
+        // Set sort to the default setting for import
+        filterOption.selectedIndex = 1;
 
         /*
          * Reset the coffee card's image to the default one, at index 0
          * next time the user chooses to add a new card, the image will
          * be the default one, which is the first one.
          */
-        
-        // Set sort to the default setting for import
-        filterOption.selectedIndex = 1;
         reset_image_id();
         isEditing = false;
         closeForm();

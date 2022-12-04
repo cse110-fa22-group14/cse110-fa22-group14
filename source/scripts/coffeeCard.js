@@ -1,24 +1,24 @@
-/*
+/** 
  * @author Ruilin Hu and Yuang and William
  * @file - ShadowDOM for individual coffee card in its detail page
  * @version 0.0.1
  * @Created Nov 8, 2022
- * @Edited Nov 9, 2022 by William
+ * 
  */
 
 
 
- class CoffeeCard extends HTMLElement {
-     constructor() {
-         super();
-         this.showInfo = true;
-         // Attach the shadow DOM to this Web Component
-         const shadow = this.attachShadow({ mode: "open" });
-         // Div element to hold elements
-         const shadow_div = document.createElement("div");
-         // Style element for the coffee cards
-         const shadow_style = document.createElement("style");
-         // Define the precise style for the card
+class CoffeeCard extends HTMLElement {
+    constructor() {
+        super();
+        this.showInfo = true;
+        // Attach the shadow DOM to this Web Component
+        const shadow = this.attachShadow({ mode: "open" });
+        // Div element to hold elements
+        const shadow_div = document.createElement("div");
+        // Style element for the coffee cards
+        const shadow_style = document.createElement("style");
+        // Define the precise style for the card
         shadow_style.textContent = `
             @import url("https://fonts.googleapis.com/css?family=Dosis:300,400");
 
@@ -30,7 +30,6 @@
                 min-width: 300px;
                 max-width: 1fr;
                 height: 300px;
-                background-color: rgb(167 125 136);
                 border-radius: 20px;
                 border: none;
                 text-align: center;
@@ -38,146 +37,211 @@
 
             }
 
-            /* Adding grid structure to header */
             header {
-                margin: 0 auto;
+                margin: -40px auto 0 auto;
                 width: 90%;
-                display: grid;
-                grid-template-rows: repeat(2, 30px);
-                grid-template-columns: repeat(6, minmax(50px, 1fr));
+                display: flex;
+                flex-direction: column;
                 text-align: left;
-                font-family: "Zen Maru Gothic", Arial;
-                font-weight: 100;
-                font-size: 1em;
+                font-family: Arial;
+                height: auto;
+            }
+
+            hr {
+                width: 100%;
+                border: 1px solid rgb(255 255 255);
+                border-radius: 5px;
             }
 
             /* Drink Title */
-            h3 {
-                grid-row-start: 1;
-                grid-row-end: 2;
-                grid-column-start: 1;
-                grid-column-end: 6;
+            header h3 {
+                width:100%;
+                font-size: 1.8em;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
             }
 
-            /* Drink Date */
-            h4{
-                grid-row-start: 2;
-                grid-row-end: 3;
-                grid-column-start: 1;
-                grid-column-end: 6;
-                font-size: 0.9em;
+            header h4 {
+                width:100%;
+                font-size: 1em;
+                margin-top: -25px;
             }
 
-            /* Share Icon */
-            img {
-                transform: scale(0.8);
-                grid-row-start: 1;
-                grid-row-end: 2;
-                grid-column-start: 6;
-                grid-column-end: 6;
-                transform: scale(0.6);
-                margin-top: 10px;
-                align-self: right;
-            }
+            hr {
+                margin-top: -10px;
+                width: 90%;
+                border-width: 0.5px;
+                color: rgb(236 232 232);
 
-            img:hover {
-                cursor:pointer;
             }
 
             /* Container to hold flavor details */
-            .info{
-                width: 90%;
+
+            #info_container {
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+                height: 30%;
+                margin-top: -10px;
+            }
+
+            #list {
+                display: flex;
+                flex-direction: column;
+                width: 40%;
                 margin: auto;
                 font-family: "Zen Maru Gothic", Arial;
                 font-weight: 100;
                 text-align: left;
+                font-size: 1em;
             }
 
-            .edit {
-                padding: 5px 20px;
-                font-family: "Zen Maru Gothic", Arial;
+            li p {
+                width: 110px;
+                margin: 0;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
             }
 
-            .delete {
-                padding: 5px 20px;
-                font-family: "Zen Maru Gothic", Arial;
+            #comments_container {
+                background-color: white;
+                height: 100px;
+                width: 50%;
+                margin-right: 15px;
+                border-radius: 10px;
             }
 
-            #toggle_edit:hover {
-                opacity: 0.8;
-                cursor: pointer;
-                transition: all 0.2s ease-in;
+            #comments_container p {
+                color: black;
+                font-family: "Zen Maru Gothic";
+                font-size: .8em;
+                text-align: left;
+                padding-left: 5px;
+            }
+
+
+            #row {
+                display: flex;
+                justify-content: space-between;
+                height: 30px;
+                width: 90%;
+                margin: -25px auto 0 auto;
+            
+                align-items: center;
+            }
+
+            #row h4 {
+                font-size: 20px;
+                font-family: "Zen Maru Gothic";
+            }
+
+            /* Container to hold buttons */
+  
+
+            /* Share Icon */
+            img {
+                position: relative;
+                margin-left: 10px;
+                object-fit: contain;
+                margin: 0;
+            }
+
+            img:hover {
+                cursor:pointer;
+                transform: scale(1.1);
+            }
         }`;
 
         // Append the <style> and <article> elements to the Shadow DOM
         shadow.append(shadow_style, shadow_div);
-     }
+    }
 
 
 
 
 
-     /**
-      * Called when the .data property is set on this element.
-      *
-      * For Example:
-      * let coffeeCard = document.createElement('recipe-card'); // Calls constructor()
-      * coffeeCard.data = { foo: 'bar' } // Calls set data({ foo: 'bar' })
-      *
-      * @param {Object} data - The data to pass into the <recipe-card>, must be of the
-      *                        following format:
-      *                        {
-      *                            "str_drink_name":"string",
-      *                            "float_drink_price":"int",
-      *                            "time_purchase_date":"date",
-      *                            "str_purchase_location":"string",
-      *                            "img_drink_image":"string",
-      *                            "bool_check_chocolate":"bool",
-      *                            "bool_check_caramel":"bool",
-      *                            "bool_check_nutty":"bool",
-      *                            "bool_check_fruity":"bool",
-      *                            "int_slide_acidity":"int",
-      *                            "int_slide_sweetness":"int",
-      *                            "int_slide_bitterness":"int",
-      *                            "int_slide_saltiness":"int",
-      *                            "str_drink_type":"string",
-      *                            "str_brew_style":"string",
-      *                            "int_dropdown_color":"int",
-      *                            "str_notes":"string",
-      *                            "time_creation_time":"time",
-      *                            "time_modified_time":"time"
-      *                        }
-      */
-     set data(data) {
-       // If nothing was passed in, return
-       if (!data) { return; }
+    /**
+     * Called when the .data property is set on this element.
+     *
+     * For Example:
+     * let coffeeCard = document.createElement('recipe-card'); // Calls constructor()
+     * coffeeCard.data = { foo: 'bar' } // Calls set data({ foo: 'bar' })
+     *
+     * @param {Object} data - The data to pass into the <recipe-card>, must be of the
+     *                        following format:
+     *                        {
+     *                            "str_drink_name":"string",
+     *                            "float_drink_price":"int",
+     *                            "time_purchase_date":"date",
+     *                            "str_purchase_location":"string",
+     *                            "img_drink_image":"string",
+     *                            "bool_check_chocolate":"bool",
+     *                            "bool_check_caramel":"bool",
+     *                            "bool_check_nutty":"bool",
+     *                            "bool_check_fruity":"bool",
+     *                            "int_slide_acidity":"int",
+     *                            "int_slide_sweetness":"int",
+     *                            "int_slide_bitterness":"int",
+     *                            "int_slide_saltiness":"int",
+     *                            "str_drink_type":"string",
+     *                            "str_brew_style":"string",
+     *                            "int_dropdown_color":"int",
+     *                            "str_notes":"string",
+     *                            "time_creation_time":"time",
+     *                            "time_modified_time":"time"
+     *                        }
+     */
+    set data(data) {
+        // If nothing was passed in, return
+        if (!data) { return; }
 
-       const shadow_div = this.shadowRoot.querySelector('div');
+        const shadow_div = this.shadowRoot.querySelector('div');
 
-       // Add a hidden element to the card's HTML
-       shadow_div.innerHTML =
-       `
+        // Converts MM-DD-YYYY to Date String
+        let date = data["time_purchase_date"].split("-").reverse().join("-");
+        date = new Date(date);
+        const dateStr = date.toDateString();
+
+        // Add a hidden element to the card's HTML
+        shadow_div.innerHTML =
+            `
        <header>
             <h3 id = "str_drink_name"><slot name="date" />${data["str_drink_name"]}</h3>
-            <h4 id = "time_purchase_date">${data["time_purchase_date"]}</h4>
-            <img id = "share_button" alt = "share icon" src = "./assets/images/share-icon.png" ></img>
-
+            <h4 id = "time_purchase_date">${dateStr}</h4>
        </header>
 
-        <section class="info">
-          <p id = "str_purchase_location"><slot name="location" />Location: ${data["str_purchase_location"]}</p>
-          <p id = "str_brew_style"><slot name="brew_style" />Brew Method: ${data["str_brew_style"]}</p>
-          <p id = "str_drink_type"><slot name="drink_type">Serving Type: ${data["str_drink_type"]}</p>
-          <p id = "int_dropdown_color"><slot name="color">Color Level: ${data["int_dropdown_color"]}</p>
+       <section id = "row">
+       <h4 id = "float_drink_price">$${data["float_drink_price"]}</h4>
+       <section id = "button_container">
+           <img id = "share_button" alt = "share icon" src = "./assets/images/share-icon.png" ></img>
+           <img  id="delete_button" alt = "edit icon" src = "./assets/images/delete-icon.png" ></img>
+           <img  id="edit_button"  src = "./assets/images/edit-icon.png" ></img>
+       </section>
+   </section>
 
-          <button class = "edit" id="toggle_edit" >Edit</button>
-          <button class = "delete" id="delete_card" >Delete</button>
+       <hr>
+
+       <section id = "info_container">
+            <ul id ="list">
+                <li id = "str_purchase_location"><p>${data["str_purchase_location"]}</p></li>
+                <li id = "str_brew_style">${data["str_brew_style"]}</li>
+                <li id = "str_drink_type"> ${data["str_drink_type"]}</li>
+                <li id = "int_dropdown_color">${data["int_dropdown_color"]}</li>
+            </ul>
+
+            <section id = "comments_container">
+                <p>${data["str_notes"]}</p>
+            </section>
         </section>
+
+
 
         `;
 
         // Custom event trigger that the DOM will catch whenever we click on "delete"
-        this.shadowRoot.getElementById('delete_card').addEventListener("click", ()=> {
+        this.shadowRoot.getElementById('delete_button').addEventListener("click", () => {
             // Don't dispatch the click event. Instead use a custom event
             this.dispatchEvent(new CustomEvent("trigger-delete", {
                 composed: true,
@@ -187,7 +251,7 @@
         })
 
         // Custom event trigger that the DOM will catch whenever we click on "edit"
-        this.shadowRoot.getElementById('toggle_edit').addEventListener("click", () => {
+        this.shadowRoot.getElementById('edit_button').addEventListener("click", () => {
 
             // Don't dispatch the click event. Instead use a custom event
             this.dispatchEvent(new CustomEvent("trigger-edit", {
@@ -207,7 +271,7 @@
             }))
         })
 
-        
+
     }
 
     /**
@@ -232,8 +296,8 @@
         this.shadowRoot.querySelector('div').style.background = pair["background"];
         this.shadowRoot.querySelector('div').style.color = pair["text"];
 
-      }
+    }
 }
 
- // Define the Class as a customElement so we can create coffee-card elements
- customElements.define('coffee-card', CoffeeCard);
+// Define the Class as a customElement so we can create coffee-card elements
+customElements.define('coffee-card', CoffeeCard);

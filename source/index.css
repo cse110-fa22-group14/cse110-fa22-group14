@@ -35,10 +35,14 @@ main {
     min-width: 300px;
     max-width: 1fr;
     height: 300px;
-    background-color: rgb(167 125 136);
     border-radius: 30px;
     border: none;
     box-shadow: 12px 17px 14px -12px rgba(0 0 0 / 41%);
+}
+
+#add_icon {
+    color: white;
+    background-color: white;
 }
 
 /* Smoothly change opacity when hovering over addCard button */
@@ -67,9 +71,9 @@ main {
     /* Because we have so many components, it's best to make it a grid */
     display: grid;
 
-    /* We have 11 rows and 6 columns in the grid */
+    /* We have 13 rows and 6 columns in the grid */
     grid-template-rows: repeat(11, 30px);
-    grid-template-columns: repeat(6, minmax(10px, 1fr));
+    grid-template-columns: repeat(6, minmax(30px, 1fr));
 
     /* Space between each form child */
     gap: 10px;
@@ -91,7 +95,7 @@ fieldset {
     background: none;
     font-family: "Zen Maru Gothic", Arial;
     font-size: 1.2em;
-    color: #ffff;
+    color: rgb(255 255 255);
     text-align: left;
 }
 
@@ -135,18 +139,18 @@ fieldset {
 
 /* Input boxes in popup form */
 input {
-    padding-left: 15px;
+    padding-left: 5px;
     text-align: left;
     border: none;
     border-radius: 5px;
-    font-size: 1.2em;
+    font-size: 1em;
     font-family: "Zen Maru Gothic", Arial;
     background-color: #ffff;
 }
 
 
 #flavor_container {
-    background-color: #ffff;
+    background-color: rgb(255 255 255);
     grid-row-start: 6;
     grid-column-start: 1;
     grid-row-end: 9;
@@ -154,6 +158,7 @@ input {
     display: flex;
     flex-direction: row;
     border-radius: 10px;
+    height: 100%;
 }
 
 #flavor_container fieldset {
@@ -165,7 +170,7 @@ input {
 #range_wrapper {
     width: 65%;
     max-height: 100%;
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 /* Wrapper for checkboxes in form */
@@ -173,12 +178,12 @@ input {
     text-align: left;
     width: 35%;
     max-height: 100%;
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 /* Basic styling for all sliders */
 #flavor_range {
-    background-color: #ffff;
+    background-color: rgb(255 255 255);
     z-index: 1;
 }
 
@@ -191,7 +196,7 @@ input {
     background: none;
     font-family: "Zen Maru Gothic", Arial;
     font-size: 1.2em;
-    color: #ffff;
+    color: rgb(255 255 255);
     text-align: right;
 }
 
@@ -218,12 +223,10 @@ input {
     cursor: pointer;
     position: absolute;
     width: auto;
-    color: #502e2a;
+    color: #ffff;
     font-weight: bold;
     font-size: 40px;
     user-select: none;
-
-    /* Make sure the arrows are a fixed distance away from the coffee bean image */
     top: 10%;
 
     /* NOTE: inherented from parent #switch_photo_container */
@@ -244,7 +247,7 @@ input {
 
 #switch_photo_left_arrow:hover,
 #switch_photo_right_arrow:hover {
-    opacity: 0.5;
+    opacity: 0.7;
 }
 
 #str_purchase_location {
@@ -255,10 +258,10 @@ input {
 }
 
 #type_info_container {
-    background-color: #ffff;
-    grid-row-start: 9;
+    background-color: rgb(255 255 255);
+    grid-row-start: 10;
     grid-column-start: 1;
-    grid-row-end: 13;
+    grid-row-end: 11;
     grid-column-end: 4;
 
     /* Flex with direction "column" tells DOM to 
@@ -266,89 +269,34 @@ input {
      */
     display: flex;
     flex-direction: column;
-
-    /* Even spacing between child elements */
     justify-content: space-evenly;
-    padding: 20px;
+    text-align: left;
     border-radius: 10px;
+    height: 100px;
+    padding-left: 5px;
 }
 
+#type_info_container select {
+    font-family: "Zen Maru Gothic";
+    font-size: 1em;
+}
+
+
 #str_notes {
-    background-color: #ffff;
-    grid-row-start: 9;
+    background-color: rgb(255 255 255);
+    grid-row-start: 10;
     grid-column-start: 4;
-    grid-row-end: 13;
+    grid-row-end: 11;
     grid-column-end: 7;
     border-radius: 10px;
     font-family: "Zen Maru Gothic", Arial;
-    padding: 15px;
-    font-size: 1.2em;
+    font-size: 1em;
+    text-align: left;
+    padding-left: 10px;
+    resize: none;
+    height: 100px;
 }
 
-/* Provides support for tablets */
-@media screen and (max-width: 800px) {
-    #optional_wrapper {
-        font-size: 1em;
-    }
-
-    #pop_up_box {
-        width: 60vw;
-    }
-
-    #range_wrapper {
-        font-size: 1em;
-    }
-
-    .flavor_range {
-        width: 40%;
-    }
-}
-
-/* Provides support for smaller tablets */
-@media screen and (max-width: 600px) {
-    .flavor_range {
-        width: 35%;
-    }
-
-    #pop_up_box {
-        width: 70vw;
-    }
-
-    #type_info_container {
-        font-size: 1em;
-    }
-
-    #str_notes {
-        font-size: 1em;
-    }
-}
-
-/* Provides support for phones */
-@media screen and (max-width: 500px) {
-    #optional_wrapper {
-        font-size: 0.95em;
-    }
-
-    #pop_up_box {
-        width: 80vw;
-    }
-
-    #range_wrapper {
-        font-size: 0.95em;
-    }
-
-    .flavor_range {
-        width: 35%;
-    }
-
-    #type_info_container {
-        font-size: 0.95em;
-    }
-
-    #str_notes {
-        font-size: 0.95em;
-    }
-}
 
 
 /* Holds the help and filter options above gallery */
@@ -356,9 +304,9 @@ input {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: auto;
+    margin: 20px auto 20px auto;
     width: 90%;
-    height: 3rem;
+    height: 3em;
     text-align: center;
     align-items: center;
 }
@@ -374,15 +322,14 @@ input {
 #functionality #select_file, #help, #filter, #change_color {
     display: flex;
     position: relative;
-    background-color: rgb(43 44 54);
     color: white;
-    width: 8rem;
-    height: 95%;
+    width: 6.5em;
+    height: 100%;
     text-align: center;
     align-items: center;
     font-family: "Zen Maru Gothic", Arial;
     font-weight: 700;
-    font-size: 0.8rem;
+    font-size: .9em;
     border-radius: 10px;
 }
 
@@ -391,8 +338,6 @@ input {
 #help {
     display: flex;
     align-items: center;
-    width: 8rem;
-    min-width: 4rem;
     text-align: center;
 }
 
@@ -416,9 +361,9 @@ input {
 
 
 #functionality h1 {
-    color: black;
+    color: rgb(0 0 0);
     font-family: Arial, "Zen Maru Gothic";
-    font-size: 2.3em;
+    font-size: 2em;
     font-weight: 600;
 }
 
@@ -441,3 +386,178 @@ input {
     grid-gap: 30px;
     justify-content: center;
 }
+
+
+/* Provides support for tablets */
+@media screen and (max-width: 800px) {
+
+    #functionality #select_file, #help, #filter, #change_color {
+        width: 5em;
+        height: 75%;
+        font-size: 0.8em;
+        border-radius: 10px;
+        padding: 5px;
+    }
+
+    #functionality h1 {
+        font-size: 1.4em;
+        width: 20%;
+    }
+
+    #optional_wrapper {
+        font-size: 1em;
+    }
+
+    #pop_up_box {
+        width: 60vw;
+    }
+
+    #range_wrapper {
+        font-size: .95em;
+    }
+
+    .flavor_range {
+        width: 40%;
+    }
+
+    input {
+        font-size: 1em;
+    }
+    
+    #type_info_container label {
+        font-size: 0.85em;
+        align-content: center;
+        align-self: flex-start;
+        padding-left: 5px;
+    }
+
+    #type_info_container select {
+        font-size: 0.85em;
+        right: 50%;
+    }
+
+
+}
+
+/* Provides support for smaller tablets */
+@media screen and (max-width: 600px) {
+
+        
+    #functionality #select_file, #help, #filter, #change_color {
+        width: 6em;
+        height: 75%;
+        font-weight: 700;
+        font-size: 0.6em;
+        border-radius: 10px;
+        padding: 5px;
+    }
+
+    #functionality h1 {
+        font-size: 1.5em;
+        width: 20%;
+    }
+
+    #optional_wrapper {
+        font-size: .85em;
+    }
+
+    #range_wrapper label{
+        font-size: .85em;
+    }
+    .flavor_range {
+        width: 25%;
+    }
+
+    #pop_up_box {
+        width: 70vw;
+    }
+
+    #type_info_container {
+        font-size: 1em;
+    }
+
+    #str_notes {
+        font-size: 1em;
+    }
+
+    input {
+        font-size: 0.95em;
+    }
+        
+    #type_info_container {
+        font-size: 0.95em;
+    }
+    #type_info_container label {
+        font-size: .85em;
+        align-content: center;
+        align-self: flex-start;
+        padding-left: 5px;
+    }
+
+    #type_info_container select {
+        font-size: 0.95em;
+    }
+}
+
+/* Provides support for phones */
+@media screen and (max-width: 500px) {
+
+    
+    #functionality #select_file, #help, #filter, #change_color {
+        width: 6em;
+        height: 75%;
+        font-weight: 700;
+        font-size: 0.6em;
+        border-radius: 10px;
+        padding: 5px;
+    }
+
+    #functionality h1 {
+        font-size: 1.4em;
+        width: 20%;
+    }
+
+    #optional_wrapper {
+        font-size: 0.95em;
+    }
+
+    #pop_up_box {
+        width: 80vw;
+    }
+
+    #range_wrapper {
+        font-size: 0.95em;
+    }
+
+    .flavor_range {
+        width: 35%;
+    }
+
+    input {
+        font-size: 0.85em;
+        padding: 2px 0 2px 5px;
+    }
+
+    #type_info_container {
+        font-size: 0.95em;
+    }
+
+    #str_notes {
+        font-size: 0.85em;
+    }
+    
+    #type_info_container label {
+        font-size: .85em;
+        align-content: center;
+        align-self: flex-start;
+        padding-left: 5px;
+    }
+
+    #type_info_container select {
+        font-size: .85em;
+        padding: 10px;
+        width: 40px;
+        height: 10px;
+    }
+}
+
