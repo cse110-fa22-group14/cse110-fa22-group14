@@ -142,6 +142,8 @@ function glowGuidanceElement(int_help_index) {
     form.classList.add('disable-css-transitions');
     const mainPageButton = document.getElementById('main_page');
     mainPageButton.classList.add('disable-css-transitions');
+    let coffeeCardObject;
+
     closeForm();
     // Clear the gallery and add new list to gallery
     document.querySelectorAll('coffee-card').forEach(card => {
@@ -174,7 +176,7 @@ function glowGuidanceElement(int_help_index) {
             break;
         case 6:
             addPlaceholderCard();
-            let coffeeCardObject = document.getElementsByTagName('coffee-card');
+            coffeeCardObject = document.getElementsByTagName('coffee-card');
             // Choose the first card that just added
             coffeeCardObject = coffeeCardObject[0].shadowRoot;
             const cardEditButton = coffeeCardObject.querySelector('.edit');
@@ -188,10 +190,10 @@ function glowGuidanceElement(int_help_index) {
             break;
         case 8:
             addPlaceholderCard();
-            let coffeeCardObject1 = document.getElementsByTagName('coffee-card');
+            coffeeCardObject = document.getElementsByTagName('coffee-card');
             // Choose the first card that just added
-            coffeeCardObject1 = coffeeCardObject1[0].shadowRoot;
-            const cardShareButton = coffeeCardObject1.querySelector('#share_button');
+            coffeeCardObject = coffeeCardObject[0].shadowRoot;
+            const cardShareButton = coffeeCardObject.querySelector('#share_button');
             cardShareButton.classList.remove('disable-css-transitions');
             break;
         case 9:
@@ -200,10 +202,10 @@ function glowGuidanceElement(int_help_index) {
             break;
         case 10:
             addPlaceholderCard2();
-            let coffeeCardObject2 = document.getElementsByTagName('coffee-card');
+            coffeeCardObject = document.getElementsByTagName('coffee-card');
             // Choose the first card that just added
-            coffeeCardObject2 = coffeeCardObject2[1].shadowRoot;
-            const secondCard = coffeeCardObject2.querySelector('div');
+            coffeeCardObject = coffeeCardObject[1].shadowRoot;
+            const secondCard = coffeeCardObject.querySelector('div');
             secondCard.classList.remove('disable-css-transitions');
             break;
         case 11:
@@ -212,10 +214,10 @@ function glowGuidanceElement(int_help_index) {
             break;
         case 12:
             addPlaceholderCard2();
-            let coffeeCardObject3 = document.getElementsByTagName('coffee-card');
+            coffeeCardObject = document.getElementsByTagName('coffee-card');
             // Choose the first card that just added
-            coffeeCardObject3 = coffeeCardObject3[1].shadowRoot;
-            const deleteSecond = coffeeCardObject3.querySelector('#delete_card');
+            coffeeCardObject = coffeeCardObject[1].shadowRoot;
+            const deleteSecond = coffeeCardObject.querySelector('#delete_card');
             deleteSecond.classList.remove('disable-css-transitions');
             break;
         case 13:
