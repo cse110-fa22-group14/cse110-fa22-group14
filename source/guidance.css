@@ -13,24 +13,21 @@
 }
 
 .disable-css-transitions {
-    -webkit-animation: none !important;
-    -moz-animation: none !important;
-    -o-animation: none !important;
-    -ms-animation: none !important;
     animation: none !important;
 }
 
 /* Universal Glow Animation */
 @keyframes glowing {
+
     /* INFO: https://www.w3docs.com/snippets/css/how-to-create-flashing-glowing-button-using-animation-in-css3.html */
     0% {
-      box-shadow: 0 0 20px rgb(255, 77, 0);
+        box-shadow: 0 0 20px rgb(255 77 0);
     }
     50% {
-      box-shadow: 0 0 50px rgb(143, 54, 15);
+        box-shadow: 0 0 50px rgb(143 54 15);
     }
     100% {
-      box-shadow: 0 0 20px rgb(255, 77, 0);
+        box-shadow: 0 0 20px rgb(255 77 0);
     }
 }
 
@@ -377,18 +374,18 @@ input {
 /* Next & previous buttons */
 .prev_help,
 .next_help {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  padding: 50px;
-  margin-top: -50px;
-  color: black;
-  font-weight: bold;
-  font-size: 50px;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-  -webkit-user-select: none;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 50px;
+    margin-top: -50px;
+    color: black;
+    font-weight: bold;
+    font-size: 50px;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 /* Position the "next button" to the right */
@@ -399,16 +396,16 @@ input {
 
 /* Position the "next button" to the right */
 .next_help {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-  /* Glow animation added to the element */
-  animation: glowing 1300ms infinite; 
+    right: 0;
+    border-radius: 3px 0 0 3px;
+    /* Glow animation added to the element */
+    animation: glowing 1300ms infinite; 
 }
 
 /* On hover, add a black background color with a little bit see-through */
 .prev_help:hover,
 .next_help:hover {
-  background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 #str_guidance_text {

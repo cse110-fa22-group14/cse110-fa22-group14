@@ -289,8 +289,6 @@ function closeForm() {
 
 // Placeholder function to populate the form
 function populateForm() {
-    const form = document.getElementById('pop_up_box');
-
     // Reset the form's html contents when done.
     document.getElementById("str_drink_name").value = "New Drink";
     document.getElementById("float_drink_price").value = "10";
