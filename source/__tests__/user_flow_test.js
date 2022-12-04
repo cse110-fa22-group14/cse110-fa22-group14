@@ -123,7 +123,7 @@ describe("Basic user flow for Website", () => {
         const place = await shadowRoot.$eval("#str_purchase_location", (el) => {
           return el.innerText;
         });
-        expect(place).toBe("Location: Location"+i+"-edited");
+        expect(place).toBe("Location"+i+"-edited");
       }
     }, TOTAL_TEST_TIME);
 
@@ -571,7 +571,7 @@ describe("Basic user flow for Website", () => {
 
     // Get the delete button and click on it
     const shadowRoot2 = await card.getProperty("shadowRoot");
-    const deleteButton = await shadowRoot.$('#delete_button');
+    const deleteButton = await shadowRoot2.$('#delete_button');
     await deleteButton.click();
     await deleteButton.click();
 
