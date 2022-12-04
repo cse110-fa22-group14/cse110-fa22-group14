@@ -8,6 +8,18 @@ window.addEventListener('DOMContentLoaded', init);
 const ZERO = 0;
 const ONE = 1;
 const TWO = 2;
+const THREE = 3;
+const FOUR = 4;
+const FIVE = 5;
+const SIX = 6;
+const SEVEN = 7;
+const EIGHT = 8;
+const NiNE = 9;
+const TEN = 10;
+const ELEVEN = 11;
+const TWELVE = 12;
+const THIRTEEN = 13;
+const FOURTEEN = 14;
 
 // The variable to hold the current image's index
 let help_text_index = 0;
@@ -68,7 +80,7 @@ help_text.push("Congratulations! Now you've learned how to use Brew Notes to sto
 
 // Executes when the window loads
 function init() {
-    help_text_index = 0;
+    help_text_index = ZERO;
     handleEvents();
 }
 
@@ -153,28 +165,28 @@ function glowGuidanceElement(int_help_index) {
     
     // Selectively enable animations
     switch(int_help_index) {
-        case 0:
+        case ZERO:
             help_right_arrow.classList.remove('disable-css-transitions');
             break;
-        case 1:
+        case ONE:
             mainPageButton.classList.remove('disable-css-transitions');
             break;
-        case 2:
+        case TWO:
             addButton.classList.remove('disable-css-transitions');
             break;
-        case 3:
+        case THREE:
             openForm();
             form.classList.remove('disable-css-transitions');
             break;
-        case 4:
+        case FOUR:
             openForm();
             populateForm();
             saveButton.classList.remove('disable-css-transitions');
             break;
-        case 5:
+        case FIVE:
             addPlaceholderCard();
             break;
-        case 6:
+        case SIX:
             addPlaceholderCard();
             coffeeCardObject = document.getElementsByTagName('coffee-card');
             // Choose the first card that just added
@@ -182,13 +194,13 @@ function glowGuidanceElement(int_help_index) {
             coffeeCardObject = coffeeCardObject.querySelector('.edit');
             coffeeCardObject.classList.remove('disable-css-transitions');
             break;
-        case 7:
+        case SEVEN:
             addPlaceholderCard();
             openForm();
             populateForm();
             cancelButton.classList.remove('disable-css-transitions');
             break;
-        case 8:
+        case EIGHT:
             addPlaceholderCard();
             coffeeCardObject = document.getElementsByTagName('coffee-card');
             // Choose the first card that just added
@@ -196,11 +208,11 @@ function glowGuidanceElement(int_help_index) {
             coffeeCardObject = coffeeCardObject.querySelector('#share_button');
             coffeeCardObject.classList.remove('disable-css-transitions');
             break;
-        case 9:
+        case NiNE:
             addPlaceholderCard();
             fileSelectButton.classList.remove('disable-css-transitions');
             break;
-        case 10:
+        case TEN:
             addPlaceholderCard2();
             coffeeCardObject = document.getElementsByTagName('coffee-card');
             // Choose the first card that just added
@@ -208,11 +220,11 @@ function glowGuidanceElement(int_help_index) {
             coffeeCardObject = coffeeCardObject.querySelector('div');
             coffeeCardObject.classList.remove('disable-css-transitions');
             break;
-        case 11:
+        case ELEVEN:
             addPlaceholderCard2();
             filterOption.classList.remove('disable-css-transitions');
             break;
-        case 12:
+        case TWELVE:
             addPlaceholderCard2();
             coffeeCardObject = document.getElementsByTagName('coffee-card');
             // Choose the first card that just added
@@ -220,11 +232,11 @@ function glowGuidanceElement(int_help_index) {
             coffeeCardObject = coffeeCardObject.querySelector('#delete_card');
             coffeeCardObject.classList.remove('disable-css-transitions');
             break;
-        case 13:
+        case THIRTEEN:
             addPlaceholderCard();
             color_picker.classList.remove('disable-css-transitions');
             break;
-        case 14:
+        case FOURTEEN:
             mainPageButton.classList.remove('disable-css-transitions');
             break;
         default:
