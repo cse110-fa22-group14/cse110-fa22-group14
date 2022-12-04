@@ -23,9 +23,11 @@
     0% {
         box-shadow: 0 0 20px rgb(255 77 0);
     }
+
     50% {
         box-shadow: 0 0 50px rgb(143 54 15);
     }
+
     100% {
         box-shadow: 0 0 20px rgb(255 77 0);
     }
@@ -60,7 +62,8 @@ main {
     box-shadow: 12px 17px 14px -12px rgba(0 0 0 / 41%);
 
     /* Glow animation added to the element */
-    animation: glowing 1300ms infinite; 
+    animation: glowing 1300ms infinite;
+
 }
 
 /* Hidden popup form */
@@ -90,7 +93,8 @@ main {
     gap: 10px;
 
     /* Glow animation added to the element */
-    animation: glowing 1300ms infinite; 
+    animation: glowing 1300ms infinite;
+
 }
 
 /* Encapsulation for different inputs in form */
@@ -113,7 +117,8 @@ fieldset {
     text-align: left;
 
     /* Glow animation added to the element */
-    animation: glowing 1300ms infinite; 
+    animation: glowing 1300ms infinite;
+
 }
 
 #str_drink_name {
@@ -210,7 +215,8 @@ input {
     text-align: right;
 
     /* Glow animation added to the element */
-    animation: glowing 1300ms infinite; 
+    animation: glowing 1300ms infinite;
+
 }
 
 #switch_photo_container {
@@ -319,7 +325,8 @@ input {
     border-radius: 10px;
 
     /* Glow animation added to the element */
-    animation: glowing 1300ms infinite; 
+    animation: glowing 1300ms infinite;
+
 }
 
 
@@ -385,7 +392,6 @@ input {
     font-size: 50px;
     border-radius: 0 3px 3px 0;
     user-select: none;
-    -webkit-user-select: none;
 }
 
 /* Position the "next button" to the right */
@@ -405,14 +411,14 @@ input {
 /* On hover, add a black background color with a little bit see-through */
 .prev_help:hover,
 .next_help:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0 0 0 80%);
 }
 
 #str_guidance_text {
     min-width: 300px;
     bottom: 10px;
     min-height: 30vh;
-    background-color: rgba(147, 147, 147, 0.67);
+    background-color: rgba(147 147 147 67%);
     border-radius: 10px;
     border: none;
 
@@ -436,13 +442,16 @@ input {
     align-items: left;
 
     /* Glow animation added to the element */
-    animation: glowing 1300ms infinite; 
+    animation: glowing 1300ms infinite;
+
 }
+
 /* Hoevering over link will underline in a smooth fashion */
 #main_page:hover {
-    border-bottom: 1px solid rgb(236, 232, 232);
+    border-bottom: 1px solid rgb(236 232 232);
     transition: all 0.2s ease-in;
 }
+
 #main_page.fixed {
     position: fixed;
     left: 0px;

@@ -19,7 +19,7 @@ const PREV_TEXT = -1;
 const NEXT_TEXT = 1;
 // Default image is the first one
 const DEFAULT_TEXT_INDEX = 0;
-
+// All text to display in guidance page
 const help_text = [];
 
 // Step 0 text
@@ -178,7 +178,7 @@ function glowGuidanceElement(int_help_index) {
             addPlaceholderCard();
             coffeeCardObject = document.getElementsByTagName('coffee-card');
             // Choose the first card that just added
-            coffeeCardObject = coffeeCardObject[0].shadowRoot;
+            coffeeCardObject = coffeeCardObject[ZERO].shadowRoot;
             coffeeCardObject = coffeeCardObject.querySelector('.edit');
             coffeeCardObject.classList.remove('disable-css-transitions');
             break;
@@ -192,7 +192,7 @@ function glowGuidanceElement(int_help_index) {
             addPlaceholderCard();
             coffeeCardObject = document.getElementsByTagName('coffee-card');
             // Choose the first card that just added
-            coffeeCardObject = coffeeCardObject[0].shadowRoot;
+            coffeeCardObject = coffeeCardObject[ZERO].shadowRoot;
             coffeeCardObject = coffeeCardObject.querySelector('#share_button');
             coffeeCardObject.classList.remove('disable-css-transitions');
             break;
@@ -204,7 +204,7 @@ function glowGuidanceElement(int_help_index) {
             addPlaceholderCard2();
             coffeeCardObject = document.getElementsByTagName('coffee-card');
             // Choose the first card that just added
-            coffeeCardObject = coffeeCardObject[1].shadowRoot;
+            coffeeCardObject = coffeeCardObject[ONE].shadowRoot;
             coffeeCardObject = coffeeCardObject.querySelector('div');
             coffeeCardObject.classList.remove('disable-css-transitions');
             break;
@@ -216,7 +216,7 @@ function glowGuidanceElement(int_help_index) {
             addPlaceholderCard2();
             coffeeCardObject = document.getElementsByTagName('coffee-card');
             // Choose the first card that just added
-            coffeeCardObject = coffeeCardObject[1].shadowRoot;
+            coffeeCardObject = coffeeCardObject[ONE].shadowRoot;
             coffeeCardObject = coffeeCardObject.querySelector('#delete_card');
             coffeeCardObject.classList.remove('disable-css-transitions');
             break;
@@ -346,7 +346,7 @@ function addPlaceholderCard() {
     addCoffeeCardsToDocument(formData);
     let coffeeCardObject = document.getElementsByTagName('coffee-card');
     // Choose the first card that just added
-    coffeeCardObject = coffeeCardObject[0].shadowRoot;
+    coffeeCardObject = coffeeCardObject[ZERO].shadowRoot;
     // Turn off all the glows on default
     const cardBody = coffeeCardObject.querySelector('div');
     cardBody.classList.add('disable-css-transitions');
@@ -401,7 +401,7 @@ function addPlaceholderCard2() {
     addCoffeeCardsToDocument(formData);
     let coffeeCardObject = document.getElementsByTagName('coffee-card');
     // Choose the first card that just added
-    coffeeCardObject = coffeeCardObject[0].shadowRoot;
+    coffeeCardObject = coffeeCardObject[ZERO].shadowRoot;
     // Turn off all the glows on default
     let cardBody = coffeeCardObject.querySelector('div');
     cardBody.classList.add('disable-css-transitions');
@@ -413,7 +413,7 @@ function addPlaceholderCard2() {
     shareButton.classList.add('disable-css-transitions');
     coffeeCardObject = document.getElementsByTagName('coffee-card');
     // Choose the second card that just added
-    coffeeCardObject = coffeeCardObject[1].shadowRoot;
+    coffeeCardObject = coffeeCardObject[ONE].shadowRoot;
     // Turn off all the glows on default
     cardBody = coffeeCardObject.querySelector('div');
     cardBody.classList.add('disable-css-transitions');
