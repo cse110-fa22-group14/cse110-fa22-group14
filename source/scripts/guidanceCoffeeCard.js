@@ -1,12 +1,10 @@
 /*
- * @author Ruilin Hu and Yuang and William
- * @file - ShadowDOM for individual coffee card in its detail page
+ * @author Ruilin Hu
+ * @file - ShadowDOM for individual coffee card's thumbnail in guidance page
  * @version 0.0.1
- * @Created Nov 8, 2022
- * @Edited Nov 9, 2022 by William
+ * @Created Dec 3, 2022
+ * @Edited Dec 4, 2022 by William
  */
-
-
 
 class CoffeeCard extends HTMLElement {
     constructor() {
@@ -266,7 +264,7 @@ class CoffeeCard extends HTMLElement {
         <h4 id = "float_drink_price">$${data["float_drink_price"]}</h4>
         <section id = "button_container">
             <img id = "share_button" alt = "share icon" src = "./assets/images/share-icon.png" ></img>
-            <img id ="delete_button" alt = "edit icon" src = "./assets/images/delete-icon.png" ></img>
+            <img id ="delete_button" alt = "delete icon" src = "./assets/images/delete-icon.png" ></img>
             <img id ="edit_button"  src = "./assets/images/edit-icon.png" ></img>
         </section>
         </section>
