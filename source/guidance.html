@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Coffee Notes CRUD App</title>
+
+
+  <!-- Main Stylesheets & Scripts -->
+  <link rel="stylesheet" href="./guidance.css" />
+
+  <!-- Guidance Page Script -->
+  <script src="./scripts/guidance.js" type="module"></script>
+  <!--the 'type' is changed to 'text/javascript' to access functions across files-->
+
+  <!-- Coffe Card Custom Element -->
+  <script src="./scripts/guidanceCoffeeCard.js" type="module"></script>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap');
+    /* Universal Glow Animation */
+    @keyframes glowing {
+        /* INFO: https://www.w3docs.com/snippets/css/how-to-create-flashing-glowing-button-using-animation-in-css3.html */
+        0% {
+        box-shadow: 0 0 20px rgb(255, 77, 0);
+        }
+        50% {
+        box-shadow: 0 0 50px rgb(143, 54, 15);
+        }
+        100% {
+        box-shadow: 0 0 20px rgb(255, 77, 0);
+        }
+    }
+  </style>
+
+    <!-- icons from google font  -- Yuang--> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+      <!-- for Coffee Log -->
+      <link rel="preconnect" href="https://fonts.googleapis.com"> 
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+      <link href="https://fonts.googleapis.com/css2?family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet">
+
+
+  <!--Page icon goes here-->
+  <link rel="icon" href="./assets/images/web_icon.png" type="image/png" />
+  <link rel="bookmark" href="./assets/images/web_icon.png" />
+
+
+</head>
+
+<body>
+
+    <header>
+        <section id = "functionality">
+        
+            <!-- this is import button -->
+            <button id = "select_file" disabled>IMPORT</button>
+            <input id = "import" type = "file" style = "display:none;" name = "fileName" disabled/>
+          
+
+            <select id= "help" class = "dropdown" disabled>
+                <option value = "" hidden>HELP</option>"
+                <option value = "./aboutUs.html">ABOUT</option>
+                <option value = "">GUIDANCE</option>
+            </select>
+
+    
+            <h1>brew notes.</h1>
+            <select id= "filter" class = "dropdown" disabled>
+              <option value = "" hidden>SORT</option>
+              <option value = "0Price: Low-High">PRICE: LO-HI</option>
+              <option value = "1Price: High-Low">PRICE: HI-LO </option>
+              <option value = "0Date: Oldest-Newest">DATE: OLD-NEW</option>
+              <option value = "1Date: Newest-Oldest">DATE: NEW-OLD</option>
+            </select> 
+            
+            <!-- allow user to change background color -->
+            <select id="change_color" class = "dropdown" disabled>
+                <option value="default" hidden>THEME</option>
+                <option value="default">DEFAULT</option>
+                <option value="dark">DARK</option>
+                <option value="vibrant">VIBRANT</option>
+
+      
+              </select>
+        </section>
+    </header>
+
+
+
+
+    <main>
+    <form id = "pop_up_box">
+        <button id = "save" type = "submit" disabled><p>SAVE</p></button>
+        <button id = "cancel" type = "reset" disabled><p>CANCEL</p></button>
+        
+        <input type = "text" id="str_drink_name" placeholder="name of drink" name = "str_drink_name" required/>
+        <input type = "text"id="float_drink_price" placeholder = "price" name = "float_drink_price" required/>
+        <!-- <input type = "text"id="time_purchase_date" placeholder = "date purchased" name = "time_purchase_date" required/> -->
+        <input type="date" id="time_purchase_date"  name = "time_purchase_date" required/>
+        <input type = "text" id="str_purchase_location" placeholder = "location" name = "str_purchase_location" required/>
+        
+        <!--Load default image, which is coffee-picture0-->
+        <img id = "img_drink_image" src = "./assets/images/coffee-picture0.png" alt = "photo of drink" name = "img_drink_image">
+
+        <!--Implement functionality to cycle through images-->
+        <div id = "switch_photo_container">
+            <a id="switch_photo_left_arrow">&#10094;</a>
+            <a id="switch_photo_right_arrow">&#10095;</a>
+        </div>
+
+        <div id = "flavor_container">
+
+            <fieldset id = "optional_wrapper">
+                <label for ="bool_check_chocolate">Chocolatey
+                    <input type="checkbox" id = "bool_check_chocolate" name = "bool_check_chocolate"></input>
+                </label>
+               
+                <label for="bool_check_caramel">Caramel
+                    <input type="checkbox" id = "bool_check_caramel" name = "bool_check_caramel"></input>
+                </label>
+                
+                <label for="bool_check_nutty">Nutty
+                    <input type="checkbox" id = "bool_check_nutty" name = "bool_check_nutty" ></input>
+                </label>
+                <label for="bool_check_fruity">Fruity
+                    <input type="checkbox" id = "bool_check_fruity" name = "bool_check_fruity" ></input>
+                </label>
+            </fieldset>
+
+ 
+            <fieldset id = "range_wrapper">
+
+                <label for="int_slide_acidity">Acidity:
+                    <input type="range" min="0" max="5" value="0" step="1" class="flavor_range" id="int_slide_acidity"  name = "int_slide_acidity"></input>
+                    <span id="acidity_val">0</span> 
+                </label>
+                <label for="int_slide_sweetness">Sweetness:
+                    <input type="range" min="0" max="5" value="0" step="1" class="flavor_range" id="int_slide_sweetness" name = "int_slide_sweetness"></input>
+                    <span id="sweetness_val">0</span>
+                </label>
+
+                <label for="int_slide_bitterness">Bitterness:
+                    <input type="range" min="0" max="5" value="0" step="1" class="flavor_range" id="int_slide_bitterness" name = "int_slide_bitterness"></input>
+                    <span id="bitterness_val">0</span>
+                </label>
+                <label for="int_slide_saltiness">Saltiness:
+                    <input type="range" min="0" max="5" value="0" step="1" class="flavor_range" id="int_slide_saltiness" name = "int_slide_saltiness"></input>
+                    <span id="saltiness_val">0</span>
+                </label>
+
+            </fieldset>
+        </div>
+
+        <div id = "type_info_container">
+
+            <label for ="str_drink_type">Serving Type:
+                <select id = "str_drink_type" name = "str_drink_type">
+                    <option value = "Casual">Casual</option>
+                    <option value = "Espresso">Espresso</option>
+                    <option value = "Cappuccino">Cappuccino</option>
+                    <option value = "Latte">Latte</option>
+                    <option value = "Mocha">Mocha</option>
+                    <option value = "Macchiato">Macchiato</option>
+                </select> 
+            </label>
+
+            <label for ="str_brew_style">Brew Method:
+                <select id= "str_brew_style" name = "str_brew_style">
+                    <option value = "Drip">Drip</option>
+                    <option value = "Press">Press</option>
+                    <option value = "Siphon">Siphon</option>
+                    <option value = "Pour Over">Pour Over</option>
+                </select> 
+            </label>
+
+            <label for ="int_dropdown_color">Color:
+                <select id= "int_dropdown_color" name = "int_dropdown_color">
+                    <option value = "Light">Light</option>
+                    <option value = "Medium">Medium</option>
+                    <option value = "Dark">Dark</option>
+                </select>
+            </label>
+        </div>
+
+        <textarea id = "str_notes" placeholder = "additional comments" name = "str_notes" value = ""></textarea>
+
+    </form>
+
+
+    <section id = "gallery">
+        <button id = "add_card" disabled>
+            <img id = "addIcon" src = "assets/images/add-icon.png" alt = "add icon">
+        </button>
+    </section>
+
+    <!-- Next and previous buttons -->
+    <section id = "tutorial_box">
+        <div class = "prev_help" id = "prev_help"><a >&#10094;</a></div>
+        <section id = "text-main-container"></div>
+            <p id="guidance_text"></p>
+            <nav id = "main_page" class="fixed"><a href="index.html" title="Go to main page" id="home_link">Home Page</a></nav>
+        </section>
+        <div class="next_help" id = "next_help"><a>&#10095;</a></div>
+    </section>
+ 
+    </p>
+  </main>
+  
+</body>
+
+
+</html>

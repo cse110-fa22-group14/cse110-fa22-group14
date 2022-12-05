@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Dosis:300,400");
-
 * {
     margin: 0;
     padding: 0;
@@ -10,6 +8,27 @@
     text-align: center;
     align-items: center;
     justify-content: center;
+}
+
+.disable-css-transitions {
+    animation: none !important;
+}
+
+/* Universal Glow Animation */
+@keyframes glowing {
+
+    /* INFO: https://www.w3docs.com/snippets/css/how-to-create-flashing-glowing-button-using-animation-in-css3.html */
+    0% {
+        box-shadow: 0 0 20px rgb(255 77 0);
+    }
+
+    50% {
+        box-shadow: 0 0 50px rgb(143 54 15);
+    }
+
+    100% {
+        box-shadow: 0 0 20px rgb(255 77 0);
+    }
 }
 
 header {
@@ -35,13 +54,15 @@ main {
     min-width: 300px;
     max-width: 1fr;
     height: 300px;
+    background-color: rgb(167 125 136);
     border-radius: 30px;
     border: none;
     box-shadow: 12px 17px 14px -12px rgba(0 0 0 / 41%);
+    animation: glowing 1300ms infinite;
 }
 
 #add_icon {
-    color: white;
+    color: rgb(255 255 255);
     background-color: white;
 }
 
@@ -77,11 +98,51 @@ main {
 
     /* Space between each form child */
     gap: 10px;
+    animation: glowing 1300ms infinite;
 }
 
 /* Encapsulation for different inputs in form */
 fieldset {
     border: none;
+}
+
+/* Keyframe animations for glowing text */
+@keyframes glowing-text {
+
+    /* INFO: https://www.w3docs.com/snippets/css/how-to-create-flashing-glowing-button-using-animation-in-css3.html */
+    0% {
+        color: rgb(255 77 0);
+        text-shadow: 0 0 20px rgb(255 77 0);
+    }
+
+    50% {
+        color: rgb(255 77 0);
+        text-shadow: 0 0 50px rgb(143 54 15);
+    }
+
+    100% {
+        color: rgb(255 77 0);
+        text-shadow: 0 0 20px rgb(255 77 0);
+    }
+}
+
+@keyframes glowing-icon {
+
+    /* INFO: https://www.w3docs.com/snippets/css/how-to-create-flashing-glowing-button-using-animation-in-css3.html */
+    0% {
+        background-color: rgba(255 77 0 / 20%);
+        box-shadow: 0 0 20px rgb(255 77 0);
+    }
+
+    50% {
+        background-color: transparent;
+        box-shadow: 0 0 50px rgb(143 54 15);
+    }
+
+    100% {
+        background-color: rgba(255 77 0 / 40%);
+        box-shadow: 0 0 20px rgb(255 77 0);
+    }
 }
 
 /* The following are containers and inputs that occupy 
@@ -91,12 +152,17 @@ fieldset {
     grid-row-start: 1;
     grid-column-start: 1;
     grid-row-end: 2;
-    grid-column-end: 3;
-    background: none;
+    grid-column-end: 1;
+    background-color: transparent;
+    outline: none;
     font-family: "Zen Maru Gothic", Arial;
     font-size: 1.2em;
     color: rgb(255 255 255);
+}
+
+#save p {
     text-align: left;
+    animation: glowing-text 1300ms infinite;
 }
 
 #save:hover {
@@ -193,10 +259,14 @@ input {
     grid-column-start: 5;
     grid-row-end: 2;
     grid-column-end: 7;
-    background: none;
+    background-color: transparent;
     font-family: "Zen Maru Gothic", Arial;
     font-size: 1.2em;
     color: rgb(255 255 255);
+}
+
+#cancel p {
+    animation: glowing-text 1300ms infinite;
     text-align: right;
 }
 
@@ -218,7 +288,7 @@ input {
 #switch_photo_right_arrow {
 
     /* INFO: reference: https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp */
-    
+
     /* NOTE: implemented left and right arrows to change image */
     cursor: pointer;
     position: absolute;
@@ -311,15 +381,13 @@ input {
     align-items: center;
 }
 
-/* Define structure for the four buttons in nav bar */
-
-#select_file:hover {
-    opacity: 0.9;
-    transition: all 0.1s ease-in-out;
-    cursor: pointer;
+#select_file {
+    opacity: 0.65;
 }
- 
+
+/* Define structure for the four buttons in nav bar */
 #functionality #select_file, #help, #filter, #change_color {
+    background-color: rgb(130 114 114);
     display: flex;
     position: relative;
     color: white;
@@ -331,8 +399,8 @@ input {
     font-weight: 700;
     font-size: 0.9em;
     border-radius: 10px;
+    animation: glowing 1300ms infinite;
 }
-
 
 /* Help Dropdown Button */
 #help {
@@ -340,7 +408,6 @@ input {
     align-items: center;
     text-align: center;
 }
-
 
 .dropdown {
     position: relative;
@@ -353,24 +420,13 @@ input {
     appearance: none;
 }
 
-.dropdown:hover {
-    opacity: 0.9;
-    transition: all 0.1s ease-in-out;
-    cursor: pointer;
-}
-
-
 #functionality h1 {
-    color: rgb(0 0 0);
-    font-family: Arial, "Zen Maru Gothic";
-    font-size: 2em;
+    color: black;
+    font-family: Arial, Georgia;
+    font-size: 2.3em;
     font-weight: 600;
 }
 
-
-/* The list that stores all the cards
- * Three columns but its rows should grow dynamically with number of cards added
- */
 #gallery {
     width: 80%;
     margin: 5vh auto;
@@ -387,10 +443,86 @@ input {
     justify-content: center;
 }
 
+#tutorial_box {
+    min-width: 300px;
+    bottom: 10px;
+    min-height: 30vh;
+    background-color: rgb(147 147 147);
+    opacity: 0.8;
+    border-radius: 10px;
+    border: none;
+    justify-content: center space-evenly;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 15vh;
+    width: 80%;
+    margin: 10px auto 0;
+    z-index: 999;
+    position: relative;
+}
+
+/* Next & previous buttons */
+.prev_help,
+.next_help {
+    width: 75px;
+    height: 75px;
+    margin: 0 20px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    border-radius: 50px;
+    user-select: none;
+    animation: glowing-icon 1300ms infinite;
+}
+
+#text-main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    width: 80%;
+    text-align: center;
+    margin: 0 10px;
+}
+
+#guidance_text {
+    width: 90%;
+    height: 60px;
+    margin-bottom: 10px;
+    font-family: "Zen Maru Gothic";
+    color: white;
+    font-size: 0.9em;
+}
+
+#home_link {
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-family: "Zen Maru Gothic", Arial;
+    color: rgb(255 255 255);
+    width: 10vw;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease-in;
+
+    /* Glow animation added to the element */
+    animation: glowing-text 1300ms infinite;
+}
+
+/* Hoevering over link will underline in a smooth fashion */
+#home_link:hover {
+    border-bottom: 1px solid rgb(236 232 232);
+    transition: all 0.2s ease-in;
+}
 
 /* Provides support for tablets */
 @media screen and (max-width: 800px) {
-    #functionality #select_file, #help, #filter, #change_color {
+    #functionality #select_file,
+    #help,
+    #filter,
+    #change_color {
         width: 5em;
         height: 75%;
         font-size: 0.8em;
@@ -422,7 +554,7 @@ input {
     input {
         font-size: 1em;
     }
-    
+
     #type_info_container label {
         font-size: 0.85em;
         align-content: center;
@@ -433,12 +565,38 @@ input {
     #type_info_container select {
         font-size: 0.85em;
         right: 50%;
+        padding: 10px;
+        width: 40px;
+        height: 10px;
+    }
+
+    #text-main-container {
+        width: 95%;
+        margin: 20px;
+    }
+    
+    #guidance_text {
+        font-size: 0.8em;
+    }
+
+    .prev_help,
+    .next_help {
+        height: 45px;
+        width: 45px;
+        margin: 0 none;
+    }
+
+    #home_link {
+        font-size: 0.9em;
     }
 }
 
 /* Provides support for smaller tablets */
 @media screen and (max-width: 600px) {
-    #functionality #select_file, #help, #filter, #change_color {
+    #functionality #select_file,
+    #help,
+    #filter,
+    #change_color {
         width: 6em;
         height: 75%;
         font-weight: 700;
@@ -468,14 +626,6 @@ input {
         width: 70vw;
     }
 
-    
-    #type_info_container label {
-        font-size: 0.85em;
-        align-content: center;
-        align-self: flex-start;
-        padding-left: 5px;
-    }
-
     #str_notes {
         font-size: 1em;
     }
@@ -483,21 +633,51 @@ input {
     input {
         font-size: 0.95em;
     }
-        
+
     #type_info_container {
         font-size: 0.95em;
     }
 
+    #text-main-container {
+        width: 95%;
+    }
 
+    #guidance_text {
+        font-size: 0.6em;
+    }
+
+    .prev_help,
+    .next_help {
+        height: 45px;
+        width: 45px;
+        margin: 0 10px;
+    }
+
+    #home_link {
+        font-size: 0.85em;
+    }
+
+    #type_info_container label {
+        font-size: 0.85em;
+        align-content: center;
+        align-self: flex-start;
+        padding-left: 5px;
+    }
 
     #type_info_container select {
-        font-size: 0.95em;
+        font-size: 0.85em;
+        padding: 10px;
+        width: 40px;
+        height: 10px;
     }
 }
 
 /* Provides support for phones */
 @media screen and (max-width: 500px) {
-    #functionality #select_file, #help, #filter, #change_color {
+    #functionality #select_file,
+    #help,
+    #filter,
+    #change_color {
         width: 6em;
         height: 75%;
         font-weight: 700;
@@ -539,7 +719,26 @@ input {
     #str_notes {
         font-size: 0.85em;
     }
-    
+
+    #text-main-container {
+        width: 90%;
+    }
+
+    #guidance_text {
+        font-size: 0.6em;
+    }
+
+    .prev_help,
+    .next_help {
+        height: 45px;
+        width: 45px;
+        margin: 0 10px;
+    }
+
+    #home_link {
+        font-size: 0.85em;
+    }
+
     #type_info_container label {
         font-size: 0.85em;
         align-content: center;
@@ -554,4 +753,3 @@ input {
         height: 10px;
     }
 }
-

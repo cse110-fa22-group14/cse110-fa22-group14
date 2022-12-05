@@ -1,14 +1,10 @@
-/** 
- * @author Ruilin Hu and Yuang and William
- * @file - ShadowDOM for individual coffee card in its detail page
- * @version 0.0.2
- * @Created Dec 4, 2022
- * 
+/*
+ * @author Ruilin Hu
+ * @file - ShadowDOM for individual coffee card's thumbnail in guidance page
+ * @version 0.0.1
+ * @Created Dec 3, 2022
+ * @Edited Dec 4, 2022 by William
  */
-
-const ONE = 1;
-const ZERO = 0;
-const TWO = 2;
 
 class CoffeeCard extends HTMLElement {
     constructor() {
@@ -24,7 +20,52 @@ class CoffeeCard extends HTMLElement {
         shadow_style.textContent = `
             @import url("https://fonts.googleapis.com/css?family=Dosis:300,400");
 
+            /* Universal Glow Animation */
+            @keyframes glowing {
+
+                /* INFO: https://www.w3docs.com/snippets/css/how-to-create-flashing-glowing-button-using-animation-in-css3.html */
+                0% {
+                    box-shadow: 0 0 20px rgb(255 77 0);
+                }
+
+                50% {
+                    box-shadow: 0 0 50px rgb(143 54 15);
+                }
+
+                100% {
+                    box-shadow: 0 0 20px rgb(255 77 0);
+                }
+            }
+
+             @keyframes glowing-icon {
+
+                /* INFO: https://www.w3docs.com/snippets/css/how-to-create-flashing-glowing-button-using-animation-in-css3.html */
+                0% {
+                    background-color: rgba(255 77 0 / 20%);
+                    box-shadow: 0 0 20px rgb(255 77 0);
+                }
+
+                50% {
+                    background-color: rgba(255 77 0 /20%);
+                    box-shadow: 0 0 20px rgb(255 77 / 10%);
+                }
+
+                100% {
+                    background-color: rgba(255 77 0 / 40%);
+                    box-shadow: 0 0 20px rgb(255 77 0);
+                }
+            }
+
+            .disable-css-transitions {
+                -webkit-animation: none !important;
+                -moz-animation: none !important;
+                -o-animation: none !important;
+                -ms-animation: none !important;
+                animation: none !important;
+            }
+            
             div {
+                background-color: rgb(167 125 136);
                 position: relative;
                 display: flex;
                 flex-direction: column;
@@ -36,6 +77,7 @@ class CoffeeCard extends HTMLElement {
                 border: none;
                 text-align: center;
                 box-shadow: 12px 17px 14px -12px rgba(0 0 0 / 41%);
+                animation: glowing 1300ms infinite;
 
             }
 
@@ -47,6 +89,7 @@ class CoffeeCard extends HTMLElement {
                 text-align: left;
                 font-family: Arial;
                 height: auto;
+                color: rgb(255 255 255);
             }
 
             hr {
@@ -68,13 +111,14 @@ class CoffeeCard extends HTMLElement {
                 width:100%;
                 font-size: 1em;
                 margin-top: -25px;
+                color: rgb(255 255 255);
             }
 
             hr {
                 margin-top: -10px;
                 width: 90%;
                 border-width: 0.5px;
-                color: rgb(236 232 232);
+                color: rgb(255 255 255);
 
             }
 
@@ -97,6 +141,7 @@ class CoffeeCard extends HTMLElement {
                 font-weight: 100;
                 text-align: left;
                 font-size: 1em;
+                color: rgb(255 255 255);
             }
 
             li p {
@@ -108,7 +153,7 @@ class CoffeeCard extends HTMLElement {
             }
 
             #comments {
-                background-color: white;
+                background-color: rgb(255 255 255);
                 height: 90px;
                 width: 50%;
                 margin-right: 15px;
@@ -121,6 +166,7 @@ class CoffeeCard extends HTMLElement {
                 padding: 5px;
                 resize: none;
                 overflow: scroll;
+                
             }
 
             ::-webkit-scrollbar {
@@ -140,10 +186,8 @@ class CoffeeCard extends HTMLElement {
             #row h4 {
                 font-size: 20px;
                 font-family: "Zen Maru Gothic";
+                color: rgb(255 255 255);
             }
-
-            /* Container to hold buttons */
-  
 
             /* Share Icon */
             img {
@@ -151,13 +195,13 @@ class CoffeeCard extends HTMLElement {
                 margin-left: 10px;
                 object-fit: contain;
                 margin: 0;
+                border-radius: 10px;
+            
+                /* Glow animation added to the element */
+                animation: glowing-icon 1300ms infinite;
             }
 
-            img:hover {
-                cursor:pointer;
-                transform: scale(1.1);
-            }
-        }`;
+            }`;
 
         // Append the <style> and <article> elements to the Shadow DOM
         shadow.append(shadow_style, shadow_div);
@@ -205,44 +249,43 @@ class CoffeeCard extends HTMLElement {
         const shadow_div = this.shadowRoot.querySelector('div');
 
         // Converts MM-DD-YYYY to Date String
-        let date = data["time_purchase_date"];
-        console.log(date);
-        date = date.split('-');
-        date = new Date(date[ZERO], date[ONE]-ONE, date[TWO]);
+        const date = new Date(data["time_purchase_date"]);
         const dateStr = date.toDateString();
 
         // Add a hidden element to the card's HTML
         shadow_div.innerHTML =
-            `
+        `
         <header>
-            <h3 id = "str_drink_name"><slot name="date" />${data["str_drink_name"]}</h3>
-            <h4 id = "time_purchase_date">${dateStr}</h4>
-         </header>
-
+             <h3 id = "str_drink_name"><slot name="date" />${data["str_drink_name"]}</h3>
+             <h4 id = "time_purchase_date">${dateStr}</h4>
+        </header>
+ 
         <section id = "row">
-            <h4 id = "float_drink_price">$${data["float_drink_price"]}</h4>
-            <section id = "button_container">
-                <img id = "share_button" alt = "share icon" src = "./assets/images/share-icon.png" ></img>
-                <img  id="delete_button" alt = "edit icon" src = "./assets/images/delete-icon.png" ></img>
-                <img  id="edit_button"  src = "./assets/images/edit-icon.png" ></img>
-            </section>
+        <h4 id = "float_drink_price">$${data["float_drink_price"]}</h4>
+        <section id = "button_container">
+            <img id = "share_button" alt = "share icon" src = "./assets/images/share-icon.png" ></img>
+            <img id ="delete_button" alt = "delete icon" src = "./assets/images/delete-icon.png" ></img>
+            <img id ="edit_button"  src = "./assets/images/edit-icon.png" ></img>
         </section>
-
+        </section>
+ 
         <hr>
-
+ 
         <section id = "info_container">
-            <ul id ="list">
-                <li id = "str_purchase_location"><p>${data["str_purchase_location"]}</p></li>
-                <li id = "str_brew_style">${data["str_brew_style"]}</li>
-                <li id = "str_drink_type"> ${data["str_drink_type"]}</li>
-                <li id = "int_dropdown_color">${data["int_dropdown_color"]}</li>
-            </ul>
-            <textarea id = "comments" readonly>${data["str_notes"]}</textarea>
-        </section>
-
-
-
-        `;
+             <ul id ="list">
+                 <li id = "str_purchase_location"><p>${data["str_purchase_location"]}</p></li>
+                 <li id = "str_brew_style">${data["str_brew_style"]}</li>
+                 <li id = "str_drink_type"> ${data["str_drink_type"]}</li>
+                 <li id = "int_dropdown_color">${data["int_dropdown_color"]}</li>
+             </ul>
+ 
+             <textarea id = "comments">${data["str_notes"]}</textarea>
+         </section>
+ 
+ 
+ 
+         `;
+ 
 
         // Custom event trigger that the DOM will catch whenever we click on "delete"
         this.shadowRoot.getElementById('delete_button').addEventListener("click", () => {

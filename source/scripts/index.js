@@ -134,6 +134,9 @@ function handleEvents() {
         }
         // If we click on the guidance option, it should trigger a pop up box
         if(help.selectedIndex == TWO) {
+            // Navigate to the page 
+            window.location.href = help.value;
+            // Prevents the select from updating so it doesn't get stuck on an option 
             help.selectedIndex = ZERO;
         }
     });
@@ -570,33 +573,37 @@ function handleEvents() {
 
             // Save to storage and update the page
             saveCoffeeCardsToStorage(coffeeCards);
-
-            const all_coffee_cards = document.querySelectorAll('coffee-card');
-            const card_to_edit = all_coffee_cards[current_edit_id].shadowRoot;
-
-            // Populate card thumbnail
-            card_to_edit.querySelector('#str_drink_name').innerText =
-                coffeeCardObject["str_drink_name"];
-            card_to_edit.querySelector('#time_purchase_date').innerText =
-                coffeeCardObject["time_purchase_date"]
-            card_to_edit.querySelector('#str_purchase_location').innerText =
-                "Location: " + coffeeCardObject["str_purchase_location"];
-            card_to_edit.querySelector('#str_brew_style').innerText =
-                "Brew Method: " + coffeeCardObject["str_brew_style"];
-            card_to_edit.querySelector('#str_drink_type').innerText =
-                "Serving Type: " + coffeeCardObject["str_drink_type"];
-            card_to_edit.querySelector('#int_dropdown_color').innerText =
-                "Color Level: " + coffeeCardObject["int_dropdown_color"];
+            addCoffeeCardsToDocument(coffeeCards);
+            /*
+             *Const all_coffee_cards = document.querySelectorAll('coffee-card');
+             *const card_to_edit = all_coffee_cards[current_edit_id].shadowRoot;
+             *
+             * // Populate card thumbnail
+             *card_to_edit.querySelector('#str_drink_name').innerText =
+             *    coffeeCardObject["str_drink_name"];
+             *card_to_edit.querySelector('#time_purchase_date').innerText =
+             *    coffeeCardObject["time_purchase_date"]
+             *card_to_edit.querySelector('#str_purchase_location').innerText =
+             *    coffeeCardObject["str_purchase_location"];
+             *card_to_edit.querySelector('#str_brew_style').innerText =
+             *    coffeeCardObject["str_brew_style"];
+             *card_to_edit.querySelector('#str_drink_type').innerText =
+             *    coffeeCardObject["str_drink_type"];
+             *card_to_edit.querySelector('#int_dropdown_color').innerText =
+             *    coffeeCardObject["int_dropdown_color"];
+             */
         }
+
+    
+
+        // Set sort to the default setting for import
+        filterOption.selectedIndex = 1;
 
         /*
          * Reset the coffee card's image to the default one, at index 0
          * next time the user chooses to add a new card, the image will
          * be the default one, which is the first one.
          */
-        
-        // Set sort to the default setting for import
-        filterOption.selectedIndex = 1;
         reset_image_id();
         isEditing = false;
         closeForm();
