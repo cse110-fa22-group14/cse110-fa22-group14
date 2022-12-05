@@ -121,7 +121,6 @@ class CoffeeCard extends HTMLElement {
                 padding: 5px;
                 resize: none;
                 overflow: scroll;
-                
             }
 
             ::-webkit-scrollbar {
@@ -215,31 +214,30 @@ class CoffeeCard extends HTMLElement {
         // Add a hidden element to the card's HTML
         shadow_div.innerHTML =
             `
-       <header>
+        <header>
             <h3 id = "str_drink_name"><slot name="date" />${data["str_drink_name"]}</h3>
             <h4 id = "time_purchase_date">${dateStr}</h4>
-       </header>
+         </header>
 
-       <section id = "row">
-       <h4 id = "float_drink_price">$${data["float_drink_price"]}</h4>
-       <section id = "button_container">
-           <img id = "share_button" alt = "share icon" src = "./assets/images/share-icon.png" ></img>
-           <img  id="delete_button" alt = "edit icon" src = "./assets/images/delete-icon.png" ></img>
-           <img  id="edit_button"  src = "./assets/images/edit-icon.png" ></img>
-       </section>
-   </section>
+        <section id = "row">
+            <h4 id = "float_drink_price">$${data["float_drink_price"]}</h4>
+            <section id = "button_container">
+                <img id = "share_button" alt = "share icon" src = "./assets/images/share-icon.png" ></img>
+                <img  id="delete_button" alt = "edit icon" src = "./assets/images/delete-icon.png" ></img>
+                <img  id="edit_button"  src = "./assets/images/edit-icon.png" ></img>
+            </section>
+        </section>
 
-       <hr>
+        <hr>
 
-       <section id = "info_container">
+        <section id = "info_container">
             <ul id ="list">
                 <li id = "str_purchase_location"><p>${data["str_purchase_location"]}</p></li>
                 <li id = "str_brew_style">${data["str_brew_style"]}</li>
                 <li id = "str_drink_type"> ${data["str_drink_type"]}</li>
                 <li id = "int_dropdown_color">${data["int_dropdown_color"]}</li>
             </ul>
-
-            <textarea id = "comments">${data["str_notes"]}</textarea>
+            <textarea id = "comments" readonly>${data["str_notes"]}</textarea>
         </section>
 
 
