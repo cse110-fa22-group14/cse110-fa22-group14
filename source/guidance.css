@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Dosis:300,400");
-
 * {
     margin: 0;
     padding: 0;
@@ -57,12 +55,24 @@ main {
     max-width: 1fr;
     height: 300px;
     background-color: rgb(167 125 136);
+
     border-radius: 30px;
     border: none;
     box-shadow: 12px 17px 14px -12px rgba(0 0 0 / 41%);
-
-    /* Glow animation added to the element */
     animation: glowing 1300ms infinite;
+
+}
+
+#add_icon {
+    color: rgb(255 255 255);
+    background-color: white;
+}
+
+/* Smoothly change opacity when hovering over addCard button */
+#add_card:hover {
+    opacity: 0.8;
+    transition: all 0.2s ease-in;
+    cursor: pointer;
 }
 
 /* Hidden popup form */
@@ -74,7 +84,7 @@ main {
     background-color: rgb(11 17 17);
     border-radius: 20px;
     padding: 20px;
-    font-family: "Zen Maru Gothic", Helvetica, Arial;
+    font-family: "Zen Maru Gothic", Arial;
     height: auto;
     width: 50vw;
     transform: translate(-50%, -40%);
@@ -84,20 +94,62 @@ main {
     /* Because we have so many components, it's best to make it a grid */
     display: grid;
 
-    /* We have 11 rows and 6 columns in the grid */
+    /* We have 13 rows and 6 columns in the grid */
     grid-template-rows: repeat(11, 30px);
-    grid-template-columns: repeat(6, minmax(10px, 1fr));
+    grid-template-columns: repeat(6, minmax(30px, 1fr));
 
     /* Space between each form child */
     gap: 10px;
-
-    /* Glow animation added to the element */
     animation: glowing 1300ms infinite;
+
 }
 
 /* Encapsulation for different inputs in form */
 fieldset {
     border: none;
+}
+
+
+
+/* Keyframe animations for glowing text */
+
+/* Universal Glow Animation */
+@keyframes glowing-text {
+
+    /* INFO: https://www.w3docs.com/snippets/css/how-to-create-flashing-glowing-button-using-animation-in-css3.html */
+    0% {
+        color: rgb(255 77 0);
+        text-shadow: 0 0 20px rgb(255 77 0);
+    }
+
+    50% {
+        color: rgb(255 77 0);
+        text-shadow: 0 0 50px rgb(143 54 15);
+    }
+
+    100% {
+        color: rgb(255 77 0);
+        text-shadow: 0 0 20px rgb(255 77 0);
+    }
+}
+
+@keyframes glowing-icon {
+
+    /* INFO: https://www.w3docs.com/snippets/css/how-to-create-flashing-glowing-button-using-animation-in-css3.html */
+    0% {
+        background-color: rgba(255 77 0 / 20%);
+        box-shadow: 0 0 20px rgb(255 77 0);
+    }
+
+    50% {
+        background-color: transparent;
+        box-shadow: 0 0 50px rgb(143 54 15);
+    }
+
+    100% {
+        background-color: rgba(255 77 0 / 40%);
+        box-shadow: 0 0 20px rgb(255 77 0);
+    }
 }
 
 /* The following are containers and inputs that occupy 
@@ -107,15 +159,23 @@ fieldset {
     grid-row-start: 1;
     grid-column-start: 1;
     grid-row-end: 2;
-    grid-column-end: 3;
+    grid-column-end: 1;
+    background-color: transparent;
+    outline: none;
     background: none;
-    font-family: "Zen Maru Gothic", Arial, Georgia;
+    font-family: "Zen Maru Gothic", Arial;
     font-size: 1.2em;
-    color: #ffff;
-    text-align: left;
+    color: rgb(255 255 255);
+}
 
-    /* Glow animation added to the element */
-    animation: glowing 1300ms infinite;
+#save p {
+    text-align: left;
+    animation: glowing-text 1300ms infinite;
+}
+#save:hover {
+    cursor: pointer;
+    opacity: 0.8;
+    transition: all 0.2s ease-in;
 }
 
 #str_drink_name {
@@ -152,18 +212,18 @@ fieldset {
 
 /* Input boxes in popup form */
 input {
-    padding-left: 15px;
+    padding-left: 5px;
     text-align: left;
     border: none;
     border-radius: 5px;
-    font-size: 1.2em;
-    font-family: "Zen Maru Gothic", Arial, Georgia;
+    font-size: 1em;
+    font-family: "Zen Maru Gothic", Arial;
     background-color: #ffff;
 }
 
 
 #flavor_container {
-    background-color: #ffff;
+    background-color: rgb(255 255 255);
     grid-row-start: 6;
     grid-column-start: 1;
     grid-row-end: 9;
@@ -171,6 +231,7 @@ input {
     display: flex;
     flex-direction: row;
     border-radius: 10px;
+    height: 100%;
 }
 
 #flavor_container fieldset {
@@ -180,22 +241,22 @@ input {
 }
 
 #range_wrapper {
-    width: 40%;
+    width: 65%;
     max-height: 100%;
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 /* Wrapper for checkboxes in form */
 #optional_wrapper {
     text-align: left;
-    width: 40%;
+    width: 35%;
     max-height: 100%;
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 /* Basic styling for all sliders */
 #flavor_range {
-    background-color: #ffff;
+    background-color: rgb(255 255 255);
     z-index: 1;
 }
 
@@ -205,14 +266,22 @@ input {
     grid-column-start: 5;
     grid-row-end: 2;
     grid-column-end: 7;
-    background: none;
-    font-family: "Zen Maru Gothic", Arial, Georgia;
+    background-color: transparent;
+    font-family: "Zen Maru Gothic", Arial;
     font-size: 1.2em;
-    color: #ffff;
+    color: rgb(255 255 255);
+}
+
+#cancel p {
+    animation: glowing-text 1300ms infinite;
     text-align: right;
 
-    /* Glow animation added to the element */
-    animation: glowing 1300ms infinite;
+
+}
+#cancel:hover {
+    cursor: pointer;
+    opacity: 0.8;
+    transition: all 0.2s ease-in;
 }
 
 #switch_photo_container {
@@ -228,14 +297,15 @@ input {
 
     /* INFO: reference: https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp */
 
-    /* NOTE: implemented left and right arrows to change inage */
+    /* NOTE: implemented left and right arrows to change image */
     cursor: pointer;
     position: absolute;
     width: auto;
-    color: #502e2a;
+    color: #ffff;
     font-weight: bold;
     font-size: 40px;
     user-select: none;
+    top: 10%;
 
     /* NOTE: inherented from parent #switch_photo_container */
     grid-row-start: 4;
@@ -253,6 +323,11 @@ input {
     right: 10%;
 }
 
+#switch_photo_left_arrow:hover,
+#switch_photo_right_arrow:hover {
+    opacity: 0.7;
+}
+
 #str_purchase_location {
     grid-row-start: 5;
     grid-column-start: 1;
@@ -261,10 +336,10 @@ input {
 }
 
 #type_info_container {
-    background-color: #ffff;
-    grid-row-start: 9;
+    background-color: rgb(255 255 255);
+    grid-row-start: 10;
     grid-column-start: 1;
-    grid-row-end: 13;
+    grid-row-end: 11;
     grid-column-end: 4;
 
     /* Flex with direction "column" tells DOM to 
@@ -272,25 +347,33 @@ input {
      */
     display: flex;
     flex-direction: column;
-
-    /* Even spacing between child elements */
     justify-content: space-evenly;
-    padding: 20px;
+    text-align: left;
     border-radius: 10px;
+    height: 100px;
+    padding-left: 5px;
 }
+
+#type_info_container select {
+    font-family: "Zen Maru Gothic";
+    font-size: 1em;
+}
+
 
 #str_notes {
-    background-color: #ffff;
-    grid-row-start: 9;
+    background-color: rgb(255 255 255);
+    grid-row-start: 10;
     grid-column-start: 4;
-    grid-row-end: 13;
+    grid-row-end: 11;
     grid-column-end: 7;
     border-radius: 10px;
-    font-family: "Zen Maru Gothic", Arial, Georgia;
-    padding: 15px;
-    font-size: 1.2em;
+    font-family: "Zen Maru Gothic", Arial;
+    font-size: 1em;
+    text-align: left;
+    padding-left: 10px;
+    resize: none;
+    height: 100px;
 }
-
 
 
 
@@ -299,38 +382,39 @@ input {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: auto;
+    margin: 20px auto;
     width: 90%;
-    height: 3rem;
+    height: 3em;
     text-align: center;
     align-items: center;
 }
- 
+
+/* Define structure for the four buttons in nav bar */
+
 #functionality #select_file, #help, #filter, #change_color {
+    background-color: rgb(130, 114, 114);
     display: flex;
     position: relative;
-    background-color: rgb(43 44 54);
     color: white;
-    width: 8rem;
-    height: 95%;
+    width: 6.5em;
+    height: 100%;
     text-align: center;
     align-items: center;
     font-family: "Zen Maru Gothic", Arial;
     font-weight: 700;
-    font-size: 0.8rem;
+    font-size: 0.9em;
     border-radius: 10px;
-
-    /* Glow animation added to the element */
     animation: glowing 1300ms infinite;
 }
 
+#select_file {
+    opacity: 0.65;
+}
 
 /* Help Dropdown Button */
 #help {
     display: flex;
     align-items: center;
-    width: 8rem;
-    min-width: 4rem;
     text-align: center;
 }
 
@@ -354,9 +438,6 @@ input {
 }
 
 
-/* The list that stores all the cards
- * Three columns but its rows should grow dynamically with number of cards added
- */
 #gallery {
     width: 80%;
     margin: 5vh auto;
@@ -373,83 +454,337 @@ input {
     justify-content: center;
 }
 
-/* Next & previous buttons */
-.prev_help,
-.next_help {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    width: auto;
-    padding: 50px;
-    margin-top: -50px;
-    color: black;
-    font-weight: bold;
-    font-size: 50px;
-    border-radius: 0 3px 3px 0;
-    user-select: none;
-}
 
-/* Position the "next button" to the right */
-.prev_help {
-    left: 0;
-    border-radius: 3px 0 0 3px;
-}
 
-/* Position the "next button" to the right */
-.next_help {
-    right: 0;
-    border-radius: 3px 0 0 3px;
 
-    /* Glow animation added to the element */
-    animation: glowing 1300ms infinite;
-}
-
-/* On hover, add a black background color with a little bit see-through */
-.prev_help:hover,
-.next_help:hover {
-    background-color: rgba(0 0 0 80%);
-}
-
-#str_guidance_text {
+#tutorial_box {
     min-width: 300px;
     bottom: 10px;
     min-height: 30vh;
     background-color: rgb(147 147 147);
-    opacity: 0.67;
+    opacity: 0.80;
     border-radius: 10px;
     border: none;
     justify-content: center;
     display: flex;
-    position: relative;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
     height: 15vh;
     width: 80%;
     margin: 10px auto 0;
     z-index: 999;
+    position: relative;
 }
 
-#main_page {
+/* Next & previous buttons */
+
+
+.prev_help,
+.next_help {
+    width: 75px;
+    height: 75px;
+    margin: 0 20px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    border-radius: 50px;
+    user-select: none;
+    animation: glowing-icon 1300ms infinite;
+
+}
+
+
+#text-main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    width: 80%;
+    text-align: center;
+    margin: 0 10px;
+}
+
+#guidance_text {
+    width: 90%;
+    height: 60px;
+    margin-bottom: 10px;
+    font-family: "Zen Maru Gothic";
+    color: white;
+    font-size: 0.9em;
+}
+
+#home_link {
     text-decoration: none;
     font-size: 1.2rem;
     font-family: "Zen Maru Gothic", Arial;
-    color: rgb(236 232 232);
+    color: rgb(255 255 255);
     width: 10vw;
     border-bottom: 2px solid transparent;
     transition: all 0.2s ease-in;
-    align-items: left;
 
     /* Glow animation added to the element */
-    animation: glowing 1300ms infinite;
+    animation: glowing-text 1300ms infinite;
 }
 
 /* Hoevering over link will underline in a smooth fashion */
-#main_page:hover {
+#home_link:hover {
     border-bottom: 1px solid rgb(236 232 232);
     transition: all 0.2s ease-in;
 }
 
-#main_page.fixed {
-    position: fixed;
-    left: 0;
-    top: 85vh;
-    z-index: 999;
+
+/* Provides support for tablets */
+@media screen and (max-width: 800px) {
+
+    #functionality #select_file,
+    #help,
+    #filter,
+    #change_color {
+        width: 5em;
+        height: 75%;
+        font-size: 0.8em;
+        border-radius: 10px;
+        padding: 5px;
+    }
+
+    #functionality h1 {
+        font-size: 1.4em;
+        width: 20%;
+    }
+
+    #optional_wrapper {
+        font-size: 1em;
+    }
+
+    #pop_up_box {
+        width: 60vw;
+    }
+
+    #range_wrapper {
+        font-size: 0.95em;
+    }
+
+    .flavor_range {
+        width: 40%;
+    }
+
+    input {
+        font-size: 1em;
+    }
+
+    #type_info_container label {
+        font-size: 0.85em;
+        align-content: center;
+        align-self: flex-start;
+        padding-left: 5px;
+    }
+
+    #type_info_container select {
+        font-size: 0.85em;
+        right: 50%;
+    }
+
+    #text-main-container {
+        width: 95%;
+        margin: 20px;
+    }
+    #guidance_text {
+        font-size: 0.8em;
+    }
+
+    .prev_help,
+    .next_help {
+        height: 45px;
+        width: 45px;
+        margin: 0 none;
+    }
+
+    #home_link {
+        font-size: 0.9em;
+    }
+
+    #type_info_container label {
+        font-size: 0.85em;
+        align-content: center;
+        align-self: flex-start;
+        padding-left: 5px;
+    }
+
+    #type_info_container select {
+        font-size: 0.85em;
+        padding: 10px;
+        width: 40px;
+        height: 10px;
+    }
+}
+
+/* Provides support for smaller tablets */
+@media screen and (max-width: 600px) {
+
+    #functionality #select_file,
+    #help,
+    #filter,
+    #change_color {
+        width: 6em;
+        height: 75%;
+        font-weight: 700;
+        font-size: 0.6em;
+        border-radius: 10px;
+        padding: 5px;
+    }
+
+    #functionality h1 {
+        font-size: 1.5em;
+        width: 20%;
+    }
+
+    #optional_wrapper {
+        font-size: 0.85em;
+    }
+
+    #range_wrapper label {
+        font-size: 0.85em;
+    }
+
+    .flavor_range {
+        width: 25%;
+    }
+
+    #pop_up_box {
+        width: 70vw;
+    }
+
+
+    #str_notes {
+        font-size: 1em;
+    }
+
+    input {
+        font-size: 0.95em;
+    }
+
+    #type_info_container {
+        font-size: 0.95em;
+    }
+    
+    #type_info_container select {
+        font-size: 0.95em;
+    }
+    #text-main-container {
+        width: 95%;
+    }
+    #guidance_text {
+        font-size: 0.6em;
+    }
+
+    .prev_help,
+    .next_help {
+        height: 45px;
+        width: 45px;
+        margin: 0 10px;
+    }
+
+    #home_link {
+        font-size: 0.85em;
+    }
+
+    #type_info_container label {
+        font-size: 0.85em;
+        align-content: center;
+        align-self: flex-start;
+        padding-left: 5px;
+    }
+
+    #type_info_container select {
+        font-size: 0.85em;
+        padding: 10px;
+        width: 40px;
+        height: 10px;
+    }
+}
+
+/* Provides support for phones */
+@media screen and (max-width: 500px) {
+
+    #functionality #select_file,
+    #help,
+    #filter,
+    #change_color {
+        width: 6em;
+        height: 75%;
+        font-weight: 700;
+        font-size: 0.6em;
+        border-radius: 10px;
+        padding: 5px;
+    }
+
+    #functionality h1 {
+        font-size: 1.4em;
+        width: 20%;
+    }
+
+    #optional_wrapper {
+        font-size: 0.95em;
+    }
+
+    #pop_up_box {
+        width: 80vw;
+    }
+
+    #range_wrapper {
+        font-size: 0.95em;
+    }
+
+    .flavor_range {
+        width: 35%;
+    }
+
+    input {
+        font-size: 0.85em;
+        padding: 2px 0 2px 5px;
+    }
+
+    #type_info_container {
+        font-size: 0.95em;
+    }
+
+    #str_notes {
+        font-size: 0.85em;
+    }
+
+    #text-main-container {
+        width: 90%;
+    }
+    #guidance_text {
+        font-size: 0.6em;
+    }
+
+    .prev_help,
+    .next_help {
+        height: 45px;
+        width: 45px;
+        margin: 0 10px;
+    }
+
+    #home_link {
+        font-size: 0.85em;
+    }
+
+    #type_info_container label {
+        font-size: 0.85em;
+        align-content: center;
+        align-self: flex-start;
+        padding-left: 5px;
+    }
+
+    #type_info_container select {
+        font-size: 0.85em;
+        padding: 10px;
+        width: 40px;
+        height: 10px;
+    }
 }

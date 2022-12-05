@@ -1,4 +1,4 @@
-/*
+ /*
  * This file will provide functionality to DOM elements
  * and enable reading and writing to/from localStorage
  *
@@ -110,7 +110,7 @@ function show_help_text(int_change) {
         // Change to the last picture is index decreases out of bounds
     }
     // Find the image element on html
-    const help_text_element = document.getElementById('str_guidance_text');
+    const help_text_element = document.getElementById('guidance_text');
     // Change the src of the image
     help_text_element.innerText = help_text[help_text_index];
     // Change the element glow
@@ -142,9 +142,9 @@ function glowGuidanceElement(int_help_index) {
     importButton.classList.add('disable-css-transitions');
     const addButton = document.getElementById('add_card');
     addButton.classList.add('disable-css-transitions');
-    const cancelButton = document.getElementById('cancel');
+    const cancelButton = document.querySelector('#cancel > p');
     cancelButton.classList.add('disable-css-transitions');
-    const saveButton = document.getElementById('save');
+    const saveButton = document.querySelector('#save > p');
     saveButton.classList.add('disable-css-transitions');
     const help_left_arrow = document.getElementById('prev_help');
     help_left_arrow.classList.add('disable-css-transitions');
@@ -152,7 +152,7 @@ function glowGuidanceElement(int_help_index) {
     help_right_arrow.classList.add('disable-css-transitions');
     const form = document.getElementById('pop_up_box');
     form.classList.add('disable-css-transitions');
-    const mainPageButton = document.getElementById('main_page');
+    const mainPageButton = document.querySelector('#home_link');
     mainPageButton.classList.add('disable-css-transitions');
     let coffeeCardObject;
 
@@ -229,7 +229,7 @@ function glowGuidanceElement(int_help_index) {
             coffeeCardObject = document.getElementsByTagName('coffee-card');
             // Choose the first card that just added
             coffeeCardObject = coffeeCardObject[ONE].shadowRoot;
-            coffeeCardObject = coffeeCardObject.querySelector('#delete_button');
+            coffeeCardObject = coffeeCardObject.querySelector('#delete_card');
             coffeeCardObject.classList.remove('disable-css-transitions');
             break;
         case THIRTEEN:
@@ -337,9 +337,9 @@ function populateForm() {
 function addPlaceholderCard() {
     // Information on the placeholder card
     const formData = [{"str_drink_name":"New Drink",
-                                "float_drink_price":"10",
-                                "time_purchase_date":"2022-12-03",
-                                "str_purchase_location":"La Jolla",
+                                "float_drink_price":"10","time_purchase_date":
+                                "2022-12-03","str_purchase_location":
+                                "La Jolla",
                                 "img_drink_image":0,
                                 "int_slide_acidity":"1",
                                 "int_slide_sweetness":"2",
@@ -417,9 +417,9 @@ function addPlaceholderCard2() {
     // Turn off all the glows on default
     let cardBody = coffeeCardObject.querySelector('div');
     cardBody.classList.add('disable-css-transitions');
-    let editButton = coffeeCardObject.querySelector('.edit');
+    let editButton = coffeeCardObject.querySelector('#edit_button');
     editButton.classList.add('disable-css-transitions');
-    let deleteButton = coffeeCardObject.querySelector('.delete');
+    let deleteButton = coffeeCardObject.querySelector('#delete_button');
     deleteButton.classList.add('disable-css-transitions');
     let shareButton = coffeeCardObject.querySelector('#share_button');
     shareButton.classList.add('disable-css-transitions');
@@ -429,9 +429,9 @@ function addPlaceholderCard2() {
     // Turn off all the glows on default
     cardBody = coffeeCardObject.querySelector('div');
     cardBody.classList.add('disable-css-transitions');
-    editButton = coffeeCardObject.querySelector('.edit');
+    editButton = coffeeCardObject.querySelector('#edit_button');
     editButton.classList.add('disable-css-transitions');
-    deleteButton = coffeeCardObject.querySelector('.delete');
+    deleteButton = coffeeCardObject.querySelector('#delete_button');
     deleteButton.classList.add('disable-css-transitions');
     shareButton = coffeeCardObject.querySelector('#share_button');
     shareButton.classList.add('disable-css-transitions');

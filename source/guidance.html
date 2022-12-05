@@ -51,35 +51,23 @@
 </head>
 
 <body>
-    <nav id = "main_page" class="fixed">
-        <a href="index.html" title="Go to main page" id="home_link">Home Page</a>
-    </nav>
+
     <header>
         <section id = "functionality">
         
             <!-- this is import button -->
             <button id = "select_file" disabled>IMPORT</button>
-            <input id = "import" type = "file" style = "display:none;" name = "fileName"/>
+            <input id = "import" type = "file" style = "display:none;" name = "fileName" disabled/>
+          
 
-            <!-- this is a div class that contains "about us" and "help button as a dropDown" 
-                <button id = "help" class = "dropdown">HELP</button>
-                <div class = "dropdown-content">
-                    <a href = "./aboutUs.html">ABOUT US</a>
-                    <span class="material-symbols-outlined">diversity_3</span>
-                  <a href="./guidance.html">GUIDANCE</a>
-                </div>
-              </div> -->
             <select id= "help" class = "dropdown" disabled>
                 <option value = "" hidden>HELP</option>"
                 <option value = "./aboutUs.html">ABOUT</option>
                 <option value = "">GUIDANCE</option>
             </select>
 
-        
-
+    
             <h1>brew notes.</h1>
-            <!--<span class="material-symbols-outlined">coffee_maker</span> -->
-            <!--the filter should be implemented later -->
             <select id= "filter" class = "dropdown" disabled>
               <option value = "" hidden>SORT</option>
               <option value = "0Price: Low-High">PRICE: LO-HI</option>
@@ -105,8 +93,8 @@
 
     <main>
     <form id = "pop_up_box">
-        <button id = "save" type = "submit" disabled>SAVE</button>
-        <button id = "cancel" type = "reset" disabled>CANCEL</button>
+        <button id = "save" type = "submit" disabled><p>SAVE</p></button>
+        <button id = "cancel" type = "reset" disabled><p>CANCEL</p></button>
         
         <input type = "text" id="str_drink_name" placeholder="name of drink" name = "str_drink_name" required/>
         <input type = "text"id="float_drink_price" placeholder = "price" name = "float_drink_price" required/>
@@ -207,11 +195,17 @@
             <img id = "addIcon" src = "assets/images/add-icon.png" alt = "add icon">
         </button>
     </section>
-    <!-- Next and previous buttons -->
-    <a class = "prev_help" id = "prev_help">&#10094;</a>
-    <a class = "next_help" id = "next_help">&#10095;</a>
-    <p id = "str_guidance_text">
 
+    <!-- Next and previous buttons -->
+    <section id = "tutorial_box">
+        <div class = "prev_help" id = "prev_help"><a >&#10094;</a></div>
+        <section id = "text-main-container"></div>
+            <p id="guidance_text"></p>
+            <nav id = "main_page" class="fixed"><a href="index.html" title="Go to main page" id="home_link">Home Page</a></nav>
+        </section>
+        <div class="next_help" id = "next_help"><a>&#10095;</a></div>
+    </section>
+ 
     </p>
   </main>
   

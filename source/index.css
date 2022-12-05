@@ -304,7 +304,7 @@ input {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 20px auto 20px auto;
+    margin: 20px auto;
     width: 90%;
     height: 3em;
     text-align: center;
@@ -329,7 +329,7 @@ input {
     align-items: center;
     font-family: "Zen Maru Gothic", Arial;
     font-weight: 700;
-    font-size: .9em;
+    font-size: 0.9em;
     border-radius: 10px;
 }
 
@@ -390,7 +390,6 @@ input {
 
 /* Provides support for tablets */
 @media screen and (max-width: 800px) {
-
     #functionality #select_file, #help, #filter, #change_color {
         width: 5em;
         height: 75%;
@@ -413,7 +412,7 @@ input {
     }
 
     #range_wrapper {
-        font-size: .95em;
+        font-size: 0.95em;
     }
 
     .flavor_range {
@@ -435,14 +434,10 @@ input {
         font-size: 0.85em;
         right: 50%;
     }
-
-
 }
 
 /* Provides support for smaller tablets */
 @media screen and (max-width: 600px) {
-
-        
     #functionality #select_file, #help, #filter, #change_color {
         width: 6em;
         height: 75%;
@@ -458,12 +453,13 @@ input {
     }
 
     #optional_wrapper {
-        font-size: .85em;
+        font-size: 0.85em;
     }
 
-    #range_wrapper label{
-        font-size: .85em;
+    #range_wrapper label {
+        font-size: 0.85em;
     }
+
     .flavor_range {
         width: 25%;
     }
@@ -472,8 +468,12 @@ input {
         width: 70vw;
     }
 
-    #type_info_container {
-        font-size: 1em;
+    
+    #type_info_container label {
+        font-size: 0.85em;
+        align-content: center;
+        align-self: flex-start;
+        padding-left: 5px;
     }
 
     #str_notes {
@@ -487,12 +487,8 @@ input {
     #type_info_container {
         font-size: 0.95em;
     }
-    #type_info_container label {
-        font-size: .85em;
-        align-content: center;
-        align-self: flex-start;
-        padding-left: 5px;
-    }
+
+
 
     #type_info_container select {
         font-size: 0.95em;
@@ -501,8 +497,6 @@ input {
 
 /* Provides support for phones */
 @media screen and (max-width: 500px) {
-
-    
     #functionality #select_file, #help, #filter, #change_color {
         width: 6em;
         height: 75%;
@@ -547,14 +541,14 @@ input {
     }
     
     #type_info_container label {
-        font-size: .85em;
+        font-size: 0.85em;
         align-content: center;
         align-self: flex-start;
         padding-left: 5px;
     }
 
     #type_info_container select {
-        font-size: .85em;
+        font-size: 0.85em;
         padding: 10px;
         width: 40px;
         height: 10px;
