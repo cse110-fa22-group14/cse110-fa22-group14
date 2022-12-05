@@ -605,11 +605,11 @@ describe("Basic user flow for Website", () => {
 }, TOTAL_TEST_TIME);
 
 
-  /**
-   * Delete tests start here
-   * NOTE: Please put all other tests before delete tests
-   *       It will clear up the entire array at the end
-   */
+ /**
+  * Delete tests start here
+  * NOTE: Please put all other tests before delete tests
+  *       It will clear up the entire array at the end
+  */
 
   // Check to make sure clicking delete button deletes exactly one card
   it('Check if delete button deletes exactly one card per click', async () => {
