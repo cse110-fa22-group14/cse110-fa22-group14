@@ -550,6 +550,60 @@ describe("Basic user flow for Website", () => {
    * expect(coffeeCardsStored).toBe('[ FILL IN HERE ]');
    * });
    */
+    /**
+   * Sorting Tests begin here
+   *
+   * Check that sorting then deleting deletes the correct card after sort by date
+   * NOTE: test may fail if two cards are identical
+   */
+  it('Checking that the correct card is deleted after a sort', async () => {
+    console.log('Checking that correct card is edited after sort');
+    // Grab the filter drop down and change trigger sorting by date
+    await page.$eval('#filter', (el) => {
+      el.value = '0Date: Oldest-Newest';
+    });
+    // Randomly get a card
+    const coffeeCards = await page.$$('coffee-card');
+    const cardNum = coffeeCards.length;
+    const cardIndex = Math.floor(Math.random() * cardNum);
+    const card = coffeeCards[cardIndex];
+    const shadowRoot1 = await card.getProperty("shadowRoot");
+
+    // Get the name of drink as an identifier of that card
+    const editButton = await shadowRoot1.$("#edit_button");
+    await editButton.click();
+    const drinkName = await page.$eval("#str_drink_name", (el) => {
+      return el.value;
+    });
+    const cancelButton = await page.$("#cancel");
+    await cancelButton.click();
+
+    // Get the delete button and click on it
+    const shadowRoot2 = await card.getProperty("shadowRoot");
+    const deleteButton = await shadowRoot2.$('#delete_button');
+    await deleteButton.click();
+
+    // Iterate through the cards and make sure that specific card no longer exists
+    let existCard = false;
+    const cardsDeleted = await page.$$('coffee-card');
+    for (let i = 0; i < cardsDeleted.length; i++) {
+    const card = cardsDeleted[i];
+    const shadowRoot3 = await card.getProperty("shadowRoot");
+    const editButton = await shadowRoot3.$("#edit_button");
+    await editButton.click();
+    const currentName = await page.$eval("#str_drink_name", (el) => {
+      return el.value;
+    });
+    const cancelButton = await page.$("#cancel");
+    await cancelButton.click();
+    if(currentName == drinkName) {
+      existCard = true;
+   }
+ }
+
+ expect(existCard).toBe(false);
+}, TOTAL_TEST_TIME);
+
 
   /**
    * Delete tests start here
