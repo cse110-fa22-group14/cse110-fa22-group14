@@ -55,12 +55,10 @@ main {
     max-width: 1fr;
     height: 300px;
     background-color: rgb(167 125 136);
-
     border-radius: 30px;
     border: none;
     box-shadow: 12px 17px 14px -12px rgba(0 0 0 / 41%);
     animation: glowing 1300ms infinite;
-
 }
 
 #add_icon {
@@ -101,7 +99,6 @@ main {
     /* Space between each form child */
     gap: 10px;
     animation: glowing 1300ms infinite;
-
 }
 
 /* Encapsulation for different inputs in form */
@@ -109,11 +106,7 @@ fieldset {
     border: none;
 }
 
-
-
 /* Keyframe animations for glowing text */
-
-/* Universal Glow Animation */
 @keyframes glowing-text {
 
     /* INFO: https://www.w3docs.com/snippets/css/how-to-create-flashing-glowing-button-using-animation-in-css3.html */
@@ -162,7 +155,6 @@ fieldset {
     grid-column-end: 1;
     background-color: transparent;
     outline: none;
-    background: none;
     font-family: "Zen Maru Gothic", Arial;
     font-size: 1.2em;
     color: rgb(255 255 255);
@@ -172,6 +164,7 @@ fieldset {
     text-align: left;
     animation: glowing-text 1300ms infinite;
 }
+
 #save:hover {
     cursor: pointer;
     opacity: 0.8;
@@ -275,9 +268,8 @@ input {
 #cancel p {
     animation: glowing-text 1300ms infinite;
     text-align: right;
-
-
 }
+
 #cancel:hover {
     cursor: pointer;
     opacity: 0.8;
@@ -389,8 +381,11 @@ input {
     align-items: center;
 }
 
-/* Define structure for the four buttons in nav bar */
+#select_file {
+    opacity: 0.65;
+}
 
+/* Define structure for the four buttons in nav bar */
 #functionality #select_file, #help, #filter, #change_color {
     background-color: rgb(130, 114, 114);
     display: flex;
@@ -407,17 +402,12 @@ input {
     animation: glowing 1300ms infinite;
 }
 
-#select_file {
-    opacity: 0.65;
-}
-
 /* Help Dropdown Button */
 #help {
     display: flex;
     align-items: center;
     text-align: center;
 }
-
 
 .dropdown {
     position: relative;
@@ -437,7 +427,6 @@ input {
     font-weight: 600;
 }
 
-
 #gallery {
     width: 80%;
     margin: 5vh auto;
@@ -453,9 +442,6 @@ input {
     grid-gap: 30px;
     justify-content: center;
 }
-
-
-
 
 #tutorial_box {
     min-width: 300px;
@@ -478,8 +464,6 @@ input {
 }
 
 /* Next & previous buttons */
-
-
 .prev_help,
 .next_help {
     width: 75px;
@@ -494,9 +478,7 @@ input {
     border-radius: 50px;
     user-select: none;
     animation: glowing-icon 1300ms infinite;
-
 }
-
 
 #text-main-container {
     display: flex;
@@ -535,7 +517,6 @@ input {
     border-bottom: 1px solid rgb(236 232 232);
     transition: all 0.2s ease-in;
 }
-
 
 /* Provides support for tablets */
 @media screen and (max-width: 800px) {
@@ -674,9 +655,11 @@ input {
     #type_info_container select {
         font-size: 0.95em;
     }
+
     #text-main-container {
         width: 95%;
     }
+
     #guidance_text {
         font-size: 0.6em;
     }
@@ -759,6 +742,7 @@ input {
     #text-main-container {
         width: 90%;
     }
+    
     #guidance_text {
         font-size: 0.6em;
     }
