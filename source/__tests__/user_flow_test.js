@@ -539,18 +539,7 @@ it('Checking number of cards on screen after reload', async () => {
   expect(allCoffeeCardsLength).toBe(TOTAL_CARDS);
 }, TOTAL_TEST_TIME);
 
-/*
- * TODO: check local storage
- * // Check to make sure that the cards in localStorage is what we expect
- * it('Checking the localStorage to make sure cart is correct', async () => {
- * // TODO: get coffee card object and check each index
- * const coffeeCardsStored = await page.$$eval('coffeeCards', (coffeeCardsStored) => {
- *     return localStorage.getItem('coffeeCards');
- * });
- * expect(coffeeCardsStored).toBe('[ FILL IN HERE ]');
- * });
- */
-  /**
+/**
  * Sorting Tests begin here
  *
  * Check that sorting then deleting deletes the correct card after sort by date
@@ -587,29 +576,21 @@ it('Checking that the correct card is deleted after a sort', async () => {
   let existCard = false;
   const cardsDeleted = await page.$$('coffee-card');
   for (let i = 0; i < cardsDeleted.length; i++) {
-  const card = cardsDeleted[i];
-  const shadowRoot3 = await card.getProperty("shadowRoot");
-  const editButton = await shadowRoot3.$("#edit_button");
-  await editButton.click();
-  const currentName = await page.$eval("#str_drink_name", (el) => {
-    return el.value;
-  });
-  const cancelButton = await page.$("#cancel");
-  await cancelButton.click();
-  if(currentName == drinkName) {
-    existCard = true;
- }
-}
-
+    const card = cardsDeleted[i];
+    const shadowRoot3 = await card.getProperty("shadowRoot");
+    const editButton = await shadowRoot3.$("#edit_button");
+    await editButton.click();
+    const currentName = await page.$eval("#str_drink_name", (el) => {
+      return el.value;
+    });
+    const cancelButton = await page.$("#cancel");
+    await cancelButton.click();
+    if(currentName == drinkName) {
+      existCard = true;
+    }
+  }
 expect(existCard).toBe(false);
 }, TOTAL_TEST_TIME);
-
-
-/**
-* Delete tests start here
-* NOTE: Please put all other tests before delete tests
-*       It will clear up the entire array at the end
-*/
 
 // Check to make sure clicking delete button deletes exactly one card
 it('Check if delete button deletes exactly one card per click', async () => {
