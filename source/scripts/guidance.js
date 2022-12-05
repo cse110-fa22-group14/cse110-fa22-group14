@@ -40,7 +40,7 @@ help_text.push("Hello! Welcome to Brew Notes by ProForce. It is our pleasure to 
                 + "click the glowing black arrow on the right side of the screen to continue with the tutorial.");
 // Step 1 text
 help_text.push("To end the tutorial at any time, feel free to click the back button to go back to "
-                + "the app or click the [main page] button.");
+                + "the app or click the Home Page button.");
 // Step 2 text
 help_text.push("To Create a new Coffee Card, use the plus button and open up the edit page.");
 // Step 3 text
@@ -74,7 +74,7 @@ help_text.push("If any of the cards become obsolete, feel free to delete by clic
 help_text.push("Feeling creative and would like to see a different color scheme? Find your favorite by clicking the \"THEME\" button. "
                 + "A drop down menu will show after the click, and select the item in the drop down menu the change colors of the page.");
 // Step 14 text
-help_text.push("Congratulations! Now you've learned how to use Brew Notes to store all your Coffee Cards! Please click on the [main page] "
+help_text.push("Congratulations! Now you've learned how to use Brew Notes to store all your Coffee Cards! Please click on the Home Page "
                 + "button to get back to the app to manage your Coffee Cards!");
 
 
@@ -229,7 +229,7 @@ function glowGuidanceElement(int_help_index) {
             coffeeCardObject = document.getElementsByTagName('coffee-card');
             // Choose the first card that just added
             coffeeCardObject = coffeeCardObject[ONE].shadowRoot;
-            coffeeCardObject = coffeeCardObject.querySelector('#delete_card');
+            coffeeCardObject = coffeeCardObject.querySelector('#delete_button');
             coffeeCardObject.classList.remove('disable-css-transitions');
             break;
         case THIRTEEN:

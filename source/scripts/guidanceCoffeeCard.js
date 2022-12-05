@@ -266,7 +266,7 @@ class CoffeeCard extends HTMLElement {
         <h4 id = "float_drink_price">$${data["float_drink_price"]}</h4>
         <section id = "button_container">
             <img id = "share_button" alt = "share icon" src = "./assets/images/share-icon.png" ></img>
-            <img id ="delete_button" alt = "edit icon" src = "./assets/images/delete-icon.png" ></img>
+            <img id ="delete_button" alt = "delete icon" src = "./assets/images/delete-icon.png" ></img>
             <img id ="edit_button"  src = "./assets/images/edit-icon.png" ></img>
         </section>
         </section>
