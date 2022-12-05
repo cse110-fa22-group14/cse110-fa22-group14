@@ -1,4 +1,4 @@
-:coffee: :coffee: :coffee: [Brew Notes](https://cse110-fa22-group14.github.io/cse110-fa22-group14/source/index.html) :coffee: :coffee: :coffee:
+# :coffee: :coffee: :coffee: [Brew Notes](https://cse110-fa22-group14.github.io/cse110-fa22-group14/source/index.html) :coffee: :coffee: :coffee:
 
 Coffee enthusiasts all around partake in regular cupping events where we all sit around a table, try a bunch of coffee, take notes on it, then use those notes to both deepen and share their love for the drink. We wanted to provide an easy and convenient way for everyone to celebrate coffee this way, wether you just want to keep a journal of the coffee shops you've visisted and drinks you've had, or you want to set up a cupping event with your friends, Brew Notes can do it all. [Try Brew Notes here!](https://cse110-fa22-group14.github.io/cse110-fa22-group14/source/index.html)
 
