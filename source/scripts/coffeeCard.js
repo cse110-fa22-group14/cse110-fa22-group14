@@ -109,7 +109,7 @@ class CoffeeCard extends HTMLElement {
 
             #comments {
                 background-color: white;
-                height: 100px;
+                height: 90px;
                 width: 50%;
                 margin-right: 15px;
                 border: none;
