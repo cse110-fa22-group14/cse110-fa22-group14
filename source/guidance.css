@@ -594,6 +594,7 @@ input {
     #home_link {
         font-size: 0.9em;
     }
+}
 
 /* Provides support for smaller tablets */
 @media screen and (max-width: 600px) {
