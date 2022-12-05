@@ -465,8 +465,6 @@ describe("Basic user flow for Website", () => {
     }
   }, TOTAL_TEST_TIME);
 
-
-
   // Check saltiness slider edit functionality
   it('Checking the saltiness slider values have been successfully edited when opend', async () => {
     console.log('Checking the card saltiness slider value after edits...');
@@ -511,6 +509,8 @@ describe("Basic user flow for Website", () => {
     });
     expect(allCoffeeCardsLength).toBe(TOTAL_CARDS);
   }, TOTAL_TEST_TIME);
+    
+    
   /**
    * Sorting Tests begin here
    *
