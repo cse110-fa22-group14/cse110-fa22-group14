@@ -3,7 +3,8 @@ describe("Basic user flow for Website", () => {
     // Load the page in url
     beforeAll(async () => {
       // Now using Github Page URL. Feel free to change back to Live Server URL for manual testing!
-      await page.goto('http://localhost:8080')
+      await page.goto('http://localhost:8080');
+
     });
 
     // Define the total number of cards to add to the database
@@ -464,8 +465,6 @@ describe("Basic user flow for Website", () => {
     }
   }, TOTAL_TEST_TIME);
 
-
-
   // Check saltiness slider edit functionality
   it('Checking the saltiness slider values have been successfully edited when opend', async () => {
     console.log('Checking the card saltiness slider value after edits...');
@@ -509,6 +508,61 @@ describe("Basic user flow for Website", () => {
       return coffeeCards.length;
     });
     expect(allCoffeeCardsLength).toBe(TOTAL_CARDS);
+  }, TOTAL_TEST_TIME);
+    
+    
+  /**
+   * Sorting Tests begin here
+   *
+   * Check that sorting then deleting deletes the correct card after sort by date
+   * NOTE: test may fail if two cards are identical
+   */
+  it('Checking that the correct card is deleted after a sort', async () => {
+    console.log('Checking that correct card is edited after sort');
+    // Grab the filter drop down and change trigger sorting by date
+    await page.$eval('#filter', (el) => {
+      el.value = '0Date: Oldest-Newest';
+    });
+    const coffeeCards = await page.$$('coffee-card');
+    const cardNum = coffeeCards.length;
+    const cardIndex = Math.floor(Math.random() * cardNum);
+    const card = coffeeCards[cardIndex];
+    const shadowRoot1 = await card.getProperty("shadowRoot");
+
+    // Get the name of drink as an identifier of that card
+    const editButton = await shadowRoot1.$("button");
+    await editButton.click();
+    const drinkName = await page.$eval("#str_drink_name", (el) => {
+      return el.value;
+    });
+    const cancelButton = await page.$("#cancel");
+    await cancelButton.click();
+
+    // Get the delete button and click on it
+    const shadowRoot2 = await card.getProperty("shadowRoot");
+    const buttons = await shadowRoot2.$$('button');
+    const deleteButton = buttons[DELETE];
+    await deleteButton.click();
+
+    // Iterate through the cards and make sure that specific card no longer exists
+    let existCard = false;
+    const cardsDeleted = await page.$$('coffee-card');
+    for (let i = 0; i < cardsDeleted.length; i++) {
+      const card = cardsDeleted[i];
+      const shadowRoot3 = await card.getProperty("shadowRoot");
+      const editButton = await shadowRoot3.$("button");
+      await editButton.click();
+      const currentName = await page.$eval("#str_drink_name", (el) => {
+        return el.value;
+      });
+      const cancelButton = await page.$("#cancel");
+      await cancelButton.click();
+      if(currentName == drinkName) {
+        existCard = true;
+      }
+    }
+
+    expect(existCard).toBe(false);
   }, TOTAL_TEST_TIME);
 
   /*
