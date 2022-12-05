@@ -1,6 +1,5 @@
- /*
- * This file will provide functionality to DOM elements
- * and enable reading and writing to/from localStorage
+/*
+ * This file will provide functionality to DOM elements in the guidance page.
  *
  */
 window.addEventListener('DOMContentLoaded', init);
