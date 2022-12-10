@@ -2,6 +2,7 @@
  * This script is used to complete Unit tests to functions
  * Use global [function name] to declare functions and suppress ESLint warnings
  * Use const sum = require('../code-to-unit-test/sum.js'); to link to file
+ * Commented by Ruilin Hu
  */
 
 /* global test, expect */
